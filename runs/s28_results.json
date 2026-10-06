@@ -1,0 +1,263 @@
+{
+  "planner": {
+    "mpc_cem_iters": 4,
+    "mpc_candidates": 64,
+    "mpc_macro_candidates": true
+  },
+  "score_horizon": null,
+  "curriculum_v2": {
+    "p_nest_schedule": [
+      [
+        0.7,
+        15000
+      ],
+      [
+        0.3,
+        15000
+      ],
+      [
+        0.1,
+        15000
+      ]
+    ],
+    "nest_chebyshev": 2
+  },
+  "world_config_hash": "ecc09a8b36ac6a25",
+  "cash_pooled": {
+    "1": 0.25,
+    "2": 0.12999999999999998,
+    "3": 0.09000000000000001
+  },
+  "cash_pass": false,
+  "done_harvest": false,
+  "done_life_vs_stay": false,
+  "done_no_collapse": true,
+  "fork": "B-PLANLAYICI",
+  "results": [
+    {
+      "seed": 0,
+      "train_turns": 45005,
+      "train_episodes": 389,
+      "train_harvest_events": 86,
+      "per_turn_ms": 8.02,
+      "cash": {
+        "1": 0.05,
+        "2": 0.0,
+        "3": 0.2
+      },
+      "calibration": 0.18338102102279663,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 97.0,
+      "median_stay": 167.0,
+      "trained_lifetimes": [
+        92,
+        96,
+        97,
+        127,
+        97,
+        96,
+        99,
+        90,
+        101,
+        97,
+        93,
+        99
+      ],
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 1,
+      "train_turns": 45045,
+      "train_episodes": 364,
+      "train_harvest_events": 55,
+      "per_turn_ms": 7.553,
+      "cash": {
+        "1": 0.3,
+        "2": 0.15,
+        "3": 0.1
+      },
+      "calibration": 0.18166124820709229,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 147.0,
+      "median_stay": 167.0,
+      "trained_lifetimes": [
+        156,
+        142,
+        149,
+        144,
+        147,
+        149,
+        164,
+        147,
+        134,
+        144,
+        137,
+        147
+      ],
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 2,
+      "train_turns": 45110,
+      "train_episodes": 373,
+      "train_harvest_events": 57,
+      "per_turn_ms": 8.452,
+      "cash": {
+        "1": 0.15,
+        "2": 0.05,
+        "3": 0.0
+      },
+      "calibration": 0.2134697586297989,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 145.5,
+      "median_stay": 167.0,
+      "trained_lifetimes": [
+        144,
+        139,
+        144,
+        147,
+        142,
+        151,
+        147,
+        149,
+        147,
+        149,
+        142,
+        144
+      ],
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 3,
+      "train_turns": 45093,
+      "train_episodes": 383,
+      "train_harvest_events": 78,
+      "per_turn_ms": 12.72,
+      "cash": {
+        "1": 0.35,
+        "2": 0.15,
+        "3": 0.05
+      },
+      "calibration": 0.2035672664642334,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 133.0,
+      "median_stay": 167.0,
+      "trained_lifetimes": [
+        131,
+        144,
+        131,
+        137,
+        139,
+        134,
+        132,
+        139,
+        136,
+        122,
+        126,
+        131
+      ],
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 4,
+      "train_turns": 45100,
+      "train_episodes": 369,
+      "train_harvest_events": 43,
+      "per_turn_ms": 10.508,
+      "cash": {
+        "1": 0.4,
+        "2": 0.3,
+        "3": 0.1
+      },
+      "calibration": 0.2820628583431244,
+      "median_harvest": 0.5,
+      "harvest_counts": [
+        0,
+        3,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        2
+      ],
+      "median_lifetime": 117.0,
+      "median_stay": 167.0,
+      "trained_lifetimes": [
+        94,
+        232,
+        135,
+        91,
+        135,
+        99,
+        145,
+        89,
+        103,
+        131,
+        102,
+        171
+      ],
+      "wilcoxon_p_vs_stay": 0.994384765625
+    }
+  ]
+}

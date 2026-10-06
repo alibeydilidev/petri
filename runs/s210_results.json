@@ -1,0 +1,252 @@
+{
+  "overrides": {
+    "base_metabolism": 0.6,
+    "mpc_horizon": 10,
+    "mpc_constant_candidates": true,
+    "mpc_cem_iters": 4,
+    "per_enabled": true,
+    "mpc_candidates": 64,
+    "mpc_macro_candidates": true,
+    "per_spatial_weight": 4.0,
+    "eps_move_bias": 0.5,
+    "decoder_type": "conv"
+  },
+  "curriculum_v2": {
+    "p_nest_schedule": [
+      [
+        0.7,
+        15000
+      ],
+      [
+        0.3,
+        15000
+      ],
+      [
+        0.1,
+        15000
+      ]
+    ],
+    "nest_chebyshev": 2
+  },
+  "world_config_hash": "ecc09a8b36ac6a25",
+  "shift_ratio_median": 999999999.9999999,
+  "shift_pass": true,
+  "cash_pooled": {
+    "1": 0.74,
+    "2": 0.5700000000000001,
+    "3": 0.41
+  },
+  "cash_pass": false,
+  "done_harvest": false,
+  "done_life_vs_stay": false,
+  "done_no_collapse": true,
+  "eval_pass": false,
+  "fork": "B-PLANLAYICI (K-112 kar\u015f\u0131-olgusal yeniden \u00f6l\u00e7\u00fcm)",
+  "results": [
+    {
+      "seed": 0,
+      "train_turns": 45074,
+      "train_episodes": 402,
+      "train_harvest_events": 2,
+      "per_turn_ms": 36.455,
+      "counters": {
+        "transitions": 43632,
+        "move_visible": 6110,
+        "move_shift": 6896
+      },
+      "shift": {
+        "correct_mass": 1.0,
+        "old_mass": 0.0,
+        "ratio": 999999999.9999999
+      },
+      "cash": {
+        "1": 0.05,
+        "2": 0.05,
+        "3": 0.0
+      },
+      "calibration": -0.021665900945663452,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 134.0,
+      "median_stay": 167.0,
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 1,
+      "train_turns": 45002,
+      "train_episodes": 420,
+      "train_harvest_events": 81,
+      "per_turn_ms": 44.049,
+      "counters": {
+        "transitions": 43464,
+        "move_visible": 6872,
+        "move_shift": 7826
+      },
+      "shift": {
+        "correct_mass": 1.0,
+        "old_mass": 0.0,
+        "ratio": 999999999.9999999
+      },
+      "cash": {
+        "1": 0.85,
+        "2": 0.5,
+        "3": 0.45
+      },
+      "calibration": 0.10291792452335358,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 141.5,
+      "median_stay": 167.0,
+      "wilcoxon_p_vs_stay": 0.999755859375
+    },
+    {
+      "seed": 2,
+      "train_turns": 45030,
+      "train_episodes": 357,
+      "train_harvest_events": 121,
+      "per_turn_ms": 42.631,
+      "counters": {
+        "transitions": 43784,
+        "move_visible": 3829,
+        "move_shift": 4314
+      },
+      "shift": {
+        "correct_mass": 1.0,
+        "old_mass": 0.0,
+        "ratio": 999999999.9999999
+      },
+      "cash": {
+        "1": 0.95,
+        "2": 0.8,
+        "3": 0.5
+      },
+      "calibration": 0.23926708102226257,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "median_lifetime": 135.5,
+      "median_stay": 167.0,
+      "wilcoxon_p_vs_stay": 0.999755859375
+    },
+    {
+      "seed": 3,
+      "train_turns": 45064,
+      "train_episodes": 372,
+      "train_harvest_events": 113,
+      "per_turn_ms": 41.979,
+      "counters": {
+        "transitions": 43736,
+        "move_visible": 5320,
+        "move_shift": 6024
+      },
+      "shift": {
+        "correct_mass": 1.0,
+        "old_mass": 0.0,
+        "ratio": 999999999.9999999
+      },
+      "cash": {
+        "1": 0.9,
+        "2": 0.9,
+        "3": 0.75
+      },
+      "calibration": 0.23252689838409424,
+      "median_harvest": 4.0,
+      "harvest_counts": [
+        5,
+        3,
+        1,
+        5,
+        4,
+        4,
+        4,
+        2,
+        1,
+        5,
+        11,
+        4
+      ],
+      "median_lifetime": 161.5,
+      "median_stay": 167.0,
+      "wilcoxon_p_vs_stay": 0.68115234375
+    },
+    {
+      "seed": 4,
+      "train_turns": 45035,
+      "train_episodes": 361,
+      "train_harvest_events": 103,
+      "per_turn_ms": 39.609,
+      "counters": {
+        "transitions": 43784,
+        "move_visible": 4253,
+        "move_shift": 4889
+      },
+      "shift": {
+        "correct_mass": 0.9559521079063416,
+        "old_mass": 0.0021668081171810627,
+        "ratio": 441.17965921705155
+      },
+      "cash": {
+        "1": 0.95,
+        "2": 0.6,
+        "3": 0.35
+      },
+      "calibration": 0.18122276663780212,
+      "median_harvest": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      "median_lifetime": 142.0,
+      "median_stay": 167.0,
+      "wilcoxon_p_vs_stay": 0.908935546875
+    }
+  ]
+}

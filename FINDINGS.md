@@ -1,0 +1,1512 @@
+# FINDINGS — Sprint Sonu Bulgular (negatifler dahil)
+
+> Anayasa md. 7: Negatif sonuç sonuçtur. Her sprint sonunda bulgular,
+> çıkmayan şeyler dahil buraya yazılır. Rapor dili iddiasız,
+> ölçüm-merkezli. Her pozitif bulgu önce H0'a ("hepsi reaktif hesaplama")
+> karşı savunulur.
+
+---
+
+## BEŞ KAPI — Pozitif Bulgu Kontrol Listesi (ZORUNLU ŞABLON)
+
+**Kural:** Pozitif bulgu iddiası bu beş kapıdan geçmeden rapora giremez.
+Her pozitif bulgu girişi aşağıdaki şablonu doldurur. Tek bir kapı boşsa
+veya "GEÇMEDİ" ise bulgu "İDDİA" değil "ADAY GÖZLEM" olarak etiketlenir
+ve öyle kalır.
+
+### Şablon (kopyala-doldur)
+
+```markdown
+## BULGU-Sxx-nn: <tek cümlelik, iddiasız başlık>
+- Hipotez: H_  | Prob: P_ | Tarih: ____ | Commit: ____
+- Statü: ADAY GÖZLEM → (beş kapı geçilirse) İDDİA
+
+### KAPI 1 — Ablasyon gerçekten düştü mü?
+Gönderilmeyen sembol geri beslemesi kesildi, planlama performansı düştü —
+kaç seed'de? Tek seed'de düşüş gürültüdür.
+- [ ] En az 5 seed'de koşuldu. Seed listesi: ____
+- [ ] Düşüş HEPSİNDE tutarlı. Seed-bazlı sonuç tablosu: ____
+- [ ] Etki büyüklüğü raporlandı (ör. Cohen's d / % düşüş + CI): ____
+- [ ] TERS ABLASYON: geri beslemeye rastgele sembol enjekte edildi.
+      Sonuç: ____
+      Performans aynı kalıyorsa bu "iç konuşma" DEĞİL, ekstra rekürran
+      kapasitedir — ajan sembollerle değil o kabloyla düşünüyordur.
+      Sembollerin İÇERİĞİ fark yaratmak zorunda.
+- KAPI 1 SONUÇ: GEÇTİ / GEÇMEDİ — gerekçe: ____
+
+### KAPI 2 — Prob sızıntısı var mı?
+- [ ] P3 (ve ilgili prob) dedektör gradyanının ajan eğitimine HİÇBİR
+      yoldan değmediği doğrulandı. Doğrulama yöntemi: ____
+- [ ] Snapshot pipeline'ında dondurma gerçekten dondurma: tüm prob
+      girdileri detach/no_grad altında, satır satır kontrol edildi.
+      Kontrol eden + commit: ____
+- [ ] Kanıt: prob eğitimi öncesi/sonrası ajan ağırlık hash'leri bit-eş.
+      Hash'ler: ____
+- Not: Tek bir unutulmuş detach() bütün bulguyu enjekte edilmiş yapar.
+- KAPI 2 SONUÇ: GEÇTİ / GEÇMEDİ — gerekçe: ____
+
+### KAPI 3 — Zaman çizgisi doğru mu? (Vygotsky sıralaması)
+İç sinyal kullanımı, sosyal sinyal yetkinliğinden SONRA mı doğdu?
+Tez sıralamaya bağlı: önce dışa konuşma, sonra içe göçme.
+- [ ] Sosyal sinyal yetkinliğinin doğum turu ölçüldü: tur ____
+- [ ] İç sinyal kullanımının doğum turu ölçüldü: tur ____
+- [ ] Sıralama: sosyal → iç (arada anlamlı gecikme). Gecikme: ____ tur
+- Eşzamanlı doğdularsa ya da iç kullanım önce geldiyse: gözlenen şey
+  içselleştirilmiş iletişim DEĞİL, baştan beri var olan bir hesaplama
+  yoludur — ilginç ama başka bir bulgudur; öyle raporlanır.
+- KAPI 3 SONUÇ: GEÇTİ / GEÇMEDİ — gerekçe: ____
+
+### KAPI 4 — KERNEL_BUDGET temiz mi?
+İlgili bağlantı/yol mimaride açık bırakıldı ama teşvik edilmedi — emin miyiz?
+- [ ] Loss fonksiyonu satır satır tarandı: o yolu kayıran terim yok. ____
+- [ ] Başlatma ağırlıkları tarandı: o yola asimetrik avantaj yok. ____
+- [ ] Öğrenme oranı zamanlaması tarandı: o yolu kayıran schedule yok. ____
+- [ ] KERNEL_BUDGET.md güncel; bulgede rol alan her yapısal seçim ya
+      defterde ya da "prior değil" gerekçesiyle kayıtlı. ____
+- KAPI 4 SONUÇ: GEÇTİ / GEÇMEDİ — gerekçe: ____
+
+### KAPI 5 — Bit-eş tekrar
+- [ ] Aynı seed, SIFIRDAN koşum (temiz süreç, temiz durum).
+- [ ] Aynı turda aynı bulgu yeniden üretildi. Tur: ____ | Metrik: ____
+- [ ] Koşum hash'leri bit-eş (S0 determinizm altyapısı: `World.state_hash()`).
+      Hash: ____
+- KAPI 5 SONUÇ: GEÇTİ / GEÇMEDİ — gerekçe: ____
+
+### KARAR
+Beş kapı sonucu: __/5 GEÇTİ → Statü: İDDİA / ADAY GÖZLEM
+H0 savunması (bulgu neden salt reaktif hesaplamayla açıklanamıyor): ____
+```
+
+---
+
+# Sprint girişleri
+
+## S0 — Dünya fiziği + determinizm + replay (2026-07-08)
+
+S0 bir hipotez sprinti değil, altyapı sprintidir; bulgu girişi yok.
+Bitti-tanımı ölçümleri:
+
+- **Bit-eş determinizm:** Aynı seed ile iki bağımsız koşum, 3.000 tur
+  boyunca her 250 turda `state_hash()` (SHA-256; RNG durumu dahil tüm
+  dünya durumu) karşılaştırıldı → tümü eş. Snapshot al/geri yükle/devam
+  koşumu da kesintisiz koşumla bit-eş. (bkz. `tests/test_determinism.py`)
+  Ayrıca süreçler-arası doğrulama: iki AYRI işletim sistemi sürecinde
+  10.000 turluk kayıt, aynı final hash: `23679df497437ed0…fac9f87d`.
+- **Hız:** 10.000 tur, 5 varlık, rastgele eylemler: **0.275 sn**
+  (~36.400 tur/sn) — < 60 sn şartı ~218× marjla sağlandı.
+  (Ölçüm: `tests/test_perf.py`, Apple Silicon, Python 3.13.2, numpy 2.4.2.)
+- **Negatif/eksikler (dürüstlük):** Tehlike geometrisi/ömrü ve hasat
+  semantiği dokümanda tanımsızdı; varsayımlar PL-01/PL-02'de, Ali onayı
+  bekliyor. `world/events.py` bilinçli olarak S3–S4'e ertelendi (PL-05).
+
+---
+
+## S1 — Tek ajan (A2), kanal KAPALI: çekirdek + homeostaz + MPC (2026-07-08)
+
+Altyapı sprinti; hipotez iddiası yok. Beş Kapı burada bulguya değil,
+sürece uygulandı (≥5 seed + etki büyüklüğü + bit-eş altyapı).
+
+### (a) Hayatta kalma üstünlüğü — SAĞLANDI (v2 koşumu)
+Protokol: seed başına ~40K tur eğitim (ağırlıklar epizotlar arası taşınır,
+PL-06), sonra 12 taze dünyada eval; rastgele politika AYNI dünyalarda.
+Tek yönlü Mann-Whitney U + Cliff's δ. Veri: `runs/s1_results.json`.
+
+| seed | A2 medyan | rastgele medyan | p | Cliff's δ |
+|------|-----------|------------------|-----|-----------|
+| 0 | 130 | 88 | 1.7e-4 | 0.868 |
+| 1 | 128 | 91 | 1.8e-5 | 1.0 |
+| 2 | 129 | 91 | 1.7e-5 | 1.0 |
+| 3 | 166 | 88 | 1.8e-5 | 1.0 |
+| 4 | 163 | 88 | 1.8e-5 | 1.0 |
+
+5/5 seed'de aynı yönde, anlamlı, büyük etki. Hiçbir epizot 1500 tur
+tavanına çarpmadı (sansür yok).
+
+**Dürüstlük notları:**
+1. **v1 koşumu BAŞARISIZDI** (`runs/s1_results_v1_failed.json`): 2/5
+   seed'de A2 rastgeleden KÖTÜydü (δ=-1.0). Neden: MPC argmax'ı kendi
+   eğitim verisini yanlılaştırdı (STAY hiç denenmedi → tasarruf
+   öğrenilemedi) + kırpılmamış rollout geri beslemesi sayısal kaçıyordu.
+   Düzeltmeler (ε=0.1 keşif, [0,1] kırpma, J=ufuk ortalaması) K-108 ve
+   K-103 revizyonu olarak KERNEL_BUDGET'a işlendi. Deney değil mimari
+   düzeltildi; v1 ham verisi silinmedi.
+2. **Üstünlüğün kaynağı hasat DEĞİL, enerji tasarrufu.** Eval'de A2
+   hasat ortalaması 0-3.8 enerji/epizot (çoğunlukla 0). Ajan "A-kaynağıyla
+   hayatta kalmayı" değil, "ucuz eylem seçmeyi" öğrendi. Yaşam süresi
+   (128-166) saf-tasarruf üst sınırının (~260, ε maliyetli) altında —
+   öğrenme kısmi. A-hasadı davranışı S1'de ÇIKMADI; bu, kaynak
+   karşılaşma seyrekliğiyle (12/4096 hücre, menzil 4) tutarlı. S2/S3'te
+   kıtlık basıncı ayarı gerekebilir (PL-10).
+3. PL-09: enerji tahmin hedefinde λ=10 ile kayrılıyor — S2'de P1
+   yorumlanırken bu enjeksiyon hesaba katılmak zorunda.
+
+### (b) Snapshot/temsil dondurma pipeline'ı — ÇALIŞIYOR
+`training/snapshot.py`: hidden state + enerji + konum + eylem + tur +
+dünya hash'i, anında detach + numpy kopyası. Sızıntısızlık KANITI:
+kayıt açık ve kapalı eğitim bit-eş ağırlık hash'i üretiyor
+(`tests/test_training.py::test_recording_does_not_touch_training`).
+5 seed'in son eval epizotları `runs/snapshots/` altında (P1 girdisi,
+analiz S2'nin işi — probes/ klasörüne kod yazılmadı).
+
+### (c) 5-ajanlı performans projeksiyonu
+Ölçüm: 1.071 ms/tur/ajan (MPC C=32×D=5 + TBPTT-8 öğrenme + dünya;
+tek thread, Apple Silicon). Dünya adımı ~0.015 ms (ihmal edilebilir).
+- 5 ajan seri (naif): ~5.4 ms/tur → 100K tur ≈ **9 dk**; 1M tur (S5) ≈ **90 dk**.
+- 5 ajan paralel süreç (çekirdek başına 1 ajan, determinizm korunur):
+  ~1.1-1.5 ms/tur → 1M tur ≈ **20-25 dk**.
+- Heterojen hidden boyutları tek batch'e engel; süreç-paralelliği önerilir.
+S5'in ≥1M tur şartı mevcut donanımda RAHAT karşılanır. Risk: S3'te kanal
++ 5 ajan gözlem maliyeti gözlem yarıçapına bağlı (~%10-30 artış beklenir).
+
+### S1 determinizm
+Aynı seed üçlüsüyle eğitim bit-eş ağırlık üretir
+(`test_training_bit_identical_repeat`); torch tek thread'e sabitlendi.
+
+---
+
+## S2 — P1 öz-model probu, tek ajan (2026-07-08)
+
+**H1 verisi. Manşet: öz-modelin ANA kanıtı (yol entegrasyonu) tek ajanda
+ÇIKMADI. Negatif sonuç sonuçtur; H1 tek-ajan koşulunda desteklenmedi.**
+
+Protokol: 5 seed × PL-10 müfredatlı eğitim (A-kaynağı 48→24→12, 45K tur)
+× 6 checkpoint × 6 öğrenmesiz eval epizodu (standart kıtlık), dondurulmuş
+temsiller (`runs/s2_snapshots/`, 180 epizot). Prob: lineer ridge, epizot
+başına dışarıda-bırak CV; kontroller: (a) 3 rastgele-ağırlıklı ikiz GRU
+(deterministik dünya replay'i ile AYNI gözlem/eylem akışında — replay
+sadakati pozisyon bit-eş + enerji 1e-6 assert'li), (b) etiket karıştırma,
+(c) checkpoint eğrisi. Veri: `runs/s2_p1_results.json`.
+Zero-touch kanıtı: checkpoint'li ve checkpoint'siz eğitim bit-eş ağırlık
+(`tests/test_s2_gen.py::test_checkpoints_zero_touch`).
+
+### Hedef 1 — öz-konum / yol entegrasyonu (ANA kanıt): **NEGATİF**
+- Eğitilmiş temsilde displacement R² çoğunlukla NEGATİF (epizotlar-arası
+  genelleme yok); seed/checkpoint boyunca düzensiz.
+- Eğitilmiş−ikiz farkı tutarsız: final ckpt Δ ∈ {−0.20, −0.08, −0.02,
+  +0.03, +0.45}, hiçbir seed'de p<0.05 (Wilcoxon, n=6 epizot).
+- Eğri (kontrol c) 2/5 seed'de düşüyor → "kazanılmış" etiketi de yok.
+- MLP ikinci görüş (lineer negatif olduğu için zorunluydu): o da tutarsız
+  (3/5 seed'de eğitilmiş < ikiz). İki sonuç birlikte: **sinyal yok.**
+- Mekanik not: davranış aşırı kalıplaşmış (aynı ckpt'te yaşam süreleri
+  neredeyse özdeş, örn. [79,79,79,83,79,79]) → displacement varyansı
+  düşük, prob tahminleri kararsız. Tek başına açıklama değil ama probun
+  istatistik gücünü düşürüyor (PL-11).
+
+### Hedef 2 — öz-enerji (PL-09 şerhli, YAN kanıt): **ADAY GÖZLEM**
+- Eğitilmiş R² 0.983–0.997; ikiz de 0.96–0.98 → sinyalin BÜYÜK kısmı
+  girdi yankısı (enerji gözlemin içinde) + rezervuar etkisi; yapısal.
+- Eğitilmiş > ikiz farkı: 5/5 seed'de anlamlı (p≤0.031) ama etki MİNİK
+  (ΔR² +0.011…+0.042). Eğri 4/5 seed'de yükseliyor (seed 4: düz/negatif).
+- Karar: Ali'nin S2 şartı "anlamlılık + etki + yükselen eğri" ÜÇÜNÜ
+  istiyor; eğri 4/5 → şart eksik → **ADAY GÖZLEM**, İDDİA değil.
+  Üstüne PL-09: enerji λ=10 ile eğitime enjekte — bu farkın "öz-model"
+  değil "kayrılmış hedefin artığı" olması baş hipotez olmalı (H0 önce).
+
+### Hedef 3 — sonraki-tur öz-enerji deltası: **NEGATİF**
+R² ≈ 0 (en iyi +0.03), hiçbir seed'de anlamlı fark yok. İleriye dönük
+enerji-değişim sinyali lineer okunur değil.
+
+### Yan bulgu — müfredat hasadı ÜRETEMEDİ
+180 standart-kıtlık eval epizodunda toplam 3 tekil hasat (hepsi 15.0,
+tesadüfi görünümlü). Yoğun fazda (48 kaynak) öğrenilen şeyin kıt faza
+transferi yok. PL-10 yeniden açıldı.
+
+### Sprint kuralı gereği not (doküman §7)
+Öz-model tek ajanda çıkmadı; S3'e geçilir. Sosyal basınç altında (S5/P2
+yolunda) çıkarsa H2 güçlenir — bu karşılaştırma için S2'nin negatif
+taban çizgisi artık elimizde ve bit-eş yeniden üretilebilir.
+
+---
+
+## S2.5 — Tek hedef: güvenilir A-hasadı (2026-07-08)
+
+**Manşet: BİTTİ-TANIMI SAĞLANAMADI. Dört izole müdahale de (merdiven
+protokolü) standart kıtlıkta hasat üretemedi (medyan 0). Ama başarısızlığın
+mekanizması üç enstrümanlı teşhisle zincir halinde belgelendi — bu S3+
+tasarımı için S2.5'in asıl çıktısıdır.**
+
+### Merdiven sonuçları (5 seed, eval: 12 taze dünya + seed'li spawn,
+taban çizgisi: saf-tasarruf/ε=0 "stay" politikası, eşleştirilmiş Wilcoxon)
+
+| adım | müdahale (birikimli) | medyan hasat | medyan yaşam | stay tavanı | ms/tur |
+|------|----------------------|--------------|--------------|-------------|--------|
+| 1 | ufuk 5→10 | 0 | 118–150 | 334 (m=0.3) | 1.72–1.81 |
+| 2 | + metabolizma 0.3→1.0 (kalibrasyon: tavan 100 < S2 medyan 130) | 0 | 57–69 | 100 | 1.66–1.77 |
+| 3 | + yumuşak müfredat 48→36→24→18→12 (60K), C=48 | 0 | 57–75 | 100 | 2.65–3.22 |
+| 4 | planlayıcı örneklemesi: sabit-eylem adayları + elit iyileştirme (K-109; teşhis-güdümlü ek adım) | 0 | 50–91 | 100 | 2.91–4.83 |
+
+Hiçbir adımda hiçbir seed stay taban çizgisini geçemedi (tüm p=1.0).
+Veriler: `runs/s25_step{1..4}.json`.
+
+### Mekanizma zinciri (enstrümanlı teşhisler)
+1. **5K tur:** modelin eylem-koşullu enerji tahmini TERS işaretli
+   (STAY−UP: model −0.026, gerçek +0.055) — erken dönemde on-policy
+   verinin ~%87'si hareket; MSE'nin ucuz çözümü eylemi yok saymak.
+2. **45K tur (adım-2 verisiyle):** koşullama DÜZELİYOR (+0.084, gerçek
+   +0.055) — model biliyor. Ama epizot-içi sonda: MPC yalnız %55 STAY
+   seçiyor; rastgele aday dizilerinde İLK-EYLEM SEYRELTMESİ + ε=0.1,
+   ajanı ~%45 gereksiz harekete kilitliyor → 69 turda ölüm (tavan 100).
+3. **Adım 4 (seyreltme giderildi):** seed 4 kuramsal tavana oturdu
+   (medyan 91 ≈ ε-maliyetli tavan 92) ama seed 0-1 ~51'e ÇÖKTÜ:
+   STAY-ağır hale gelen eğitim verisi dengesizliği ters çevirdi —
+   model bu kez hareketin maliyetini kalibre edemiyor.
+
+**Kök neden (S2.5'in asıl bulgusu):** tek içsel sinyal (tahmin hatası)
++ on-policy veri + MPC kapalı döngüsü, EYLEM-KOŞULLU KARŞI-OLGUSAL
+kalibrasyonu sürdüremiyor. Ajan hangi davranışa yakınsarsa, az yaptığı
+eylemlerin sonuç modeli bozuluyor; planlayıcı da o bozuk modele göre
+seçiyor (S1-v1 başarısızlığının genelleşmiş hali). Hasat, bu kararsızlık
+çözülmeden ulaşılabilir görünmüyor: kaynak +15 sinyalini öğrenmek şöyle
+dursun, tasarruf dengesi bile seed'e göre savruluyor. (PL-12)
+
+### S2-tekrar: P1, spawn-randomizasyonlu (PL-11 itiraz testi)
+Ali'nin öngörüsü ("öz-konum eğrisi hasatla birlikte yükselir") hasat
+çıkmadığı için **TEST EDİLEMEDİ** — tez yara almadı, askıda; hasatçı
+ajan üretilene dek açık kalır. Bunun yerine S2 protokolü, S2 config'iyle
++ spawn randomizasyonuyla yeniden koşuldu (`runs/s2r_p1_results.json`):
+- **disp: negatif SAĞLAM.** Varyans artışı sinyali kurtarmadı (Δ tutarsız,
+  p hiçbirinde <0.05, eğriler düzensiz). S2 negatifi kalıplaşma artefaktı
+  değil.
+- **energy: ADAY GÖZLEM güçlendi ama etiket değişmedi.** Artık 5/5 seed
+  anlamlı (p≤0.016) VE 5/5 yükselen eğri (S2'de 4/5'ti). Etki hâlâ minik
+  (ΔR² +0.020…+0.035, ikiz taban 0.96+). Yükseltme engeli: PL-09 (λ=10
+  enjeksiyonu) — çözüm yolu λ=1 ablasyon koşumu; o yapılmadan İDDİA'ya
+  terfi edemez.
+
+### Dürüstlük
+- Adım 4, Ali'nin merdiveninde yoktu; teşhis-güdümlü ek adım olarak
+  izole uygulandı ve K-109 ile deftere işlendi. Varsayılan config eski
+  davranışı bit-eş korur (`test_mpc_defaults_bitcompatible_with_pre_step4`).
+- Adım 2'nin kalibrasyon hesabı: tavan = max_energy/base_metabolism =
+  100/1.0 = 100 tur < 130 (S2 medyan alt sınırı). KERNEL_BUDGET S2.5
+  şerhinde.
+- Tehlike-kaçınma davranışı hiç ayrıca ölçülmedi (hasat önceliklendirildi);
+  S3 öncesi açık kalem.
+
+---
+
+## S2.6 — Fizibilite oracle'ı + PER + λ ablasyonu (2026-07-08)
+
+**Manşet 1: Dünya ekonomisi hasadı HER koşulda net zarar yapıyor —
+S2.5'in başarısızlığının altındaki katman öğrenme değil, EKONOMİYMİŞ.
+Manşet 2 (λ=1 ablasyonu): öz-enerji aday gözlemi λ=10 kayırmasının
+artefaktı DEĞİL — iki bağımsız itiraz testinden sağ çıktı.**
+
+### İş 1 — Fizibilite oracle'ı → DUR koşulu (güçlü formu) tetiklendi
+Scripted referans politika (aynı gözlem yarıçapı, aynı maliyetler;
+görünür kaynağa aç-gözlü yürüyüş + lawnmower taraması + tehlike sapması;
+`training/oracle.py` — ajan değil ölçüm aleti, KERNEL_BUDGET'a bit yazmaz).
+
+Izgara (12 epizot/koşul, spawn randomizasyonlu; `runs/s26_oracle.json`):
+
+| koşul | medyan hasat | oracle yaşam | stay tavanı |
+|-------|--------------|--------------|-------------|
+| m=1.0, 12 kaynak | 2.0 | 64 | 100 |
+| m=1.0, 24 kaynak | **3.5** | 76 | 100 |
+| m=0.6, 12 | 2.0 | 80 | 167 |
+| m=0.6, 24 | 3.5 | 96 | 167 |
+| m=0.3, 12 | 2.0 | 98 | 334 |
+| m=0.3, 24 | 7.0 | 150 | 334 |
+
+Harfe göre seçilen koşul m=1.0/24 (hasat ≥3). AMA: oracle HİÇBİR koşulda
+saf-tasarrufu geçemiyor — yetkin hasatçı bile tasarrufçudan kısa yaşıyor.
+Revize bitti-tanımının (i) hasat≥3 ve (ii) stay'i geç şartları mevcut
+anayasal ekonomide (A=15) BİRLİKTE SAĞLANAMAZ (kaba hesap: 3 hasat için
+tarama şart → hareket oranı ~%90 → yaşam ~74 < 100). Geriye dönük içgörü:
+S2.5'in hedefi baştan ulaşılamazmış; ayrıca 12-kaynaklı standart dünyada
+"medyan 3 hasat"ı oracle bile hiçbir metabolizmada veremiyor.
+→ Stage-2 eğitimi mahkûm hedefe karşı YAKILMADI; karar Ali'ye (PL-14).
+A-enerji süpürmesi (salt ölçüm, `runs/s26_a_energy_sweep.json`)
+oracle-doğrulanmış geçerli pencereyi çizdi: A=45+ @ 24 kaynak
+(önerilen: m=0.6/24/A=45 — hasat 8.5, yaşam 197 vs stay 167).
+
+### İş 2 — PER (K-110): KOD-HAZIR, koşum PL-14'ü bekliyor
+Tampon + kayıp-orantılı örnekleme + hafif eylem tabakalaması;
+ε=0.1 ve K-109 korunur. Testli (determinizm, öncelik yanlılığı,
+tabakalama, bit-eş korunum); `training/per.py`. Stage-2/3 koşusu
+`training/eval_s26.py`'de hazır — kalibrasyon kararıyla tek komut.
+
+### Paralel — λ=1 ablasyonu (PL-09): KONFOUND ÇÜRÜDÜ
+S2 protokolü, tek fark energy_loss_weight 10→1
+(`runs/s2_lambda1_p1_results.json`):
+- Öz-enerji ΔR² (eğitilmiş−ikiz): λ=10'da ort +0.028, λ=1'de ort +0.026 —
+  fark yok; 5/5 seed hâlâ p=0.016; yükselen eğri 4/5.
+- Yani minik ama tutarlı öz-enerji avantajı loss kayırmasından GELMİYOR.
+  PL-09 kapandı. ADAY GÖZLEM güçlendi (itiraz testleri: spawn
+  randomizasyonu ✓, λ ablasyonu ✓) ama İDDİA'ya terfi ETMEDİ: etki hâlâ
+  minik (ikiz tabanı 0.96+ üstüne +0.02-0.04) ve H0 alternatifi ayakta —
+  "herhangi bir hedefle eğitilmiş GRU girdilerini rastgele GRU'dan iyi
+  temsil eder" (genel eğitim etkisi ≠ öz-model). Ayrıştırma yolu PL-15:
+  enerji-körü eş-eğitimli kontrol (enerji gözlemden/hedeften çıkarılmış
+  ikiz eğitim).
+- disp λ=1'de de negatif/tutarsız (seed 2'de ΔR²=+33 tekil aykırı değer —
+  ikiz probunun düşük-varyans epizotta patlaması; p=0.28, sinyal değil).
+
+### PL-13 durumu
+Hasat üretilemediği için S2-tekrar OTOMATİK TETİKLENMEDİ; Ali'nin
+öngörüsü askıda kalmaya devam ediyor. Kalibrasyon + PER koşumu hasat
+verirse tetiklenecek (protokol hazır).
+
+---
+
+## S2.6 stage-2 — PER + v2 ekonomi koşumu (2026-07-08)
+
+**Manşet: Bitti-tanımı yine sağlanamadı (hasat 0.0), AMA iki kritik
+sonuçla: (1) PER seed'ler-arası çöküşü BİTİRDİ — PL-12 kararsızlığına
+kısmi çözüm; (2) kök neden artık ölçülü: keşif, hasat DENEYİMİNİ
+üretemiyor — 45K turda 10 olay.**
+
+Koşul: m=0.6, 24 kaynak, A=45 (economy_version=2, config damgalı),
+PER + K-109 + ufuk 10, ε=0.1. Veri: `runs/s26_results.json`.
+
+| seed | medyan hasat (eşik 3.4) | medyan yaşam | stay | p |
+|------|--------------------------|--------------|------|---|
+| 0 | 0.0 | 148 | 167 | 0.99 |
+| 1 | 0.0 | 148 | 167 | 1.0 |
+| 2 | 0.0 | 146 | 167 | 1.0 |
+| 3 | 0.0 | 148 | 167 | 1.0 |
+| 4 | 0.0 | 134 | 167 | 0.99 |
+
+- **Çöküş-yok şartı GEÇTİ:** medyanlar 134–148 (bant %50'nin çok
+  üstünde); S2.5-adım-4'ün 51'e çöken patolojisi PER'le kayboldu.
+  Ajan tavanın (167) ~%85-89'una tutarlı oturuyor — tasarruf artık
+  stabil öğreniliyor. PL-12'nin "tasarruf kararsızlığı" yüzü kapandı.
+- **Hasat şartı GEÇEMEDİ:** tüm seed'lerde 0.0 (eval).
+- **Teşhis (M-05 dipnotunun doğrulaması):** stage-2 seed-0 eğitiminin
+  bit-eş tekrarında toplam hasat olayı sayıldı: **45.066 turda 10**
+  (10K turda 2.2). "Kaynak üstünde + INTERACT" durumu ε-rastgele
+  yürüyüşle neredeyse hiç oluşmuyor; PER yalnız YAŞANMIŞ deneyimi
+  tekrarlatabilir. Sorun artık ne ekonomi (oracle: hasat kârlı), ne
+  model kalibrasyonu (tasarruf stabil), ne planlayıcı (K-109) — sorun
+  KEŞİF: görme→yaklaşma→etkileşim zinciri kendiliğinden tamamlanmıyor.
+  Ekolojik tuzak: kârlı strateji, keşfedilemeyecek kadar derin (PL-16).
+
+### Sonraki müdahale sınıfı Ali kararı ister (kernel-anayasal)
+- (a) Merak terimi (K-104 bilinçli boştu): MPC hedefine tahmin-hatası
+  arayışı eklemek. Anayasa md.2'nin ("tek içsel sinyal: tahmin hatası +
+  homeostaz") harfiyle uyumlu savunulabilir ama K-104'ün bilinçli
+  boşluğunu bozar — Ali onayı şart.
+- (b) Dünya-tarafı yuva/doğum müfredatı: eğitimde ajanın bir kısım
+  epizotta kaynak yakınında doğması (sıfır ajan-biti, PL-10 müfredat
+  emsali; deneyim taban-oranını organik büyütür).
+- (c) S3'e bu haliyle geçmek: nüfus dinamiği durum uzayını ajan-dışı
+  karıştırır (en ekolojik, en belirsiz).
+- Tavsiyem: (b) önce — en ucuz, emsalli, geri alınabilir; (a) felsefi
+  olarak ağır; (c) PL-12/16 çözülmeden B-kaynağı basıncını boğabilir.
+
+### PL-15 — Enerji-körü eş-eğitimli kontrol: SONUÇ KESKİN
+İki kol, aynı protokol (v2 ekonomi, PER, düz 24-kaynak, 45K tur, spawn
+randomize; config-damgalı), tek fark `interoception` bayrağı.
+Veri: `runs/s2_pl15_{normal,blind}_p1.json`.
+
+| seed | NORMAL Δ(enerji) R² | p | KÖR Δ | p |
+|------|---------------------|-----|-------|-----|
+| 0 | +0.058 | 0.016 | −0.092 | 1.0 |
+| 1 | +0.074 | 0.016 | +0.018 | 0.42 |
+| 2 | +0.051 | 0.016 | −0.147 | 1.0 |
+| 3 | +0.074 | 0.016 | −0.024 | 0.78 |
+| 4 | +0.091 | 0.016 | −0.091 | 0.92 |
+
+- Normal kol: eğitilmiş 0.99 vs ikiz 0.90–0.94; Δ önceki koşumlardan da
+  büyük (+0.07 ort), 5/5 anlamlı, eğri 5/5 yükselen.
+- Kör kol: eğitilmişte de ikizde de R² ≈ 0 — enerji girdisi olmayınca
+  temsil YOK. İki çıkarım: (1) enerji dekodlanabilirliği zaman/korelat
+  türevi değil (kör ajanın enerjisi de zamanla ~monoton düşüyor ama
+  hidden'ından okunamıyor — eğitim "genel bir saat" üretmiyor);
+  (2) etki interosepsiyon girdi yolunu işlemeye bağlı.
+- **Kapatılamayan son itiraz:** "eğitilmiş GRU TÜM girdilerini genel
+  olarak daha iyi temsil eder" H0'ı için varyans-eşleşmiş kontrol
+  özelliği denendi (görünür-A sayısı, ad-hoc analiz) ve BAŞARISIZ:
+  hareketsiz rejimde epizot-içi varyansı olan enerji dışında hiçbir
+  girdi özelliği yok → LOEO R² dejenere. M-03 yine: bu ayrım mobil
+  ajan gelmeden test EDİLEMEZ. Etiket **ADAY GÖZLEM** kalır; terfi
+  kapısı PL-16'nın (mobilite) çözümüne kilitlendi — mobil ajan hem
+  disp'i hem bu son ayrımı aynı anda test edilebilir kılar.
+
+### Yeni ders var mı? (METODOLOJI kuralı)
+VAR → M-14 eklendi: müdahale seçmeden önce hedef deneyimin taban oranı
+sayılır. ("Model X'i öğrenemiyor" teşhisi, X deneyiminin veride kaç kez
+geçtiği ölçülmeden eksiktir — PER'i seçmeden önce bunu saysaydık bir
+koşum tasarruf ederdik.)
+
+---
+
+## S2.7 — ÖN-KAYIT (koşumdan önce yazıldı, M-08) (2026-07-08)
+
+### İş 1 sonucu ve eşik revizyonu
+Görünür-A oracle'ı (taramasız: görünürse yaklaş, yoksa STAY), v2
+koşulunda (m=0.6, 24 kaynak, A=45): **medyan hasat 1.0**, yaşam 172 vs
+stay 167 (`runs/s27_visibleA_oracle.json`). Revize eşik =
+max(3, 1.0×0.4) = **3**. Gerekçe: saf fırsatçılık medyan 1 verir; ≥3
+hasat öğrenilmiş hafif keşif ister; tam-oracle bunun kârlı olduğunu
+gösterdi (8.5 hasat, 197 yaşam). Eşik değişmedi ama artık iki oracle
+arasına ölçülü oturuyor: 1.0 (fırsatçı taban) < 3 < 8.5×0.4=3.4 üstü
+değil (eski eşikten daha gevşek DEĞİL; bilinçli: keşfin VARLIĞINI test
+ediyoruz, oracle-düzeyi verimini değil).
+
+### İş 2 ön-kaydı: Kalibrasyon-N kriteri (N* seçim kuralı)
+Sentetik hasat-penceresi enjeksiyonu (gerçek fizikle üretilmiş,
+PER tamponuna eğitim başında; SADECE teşhis — yuva koşumunda sentetik
+enjeksiyon YOK). N ∈ {50, 200, 500, 2000}, 3 seed, 15K tur eğitim.
+Kalibrasyon ölçüsü: kaynak-üstü durumda modelin INTERACT−STAY tahmini
+enerji ayrımı (gerçek ayrım e=50'de ≈ +0.44 normalize).
+**N* kuralı (önceden kayıt): N* = medyan tahmini ayrımın ≥ 0.22
+(gerçeğin %50'si) olduğu en küçük N.** Müfredat-başarı kriteri: yuva
+müfredatı eğitim boyunca ≥ N* GERÇEK hasat deneyimi üretmeli.
+Varsayım beyanı: kalibrasyon 15K turda ölçülür, yuva 45K koşar —
+"15K'daki kalibrasyon 45K'yı öngörür" varsayımı rapora yazılır.
+
+### İş 4 ön-kaydı: Teşhis çatalı (sonuç matrisi, koşumdan önce)
+- **ÇATAL A — bitti-tanımı GEÇER** (hasat ≥3, stay'e karşı uzama,
+  çöküş yok): yorum = sorun keşif tuzağıydı; merak terimi (K-104)
+  GEREKMEZ; ekolojik iskele yetti. → PL-13 OTOMATİK tetiklenir
+  (P1 tekrarı, S2 protokolü, üç kontrol; Ali'nin öngörüsü test edilir:
+  öz-konum eğrisi hasatla birlikte yükselecek mi).
+- **ÇATAL B — GEÇEMEZ:** alt-teşhisle durulur, K-104 dosyası veriyle
+  Ali'ye gider:
+  - B1: müfredat < N* deneyim üretti → iskele yetersiz (p_nest/tavlama
+    ayarı tartışılır, merak dosyası zayıf kanıtlı açılır);
+  - B2: deneyim ≥ N* VE model kalibre AMA davranış hasada dönmedi →
+    planlayıcı/karar katmanı sorunu (merak dosyası güçlü kanıtlı açılır:
+    bilgi var, kullanım yok);
+  - B3: deneyim ≥ N* AMA model kalibre OLMADI → öğrenme/temsil sorunu
+    (PER/mimari tartışması, merak dosyası ertelenir).
+PL-15 etiketi bu sprintte NE OLURSA OLSUN ADAY GÖZLEM'de kalır; mobil
+ajan gelmeden terfi dosyası açılmaz (Ali talimatı).
+
+### İş 2 ARA-DÜZELTME (yuva koşumundan ÖNCE kaydedildi)
+İlk calibN süpürmesi N* = None verdi (statik-STAY sondası tüm N'lerde
+≈0). ÜÇ katmanlı teşhis cihaz kusuru buldu (N=2000 ajanı üzerinde):
+- Bağlam-içi tahmin (taze sentetik pencerede hasat adımı): **+0.363**
+  (gerçeğin %84'ü) — model olumsallığı ÖĞRENMİŞ.
+- Statik-STAY sondası: −0.024 — GRU bilgiyi yaklaşma-bağlamında tutuyor;
+  sonda bağlam-dışıydı. Ön-kayıtlı v1 metriği CİHAZ HATASI nedeniyle
+  geçersiz (sonuç manipülasyonu değil: iki metrik de raporlanıyor).
+- Davranışsal: kaynak 2 hücre yandayken 10 denemede 2 hasat — bilgi
+  var, MPC nakde çevirme zayıf (rollout'ta egosantrik kayma
+  halüsinasyonu + aday önek olasılığı).
+**Ön-kayıt v2 (yuva koşumundan önce):** kalibrasyon metriği = bağlam-içi
+tahmini sıçrama; N* = medyanı ≥ 0.217 (gerçek 0.434'ün %50'si) yapan en
+küçük N. Süpürme düzeltilmiş cihazla TEKRARLANIYOR; nest yorumu buna
+bağlanacak. (Metodoloji ders adayı: sonda da cihazdır, bilinen-pozitif
+üzerinde doğrulanmadan ön-kayıt kriteri yapılmaz — sprint kapanışında
+M-15 olarak değerlendirilecek.)
+
+## S2.7 — SONUÇLAR (2026-07-08)
+
+### calibN (düzeltilmiş cihaz): **N* = 50**
+Bağlam-içi sıçrama medyanları: N=50 → 0.27-0.34, N=200 → 0.35-0.40,
+N=500 → 0.34-0.41, N=2000 → 0.33-0.36 (`runs/s27_calibN.json`).
+Eğri 50'den itibaren DÜZ: PER, az sayıda deneyimi canlı tutarak
+olumsallığı öğretebiliyor. Öğrenme ucuz; darboğaz veri değil.
+
+### Yuva müfredatı: **ÇATAL B**
+| seed | eğitim hasadı (N*=50) | eval hasat | yaşam vs stay | kalibrasyon (eşik .217) |
+|------|----------------------|------------|----------------|--------------------------|
+| 0 | 25 ✗ | 0.0 | 145/167 | 0.178 ✗ |
+| 1 | **57 ✓** | 0.0 | 148/167 | **0.281 ✓** |
+| 2 | 41 ✗ | 0.0 | 144/167 | 0.224 ✓ |
+| 3 | **57 ✓** | 0.0 | 142/167 | **0.257 ✓** |
+| 4 | 32 ✗ | 0.0 | 148/167 | 0.213 ✗ |
+
+Çöküş-yok ✓ (142-148 sıkı bant); hasat ✗; yaşam-vs-stay ✗.
+**Alt-teşhis: ağırlıklı B2.** Seed 1 ve 3 önceden kayıtlı İKİ kriteri de
+sağladı (deneyim ≥ N* + kalibre model) ama eval hasadı 0 — bilgi var,
+kullanım yok. Bağımsız doğrulama: calibN N=2000 ajanı (kalibrasyon 0.36)
+kaynak 2 hücre yandayken 10 denemede 2 hasat. Nakde çevirme darboğazı:
+rollout'ta egosantrik kayma halüsinasyonunun bileşik hatası + doğru
+aday-önek seyrekliği. Yuva ayrıca beklenenden az deneyim üretti (25-57;
+öngörü yüzlerceydi): yuva FIRSAT üretiyor, deneyim üretimi yine
+davranışsal dönüşüm istiyor — döngüsel bağımlılık zayıf halka.
+→ Talimat gereği DURULDU; **K104_DOSYA.md** veriyle hazırlandı.
+Dosyanın özü: teşhis merak terimini DESTEKLEMİYOR (merak deneyim
+üretimini çözer, o çözüldü; darboğaz planlayıcı nakde çevirmesi);
+tavsiye önce K-109 revizyonu (CEM derinleştirme). Karar Ali'de.
+
+### PL-13 durumu: tetiklenmedi (Çatal B); öngörü askıda kalmaya devam.
+
+### Yeni ders var mı?
+VAR → **M-15**: Sonda da bir cihazdır — ölçü aleti, bilinen-pozitif
+üzerinde doğrulanmadan ön-kayıt kriteri yapılmaz. (Statik-STAY sondası
+kalibre modele "kalibre değil" dedi; bilinen-pozitif testi — enjeksiyon
+pencerelerinin kendisi — cihaz kusurunu bir koşum ÖNCE yakalardı.)
+
+---
+
+## S2.8 — ÖN-KAYIT (koşumdan önce, M-08) (2026-07-08)
+
+### İş 1 ön-kaydı: rollout çürüme eğrisi ve H_eff kuralı
+Ölçüm: yuva-eğitimli model (S2.7 konfigürasyonu, ≥3 seed), taze eval
+epizotlarında çapa noktalarından açık-döngü k-adım tahmin (k=1..10,
+KAYITLI gerçek eylemlerle, MPC'deki gibi [0,1] kırpmalı geri besleme),
+gerçek gözleme karşı. Metrik: enerji-boyutu mutlak hata@k (planlayıcı
+J'yi enerji üzerinden skorlar) + grid MSE@k (yan rapor).
+Sinyal/gürültü tabanı: kalıcılık (persistence) tahmincisi
+(obs_{t+k}=obs_t, e_{t+k}=e_t). **H_eff = medyan enerji-hata@k'nın
+kalıcılık hatasının ALTINDA kaldığı en büyük ardışık k.**
+**K-112 kuralı (önceden seçildi): ufuk KIRPMA (iskonto değil) —
+planlayıcı skorlaması J = ilk min(H_eff, D) adımın ortalama tahmini
+enerjisi. H_eff ≥ 10 ise değişiklik yok.** Kırpma tercihi gerekçesi:
+tek parametre, yorumu net, iskonto katsayısı ayrı bir serbest parametre
+ekler (M-09 tasarrufu).
+
+### İş 3 ön-kaydı: nakit testi başarı çıtası
+Standart enstrüman `training/cash_test.py`: kaynak Chebyshev {1,2,3}
+mesafede (yön rastgele, seed'li), enerji 50, 12 tur bütçe; 20 deneme ×
+5 seed. **Çıta: d=1 VE d=2'de (ayrı ayrı, seed'ler üstü havuzlanmış)
+hasat oranı ≥ %70.**
+
+### İş 5 ön-kaydı: çatal
+- Nakit GEÇER + stage-2 eval hasadı ≥3 → **ÇATAL A**: PL-13 otomatik,
+  P1 tekrarı, Ali öngörüsü sınavda.
+- Nakit GEÇER + eval hasadı yine ~0 → kalan boşluk KEŞİF/ARAMA
+  davranışı (görünür kaynak yokken); K104_DOSYA.md o veriyle yeniden
+  açılır — merak lehine ilk gerçek kanıt.
+- Nakit GEÇEMEZ → PL-17 planlayıcı hattı derinleşir; K-104 kapalı kalır.
+
+## S2.8 — SONUÇLAR (2026-07-08)
+
+### İş 1 — Rollout çürüme eğrisi: H_eff = 10 (kırpma uygulanmadı)
+Enerji-boyutu açık-döngü hatası k=1..10 boyunca kalıcılık tabanının
+altında (3/3 seed; `runs/s28_decay.json`). Ön-kayıtlı kural gereği
+K-112 kırpma PASİF. **Şerh (sonradan kritik çıktı):** ölçüm on-policy
+(tasarruf-ağır) dağılımda yapıldı — aşağıya bakınız.
+
+### İş 2-3 — K-111 + nakit testi: **GEÇEMEDİ (Çatal B-PLANLAYICI)**
+CEM-4 + 64 aday + yön×süre makroları (bit-eş korunum testli).
+Nakit havuzlanmış: d1=%25, d2=%13, d3=%9 (çıta %70). Eval hasadı
+5/5 seed'de ~0. Tur maliyeti 7.5-12.7 ms (2-4× S2.7).
+İş 4 koşulmadı (nakit ön-şartı), PL-13 tetiklenmedi, K-104 ön-kayıt
+gereği KAPALI kaldı.
+
+### Mekanizma ayrıştırması (seed 4 üzerinde, iki test)
+- **Test A — kayma sadakati:** kaynak 1 doğuda; RIGHT sonrası modelin
+  tahmini kaynak kütlesi: MERKEZDE 0.079, ESKİ göreli konumda 0.705
+  (ideal: 1 / 0). **Model hareket altında egosantrik kaymayı
+  öğrenmemiş; "grid kalıcıdır" tahmini yapıyor.**
+- **Test B — koşullu sıçrama:** kaymamış hayal üzerinde INTERACT →
+  tahmini sıçrama +0.048 (kalibre değer ~+0.43×merkez-kütle ile tutarlı:
+  merkezde kütle yok, sıçrama yok).
+- **Zincir (PL-12/M-05'in uzamsal enkarnasyonu):** tasarruf-ağır veri →
+  grid-kalıcılık modeli → hayalde kaynağa YAKLAŞILAMIYOR → hasat planı
+  hiç kârlı görünmüyor → davranış tasarrufta → veri tasarruf-ağır.
+  calibN'in bağlam-içi kalibrasyonu bu yüzden davranışa dönmüyordu:
+  enjekte pencerelerde kayma GERÇEK gözlemlerden geliyordu (öğretmen
+  zorlaması); planlayıcı rollout'u kaymayı KENDİ üretmek zorunda.
+- Decay cihazının H_eff=10'u bu yüzden yanılttı: on-policy (statik grid)
+  dağılımda kalıcılık-tarzı tahmin mükemmel görünür; planlayıcının
+  kullandığı karşı-olgusal yaklaşma dizilerinde ölçülmemişti (→ M-17).
+
+### PL-17 güncel teşhis ve seçenekler (karar Ali'de)
+Darboğaz artık planlayıcı örneklemesi DEĞİL (K-111 bunu çözdü ve
+yetmedi), dünya-modelinin uzamsal geçiş dinamiği:
+- (a) Hareket-zengin veri: ε artışı / hareket müfredatı / PER
+  tabakalamasını "grid-değişim büyüklüğü"ne genişletmek (mekanik,
+  ~1-2 bit) — veri yönlü çözüm.
+- (b) Kayma-eşdeğişimli (convolutional/action-conditioned) decoder —
+  uzam yapısını mimariye vermek. GÜÇLÜ prior: "dünya ötelenebilir
+  uzaydır" bilgisi bit olarak pahalı ve felsefi olarak tartışmalı
+  (anayasa md.1 hassasiyeti). KERNEL_BUDGET tartışması gerektirir.
+- (c) İkisi birden değil (M-06).
+Tavsiye: önce (a) — M-05 ailesinin bilinen çözüm sınıfı, ucuz;
+(b) ancak (a) ölçülü başarısız olursa ve Ali onayıyla.
+
+### Yeni ders var mı?
+VAR → **M-17**: Cihaz, kullanım dağılımında koşar. (H_eff on-policy
+ölçüldü ve 10 çıktı; planlayıcı karşı-olgusal dizilerde koşuyor ve
+orada model kalıcılık-tuzağındaydı. Çürüme eğrisi, planlayıcının
+DEĞERLENDİRDİĞİ dizi dağılımında ölçülmeliydi.)
+
+---
+
+## S2.9 — ÖN-KAYIT (koşumdan önce, M-08) (2026-07-08)
+
+### İş 1 — taban oranlar (S2.8 config, seed 0, bit-eş tekrar)
+43.784 geçişte: hareket+görünür-A **1056/10K**, hareket+kayma
+**1205/10K** (`runs/s29_baseline.json`). Kayma tabanı (standart
+enstrüman): doğru 0.050 / eski 0.554 = **oran 0.090** (S2.8 ad-hoc
+0.11'i doğruladı). **Yorum ön-kayda geçer:** kayma geçişleri nadir
+DEĞİL (~%12) — birincil sorun veri kıtlığından çok GRADYAN DİKKATİ
+(kayma ~2/324 boyut, λ=10 enerji baskın). K-110rev iki koldan yüklenir:
+uzamsal örnekleme ağırlığı (değişim-zengin pencere ~9-33× daha sık
+tekrar) + ε hareket yanlılığı (ε-içi hareket payı 0.67→0.83).
+Sanity hedefi: hareket+kayma sayacı ≥ taban (düşerse müdahale ters
+tepmiş); ASIL kapı aşağıda.
+
+### İş 2 çıtası (Ali ön-kaydı): kayma medyan oranı (5 seed) **> 1**.
+### İş 4 zinciri ve çatallar (aynen):
+- **A:** kayma ✓ + nakit (d1 VE d2 ≥ %70) ✓ + eval (S2.7 bitti-tanımı) ✓
+  → PL-13 OTOMATİK; Ali öngörüsü sınavda.
+- **B-KEŞİF:** kayma ✓ + nakit ✓ + eval hasat ~0 → K104_DOSYA.md
+  arşiv şerhindeki koşul gerçekleşir, dosya O veriyle yeniden açılır
+  (merak lehine ilk gerçek kanıt).
+- **C:** kayma ✗ (veri/dikkat-yönlü çözüm K-110rev dozunda yetmedi) VEYA
+  kayma ✓ + nakit ✗ (kayma gerekli ama yetersizmiş — yeni mekanizma
+  aranır) → dur, Ali'ye; M-18 gereği (b)-tipi mimari çözüm ÖNERİLMEZ;
+  öz-hareket ara sonucu güçlenmiş sayılır.
+
+---
+
+## S2.9 — SONUÇLAR (2026-07-08): **ÇATAL C-VERİ-YETMEDİ**
+
+| seed | kayma oranı (çıta >1, taban 0.09) | hareket+kayma /10K | nakit d1/d2 | eval hasat |
+|------|-----------------------------------|--------------------|--------------|------------|
+| 0 | 0.24 | 1352 | %45/%15 | 0.0 |
+| 1 | 0.29 | 1331 | %20/%10 | 0.0 |
+| 2 | 0.10 | 1165 | %0/%0 | 0.0 |
+| 3 | 0.16 | 1029 | %30/%5 | 0.0 |
+| 4 | 0.10 | 899 | %15/%5 | 0.0 |
+
+Kayma medyan oranı **0.16** (taban 0.09'dan ~2× iyileşme, çıtanın çok
+altında); nakit d1=%22, d2=%7; eval hasadı 0. Zincir ilk kapıda düştü.
+Veri: `runs/s29_results.json`. Tur maliyeti 7.4-10.0 ms.
+
+**Doz-cevap yorumu:** K-110rev dozu (uzamsal ağırlık 4, ε-hareket 0.83)
+kayma öğrenimini kıpırdattı ama düzeltemedi. Taban ölçümünün ön-kayıtlı
+yorumu doğrulandı: sorun veri MİKTARI değil (kayma geçişleri ~%12),
+prior'suz temsilde kayma fonksiyonunun ÖRNEKLEM KARMAŞIKLIĞI: yoğun
+decoder, eylem-koşullu permütasyonu hücre hücre ezberlemek zorunda
+(81 konum × 4 yön × 4 kanal; örnek başına yalnız 1-2 dolu hücre
+kısıt getiriyor). Ağırlık paylaşımı (evrişim) bunu çökertir — ama o
+tam M-18'in yasakladığı sınıfın sınırında (aşağıda, karar Ali'de).
+
+### Çatal C gereği: durildi; M-18 uyarınca (b)-tipi mimari çözüm
+ÖNERİLMİYOR. Ali'ye giden sınır sorusu: SALT yerellik prior'ı
+(eylem-koşulsuz evrişimli decoder — "uzay yereldir" bilgisi) M-18
+kapsamında mı, değil mi? Eylem-koşullu kayma-eşdeğişimlilik açıkça
+kapsam İÇİ (cevabı yazar); salt yerellik ise kaymayı YAZMAZ ama
+öğrenilmesini örneklem-karmaşıklığı yönünden mümkün kılar. Bu bir
+anayasa yorumu (md.1) — benim kararım değil.
+
+### Yeni ders var mı?
+YOK. (Sprint, M-14/M-17/M-08 disiplinlerinin uygulamasıydı; yeni
+metodolojik ders çıkmadı — kural gereği beyan.)
+
+---
+
+## S2.10 — ÖN-KAYIT (koşumdan önce, M-08) (2026-07-08)
+Tek-ajan mühendisliğinin SON sprinti (Ali). PL-18 kararı: salt-yerellik
+prior'ı (eylem-koşulsuz evrişimli decoder, K-113) M-19 kapısından
+geçmek şartıyla izinli.
+
+### İş 1 — M-19 doğum günü testi
+Evrişimli-decoder ajan, INIT ağırlıklarıyla kayma testi. **Oran > 1
+çıkarsa prior geri çekilir**, FINDINGS'e "evrişim M-19'dan geçemedi"
+girer, DUR. Operasyonalizasyon (ölçümden önce): trials_per=20 (240
+ölçüm), dense-init referans oranı da raporlanır (gürültü bağlamı);
+kural conv-init oranına harfiyen uygulanır.
+
+### İş 4 zinciri: kayma (medyan oran > 1) → nakit (d1 VE d2 ≥ %70) →
+tam eval (S2.7 bitti-tanımı) → PL-13.
+
+### İş 5 çatalları (aynen):
+- **A:** zincir tamam → PL-13, P1 tekrarı. P1 pozitifse etiket ŞERHLİ:
+  "yerellik-iskelesi üstünde kazanılmış öz-hareket" (iskele defterde,
+  iddia dürüst).
+- **B:** kayma >1 ama nakit/eval çökük → planlayıcı katmanı; K-112
+  karşı-olgusal dağılımda yeniden ölçülür.
+- **C:** kayma ≤1 → DP-05 çerçeve kararı Ali'ye gider; yeni müdahale
+  önerisi GELMEZ (vade doldu).
+
+## S2.10 — SONUÇLAR, ZİNCİR 1 (2026-07-08)
+
+### M-19 doğum günü testi: GEÇTİ
+Conv-init kayma oranı 0.0 (720 ölçüm; dense-init referansı da 0.0) —
+prior yetiyi hediye etmiyor (`runs/s210_m19_birthday.json`).
+
+### Zincir 1: kayma katmanı ÇÖZÜLDÜ, nakit harfe göre düştü → ÇATAL B
+| seed | kayma (doğru/eski kütle) | nakit d1/d2/d3 | eval hasat | yaşam | kalib |
+|------|--------------------------|-----------------|------------|-------|-------|
+| 0 | 1.000/0.000 | %5/%5/%0 | 0.0 | 134 | −0.022 |
+| 1 | 1.000/0.000 | %85/%50/%45 | 0.0 | 142 | +0.103 |
+| 2 | 1.000/0.000 | %95/%80/%50 | 0.0 | 136 | +0.239 |
+| 3 | 1.000/0.000 | %90/%90/%75 | **4.0** | 162 | +0.233 |
+| 4 | 0.956/0.002 | %95/%60/%35 | 0.0 | 142 | +0.181 |
+
+- **Kayma: 5/5 seed'de ~mükemmel** (taban 0.09'a karşı doygun oran;
+  rapordaki 1e9 sıfıra-bölüm koruması artefaktı — kütleler esas).
+  Yerellik iskelesi, eylem-koşulsuz decoder'a rağmen kaymayı hidden
+  üzerinden ÖĞRETTİ: eylem→kayma eşlemesi kazanılmış (iskele defterde,
+  K-113; iddia dili çatal-A şerhine tabi).
+- **Nakit: d1=%74 ✓, d2=%57 ✗** (çıta %70/%70) → harfe göre düştü;
+  S2.9'a göre d1 %22→%74. **Seed 3 tarihte ilk: eval medyan hasat 4.0
+  (eşik 3 üstü)**, yaşam 162 vs 167 (p=0.68, anlamlı değil).
+- Aykırı: seed 0 (kalibrasyon −0.02 — enerji olumsallığı hiç oluşmamış;
+  kayma mükemmelken enerji kafası çökük; conv'un enerji başı ayrı ve
+  seed'e hassas görünüyor).
+- Maliyet: 36-44 ms/tur (conv × 64 aday × CEM-4 × ufuk-10).
+- Ön-kayıtlı çatal: **B-PLANLAYICI → K-112 karşı-olgusal dağılımda
+  yeniden ölçülüyor** (M-17-uyumlu enstrüman `counterfactual_decay`;
+  ağırlıklar artık kaydediliyor — salt-planlama değişiklikleri
+  yeniden-eğitimsiz test edilecek).
+
+### Zincir 1 sonrası — K-112 karşı-olgusal yeniden ölçümü (Çatal B gereği)
+`counterfactual_decay` (yaklaşma+INTERACT dizileri, M-17-uyumlu):
+**H_eff_cf = 10 (3/3 seed)** → ön-kayıtlı kural gereği kırpma YİNE
+endike değil (`runs/s210_decay_cf.json`). AMA cihaz notu: kalıcılık
+tabanı sıçrama adımında patlıyor (~0.40) — model sıçramanın yalnız bir
+kısmını tahmin ederek kapıyı geçiyor. Mutlak hata: model hasat
+sıçramasının %25-75'ini kaçırıyor (seed 1: ~%70 eksik; seed 2-3: ~%25).
+Kalan nakit açığının (d2=%57) muhtemel yeri burası: J farkı, eksik
+tahmin edilen sıçrama + CEM gürültüsüyle seyreliyor. Vade dolduğu için
+yeni müdahale önerilmiyor (Ali talimatı).
+
+### S2.10 / tek-ajan mühendisliği KAPANIŞI
+Zincir sonucu: kayma ✓✓ (çözüldü), nakit ✗ (d1 ✓ %74, d2 ✗ %57),
+eval ✗ (5 seed'in 1'i eşik üstü). PL-13 tetiklenmedi. Baskın kalan
+fenomen SEED VARYANSI: seed 3 neredeyse tam geçer (nakit 90/90/75,
+eval hasat 4.0), seed 0 enerji kalibrasyonunu hiç kuramaz (−0.02).
+Mimari "eşikte": bitti-tanımının TÜM-seed şartı bu varyansta düşüyor.
+Ağırlıklar `runs/s210_weights/` (seed 1-3) — sonraki her analiz
+yeniden-eğitimsiz.
+
+### Yeni ders var mı?
+VAR → **M-20**: Taban çizgisi de cihazın parçasıdır. Kolay taban
+(kalıcılık, olay anlarında kördür) kapıyı otomatik açar; H_eff kuralı
+sıçrama adımlarında BOŞUNA sağlandı. Taban, ölçülen yetinin zorluk
+düzeyinde seçilmeli (örn. olay-bilinçli taban veya mutlak-hata eşiği).
+
+## S2.10-ek — ÖN-KAYIT (2026-07-08)
+PL-13 / P1-tekrar, YALNIZ seed 3. **n=1 → azami etiket ADAY GÖZLEM**
+(Ali ön-kaydı). Üç kontrol standart (ikiz ×3, etiket karıştırma,
+checkpoint eğrisi). Checkpoint verisi için seed-3 eğitiminin bit-eş
+enstrümanlı yeniden-yürütmesi yapılır; final ağırlık hash'i kayıtlı
+`runs/s210_weights/seed3.pt` hash'ine EŞİT olmak zorunda (Kapı-5 kanıtı;
+eşit değilse tüm ek geçersiz). Çıktı: kayma + hasat + öz-konum probu
+ortak zaman ekseni (checkpoint bazlı). PL-15 son-itiraz analizi
+(varyans-eşleşmiş görünür-A kontrolü) aynı ağırlıklarda tekrarlanır —
+mobil-ajan kilidi seed 3'te açıldı. Ali'nin PL-13 öngörüsü sınavda:
+"öz-konum eğrisi hasatla birlikte yükselir."
+
+## S2.10-ek — SONUÇLAR (n=1 seed 3; azami etiket ADAY GÖZLEM) (2026-07-08)
+
+**Bit-eş kanıt:** yeniden-yürütme final hash'i == kayıtlı seed3.pt
+(e0577e36…) — checkpoint verisi AYNI eğitimin verisi (Kapı-5).
+
+### Ortak zaman ekseni (kayma × hasat × öz-konum probu)
+| ckpt | kayma kütlesi (üretici) | eval hasat | disp R² (prob) | disp Δ(eğitilmiş−ikiz) |
+|------|--------------------------|------------|----------------|--------------------------|
+| 0 | 0.000 | 0.0 | +0.18 | −0.03 |
+| 5K | 0.015 | 0.0 | −3.26 | −0.21 |
+| 15K | 0.145 | 0.0 | −6.72 | +0.40 |
+| 25K | 0.457 | 0.0 | −4.21 | +0.11 |
+| 35K | 0.749 | **2.0** | −2.90 | −0.39 |
+| 45K | 1.000 | **3.0** | −3.94 | +0.25 |
+
+### PL-13 öngörü verdikti (Ali: "öz-konum eğrisi hasatla yükselir")
+**İki katmanda iki farklı cevap:**
+- **ÜRETİCİ okumada DESTEKLENDİ:** modelin öz-hareket yetisi (kayma
+  kütlesi) monoton yükseldi ve hasat davranışı ancak ~0.75 eşiğinden
+  SONRA doğdu (0,0,0,0,2,3). Sıralama tam Vygotsky-öncesi beklenen yönde:
+  önce içsel model yetkinliği, sonra davranış.
+- **KORELASYONEL okumada DESTEKLENMEDİ:** disp probu (hidden'dan
+  kümülatif yer değiştirme) yükselmedi (eğri düzensiz-negatif, ρ=−0.31;
+  final ΔR²=+0.253, p=0.047 — n=6 epizotta marjinal, mutlak R² hâlâ
+  derin negatif).
+- **Ayrım dersi:** TEK-ADIM öz-hareket modeli (kayma) ≠ KÜMÜLATİF yol
+  entegrasyonu (displacement). İlki kazanıldı ve davranışı açtı; ikincisi
+  hâlâ yok (ya da lineer okunmuyor). Öngörü, "temsil"i hangi katmanda
+  tanımladığına göre doğru YA DA test-başarısız — n=1, etiket ADAY
+  GÖZLEM; çoğaltma (≥5 seed) S3 sonrası aday iş.
+- denergy ilk kez pozitifleşti (final R² 0.17, Δ +0.167, p=0.016) —
+  hareketli ajanda sonraki-tur enerji kısmen öngörülür oldu; prob
+  erken-ckpt'lerde kararsız (sabit-hedef patolojisi), ihtiyatla.
+
+### PL-15 SON-İTİRAZ SONUÇLANDI: itiraz AYAKTA — öz-enerji adayı DÜŞTÜ
+Mobil ajanda varyans-eşleşmiş kontrol nihayet koşulabilir oldu:
+Δ(enerji) = **+0.033**, Δ(görünür-A sayısı) = **+0.062** — kendilikle
+ilgisi olmayan girdi özelliği EN AZ AYNI ölçüde iyileşmiş. "Eğitilmiş
+GRU tüm girdilerini ikizden iyi temsil eder" H0'ı doğrulandı.
+**Öz-enerji gözlemi öz-model kanıtı olmaktan ÇIKARILDI** — genel
+girdi-iyileştirmesinin bir örneği olarak yeniden sınıflandı. Ali'nin
+iddia merdiveni (M-13) tasarlandığı gibi çalıştı: aday, dördüncü
+itiraz testinde öldü. (P1/H1'in interoseptif yarısı için nihai durum:
+NEGATİF-genel; üretici katmandaki kayma bulgusu bundan bağımsız ayakta.)
+
+## S3-AÇILIŞ (2026-07-08)
+
+### İş 1 — B-kaynağı kalibrasyonu (M-01 refleksi): economy v3
+İki-ajanlı Tanrı-gözlü koordinasyon oracle'ı, v2 koşulları
+(`runs/s3_b_oracle.json`):
+
+| B enerji | kişi başı | medyan çift-yaşam | medyan açılış |
+|----------|-----------|--------------------|----------------|
+| 75 (v2) | 37.5 | 309 | 10 |
+| 135 | 67.5 | 1500 (tavan) | 62 |
+| 180 | 90 | 1500 (tavan) | 62 |
+| 225-270 | 112-135 | 1500 (tavan) | 62 |
+
+> ### ⚠ YENİDEN ÜRETİLEBİLİRLİK ŞERHİ (2026-07-27) — KAPI 5 AÇIK
+>
+> **`runs/s3_b_oracle.json`'ı üreten kod repoda YOK.** `res_b`'ye
+> dokunan tek Python: `world/grid.py`, testler, `replay/`.
+> `training/oracle.py` yalnız A kanalına (`obs[0]`) bakar, koordinasyon
+> mantığı içermez ve docstring'i açıkça *"Dünya durumuna Tanrı-gözü
+> erişimi YOK"* der — oysa bu bölüm onu *"İki-ajanlı Tanrı-gözlü
+> koordinasyon oracle'ı"* diye tanımlıyor. Çelişki çözülmemiştir.
+>
+> Sonuç: `world/config.py`'ye M-10 damgasıyla yazılmış dünya-tarafı bir
+> değer (`resource_b_energy=180`, economy v3) ÖKSÜZ bir sonuç dosyasına
+> dayanıyor. KAPI 5 (bit-eş tekrar) ve M-12 arşiv geleneği ihlali.
+> Ayrıca tablodaki 135+ satırlarının hepsi 1500-tur TAVANINDA (sansürlü
+> veri) — eşiğin "keskin 135" okuması bu sansürle sınırlıdır.
+> Açık iş: **PL-24**.
+
+**Bulgu: v2'de B primi BOZUKTU** (A=45 > kişi başı 37.5) — S2.6 ekonomi
+kalibrasyonu A'yı düzeltirken B'yi kırmıştı; oracle yakaladı (M-01 ne
+içinmiş). Sürdürülebilirlik eşiği keskin: 135. **Seçim: B=180** —
+anayasal 4-6× bandının içi (4×A); en-sıkı-geçen 135 ile band çelişkisi
+beyanlı, Ali isterse tek satır. economy_version=3 damgalı; v1/v2
+tanımları `economy_v1()/economy_v2()` olarak korunuyor.
+
+### İş 2 — Nüfus + soy kütüğü: DP-01 FİİLİ KARAR
+Kurucu kadro: roster (doküman 4.3) aynen; **A2 slotu seed-3
+transplantı** (kanal-açık mimariye SIFIR-NÖTR genişletme — sinyalsiz
+girdide eski modele sayısal özdeşlik testli:
+`test_transplant_neutral_extension_equivalence`) **+ mutasyon σ=0.01**;
+diğer 4 slot mimari uyumsuzluğundan taze (KISMİ miras, PL-20).
+Ölümde halef = ölenin ağırlıkları + mutasyon → **DP-01 seçenek (b)
+"çekirdek+miras" fiilen yürürlükte** (Ali talimatı; A/B testi yapılmadı,
+S5'te veriyle sınanabilir). Soy kütüğü her koşumun `breath.json`'ında.
+
+### İş 3 — Kanal AÇIK (spec 4.2 yürürlükte)
+4 bit/16 sembol + yok; enerji maliyeti 0.5 (homeostaz); menzil 8
+(PL-21); alınan sinyaller kimliksiz 16-boyut; kendi sinyali efferens
+(K-114). Sinyal seçimi eylemle ORTAK MPC planlamasında — ödül yok,
+şekillendirme yok; anlam çıkacaksa kullanım basıncından çıkacak.
+probes/ sosyal katmanı KAPALI — önce ekoloji nefes alsın.
+
+### İlk nefes koşumu (20K tur, 5 ajan, ölüm gerçek): **DRİFT-BASKIN ÇÖKÜŞ**
+
+> ### ⚠ ENSTRÜMAN ŞERHİ (2026-07-27) — AŞAĞIDAKİ İKİ SAYI ÇÜRÜTÜLDÜ
+>
+> M-12 gereği orijinal metin OLDUĞU GİBİ korunmuştur; düzeltme burada.
+>
+> **Kusur:** `a_harvests`, `b_openings`, `signals_sent` sayaçları
+> `Citizen` NESNESİNDE yaşıyordu ve `Citizen` ölümde DEĞİŞTİRİLİYORDU
+> (`training/ecology.py`). Rapor edilen değer = o anki 5 sakinin
+> YAŞAM-İÇİ sayacı; kümülatif toplam DEĞİL. `signal_rate` ise bu
+> resetlenen payı KÜMÜLATİF paydaya (`5*turn`) bölüyordu → yapay
+> monoton düşüş.
+>
+> **İlk kanıt ham veride:** `a_harvests` serisi
+> `[1,0,0,0,0,1,0,0,1,1,0,...]` — kümülatif bir sayaç azalamaz.
+>
+> **Düzeltilmiş muhasebeyle ölçüm** (aynı seed, dinamik bit-eş; yalnız
+> sayaç düzeltildi; 2000 tur):
+>
+> | metrik | RAPOR EDİLEN | GERÇEK |
+> |---|---|---|
+> | A-hasat | 0 | **17** |
+> | sinyal oranı | 0.006 | **0.551** |
+>
+> Ve sinyal oranı DÜŞMÜYOR, YÜKSELİYOR: doğum penceresine göre
+> 0.367 → 0.481 → 0.681 → 0.695.
+>
+> **ÇÜRÜTÜLEN CÜMLE:** *"sinyal oranı 0.003→0.0 (sinyaller söndü —
+> maliyet var, fayda yok: MPC tutumlu adayları seçiyor)"* — tam tersi.
+> **ÇÜRÜTÜLEN SAYI:** *"A-hasat toplam ~2"* — toplam değil, anlık.
+>
+> **Yerine geçen ölçüm** (1500 tur, sinyal kaynağı ayrıştırması):
+> ε-keşif dalı %10.1 → oran 0.925 (= havuz geometrisi 16/17);
+> MPC dalı %89.9 → oran **0.456**. MPC sinyalden kısmen kaçınıyor ama
+> sistematik tutumluluk YOK. Slot bazında kurucu nesil → tüm nüfus:
+> A1 0.097→0.085, A3 0.142→0.393, A4 0.150→0.328,
+> **A2 (seed-3 mirası) 0.261→0.765**.
+> **MEKANİZMA — H0 sınavından geçirildi (M-13).** İlk okumam
+> ("kurucu nesil tutumlu, yetkinlik eridikçe sinyal artıyor")
+> korelasyoneldi; H0 olarak "argmax-beraberlik kazası" sınandı
+> (taze çekirdek dejenere skor üretir → argmax havuzun İLK 6 satırına,
+> yani sabit-eylem/sinyalsiz satırlara düşer). Doğrudan ölçüm
+> (60 durum × 3 slot × 4 mutasyon dozu, `_score_joint` üzerinde):
+>
+> | slot | σ=0 | σ=0.01 | σ=0.05 | **σ=0.16** |
+> |---|---|---|---|---|
+> | A1 sabit-eylem satırı seçimi | %100 | %100 | %100 | **%8** |
+> | A1 sinyal oranı | %0 | %0 | %0 | **%90** |
+> | A3 sabit-eylem satırı seçimi | %100 | %100 | %100 | **%30** |
+> | A3 sinyal oranı | %0 | %0 | %0 | **%68** |
+> | skor yayılımı (A1) | 0.61 | 0.68 | 2.08 | **23.3** |
+>
+> **H0 (beraberlik kazası) DÜŞTÜ:** skorlar init'te dejenere değil
+> (yayılım 0.6–1.05). Sabit-eylem satırları σ=0'da J'yi GERÇEKTEN
+> kazanıyor — tutarlı bir model STAY'in enerji koruduğunu tahmin ediyor.
+> **Ayakta kalan mekanizma:** σ=0.16'da (= 250. nesildeki kümülatif
+> sürüklenme, tam koşumun ulaştığı yer) skor manzarası gürültüye boğulur,
+> sabit-eylem satırları kaybeder ve argmax havuzun aday geometrisine
+> (16/17 sinyalli) düşer.
+>
+> **Düzeltme:** "kurucu nesil tutumlu" fazla genel — TAZE A2 sinyal-delisi
+> (%100), taze A1/A3 tutumlu (%0); mimariye bağlı. Ekolojideki A2 gen-0
+> değeri (0.261) taze değil, EĞİTİLMİŞ seed-3 transplantıdır.
+>
+> **Savunulabilir ifade:** sinyal yayımı, TUTARLILIĞINI kaybetmiş bir
+> planlayıcının varsayılan davranışıdır. Tutumluluk model tutarlılığı
+> ister; tutarlılık iki yoldan kaybolur (eğitimsiz başlangıç — mimariye
+> bağlı; ve birikimli mutasyon — evrensel, ~250. nesilde). Yani sinyal
+> oranı şu an bir iletişim basıncı ölçüsü DEĞİL, **planlayıcı
+> tutarlılığının ters vekilidir** — sosyal katman (probes/) açılmadan
+> önce kapatılması zorunlu konfound: yükselen sinyal oranı "iletişim
+> doğuyor" diye okunursa doğrudan sahte pozitif olur.
+>
+> **AYAKTA KALAN:** ölüm sayısı (1513) ve ömür istatistiği soy
+> kütüğünden geliyordu, sağlam — slot medyanları 53/53/58/58/66,
+> nüfus medyanı **56 tur**. Bu, "her tur hareket" tavanına
+> (100/(0.6+1.0)=62.5) oturuyor: ajanlar tasarruf etmiyor, sürekli
+> hareket ediyor. Drift-baskın çöküş teşhisi AYAKTA; mekanizma daha
+> keskin.
+>
+> **Onarım:** `Ledger` (ölümden sağ çıkan kümülatif defter) + pencere
+> oranları + M-23 bilinen-pozitif testleri
+> (`tests/test_s3.py::test_vitals_counters_are_cumulative`); test eski
+> cihazda DÜŞTÜĞÜ doğrulandı. Ayrıca halef doğum yeri `succ_rng`'den
+> `World.respawn_entity()`'ye taşındı (anayasa: dünya rastgeleliği tek
+> generator'dan) → **v2 koşumu yeniden analiz değil, YENİ koşumdur**:
+> `runs/s3_breath_v2/`. Ders: M-22, M-23.
+
+`runs/s3_breath/breath.json` (bit-eş determinizm testli):
+- **1513 ölüm / 20K tur**; slot medyan ömürleri 53-66 tur; 254-357
+  nesil. A-hasat toplam ~2, B-açılış 0, sinyal oranı 0.003→0.0
+  (**sinyaller söndü** — maliyet var, fayda yok: MPC tutumlu adayları
+  seçiyor; dürüst mekanizma, sansür değil).
+- **Tek zayıf miras sinyali:** A2 (seed-3 soyağacı) medyan ömrü 66 vs
+  diğerleri 53-58 — küçük ama görünür devralınmış avantaj; 254 nesil
+  sonunda hâlâ fark edilir olması ilginç.
+- **Teşhis:** ekoloji öğrenme BİRİKTİREMİYOR. İki mekanizma:
+  (1) yaşam-içi öğrenme bütçesi: yetkinlik ~45K tur sürekli öğrenme
+  istiyordu (S2 yayı ölçtü); ömür ~60 tur → ~750× açık. (2) halefiyet
+  SEÇİLİMSİZ mutasyon = ağırlık uzayında rastgele yürüyüş; 250+ nesil
+  × σ=0.01 → birikimli gürültü σ≈0.16, miras aşınıyor (drift, evrim
+  değil — seçilim basıncı YOK çünkü herkes aynı hızda ölüyor).
+- Bu, PL-06 geriliminin ("ölüm gerçek" vs "yetiştirme kabı") ekolojik
+  ölçekte patlaması: v1 ideali (saf online + gerçek ölüm) bu
+  parametrelerde matematiksel olarak öğrenemez.
+- **Çerçeve seçenekleri (karar Ali'de; hepsi anayasa-dokunuşlu):**
+  (a) seçilimli halefiyet (uzun yaşayanın soyu çoğalır — evrim gerçek
+  olur; DP-01'in B'sine doğal ek), (b) gelişim koruması / yuva dönemi
+  (genç ajana geçici metabolizma indirimi — öğrenme penceresi açar;
+  dünya-tarafı, M-01 için yeni oracle ister), (c) 5×seed-3 klon tabanı
+  (roster'ı ertele, PL-20 alternatifi — ekoloji yetkin tabandan başlar,
+  sosyal katman üstüne oturabilir). Tavsiye: önce (c)+(b) — yetkin taban
+  + yaşanabilir pencere; seçilim (a) ayrı değişken, sonra (M-06 tek tek).
+  Not: her üçü de nüfus için AYRI fizibilite oracle'ı gerektirir
+  (M-21) — tek-ajan kalibrasyonu çok-ajanda geçersiz.
+
+### S3 TABAN ÇİZGİSİ v2 — düzeltilmiş enstrümanla 20K koşum (2026-07-27)
+
+`runs/s3_breath_v2/breath.json`. **Yeniden analiz DEĞİL, yeni koşum:**
+halef doğum yeri `succ_rng` → `World.respawn_entity()` taşındığı için
+yörünge v1'den farklı (PL-23). Enstrümanlar: `Ledger` kümülatif defteri
++ `world.b_openings_total`; M-23 testleriyle sabitlendi.
+
+| | v1 (bozuk cihaz) | **v2 (düzeltilmiş)** |
+|---|---|---|
+| ajan-turu | — | 100.000 |
+| ölüm / medyan ömür | 1513 / 56 | **1714 / 52** |
+| A-hasat | "~2" (anlık) | **79** (7.9 / 10K ajan-turu) |
+| B-açılış | 0 (geri-çıkarım) | **0** (dünya sayacı, kesin) |
+| sinyal oranı | 0.003→0.0 "söndü" | **0.681** |
+
+**Sinyal oranı seyri (pencere, 1000'lik dilim):** 0.429 → 0.845 (t=4K)
+→ 0.74 → 0.60 → 0.71 → 0.64. Yükselip ~0.6-0.75 bandında **plato**
+yapıyor. Sönme YOK; v1'in "söndü" okuması tümüyle enstrüman kusuruydu.
+
+**Kanal yapı taşımıyor — nicel tavan (asıl bulgu).** 68.089 sinyalin
+sembol dağılımı:
+
+| ölçü | değer |
+|---|---|
+| chi-kare (df=15) | 928.7, **p = 2.5e-188** |
+| Shannon entropisi | **3.9897 bit** (tekdüze tavan 4.0000) |
+| tekdüzeden sapma | **0.0103 bit** = kanal kapasitesinin %0.26'sı |
+| CV | 0.117 |
+
+Anlamlılık ezici (n=68K her sapmayı anlamlı yapar) ama etki 4 bitin
+yüzde biri kadar bile değil — **PL-15'i öldüren ayrımın aynısı**
+(anlamlılık ≠ etki). Sapmanın kendisi de büyük olasılıkla ajan-içi
+argmax yanlılığı (ağırlık gürültüsünün bazı sembolleri kayırması),
+ajanlar-arası yapı değil.
+
+**Bu, sosyal katman için ÖN-KAYITLI GÜRÜLTÜ TABANIDIR:** `probes/`
+açıldığında herhangi bir karşılıklı-bilgi / sembol-anlam iddiası bu
+0.0103 bitlik tabanı aşmak ZORUNDA. Aşmayan her sonuç, kanalın
+rastgele kullanımıyla açıklanır.
+
+**Ekolojik özet (v1 teşhisi AYAKTA, mekanizma keskinleşti):** medyan
+ömür 52 tur ≈ "her tur hareket" tavanı (62.5) — ajanlar tasarruf
+etmiyor; öğrenme ufku ~45K tur, ömür 52 → **~865× açık**; miras 65.
+nesilde gürültüye gömülüyor (σ=0.01 vs ağırlık RMS 0.0804); A-hasat
+7.9/10K ajan-turu ile birikiyor ama davranışa dönüşmüyor.
+**Drift-baskın çöküş teşhisi doğrulandı; "kanal maliyet baskısıyla
+söndü" alt-teşhisi ise düştü.**
+
+## S3-B — ÖN-KAYIT (koşumdan önce, M-08) (2026-07-27)
+
+**Amaç:** PL-24'ü (KAPI 5: economy v3 yeniden üretilemez) kapatmak ve
+PL-25'i (keşfedilebilirlik hiç ölçülmedi) yanıtlamak. Enstrüman:
+`training/b_oracle.py` — ajan değil ölçüm aleti, KERNEL_BUDGET'a bit
+yazmaz (`training/oracle.py` emsali).
+
+**Merdiven (M-06, tek değişken = B stratejisi):** `random` (şans tabanı)
+→ `noB` (hayatta-kalma kontrolü, B kovalamaz) → `vision` (gördüğü B'ye
+git+bekle, kanal YOK) → `signal` (+kanal) → `god` (Tanrı-gözü minimax
+randevu = koordinasyon tavanı).
+
+**BEYAN — L2'ye hediye:** `signal` seviyesi SYM_B konvansiyonunu
+(hangi sembolün "burada B var" demek olduğunu) HAZIR alır. Bu, ajanın
+KEŞFETMESİ gereken şeydir (H3/H4'ün konusu). Bilinçli: L2, **mükemmel
+paylaşılan konvansiyon altındaki TAVANI** ölçer. L2 bile öğrenilebilir
+hızda açılış üretemiyorsa, öğrenilmiş hiçbir dil üretemez — o zaman
+eksik olan ajan değil DÜNYA KALİBRASYONUDUR.
+
+**Kanal fiziği kısıtı (PL-21b/c, ölçümün kalbi):** sinyal YÖN ve KİMLİK
+taşımaz. Duyan sinyale doğru yürüyemez; aldığı tek bilgi "Chebyshev 8
+içinde biri var", yani arama uzayı 4096 → 17×17=289 hücreye daralır
+(~14×). L2 bu daralmanın nakit değerini ölçer.
+
+### Cihaz doğrulaması (koşumlardan ÖNCE yapıldı — M-15)
+1. Referans `training/oracle.py` aynı ekonomide (m=0.6/24/A=45) yeniden
+   koşuldu: medyan ömür **215** (S2.6 raporu 197), hasat **10.5**
+   (rapor 8.5) → referans yeniden üretilebilir ✓
+2. `pair_lifetime` = min(iki ömür) = koordinasyon penceresi. Referans
+   dağılımdan min(X1,X2) medyanı **124** öngörülür; `noB` kontrolü
+   **110** ölçtü ✓ (tek-ajan ömrüyle KARŞILAŞTIRILAMAZ — ilk okumamda
+   bu hatayı yaptım, kayda geçiyor).
+
+### DÜRÜSTLÜK ŞERHİ — merdiven ön-kayıtlı DEĞİL
+Keşfedilebilirlik merdiveni cihaz geliştirilirken (politika hatası
+ayıklanırken) 12 epizotluk hâliyle KOŞULDU ve `vision`/`signal`
+seviyelerinde 0 açılış görüldü. Bu sayılar ön-kayıt DEĞİLDİR; öyleymiş
+gibi raporlanmayacak. Kriterler aşağıda yine de yazılıyor çünkü
+bağımsız büyüklüklerden türetiliyor (162 = S2.10 yetkin ajan ömrü;
+2× = konvansiyonel etki eşiği), gözlenen veriden değil. **`calib`
+aşaması hiç koşulmadı — o gerçek ön-kayıttır.**
+
+### PL-24 kriteri (sürdürülebilirlik)
+L3 (`god`) × B ∈ {75,135,180,225,270} × 12 epizot, tavan 3000 tur
+(v1 1500'de sansürlüydü; sansür oranı raporlanacak). Kapanış: eşiğin
+yeri sansürle birlikte raporlanır. **Yeniden üretilen eşik 135 DEĞİLSE**
+`world/config.py`'deki B=180 gerekçesi M-10 damgasıyla revize edilir.
+
+### PL-25 çıtaları (ön-kayıt)
+- **ZAYIF — "kanalın ölçülebilir değeri var":** L2 açılış hızı ≥ 2× L1.
+- **GÜÇLÜ — "basınç öğrenilebilir":** L2 hızı ≥ **6.2 açılış / 1000
+  çift-turu** (= 1 olay / 162 çift-turu; 162 = S2.10'un yetkin ajan
+  ömrü). Gerekçe: bir ajan hayatı içinde en az bir B deneyimi olmadan
+  olumsallık öğrenilemez (S2.7 N*=50 dersi).
+
+### Sonuç matrisi (koşumdan önce yazıldı)
+- **A — güçlü ✓:** B basıncı mevcut config'de VAR; PL-22 çerçeve kararı
+  basınç varsayımıyla alınabilir.
+- **B — zayıf ✓, güçlü ✗:** kanal işe yarıyor ama doz yetersiz →
+  `calib` aşaması B yoğunluğu/menzil için sayı üretir; PL-22'den önce
+  dünya ayarı gerekir.
+- **C — zayıf ✗ (L1≈L2≈0):** mükemmel konvansiyonla bile koordinasyon
+  BULUNAMIYOR → öğrenilmiş hiçbir dil bulamaz. S3'ün merkezi basıncı
+  YOK ilan edilir; `calib` zorunlu, PL-22 kararı basınç doğana kadar
+  askıya alınır.
+
+## S3-C — ÖN-KAYIT (koşumdan önce, M-08) (2026-07-27)
+
+**Ali kararı: (A) — görevi değiştir.** PL-25 ölçtü ki yönsüz/kimliksiz
+4 bit UZAMSAL randevuya hiçbir şey katmıyor. (A): koordinasyonun zor
+kısmı uzamsal olmasın. Uygulama spec'ten SAPMA DEĞİL, spec'in ertelenmiş
+yarısıdır: `event_visibility_split` ("her ajana olayın farklı parçası")
++ PL-05'te S3–S4'e ertelenen `world/events.py`.
+
+**Ekolojik emsal:** alarm çağrısı. Vervet sembolü "yırtıcı nerede"
+değil "hangi kaçış eylemi" der — kategorik, uzamsal değil.
+
+### Fizik (ödül YOK; yalnız enerji)
+Küresel olay; aktifken güvenli olan TEK eylem kutup `p ∈ {0..K-1}`,
+başka her eylem `event_penalty` yakar. Konumun rolü YOK.
+
+### İki tasarım kilidi (tasarım sırasında ölçülerek kondu)
+1. **`event_duration=1`** — olay, "acıyı çek sonra düzelt"e vakit
+   bırakmamalı. İlk taslakta (3 tur) kendi-kendine-çıkarım değerin
+   ~%67'sini kurtarıyordu; o tasarımda kanal GEREKSİZ olurdu.
+2. **İpucu bölünmesi** — kutup `log2(K)=2` bitlik bir kod; her ajan
+   olay başına YALNIZ BİR biti gözler (hangisi her olayda dünya
+   rng'sinden çekilir, sabit rol değil). Kendi biti K=4'ü 2 adaya
+   indirir; kalanı ancak BAŞKASININ bitinden gelir. Kanal "yardımcı"
+   değil, bilginin tek yoludur.
+
+### Merdiven (M-06, tek değişken = kutup bilgisi)
+`none` (olaysız çıpa) → `deaf` (bilgi yok, sabit STAY, 1/K) →
+`own` (kendi biti, 1/2) → `own_infer` (+acıdan öğrenme; kilit-1 sınavı)
+→ `told` (kendi biti + menzildeki ortağın biti) → `god` (tavan).
+
+**BEYAN (M-09):** tüm kollara olayın NE ZAMAN aktif olduğu verilir
+(tek değişken HANGİ eylem olsun diye). `told` ayrıca sembol→bit
+konvansiyonunu HEDİYE alır (B oracle'ının SYM_B geleneği) → bu kol
+öğrenilmiş bir dilin ULAŞABİLECEĞİ TAVANI ölçer, tipik başarımını değil.
+
+### Çıtalar (koşumdan ÖNCE yazıldı)
+Ölçü: medyan pencere (ilk ölüme kadar) ve olay isabet oranı.
+- **(i) DEĞER:** `god` / `deaf` medyan pencere oranı **≥ 1.5**.
+  Sağlanmazsa bilgi değersiz → görev yanlış kalibre, DUR.
+- **(ii) KANAL GEREKLİ:** `own` tek başına değerin çoğunu almamalı —
+  `(own − deaf) / (god − deaf) ≤ 0.6`. Ayrıca kilit-1 sınavı:
+  `own_infer ≈ own` (fark ≤ %10) olmalı; değilse süre kilidi tutmuyor.
+- **(iii) KANAL YETERLİ:** `(told − deaf) / (god − deaf) ≥ 0.5`.
+
+### Sonuç matrisi (koşumdan önce)
+- **A — üçü de ✓:** görev geçerli bir dil tuzağı; S3-C ekolojiye
+  bağlanabilir (gözlem kodlaması PL-27 kararı).
+- **B — (i) ✓, (iii) ✗:** bilgi değerli ama kanal ulaştıramıyor →
+  menzil/nüfus kalibrasyonu (süpürme raporda); B görevinin
+  ÇATAL C'sinin tekrarı olup olmadığı buradan anlaşılır.
+- **C — (ii) ✗:** ajan bilgiyi zaten tek başına alıyor → kanal
+  gereksiz, tuzak boş. Tasarım kilidi yetmemiş demektir; DUR ve
+  kilitleri yeniden ölç (K veya süre).
+- **D — (i) ✗:** DUR, ekonomi kalibrasyonu.
+
+## S3-C — SONUÇLAR: **ÇATAL A** (2026-07-27)
+
+`runs/s3c_event_oracle.json`, 48 epizot/kol. Birincil ölçü **kişi-başı
+ömür** (M-24: "pencere = min(n ömür)" n büyüdükçe tüm farkları
+sıkıştırır, değer ölçüsü olarak geçersiz — ilk okumada bu tuzağa
+düştüm, düzeltildi).
+
+### Merdiven (n=5, menzil 32)
+| kol | kişi-başı ömür | olay isabeti | beklenen |
+|---|---|---|---|
+| `none` (olaysız çıpa) | 210 | — | ref. oracle 215 ✓ |
+| `deaf` | 115 | 0.271 | 1/K=0.25 ✓ |
+| `own` | 142 | 0.467 | 1/2=0.50 ✓ |
+| `own_infer` | **142** | **0.467** | = `own` (kilit-1) ✓ |
+| `told` | **193** | **0.856** | — |
+| `god` (tavan) | 225 | 1.000 | — |
+
+### Ön-kayıtlı çıtalar
+| çıta | değer | sonuç |
+|---|---|---|
+| (i) DEĞER `god/deaf` ≥ 1.5 | **1.96** | ✓ GEÇTİ |
+| (ii) GEREKLİ `(own−deaf)/(god−deaf)` ≤ 0.6 | **0.241** | ✓ GEÇTİ |
+| (ii-b) kilit-1: `own_infer` = `own` | **birebir eşit** | ✓ GEÇTİ |
+| (iii) YETERLİ `(told−deaf)/(god−deaf)` ≥ 0.5 | **0.709** | ✓ GEÇTİ |
+
+→ **ÇATAL A: görev geçerli bir dil tuzağıdır.**
+
+- Olaylar ömrü yarıya indiriyor (210 → 115): basınç gerçek ve güçlü.
+- Kendi ipucu değerin yalnız **%24**'ünü kurtarıyor; kalan %76 ancak
+  BAŞKASININ bitinden gelebilir → kanal yardımcı değil, tek yol.
+- `own_infer` ile `own` BİREBİR eşit: tek turluk olay "acıyı çek,
+  sonra düzelt" kaçış yolunu kapatıyor (kilit-1 ampirik olarak
+  doğrulandı).
+- Mükemmel konvansiyonlu yayın değerin **%71**'ini, isabet açığının
+  **%80**'ini kurtarıyor.
+
+### Menzil kalibrasyonu (n=5) — B görevinin TAM TERSİ
+| menzil | kapsama | told ömür | isabet | yeterlilik |
+|---|---|---|---|---|
+| 8 (mevcut) | %7 | 140 | 0.534 | 0.223 |
+| 12 | %15 | 142 | 0.578 | 0.241 |
+| 16 | %27 | 158 | 0.647 | 0.391 |
+| 20 | %41 | 158 | 0.700 | 0.391 |
+| 24 | %59 | 166 | 0.741 | 0.468 |
+| **32 (küresel)** | %100 | **193** | **0.856** | **0.709** ✓ |
+
+**Bu tablo tanının kanıtıdır.** B görevinde menzil 8 → 16 HİÇBİR ŞEY
+değiştirmiyordu (erişim büyüdükçe yerelleştirilebilirlik aynı hızda
+bozuluyordu — yönsüz kanalın net menzil faydası yok). Burada
+yerelleştirme GEREKMEDİĞİ için temiz, monoton bir doz-cevap eğrisi var.
+Görev değişikliği tam da amaçlanan şeyi yaptı.
+
+**Kalibrasyon sonucu:** çıta yalnız menzil 32'de aşılıyor; 64-toruste
+Chebyshev 32 = KÜRESEL yayın. Yani bu görev, kanalın herkese ulaşmasını
+istiyor. Karar Ali'de (**PL-28**): küresel kanal, sembolün taşıyabildiği
+tek şeyin KİMLİĞİ (16'dan hangisi) olması demektir — uzam, yön, mesafe,
+gönderen: hepsi düşer. Anlam çıkacaksa saf sembolden çıkacak. Bu, dil
+tuzağının en temiz hâli; ama menzili "yakın ajanlar duyar" diye
+gerekçelendiren PL-21 varsayımını geri alır.
+
+### Sınırlar (dürüstlük)
+- `told` mükemmel sembol→bit konvansiyonunu HEDİYE alır → bu kol
+  öğrenilmiş bir dilin ULAŞABİLECEĞİ TAVANDIR, tipik başarımı değil.
+  Öğrenen ajanın bunu keşfedip keşfedemeyeceği H3/H4'ün asıl sorusudur
+  ve bu oracle onu ölçmez.
+- Tüm kollara olayın NE ZAMAN aktif olduğu verildi (M-06: tek değişken
+  HANGİ eylem). Zamanlamanın kendisi de öğrenilmesi gereken bir şey
+  olabilir; ayrı ve daha zor bir iddia.
+- İpucu bölünmesi (`event_visibility_split`) burada 2 bitlik kod olarak
+  somutlandı; spec metni elde olmadığından (PL-26) bu bir yorumdur ve
+  PL-27'de kayıtlıdır.
+### PL-27 / PL-28 KARARLARI UYGULANDI (Ali, 2026-07-27)
+
+**PL-28 — menzil KÜRESEL** (`signal_range` 8 → 32; 64-toruste azami
+Chebyshev 32). Sembolün taşıyabildiği tek şey artık KİMLİĞİ; uzam,
+yön, mesafe, gönderen hepsi düştü.
+
+> **İtiraz testi (S3-B geriye dönük):** "küresel menzil B görevini
+> kurtarır mıydı?" — HAYIR. n=5, 48 epizot: `beacon` 8/48 → 17/48,
+> `signal` 6/48 → 11/48 yükseldi ama kanalsız `vision` **20/48** ile
+> hâlâ önde. ÇATAL C, PL-28 değişikliğine DAYANIKLI. (Mekanizma
+> öngörüsü doğrulandı: menzil 32'de "biri 32 içinde" = tüm grid =
+> sıfır yerelleştirme bilgisi.)
+
+**PL-27 — seçenek (c): sıfır yeni prior biti.** Öncü, AYRI KANAL
+AÇILMADAN mevcut tehlike kanalına (obs kanal 2) yazılır. Algı
+ajan-merkezli ve ÖZELdir — spec'in "her ajana olayın farklı parçası"
+maddesinin doğrudan karşılığı: aynı olayın farklı yüzünü herkes kendi
+bedeninde duyar. Konum kodlaması:
+
+| ajan-merkezli hücre | anlamı |
+|---|---|
+| (0,0) | uyarı penceresi açık (varlık göstergesi) |
+| (0,1) | gözlenen bit İNDEKSİ = 1 (yoksa 0) |
+| (1,0) | gözlenen bit DEĞERİ = 1 (yoksa 0) |
+
+Hangi hücrenin ne demek olduğu ajana SÖYLENMEZ. Ayırt etme işi de
+ajanda: öncü yalıtık hücredir, enerji ÇEKMEZ ve yalnız uyarı
+penceresinde yanar; gerçek tehlike 5×5 bloktur ve enerji çeker.
+**KERNEL_BUDGET'a yazılan bit: 0** (yeni kanal yok, kategorik ayrım
+verilmedi, loss/mimari/başlatma değişmedi).
+
+**Kodlamanın KAYIPSIZ olduğu testle sabitlendi** (enstrüman denetimi,
+M-15): 5 ajan × 120 tur boyunca her uyarı penceresinde, gözlemden
+çözülen ipucu olayın gerçek ipucuyla BİREBİR eşit
+(`test_percept_encodes_cue_losslessly_in_hazard_channel`). Ayrıca
+algının özel olduğu doğrulandı: AYNI hücrede duran 8 ajan farklı bit
+gözleyebiliyor (`test_percept_is_private_to_each_agent`). Yani ajan
+için öğrenilebilir bir sinyal fiilen VARDIR; keşfedip keşfetmeyeceği
+H3/H4'ün sorusu.
+
+- Oracle ipuçlarını hâlâ doğrudan okur (ölçüm aleti); fiziksel algı
+  yolu yukarıdaki testlerle kayıpsız kanıtlandığı için `told` kolunun
+  sayıları algı yoluyla da aynen geçerlidir.
+
+### Yeni ders var mı?
+VAR → **M-25**: *Tuzak kurmadan önce kaçış yollarını say.* Bir yetinin
+(X) baskı altında belirip belirmeyeceğini ölçecek aparatı kurmadan
+önce, ödüle giden ALTERNATİF yollar sayılır; herhangi biri X'ten
+ucuzsa tuzak X'i değil alternatifi ölçer. Bu sprint iki yönden de
+gösterdi: B görevinde kaçış yolu yoktu ama kanal ödülü hiç açamıyordu
+(ölçüm boşa gitti); olay görevinin İLK taslağında (3 turluk olay)
+"acıyı çek sonra düzelt" kaçış yolu değerin ~%67'sini kurtarıyordu ve
+kanal gereksiz kalacaktı — kilit-1 (`event_duration=1`) tasarım
+anında, koşum yapılmadan kondu. M-01'in ("cetvel önce") hedef değil
+TASARIM tarafına uygulanmış hâli.
+
+---
+
+## S3-B — SONUÇLAR (2026-07-27)
+
+### PL-24 — SÜRDÜRÜLEBİLİRLİK: yeniden üretildi, **KAPI 5 KAPANDI**
+L3 (`god`), 48 epizot/koşul, tavan 3000 (`runs/s3_b_oracle_v2.json`):
+
+| B enerji | kişi başı | medyan pencere | medyan açılış | sansür |
+|---|---|---|---|---|
+| 75 | 37.5 | 464.5 | 17.5 | 0/48 |
+| **135** | 67.5 | 3000 (tavan) | 129.0 | 39/48 |
+| 180 | 90 | 3000 (tavan) | 129.0 | 39/48 |
+| 225 | 112.5 | 3000 (tavan) | 129.0 | 39/48 |
+| 270 | 135 | 3000 (tavan) | 129.0 | 39/48 |
+
+**Eşik yine 135 — orijinal bulgu doğrulandı.** Çapraz kontrol: v1 1500
+tur tavanında 62 açılış raporlamıştı; 3000 tavanında 129 ≈ 2×62 →
+neredeyse birebir yeniden üretim. 135 üstünde tüm satırların ÖZDEŞ
+olması, eşiğin üstünde açılış hızının enerjiyle değil YOL SÜRESİYLE
+sınırlandığını gösterir (v1'in "düz 62" örüntüsünün açıklaması).
+**`resource_b_energy=180` gerekçesi ayakta**; artık üreten kod
+repoda (`training/b_oracle.py`) ve sansür oranı beyanlı.
+
+### PL-25 — KEŞFEDİLEBİLİRLİK: **ÇATAL C** (ön-kayıtlı matris)
+Mevcut config (n_b=3), 48 epizot (`runs/s3_b_discover.json`):
+
+| seviye | pencere | açılış/1000 çift-turu | epizot payı |
+|---|---|---|---|
+| `random` | 69 | 0.0 | 0/48 |
+| `noB` (kontrol) | 146 | 0.0 | 0/48 |
+| `vision` | 128 | **0.652** | 4/48 |
+| `signal` | 116 | **0.0** | 0/48 |
+| `beacon` (en iyi çaba) | 90 | **0.0** | 0/48 |
+| `pair` (görsel takip) | 132 | 0.0 | 0/48 |
+| **`god` (tavan)** | 3000 | **43.153** | **48/48** |
+
+- **ZAYIF çıta (L2 ≥ 2×L1): GEÇMEDİ** — hem de TERS yönde: kanal
+  0.0, kanalsız görüş 0.652. **Kanal zarar veriyor.**
+- **GÜÇLÜ çıta (≥6.2/1000): GEÇMEDİ** (~66× altında).
+- → **ÇATAL C: S3'ün merkezi basıncı mevcut kalibrasyonda YOK.**
+
+### M-21 kontrolü kendi enstrümanıma: 2-ajan → 5-ajan
+Az önce deftere yazdığım dersi oracle'a uyguladım (çift sayısı
+C(5,2)=10 → karşılaşma oranı artar). 48 epizot:
+
+| seviye | n=2 epizot payı | **n=5 epizot payı** | n=5 açılış/1000 |
+|---|---|---|---|
+| `vision` | 4/48 | **20/48** | 2.227 |
+| `signal` | 0/48 | 6/48 | 0.808 |
+| `beacon` | 0/48 | 8/48 | 0.910 |
+| `pair` | 0/48 | 0/48 | 0.0 |
+| `god` | 48/48 | 48/48 | 43.1 |
+
+**Mutlak sayılar 5× değişti (M-21 haklı — 2-ajan sonucu taşınmıyor),
+nitel sonuç DEĞİŞMEDİ ve keskinleşti:** her iki rejimde de
+`vision` > `signal` ≥ `beacon`. Güçlü çıta n=5'te bile aşılmıyor
+(en iyi 2.227 < 6.2).
+
+### Neden kanal zarar veriyor — mekanizma
+1. **Yön ve kimlik yok (PL-21b/c).** Duyan sinyale doğru yürüyemez;
+   aldığı tek bilgi "Chebyshev 8 içinde biri var" (arama uzayı
+   4096 → 289, ~14×). Bu daralma yol maliyetini ödemiyor.
+2. **Menzil işe yaramıyor** (`runs/s3_b_calib.json`): menzil 8 vs 16
+   `vision`'da ÖZDEŞ, `signal`'de gürültü. Mekanizma: menzili
+   büyütmek duyma oranını artırırken yerelleştirilebilirliği AYNI
+   oranda bozar (kutu alanı menzilin karesiyle büyür) — **yönsüz bir
+   kanalın net menzil faydası yoktur.**
+3. **Enerji maliyeti pencereyi kısaltıyor:** `noB` 146 → `signal` 116
+   → `beacon` 90 (n=5'te 378 → 217 → 186). Kanal, kazandırdığından
+   fazlasını pencereden götürüyor.
+4. **Senkron penceresi darboğaz değil:** 2 → 200 süpürmesi `vision`'ı
+   1/48'den yalnız 3/48'e taşıdı. Sorun eşzamanlılık değil, ikisinin
+   AYNI B'yi hiç bulamaması.
+5. **Ham karşılaşma oranı (48 epizot, `noB`):** ajanlar birbirini
+   turların **%3.37**'sinde görüyor, 48 epizodun yalnız 10'unda hiç
+   karşılaşıyor; bir ajan B'yi turların **%5.16**'sında görüyor.
+   Koordinasyon bu iki nadir olayın ÇAKIŞMASINI istiyor.
+
+### Ekolojiyle bağ (v2 koşumunun yorumu)
+S3 ekolojisi 20K turda (5 ajan hep canlı ≈ 20.000 pencere-turu)
+**0 açılış** verdi. `vision` oracle'ının n=5 hızıyla (2.227/1000)
+beklenen sayı **~45**'tir. Aradaki fark yetkinlik açığıdır: ekolojideki
+ajanlar `vision` seviyesinde değil, `random` seviyesindedir (o da 0
+veriyor) — v2 taban çizgisinin "ömür = her tur hareket tavanı"
+bulgusuyla tutarlı.
+
+### Sonuç — tasarım düzeyinde
+Tavan (`god` 48/48, 43/1000) ile ulaşılabilir her politika (≤20/48,
+≤2.2/1000) arasındaki fark bir DOZ farkı değil: tek bir dünya
+parametresi (yoğunluk, menzil, senkron penceresi) kapatmıyor.
+H3/H4, kanalın koordinasyon maliyetini DÜŞÜREBİLECEĞİNİ varsayar; bu
+görev + bu kanal fiziğinde düşürmüyor — **mükemmel paylaşılan
+konvansiyon hediye edildiğinde bile.** İki çıkış yolu var, ikisi de
+Ali'nin (anayasa-dokunuşlu):
+- **(A) Görevi değiştir:** koordinasyonun zor kısmı UZAMSAL olmasın.
+  Yönsüz 4-bitlik bir sembol "nerede" taşıyamaz ama "ne / ne zaman"
+  taşıyabilir (ör. eşzamanlı eylem seçimi, tehlike uyarısı, zamansal
+  senkronizasyon). B-randevusu bu kanal için yanlış görev.
+- **(B) Kanalı değiştir:** konum/yön bilgisi taşısın — ağır anayasal
+  değişiklik (spec 4.2 + K-114 yeniden yazılır).
+Not: (A) ucuz ve anayasaya sadık; (B) deneyin sorusunu zayıflatır.
+
+### Sınırlar (dürüstlük)
+- Politika repertuvarı scripted ve tüketici değil: greedy-görüş,
+  mükemmel-konvansiyon yayın, çapalı fener, görsel takip. Öğrenen bir
+  ajanın aynı duyularla bunları belirgin biçimde aşması beklenmez,
+  ama kanıtlanmadı.
+- Ölen ajan ikame EDİLMİYOR (oracle ≠ ekoloji); ekolojide sürekli 5
+  canlı olması karşılaşma oranını bir miktar yükseltir.
+- `beacon` ve `pair` kolları ön-kayıtta yoktu; post-hoc eklendi ve
+  öyle etiketlendi (kanal lehine en iyi çaba + ayıraç kol).
+
+### Yeni ders var mı?
+VAR → **M-24**: *Oran metriğinin paydası tedaviden etkileniyorsa oran
+yanıltır.* `açılış/1000 çift-turu`, sinyal maliyeti pencereyi
+kısalttığı için `beacon`'ı en iyi gösteriyordu (11.5 > çıta 6.2) —
+oysa güvenilir ölçü olan EPİZOT PAYI'nda `beacon` en kötülerdendi
+(1/12). M-20'nin ("taban da cihazın parçasıdır") payda kardeşi:
+tedavi paydayı değiştiriyorsa oran değil, olay payı raporlanır.
+
+---
+
+### B-KOORDİNASYONU ÖLÇÜLEBİLİR DEĞİL — "B-açılış 0" boş enstrümandır (2026-07-27)
+
+Şans-keşfi olasılığı hesaplandı (3 B hücresi / 4096, 2 farklı ajan,
+2 turluk senkron pencere, rastgele eylemde INTERACT payı 1/6):
+
+```
+P(ajan turda B-dokunuşu)      = 1.22e-04
+P(eşzamanlı çift dokunuş/tur) = 9.93e-08
+20K turda beklenen B-açılışı  = 0.002
+```
+
+**Gözlenen 0, saf şansın öngördüğü değerin ta kendisi.** Yani "B-açılış
+0" ajanlar hakkında bir negatif sonuç DEĞİL; ayırt etme gücü olmayan bir
+ölçüm (M-03 anlamında confounded'ın uç hali: sıfır güç).
+
+Kök neden: oracle B'nin *koordine edilirse sürdürülebilir* olduğunu
+ölçtü, *keşfedilebilir* olup olmadığını hiç ölçmedi. Proje bu ayrımı
+A kaynağı için zaten öğrenmişti (PL-16: "kârlı strateji,
+keşfedilemeyecek kadar derin") — ders B'ye taşınmamış. Açık iş:
+**PL-25**.
+
+### DP-01b'nin nicel durumu: miras 65. nesilde bitiyor (2026-07-27)
+
+Aşağıdaki metin "birikimli gürültü σ≈0.16" hesabını doğru yapmış ama
+AĞIRLIK ÖLÇEĞİYLE karşılaştırmamıştı; kararı belirleyen oran budur:
+
+| | |
+|---|---|
+| seed-3 ağırlık RMS'i | **0.0804** (262.493 parametre) |
+| mutasyon σ (nesil başına) | 0.01 |
+| kümülatif sürüklenme | σ·√n |
+| **gürültü = sinyal olduğu nesil** | **≈ 65** |
+| koşumun ulaştığı nesil | 250–356 (gürültü/sinyal 2.0–2.4×) |
+
+Yani miras t≈3900'de tükenmiş; koşumun kalan ~%80'i saf rastgele
+yürüyüştür. DP-01b'nin bir anlamı olacaksa ya σ ≈ 0.002'ye inmeli
+(kritik nesil ~1600) ya da seçilim (PL-22 seçenek a) sürüklenmeyi
+dengelemeli. Bu, PL-22 çerçeve kararına nicel girdidir.
+
+**Şerh:** *"A2 medyan ömrü 66 vs diğerleri 53-58 — küçük ama görünür
+devralınmış avantaj"* iddiasının KONTROLÜ YOK (A2 taze başlatılıp aynı
+seed'de koşulmadı; mimari konfoundu açık). Üstelik A2'nin tutumluluğu
+zamanla eriyor (sinyal oranı kurucu nesilde 0.261 → nüfusta 0.765), yani
+"avantaj" zamana bağlı. Etiket: ADAY GÖZLEM değil, **kontrolsüz gözlem**.
+
+### Yeni ders var mı?
+VAR → **M-21**: Rejim transferi ölçülür, varsayılmaz. "seed-3'ü 5 ajana
+taşıdım" bir hipotezdi; ekoloji 58 turda söndü. Her yeni rejim kendi
+fizibilite oracle'ını + kalibrasyonunu ister (M-01'in nüfus ölçeğine
+genişlemesi).
+
+VAR (2026-07-27 denetimi) → **M-22** (fizibilite iki sorudur: değer mi +
+bulunabilir mi) ve **M-23** (sonda kadar SAYAÇ da cihazdır).
+
+---
+
+# ★ ARA SONUÇ (tez düzeyi) — AJANIN ÖZ-HAREKET MODELİ YOK
+### Öz-hareket merdiveni (S2.10 denetim revizyonu)
+- **Basamak 1 — efference copy: VERİLDİ-YETMEDİ.** Kendi son eylemi
+  S1'den beri girdi (K-102a, denetimle deftere geçti). S2.9 gösterdi:
+  bu girdi eldeyken bile kayma modeli oluşmuyor — yokluk girdi
+  eksikliği değil.
+- **Basamak 2 — yerellik iskelesi (K-113, S2.10): KAZANILDI (üretici
+  enstrüman).** İçerik-sıfır yapısal iskele; M-19 kapısından geçti;
+  eğitim sonrası kayma sadakati 5/5 seed'de ~mükemmel (0.956-1.000).
+  ARA SONUÇ RAFİNE EDİLDİ: öz-hareket modeli "oluşamaz" değil —
+  prior'suz mimaride örneklem-karmaşıklığı engeliyle oluşamıyordu;
+  yerellik iskelesi (dünya hakkında sıfır içerik) verilince eylem→kayma
+  eşlemesi hidden üzerinden ÖĞRENİLDİ. Korelasyonel enstrüman (P1 disp)
+  sınavı PL-13'te — zincir tamamlanırsa.
+### (S2.9 güçlendirmesi: doz-cevap noktası eklendi)
+K-110rev müdahalesi (4× uzamsal örnekleme + hareket-yanlı keşif +
+~1200 kayma-geçişi/10K) kayma sadakatini yalnız 0.09→0.16'ya taşıdı.
+Yokluk pasif veri eksikliği değil: prior'suz mimaride öz-hareket
+temsilinin örneklem karmaşıklığı, bu ekolojinin sunabileceği gradyan
+basıncının ötesinde. "Kendiliğinden belirme" bu koşulda YAPISAL olarak
+engelli görünüyor — H1'in uzamsal yarısı için güçlü negatif.
+
+**İki bağımsız enstrümanla çaprazlanmış yapısal bulgu (2026-07-08):**
+
+1. **Korelasyonel enstrüman (S2, P1 disp probu):** Eğitilmiş GRU hidden
+   state'inden kümülatif yer değiştirme lineer VE MLP probla okunamıyor;
+   eğitilmiş−ikiz farkı yok; eğri yükselmiyor. Spawn randomizasyonuna
+   dayanıklı negatif (S2-tekrar).
+2. **Üretici enstrüman (S2.8, kayma sadakati Test A):** Aynı modelin
+   ileri tahmini, öz-hareket altında egosantrik kaymayı üretmiyor
+   (doğru-yer kütlesi 0.08 vs eski-yer 0.71): model "ben hareket edersem
+   dünya görünümüm kayar" bilgisini TAŞIMIYOR.
+
+İki enstrüman farklı katmanlarda (okunabilirlik / üretim) aynı yokluğu
+gösteriyor: **bu bir prob zayıflığı değil, temsilin yapısal yokluğudur.**
+Mekanik açıklama zinciri belgeli: tasarruf-ağır davranış → veride
+öz-hareket geçişi kıtlığı → model uzamsal öz-etkiyi öğrenmiyor →
+planlama uzayda kör → davranış tasarrufta kalıyor (kapalı döngü;
+PL-12/M-05 ailesi). H1'in uzamsal yarısı bu rejimde OLUŞAMAZ —
+"çıkmadı"dan güçlü bir ifade: oluşum yolu davranış-veri döngüsünce
+kapalı. Ali'nin PL-13 tezi ("temsil ihtiyacın gölgesidir") ile TUTARLI
+ama hâlâ test edilmemiş: ihtiyaç (hareket) hiç doğmadı. S2.9 bu
+döngüyü veri yönünden kırmayı deniyor; kayma-eşdeğişimli mimari çözüm
+M-18 gereği YASAK (bağımlı değişkeni mimariye yazmak olur).

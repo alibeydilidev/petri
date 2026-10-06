@@ -1,0 +1,295 @@
+{
+  "step": 3,
+  "overrides": {
+    "mpc_horizon": 10,
+    "base_metabolism": 1.0,
+    "mpc_candidates": 48
+  },
+  "phases": [
+    [
+      48,
+      20000
+    ],
+    [
+      36,
+      10000
+    ],
+    [
+      24,
+      10000
+    ],
+    [
+      18,
+      10000
+    ],
+    [
+      12,
+      10000
+    ]
+  ],
+  "done_harvest_ge3_all_seeds": false,
+  "done_life_vs_stay_all_seeds": false,
+  "passed": false,
+  "results": [
+    {
+      "seed": 0,
+      "train_episodes": 932,
+      "train_turns": 60048,
+      "per_turn_ms": 2.654,
+      "median_harvest_count": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "trained_lifetimes": [
+        57,
+        57,
+        56,
+        56,
+        53,
+        58,
+        57,
+        58,
+        60,
+        56,
+        55,
+        59
+      ],
+      "stay_lifetimes": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "median_trained": 57.0,
+      "median_stay": 100.0,
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 1,
+      "train_episodes": 919,
+      "train_turns": 60001,
+      "per_turn_ms": 3.219,
+      "median_harvest_count": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "trained_lifetimes": [
+        70,
+        68,
+        72,
+        69,
+        69,
+        71,
+        66,
+        71,
+        75,
+        72,
+        72,
+        66
+      ],
+      "stay_lifetimes": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "median_trained": 70.5,
+      "median_stay": 100.0,
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 2,
+      "train_episodes": 856,
+      "train_turns": 60069,
+      "per_turn_ms": 2.882,
+      "median_harvest_count": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      "trained_lifetimes": [
+        76,
+        75,
+        67,
+        75,
+        73,
+        76,
+        72,
+        83,
+        70,
+        75,
+        75,
+        79
+      ],
+      "stay_lifetimes": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "median_trained": 75.0,
+      "median_stay": 100.0,
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 3,
+      "train_episodes": 893,
+      "train_turns": 60025,
+      "per_turn_ms": 2.987,
+      "median_harvest_count": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "trained_lifetimes": [
+        73,
+        81,
+        74,
+        72,
+        74,
+        81,
+        75,
+        69,
+        74,
+        75,
+        75,
+        75
+      ],
+      "stay_lifetimes": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "median_trained": 74.5,
+      "median_stay": 100.0,
+      "wilcoxon_p_vs_stay": 1.0
+    },
+    {
+      "seed": 4,
+      "train_episodes": 935,
+      "train_turns": 60028,
+      "per_turn_ms": 3.201,
+      "median_harvest_count": 0.0,
+      "harvest_counts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "trained_lifetimes": [
+        67,
+        67,
+        67,
+        69,
+        70,
+        66,
+        70,
+        67,
+        78,
+        67,
+        70,
+        73
+      ],
+      "stay_lifetimes": [
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100,
+        100
+      ],
+      "median_trained": 68.0,
+      "median_stay": 100.0,
+      "wilcoxon_p_vs_stay": 1.0
+    }
+  ]
+}

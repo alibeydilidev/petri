@@ -1,0 +1,232 @@
+{
+  "seed": 1,
+  "phases": [
+    [
+      24,
+      45000
+    ]
+  ],
+  "ckpts": [
+    0,
+    5000,
+    15000,
+    25000,
+    35000,
+    45000
+  ],
+  "train_episodes": 347,
+  "train_turns": 45092,
+  "final_weight_hash": "e8c731fc84f26bae9ab3b75ebf77db11a6e81e4d59a8f807cab8e02076367a2b",
+  "checkpoint_log": [
+    {
+      "ckpt": 0,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 66,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 64,
+          "harvested": 0.0
+        }
+      ]
+    },
+    {
+      "ckpt": 5000,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 147,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 142,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 151,
+          "harvested": 0.0
+        }
+      ]
+    },
+    {
+      "ckpt": 15000,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 142,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 151,
+          "harvested": 0.0
+        }
+      ]
+    },
+    {
+      "ckpt": 25000,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 142,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 151,
+          "harvested": 0.0
+        }
+      ]
+    },
+    {
+      "ckpt": 35000,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 66,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 64,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 64,
+          "harvested": 0.0
+        }
+      ]
+    },
+    {
+      "ckpt": 45000,
+      "evals": [
+        {
+          "ep": 0,
+          "lifetime": 149,
+          "harvested": 0.0
+        },
+        {
+          "ep": 1,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 2,
+          "lifetime": 161,
+          "harvested": 45.0
+        },
+        {
+          "ep": 3,
+          "lifetime": 142,
+          "harvested": 0.0
+        },
+        {
+          "ep": 4,
+          "lifetime": 146,
+          "harvested": 0.0
+        },
+        {
+          "ep": 5,
+          "lifetime": 151,
+          "harvested": 0.0
+        }
+      ]
+    }
+  ]
+}

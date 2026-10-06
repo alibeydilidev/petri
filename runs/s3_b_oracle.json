@@ -1,0 +1,32 @@
+[
+  {
+    "b_energy": 75.0,
+    "median_lifetime": 309.0,
+    "median_openings": 10.5,
+    "per_agent_gain": 37.5
+  },
+  {
+    "b_energy": 135.0,
+    "median_lifetime": 1500.0,
+    "median_openings": 62.0,
+    "per_agent_gain": 67.5
+  },
+  {
+    "b_energy": 180.0,
+    "median_lifetime": 1500.0,
+    "median_openings": 62.0,
+    "per_agent_gain": 90.0
+  },
+  {
+    "b_energy": 225.0,
+    "median_lifetime": 1500.0,
+    "median_openings": 62.0,
+    "per_agent_gain": 112.5
+  },
+  {
+    "b_energy": 270.0,
+    "median_lifetime": 1500.0,
+    "median_openings": 62.0,
+    "per_agent_gain": 135.0
+  }
+]

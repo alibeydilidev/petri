@@ -1,0 +1,222 @@
+{
+  "seed": 3,
+  "bit_identical_hash": "e0577e36dd58d05aa917c850affad74fc71ddab371c714b62c7b9a1c193f6a2e",
+  "timeline": [
+    {
+      "ckpt": 0,
+      "shift_ratio": 0.0,
+      "shift_masses": [
+        0.0,
+        0.0
+      ],
+      "median_harvest": 0.0,
+      "median_lifetime": 63.5,
+      "evals": [
+        {
+          "lifetime": 65,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 63,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 63,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 63,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 64,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 64,
+          "harvest_count": 0
+        }
+      ]
+    },
+    {
+      "ckpt": 5000,
+      "shift_ratio": 0.16815326989456145,
+      "shift_masses": [
+        0.015454668551683426,
+        0.09190822392702103
+      ],
+      "median_harvest": 0.0,
+      "median_lifetime": 143.0,
+      "evals": [
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 146,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 141,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 147,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 145,
+          "harvest_count": 0
+        }
+      ]
+    },
+    {
+      "ckpt": 15000,
+      "shift_ratio": 0.39993580696951925,
+      "shift_masses": [
+        0.14542284607887268,
+        0.3636154681444168
+      ],
+      "median_harvest": 0.0,
+      "median_lifetime": 137.0,
+      "evals": [
+        {
+          "lifetime": 132,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 136,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 146,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 144,
+          "harvest_count": 0
+        }
+      ]
+    },
+    {
+      "ckpt": 25000,
+      "shift_ratio": 456775084.13791656,
+      "shift_masses": [
+        0.45677508413791656,
+        0.0
+      ],
+      "median_harvest": 0.0,
+      "median_lifetime": 140.5,
+      "evals": [
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 166,
+          "harvest_count": 1
+        },
+        {
+          "lifetime": 137,
+          "harvest_count": 0
+        },
+        {
+          "lifetime": 187,
+          "harvest_count": 1
+        },
+        {
+          "lifetime": 144,
+          "harvest_count": 0
+        }
+      ]
+    },
+    {
+      "ckpt": 35000,
+      "shift_ratio": 32.23752864951934,
+      "shift_masses": [
+        0.7492887377738953,
+        0.023242746479809284
+      ],
+      "median_harvest": 2.0,
+      "median_lifetime": 154.5,
+      "evals": [
+        {
+          "lifetime": 72,
+          "harvest_count": 1
+        },
+        {
+          "lifetime": 112,
+          "harvest_count": 2
+        },
+        {
+          "lifetime": 162,
+          "harvest_count": 4
+        },
+        {
+          "lifetime": 166,
+          "harvest_count": 2
+        },
+        {
+          "lifetime": 153,
+          "harvest_count": 2
+        },
+        {
+          "lifetime": 156,
+          "harvest_count": 3
+        }
+      ]
+    },
+    {
+      "ckpt": 45000,
+      "shift_ratio": 999999999.9999999,
+      "shift_masses": [
+        1.0,
+        0.0
+      ],
+      "median_harvest": 3.0,
+      "median_lifetime": 170.5,
+      "evals": [
+        {
+          "lifetime": 107,
+          "harvest_count": 1
+        },
+        {
+          "lifetime": 241,
+          "harvest_count": 6
+        },
+        {
+          "lifetime": 182,
+          "harvest_count": 3
+        },
+        {
+          "lifetime": 202,
+          "harvest_count": 4
+        },
+        {
+          "lifetime": 86,
+          "harvest_count": 1
+        },
+        {
+          "lifetime": 159,
+          "harvest_count": 3
+        }
+      ]
+    }
+  ]
+}

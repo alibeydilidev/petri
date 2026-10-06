@@ -1,0 +1,110 @@
+{
+  "stage": "discover",
+  "max_turns": 3000,
+  "base_world": {
+    "grid_size": 64,
+    "toroidal": true,
+    "resource_a_count": 24,
+    "resource_a_energy": 45.0,
+    "resource_a_drift_every": 200,
+    "resource_b_count": 3,
+    "resource_b_energy": 180.0,
+    "resource_b_min_agents": 2,
+    "resource_b_sync_window": 2,
+    "hazard_spawn_every": 500,
+    "hazard_drain_per_turn": 5.0,
+    "hazard_radius": 2,
+    "hazard_duration": 250,
+    "event_visibility_split": true,
+    "seed": 42,
+    "economy_version": 3,
+    "signal_range": 8
+  },
+  "base_config_hash": "f76f334d32c77645",
+  "results": [
+    {
+      "level": "random",
+      "episodes": 48,
+      "median_pair_lifetime": 69.0,
+      "median_openings": 0.0,
+      "total_openings": 0,
+      "total_pair_turns": 3322,
+      "openings_per_1000_pair_turns": 0.0,
+      "episodes_with_opening": 0,
+      "median_turns_to_first": null,
+      "censored_episodes": 0
+    },
+    {
+      "level": "noB",
+      "episodes": 48,
+      "median_pair_lifetime": 146.0,
+      "median_openings": 0.0,
+      "total_openings": 0,
+      "total_pair_turns": 9747,
+      "openings_per_1000_pair_turns": 0.0,
+      "episodes_with_opening": 0,
+      "median_turns_to_first": null,
+      "censored_episodes": 0
+    },
+    {
+      "level": "vision",
+      "episodes": 48,
+      "median_pair_lifetime": 128.0,
+      "median_openings": 0.0,
+      "total_openings": 5,
+      "total_pair_turns": 7668,
+      "openings_per_1000_pair_turns": 0.652,
+      "episodes_with_opening": 4,
+      "median_turns_to_first": 137.0,
+      "censored_episodes": 0
+    },
+    {
+      "level": "signal",
+      "episodes": 48,
+      "median_pair_lifetime": 116.0,
+      "median_openings": 0.0,
+      "total_openings": 0,
+      "total_pair_turns": 6046,
+      "openings_per_1000_pair_turns": 0.0,
+      "episodes_with_opening": 0,
+      "median_turns_to_first": null,
+      "censored_episodes": 0
+    },
+    {
+      "level": "beacon",
+      "episodes": 48,
+      "median_pair_lifetime": 90.0,
+      "median_openings": 0.0,
+      "total_openings": 0,
+      "total_pair_turns": 5079,
+      "openings_per_1000_pair_turns": 0.0,
+      "episodes_with_opening": 0,
+      "median_turns_to_first": null,
+      "censored_episodes": 0
+    },
+    {
+      "level": "pair",
+      "episodes": 48,
+      "median_pair_lifetime": 131.5,
+      "median_openings": 0.0,
+      "total_openings": 0,
+      "total_pair_turns": 9454,
+      "openings_per_1000_pair_turns": 0.0,
+      "episodes_with_opening": 0,
+      "median_turns_to_first": null,
+      "censored_episodes": 0
+    },
+    {
+      "level": "god",
+      "episodes": 48,
+      "median_pair_lifetime": 3000.0,
+      "median_openings": 129.0,
+      "total_openings": 5567,
+      "total_pair_turns": 129007,
+      "openings_per_1000_pair_turns": 43.153,
+      "episodes_with_opening": 48,
+      "median_turns_to_first": 33.0,
+      "censored_episodes": 39
+    }
+  ]
+}
