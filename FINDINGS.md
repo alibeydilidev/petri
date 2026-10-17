@@ -1688,3 +1688,79 @@ YOK (kapsıyor). Kanal bulgusu M-21'in ("transfer ölçülür") bir örneği:
 genişleyen eylem uzayına taşınan yetkinlik yeni boyutta rastgele harcar.
 Yuva-sonu uçurumu M-25'in tasarım anında sayılmış kaçış yoludur;
 ölçüldü, kapatılmadı (PL-29).
+
+## S3-E — ÖN-KAYIT (koşumdan önce, M-08) (2026-10-18, gece)
+
+**Bağlam.** Ali (2026-10-18): S3-D tavsiyeleri onaylandı — yuva
+(T=600, f=0.5), kanal AÇIK (yuva sinyal maliyetini de indirir); oto
+karar + push yetkisi verildi, "deney bitene kadar". İlk gerçek dil
+tuzağı koşumu: S3-C alarm-çağrısı görevi, klon taban + yuva
+ekolojisinde, ÖĞRENEN ajanlarla (PL-30).
+
+**Dünya:** economy v3, kanal küresel, olay kalibrasyonu S3-C oracle'ı
+ile aynı (`event_every=30, lead=8, duration=1, penalty=25, K=4`).
+**Kadro:** 5× seed-3 transplantı (A2 mimarisi, kurucu mutasyon yok;
+halefler σ=0.01, DP-01b). **Koşum:** 20.000 tur, 3 dünya seed'i
+(3001-3003), üç kol, tek değişken (M-06):
+
+| kol | olay | kanal | soru |
+|---|---|---|---|
+| T (taban) | kapalı | açık | ekoloji klon+yuvayla nefes alıyor mu? |
+| A (asıl) | açık | açık | sinyal kullanımı olayla ilişkileniyor mu? |
+| K (kontrol) | açık | KAPALI (mute) | kanal gerçekten fark yaratıyor mu? |
+
+**Enstrümanlar (ajana gitmez; M-23 kümülatif):** olay turu / isabet
+(doğru eylem = kutup), uyarı penceresinde gönderilen sinyal oranı,
+ipucu×sembol tablosu (4×16; yalnız uyarı penceresi), "pencerede duydu"
+koşullu isabet, PL-29 ölüm sınıfları (yuva-içi, yuva-sonu 60 tur).
+
+**Çıtalar:**
+- **T1 (nefes):** Kol T medyan ömür ≥ 300 (S3-D oracle 408 vermişti;
+  ekolojide halef mutasyonu + rekabet + öğrenme ile %25 pay). Düşerse
+  öğrenen ekoloji oracle'dan daha kötü → PL-29/drift teşhisi önce.
+- **A1 (sinyal-ipucu bağımlılığı):** ipucu×sembol tablosunda karşılıklı
+  bilgi I(ipucu; sembol) > 0.05 bit (≥ 3 seed'in 2'sinde) — gürültü
+  tabanının (0.0103 bit, S3 taban v2) ~5 katı. Not: tablo
+  gönderenin KENDİ ipucuyla kurulur; anlam iddiası değil, olumsallık.
+- **A2 (kanal fayda):** Kol A isabet oranı > Kol K isabet oranı +0.05
+  VE Kol A'da "pencerede duydu" koşullu isabet > duymadı koşullu isabet
+  +0.05. Şans 0.25, kendi-ipucu tavanı 0.50, tam bilgi 1.0.
+- **A3 (ömür):** Kol A medyan ömür ≥ Kol K (kanal maliyetine rağmen
+  net zarar vermiyor).
+
+**Öngörüler (bağlayıcı):**
+- T1 geçer (0.7 olasılık).
+- A1 DÜŞER: 20K turda, ömür ~300-400 iken, öğrenme sinyal-ipucu
+  olumsallığını kurmaz (MPC'nin sinyali eyleme çevirmesi için modelin
+  "sinyal→başkasının eylemi→kendi enerjim" zincirini öğrenmesi gerekir;
+  bu ufukta beklemiyorum). Beklenen I ≈ 0.01-0.03 bit.
+- A2 DÜŞER: isabet her iki kolda ~0.25-0.35 (şans ile kendi-ipucu
+  arası; ajan öncüyü tehlikeden ayırmayı bile öğrenmemiş olabilir).
+- A3: belirsiz; kanal maliyeti yuvada yarıya indiği için ≈ eşit.
+
+**Sonuç matrisi:**
+- T1✓ A1✗ A2✗ → ekoloji yaşıyor, dil doğmadı (BEKLENEN). Sıradaki
+  merdiven (M-06, her basamak ön-kayıtlı): (1) daha uzun koşum (50K),
+  (2) olay sıklığı/cezası kalibrasyonu (basınç dozu; dünya-tarafı),
+  (3) ipucu-tehlike ayrımı teşhisi (ajan öncüyü görüyor mu — gözlemci
+  probu), (4) seçilim (a) (PL-22'nin ertelenen ayağı).
+- T1✓ A1✓ A2✗ → sinyal ipucuyla ilişkili ama kimse kullanmıyor:
+  "konuşan var, dinleyen yok" → aday gözlem; alıcı tarafı teşhisi.
+- T1✓ A1✓ A2✓ → ADAY GÖZLEM (H3/H4 yönünde); Beş Kapı başlar:
+  bit-eş tekrar, mute ablasyonu (K zaten), zaman çizgisi (hangi nesilde
+  doğdu), KERNEL_BUDGET denetimi, prob sızıntısı (gözlemci sayaçları
+  ajana sızmıyor — yapısal). İDDİA sabah Ali ile.
+- T1✗ → önce ekoloji; A/K kolları yine okunur ama "nefessiz" şerhiyle.
+
+**Kaçış yolları (M-25):** (i) olayda STAY=kutup 0 → "hep STAY" politikası
+%25 isabet alır ve enerji korur; şans tabanı bu yüzden 0.25, STAY
+yanlılığı raporlanır. (ii) Ölüm ucuz + yuva (PL-29): ölüm/nesil hızı
+ve yuva-içi ölüm payı raporlanır. (iii) Sinyal ε-dalından gelir
+(16/17): A1 bu yüzden ipucu-KOŞULLU dağılım ister, ham sinyal oranı
+değil.
+
+**Beyanlar (M-09):** sinyal maliyeti artık `apply_turn(signal_cost=)`
+yolunda (f=1'de eski breath kayıtlarıyla bit-eş değil; yeni
+determinizm testi geçti). Kurucu mutasyon yok (çeşitlilik halefiyetle).
+Olay parametreleri oracle kalibrasyonundan alındı, ekolojide yeniden
+kalibre edilmedi (M-21 riski beyanlı: 5 öğrenen ajan ≠ 5 scripted).

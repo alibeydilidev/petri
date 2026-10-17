@@ -162,3 +162,58 @@ def test_ecology_smoke_and_determinism(tmp_path):
         for v in j["vitals"]:
             v.pop("ms_per_turn")
     assert ja == jb, "ekoloji bit-eş değil"
+
+
+# ----------------------------------------------------------------- S3-E
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3e_clone_nest_events_smoke_counters(tmp_path):
+    """S3-E kolu: klon kadro + yuva + olay + kanal. Sayaç disiplini (M-23):
+    olay turları / isabetler kümülatif ve tutarlı; ipucu-sembol tablosu
+    yalnız uyarı penceresindeki sinyalleri sayar; mute kolunda sinyal 0."""
+    import json
+
+    from training.ecology import EVENT_KW, run_ecology
+    run_ecology(130, str(tmp_path / "e"), world_seed=42, log_every=65,
+                founding="clone", nest=(600, 0.5), events=True)
+    j = json.load(open(tmp_path / "e" / "breath.json"))
+    L = j["ledger"]
+    # 130 turda event_every=30 → öncüler t=30,60,90,120; olaylar t=38,68,98,128
+    assert L["event_turns"] == 4 * 5, L["event_turns"]
+    assert 0 <= L["event_hits"] <= L["event_turns"]
+    assert L["pending_turns"] == 4 * EVENT_KW["event_lead"] * 5
+    assert L["pending_signals"] <= L["pending_turns"]
+    assert sum(map(sum, j["cue_symbol_cumulative"])) == L["pending_signals"]
+    assert L["event_hits_heard"] <= L["event_turns_heard"] <= L["event_turns"]
+    for v in j["vitals"]:
+        assert v["event_hits"] <= v["event_turns"]
+    seq = [v["event_turns"] for v in j["vitals"]]
+    assert seq == sorted(seq)
+    assert all(g["parent"] == "seed3(S2.10)" for g in j["genealogy"]
+               if g["birth_turn"] == 0)
+    assert j["arm"]["nest"] == [600, 0.5]
+
+    run_ecology(60, str(tmp_path / "m"), world_seed=42, log_every=30,
+                founding="clone", nest=(600, 0.5), events=True, channel="mute")
+    jm = json.load(open(tmp_path / "m" / "breath.json"))
+    assert jm["ledger"]["signals_sent"] == 0
+    assert jm["ledger"]["heard_in_window_turns"] == 0
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3e_arm_determinism(tmp_path):
+    import json
+
+    from training.ecology import run_ecology
+    kw = dict(world_seed=7, log_every=40, founding="clone", nest=(600, 0.5),
+              events=True)
+    run_ecology(80, str(tmp_path / "a"), **kw)
+    run_ecology(80, str(tmp_path / "b"), **kw)
+    ja = json.load(open(tmp_path / "a" / "breath.json"))
+    jb = json.load(open(tmp_path / "b" / "breath.json"))
+    for j in (ja, jb):
+        for v in j["vitals"]:
+            v.pop("ms_per_turn")
+    assert ja == jb, "S3-E kolu bit-eş değil"

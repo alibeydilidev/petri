@@ -46,7 +46,7 @@ from agent.config import AgentConfig
 from agent.homeostasis import Homeostasis
 from population.lifecycle import transplant_seed3
 from population.roster import agent_cfg
-from training.ecology import SEED3, WCFG, SocialPlanner
+from training.ecology import SEED3, WCFG, MutePlanner, SocialPlanner
 from training.loop import OnlineAgent, encode_obs
 from training.oracle import OraclePolicy
 from world.config import config_hash
@@ -57,45 +57,6 @@ SEED_BASE = 9100
 
 # Yuva ızgarası (ön-kayıtlı): (nest_turns, nest_factor)
 NEST_GRID = [(0, 1.0), (600, 0.5), (600, 0.25), (600, 0.1), (2000, 0.1)]
-
-
-class MutePlanner(SocialPlanner):
-    """Kanal-açık çekirdekle EYLEM-ONLY planlama: aday geometrisi
-    SocialPlanner ile aynı (sabit + makro + CEM), sinyal her yerde YOK.
-    Böylece L0/L1 ile L2 arasındaki tek fark KANAL olur (M-06)."""
-
-    @torch.no_grad()
-    def plan_joint(self, core, h, obs_vec):
-        cfg = self.cfg
-        C, D = cfg.mpc_candidates, cfg.mpc_horizon
-        seqs = self.rng.integers(0, N_ACTIONS, size=(C, D))
-        sigs = np.full((C, D), NO_SIGNAL, dtype=np.int64)
-        row = 0
-        if cfg.mpc_constant_candidates:
-            for a in range(N_ACTIONS):
-                seqs[a, :] = a
-            row = N_ACTIONS
-        if cfg.mpc_macro_candidates:
-            from world.grid import DOWN, LEFT, RIGHT, UP
-            for direction in (UP, DOWN, LEFT, RIGHT):
-                for tau in range(1, D + 1):
-                    if row >= C:
-                        break
-                    seqs[row, :tau] = direction
-                    row += 1
-        scores = self._score_joint(core, h, obs_vec, seqs, sigs)
-        for _ in range(cfg.mpc_cem_iters - 1):
-            elite_idx = np.argsort(scores)[-cfg.mpc_elites:]
-            e_s = seqs[elite_idx]
-            n_child = C - len(elite_idx)
-            cs = e_s[self.rng.integers(0, len(elite_idx), size=n_child)].copy()
-            mut = self.rng.random((n_child, D)) < 0.3
-            cs = np.where(mut, self.rng.integers(0, N_ACTIONS, cs.shape), cs)
-            seqs = np.vstack([e_s, cs])
-            sigs = np.full((C, D), NO_SIGNAL, dtype=np.int64)
-            scores = self._score_joint(core, h, obs_vec, seqs, sigs)
-        best = int(np.argmax(scores))
-        return int(seqs[best, 0]), NO_SIGNAL
 
 
 # ----------------------------------------------------------------- kollar
