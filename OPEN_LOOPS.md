@@ -239,6 +239,10 @@
   kuralının ağırlık ayağını fiilen kaldırır (PL-06 gerilimi) — anayasal
   soru olarak Ali'ye işaretli; oto-karar yetkisiyle koşuluyor, karar
   sonuçla birlikte sunulacak.
+  **SONUÇ (S3-F):** σ=0 → 260 tur kararlı, σ=0.002 → 266 kararlı,
+  σ=0.01 → 138 eriyen. **KARAR (oto-yetki):** ekoloji varsayılanı
+  σ=0.002 (S3-G'den itibaren). Anayasal şerh Ali'ye: "ölüm gerçek"
+  bedene/yaşantıya, yapıya değil.
 - **PL-29 — Ölüm ucuz / yuva çiftçiliği riski (AÇIK, S3-D kaydı):**
   Ekolojide ölen slot 100 enerjiyle ve (b) ile yuva korumasıyla yeniden
   doğar. Oracle f≤0.25'te klonların yuva biter bitmez öldüğünü gösterdi

@@ -290,13 +290,17 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 log_every: int = 1000, founding: str = "roster",
                 nest: tuple[int, float] = (0, 1.0), events: bool = False,
                 channel: str = "open",
-                mutation_sigma: float | None = None) -> None:
+                mutation_sigma: float | None = None,
+                event_penalty: float | None = None,
+                save_weights: bool = True) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
     sigma = MUTATION_SIGMA if mutation_sigma is None else float(mutation_sigma)
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
     wcfg = dataclasses.replace(WCFG, **EVENT_KW) if events else WCFG
+    if events and event_penalty is not None:   # S3-G doz kalibrasyonu
+        wcfg = dataclasses.replace(wcfg, event_penalty=float(event_penalty))
     mute = channel == "mute"
     world = World(wcfg, n_entities=5, seed=world_seed)
     cits = founding_population(founding=founding, nest=nest, mute=mute)
@@ -465,6 +469,11 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
            "final_symbol_hist": {c.id: c.symbol_hist.tolist() for c in cits}}
     with open(pathlib.Path(out_dir) / "breath.json", "w") as f:
         json.dump(out, f, indent=2)
+    if save_weights:   # son sakinlerin çekirdekleri (sonraki problar için)
+        torch.save({c.slot: {"id": c.id, "gen": c.gen,
+                             "cfg": dataclasses.asdict(c.agent.cfg),
+                             "state_dict": c.agent.core.state_dict()}
+                    for c in cits}, pathlib.Path(out_dir) / "final_weights.pt")
     print(f"\nyazıldı: {out_dir}/breath.json | toplam ölüm {ledger.deaths} | "
           f"soy kütüğü {len(genealogy)} kayıt | A-hasat {tot['harvests_a']} | "
           f"B-açılış {world.b_openings_total} | olay isabet "
@@ -485,10 +494,13 @@ def main() -> None:
     ap.add_argument("--channel", choices=["open", "mute"], default="open")
     ap.add_argument("--sigma", type=float, default=None,
                     help="halef mutasyonu σ (varsayılan 0.01)")
+    ap.add_argument("--event-penalty", type=float, default=None,
+                    help="olay cezası (varsayılan EVENT_KW 25)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
-                events=a.events, channel=a.channel, mutation_sigma=a.sigma)
+                events=a.events, channel=a.channel, mutation_sigma=a.sigma,
+                event_penalty=a.event_penalty)
 
 
 if __name__ == "__main__":

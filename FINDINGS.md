@@ -1860,3 +1860,92 @@ taşıma?) ya da ekolojide öğrenmeyi dondurma ablasyonu (M-05 sınavı).
 **Beyan (M-09):** σ=0 bir deneyci kararıdır; "ölüm gerçek" kuralının
 ağırlık kısmını fiilen kaldırır (yaşantı değil yapı miras alınır, PL-06
 tartışması). Bit sayılmaz; anayasal soru olarak Ali'ye işaretli.
+
+## S3-F — SONUÇLAR: **drift tezi DOĞRULANDI; σ≤0.002'de ekoloji kararlı** (2026-10-18, gece)
+
+Veri: `runs/s3f/`, özet `runs/s3f/summary.json`.
+
+| kol | σ | medyan ömür | zaman çizgisi (5K→20K) | hasat/1K | sinyal oranı | ölüm/20K | yuva-sonu ölüm |
+|---|---|---|---|---|---|---|---|
+| T (S3-E) | 0.01 | 138 | 144→138 ↓ | 3.5-4.2 | 0.60 | ~640 | 0 |
+| **T0** | 0.0 | **260** | 227-255→260-262 ↑ | 7.2-8.4 | **0.35** | ~325 | 13-17 (~5%) |
+| **T2** | 0.002 | **266** | 223-253→262-267 ↑ | 8.1-9.4 | 0.39 | ~330 | 7-14 |
+| A (S3-E) | 0.01 | 61 | — | 2.1-2.6 | 0.79 | ~1430 | 0 |
+| **A0** | 0.0 | **83** | 76-87 düz | 9.3-10.2 | 0.71 | ~1095 | 0-1 |
+
+- **F1:** ömür ✓ (260 ≥ 250), hasat ✗ (8 < 10). Kalan açık (260 vs
+  oracle 408; 8 vs 16.7) halefiyetin kendisine (hidden/PER/optimizer
+  sıfırlama + erken ölümler) ait; ön-kayıtta %40 pay bırakılmıştı,
+  gerçek pay ~%40-50. Drift, erimenin BİRİNCİL nedeniydi.
+- **F2 ✓:** σ=0.002 ≈ σ=0 (266 vs 260). Doz kabul edilebilir.
+- **F3 ✓:** σ≤0.002'de ömür nesille DÜŞMÜYOR, hafif yükseliyor →
+  soy hattı boyunca öğrenme birikebiliyor (ilk kez).
+- **Yan bulgu (mekanizma):** sinyal oranı 0.60-0.79'dan **0.35'e**
+  indi. S3 enstrüman şerhindeki mekanizma doğrulandı: tutarlı model →
+  MPC sinyalden kaçınır; drift → skor manzarası gürültü → sinyal.
+  Sinyal oranı hâlâ planlayıcı tutarlılığının ters vekili.
+- **A0 (olay+kanal, σ=0):** ömür 61→83 ama isabet 0.20-0.22,
+  **kendi-ipucu tutarlılığı 0.42 (şans 0.5'in ALTINDA)**, STAY payı
+  0.27-0.31, I(ipucu;sembol) 0.0001-0.0007 bit (p: 0.02/0.36/0.26).
+  **A1 ✗, A2 ✗.** Ajan öncüyü OKUMUYOR: olay anındaki eylem kendi
+  ipucundan bağımsız. Dil sorusu henüz sorulamıyor; önce algı sorusu.
+- **M-14 taban oranı:** 83 turluk ömürde olay deneyimi ≈ 2.7/yaşam.
+  S2.7'de tek olumsallık için N*=50 deneyim gerekmişti. Yaşam içinde
+  öğrenme matematiksel olarak imkânsız; soy hattında (σ≈0 ile ağırlık
+  birikir) 20K turda ~667 olay/slot var ama isabet düz kaldı → sorun
+  yalnız sayı değil, olayın modelde iz bırakmaması (ceza 25 = enerji
+  sıçraması; S2.10'da enerji kafası sıçramaları %25-75 eksik tahmin
+  ediyordu).
+
+**Karar (oto-yetki, PL-31):** ekoloji varsayılanı σ=0.002 (DP-01b
+"mutasyonlu tortu" korunur, drift etkisiz). σ=0 değil: seçilim (a)
+için varyasyon gerekli. Ali'ye anayasal şerh: "ölüm gerçek" artık
+bedene/yaşantıya uygulanıyor, yapıya değil (PL-06 gerilimi çözümü).
+
+**Öngörü karnesi:** F1 (0.75) kısmen; T2≈T0 (0.7) ✓; F3 ✓; A0'da
+A1/A2 düşer (0.85) ✓.
+
+**Yeni ders var mı?** VAR, aday → **M-26 (taslak): Sürüklenme bir
+cihaz hatası gibi davranır.** Seçilimsiz mutasyon, öğrenmeyle
+kazanılan her şeyi nesil ölçeğinde siler ve bunu "ekoloji öğrenemiyor"
+gibi gösterir; nüfus deneyinde σ, ağırlık RMS'ine göre ÖNCE kalibre
+edilir (kritik nesil = (RMS/σ)²), sonra öğrenme yargılanır. (S3 ilk
+nefesten S3-F'ye üç koşum bu yüzden yanlış katmana yazıldı.)
+METODOLOJI'ye S3 kapanışında işlenir.
+
+## S3-G — ÖN-KAYIT: olay görevi, doz ve süre merdiveni (koşumdan önce, M-08) (2026-10-18, gece)
+
+**Soru.** σ=0.002 ile kararlı ekolojide alarm görevi: öğrenme için
+sorun SÜRE mi (soy hattında birikim 20K'da yetmedi), DOZ mu (ceza 25
+yaşamı 83'e indirip deneyimi 2.7/yaşam'a düşürüyor), yoksa ALGI mı
+(öncü modelde iz bırakmıyor)? Üç kol, tek değişken (M-06), hepsi
+klon kadro + yuva (600, 0.5) + σ=0.002:
+
+| kol | olay | kanal | ceza | tur | soru |
+|---|---|---|---|---|---|
+| G1 | açık | açık | 25 | **50K** | süre |
+| G2 | açık | açık | **10** | 20K | doz |
+| G3 | açık | **kapalı** | 25 | 20K | A2 için kontrol (σ=0.002'de K) |
+
+(G1'in ilk 20K'sı aynı zamanda A σ=0.002 referansıdır.)
+
+**Çıtalar:**
+- **G-algı:** herhangi bir kolda kendi-ipucu tutarlılığı > 0.55
+  (şans 0.5) — ajan öncüyü eyleme çeviriyor. Son 10K penceresinde.
+- **G-süre:** G1 son 10K isabet > ilk 10K isabet + 0.05.
+- **G-doz:** G2 ömür ≥ 150 VE olay/yaşam ≥ 5 VE isabet > 0.25.
+- **A1/A2 (dil):** değişmedi (MI ≥ 0.05 bit MM, p<0.05; A−K isabet
+  > +0.05).
+
+**Öngörüler (bağlayıcı):** G-algı DÜŞER tüm kollarda (0.7): sorun algı
+katmanında (öncü, tehlike kanalında tek hücre; model onu enerji
+sıçramasına bağlamıyor). G-doz: ömür ≥150 geçer, isabet > 0.25 düşer.
+G-süre düşer. A1/A2 düşer (0.9).
+
+**Sonuç matrisi:** hepsi ✗ → algı teşhisi: gözlemci probu
+(`final_weights.pt` üzerinde: öncülü ve öncüsüz gözlemde tahmin
+edilen enerji farkı; model öncüyü "görüyor" mu?) → sonra ya olay
+kodlamasını değiştirmeden ceza/öncü-süre kalibrasyonu (dünya-tarafı)
+ya da PL-27 (a) seçeneği (ayrı öncü kanalı, ~1-2 bit; Ali kararı,
+anayasal). G-algı ✓ ama A1 ✗ → "görüyor, söylemiyor": sinyal-sonuç
+zinciri teşhisi. A1 ✓ → ADAY GÖZLEM, Beş Kapı.
