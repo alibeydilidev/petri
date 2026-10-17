@@ -1764,3 +1764,99 @@ yolunda (f=1'de eski breath kayıtlarıyla bit-eş değil; yeni
 determinizm testi geçti). Kurucu mutasyon yok (çeşitlilik halefiyetle).
 Olay parametreleri oracle kalibrasyonundan alındı, ekolojide yeniden
 kalibre edilmedi (M-21 riski beyanlı: 5 öğrenen ajan ≠ 5 scripted).
+
+## S3-E — SONUÇLAR: **T1✗ A1✗ A2✗ A3✗ — drift yine baskın, dil doğmadı** (2026-10-18, gece)
+
+Veri: `runs/s3e/{T,A,K}_s300{1,2,3}/breath.json`, özet
+`runs/s3e/summary.json` (`training/analyze_s3e.py`). 9 koşum × 20K tur,
+hepsi tamamlandı.
+
+| kol | medyan ömür | ölüm/20K | hasat/1K | sinyal oranı | olay isabet | I(ipucu;sembol) MM | çıta |
+|---|---|---|---|---|---|---|---|
+| T (olay yok) | **138** (131-144) | 622-653 | 3.5-4.2 | 0.60 | — | — | T1 ≥300 **✗** |
+| A (olay+kanal) | **61** (60-64) | 1401-1447 | 2.1-2.6 | 0.79 | 0.199-0.209 | 0.0006-0.0017 bit (p≤0.015) | A1 ≥0.05 **✗** |
+| K (olay, kanal yok) | **83** (81-87) | 1120-1152 | 3.2-3.6 | 0 | 0.205-0.217 | — | A2: A−K = −0.002 **✗**; A3: 61<83 **✗** |
+
+**Okuma (ön-kayıtlı matris: T1✗ hücresi — "önce ekoloji").**
+- **Drift yine baskın, bu kez temiz ölçüldü.** Halefsiz oracle aynı
+  kadro/yuvayla 408 tur ve 16.7 hasat/1K vermişti; halefli ekolojide
+  138 tur ve 3.8/1K. Zaman çizgisi (T_s3001): t=1000 (nesil 2) ömür
+  185 / hasat 7.4; t=5000 (nesil 30) 144 / 3.0; t=20000 (nesil ~130)
+  138 / 2.8. Tek fark halef mutasyonu σ=0.01 → kümülatif σ≈0.11 >
+  ağırlık RMS 0.08 (PL-22 (ii) hesabı tutuyor: miras ~65. nesilde
+  gürültüye gömülüyor). Yuva bunu geciktiriyor ama silemiyor.
+- **Herkes yuvada ölüyor** (ölümlerin %100'ü yaş ≤ 600): yuva fiilen
+  ömür boyu %50 indirim. PL-29'un "yuva-sonu uçurumu" bu rejimde
+  gözlenemedi (kimse yuvadan çıkamadı).
+- **Kanal hiçbir şey taşımıyor.** Sembol entropisi 3.98-3.99/4 bit;
+  I(ipucu;sembol) 0.001 bit — permütasyon p küçük (n≈60K sinyal her
+  sapmayı anlamlı yapar) ama etki gürültü tabanının (0.0103) bile
+  ALTINDA (M-13: anlamlılık ≠ etki). Pencere sinyal oranı (0.75-0.79)
+  ≈ genel oran: öncü sinyal davranışını değiştirmiyor.
+- **Olay isabeti şans civarı ve altı:** 0.20-0.22 her iki kolda.
+  **Taban düzeltmesi (M-20):** ön-kayıttaki 0.25 şans tabanı eylem
+  marjinali tekdüze varsayar; kutup ∈ {STAY,UP,DOWN,LEFT}, RIGHT ve
+  INTERACT hiç güvenli değil → gerçek şans = (1 − P(RIGHT) −
+  P(INTERACT))/4 < 0.25. Ölçülen 0.20 bununla tutarlı; kutup bilgisi
+  kullanımına dair sıfır kanıt. Kendi-ipucu tutarlılığı sayacı
+  (şans 0.5) bu koşumda yoktu; S3-F'de var.
+- **Kanal net zarar:** A kolu K'dan %27 kısa yaşıyor ve %30 az hasat
+  ediyor. Mekanizma S3-D ile aynı: klon %79 oranında sinyal yayıyor
+  (ε 16/17 + eğitilmemiş sinyal sütunları), yuva maliyeti yarıya
+  indirse de birikiyor.
+- **Enstrüman notu:** küresel kanal + 0.79 sinyal oranı → HER olay
+  penceresinde herkes bir şey duyuyor ("duydu/duymadı" koşullu isabet
+  ayrımı boş küme: duymadı yok). Bu karşılaştırma bu rejimde ölçülemez;
+  rapor "ölçülemedi" der, "fark yok" demez (M-03).
+
+**Öngörü karnesi:** T1 geçer (0.7) → YANLIŞ; A1/A2 düşer → DOĞRU;
+A3 ≈ eşit → YANLIŞ (kanal net zarar).
+
+**Yeni ders var mı?** YOK (kapsıyor): M-21 (oracle halefsizdi, ekoloji
+halefli — transfer yine varsayılmıştı; oracle tasarımında halefiyet
+değişkeni eksikti, S3-D beyanında "halef yok" yazılıydı ama sonucu
+ekolojiye taşıma riski küçümsendi).
+
+## S3-F — ÖN-KAYIT: halef mutasyonu (drift) merdiveni (koşumdan önce, M-08) (2026-10-18, gece)
+
+**Soru.** Ekolojide yetkinlik erimesinin kaynağı halef mutasyonu σ mı
+(drift), yoksa halefiyetin kendisi mi (hidden/PER/optimizer sıfırlama)
+ya da çok-ajanlı online öğrenme (M-05)? Tek değişken: σ.
+`run_ecology(mutation_sigma=)`; σ=0 → saf miras (ölen ağırlıklar
+aynen devralınır; hâlâ "ölüm gerçek": enerji, hidden, tampon sıfır).
+
+**Kollar (3 seed, 20K tur, klon kadro + yuva (600, 0.5)):**
+| kol | olay | kanal | σ |
+|---|---|---|---|
+| T0 | kapalı | açık | **0.0** |
+| T2 | kapalı | açık | **0.002** (PL-22 hesabı: kritik nesil ~1600) |
+| A0 | açık | açık | **0.0** |
+(T σ=0.01 = S3-E Kol T; A σ=0.01 = S3-E Kol A — tekrar koşulmaz.)
+
+**Çıtalar:**
+- **F1 (drift tezi):** T0 medyan ömür ≥ 250 VE hasat/1K ≥ 10 (oracle
+  408/16.7'nin ~%60'ı; halefiyetin kendisine %40 pay). T0 da ≤ 150'de
+  kalırsa drift DEĞİL: halefiyet sıfırlaması ya da M-05 erozyonu →
+  sonraki basamak "yetiştirme kabı" varyantı (PL-06 gerilimi).
+- **F2 (doz):** T2, T0 ile T(0.01) arasında; T0'a yakınsa (≥ 0.8×T0)
+  σ=0.002 ekoloji için kabul edilebilir doz.
+- **F3 (zaman çizgisi):** T0'da ömür/hasat penceresi nesille DÜŞMEZ
+  (son 5K ≥ 0.8 × ilk 5K); düşerse erozyon σ-dışı.
+- **A0:** A1/A2 yeniden test (daha uzun ömürlü nüfusta): çıtalar aynı
+  (MI ≥ 0.05 bit MM + p<0.05; isabet > K(0.01) +0.05 ve kendi-ipucu
+  tutarlılığı > 0.5+0.05).
+
+**Öngörüler (bağlayıcı):** F1 geçer (0.75); T2 ≈ T0 (0.7); F3 geçer;
+A0'da A1/A2 yine düşer (0.85) — ömür uzasa da kanal eğitilmemiş
+sütunlardan rastgele yayın yapmaya devam eder; dil için yeterli
+koşul ömür değil, sinyalin modelde sonucu olması.
+
+**Sonuç matrisi:** F1✓ → σ ekoloji parametresi olarak 0 ya da 0.002'ye
+çekilir (DP-01b "mutasyonlu tortu" fiilen "saf tortu" olur; kayıt
+OPEN_LOOPS PL-31, Ali'ye görünür), sonra olay görevi uzun koşum (50K)
++ seçilim (a) basamağı. F1✗ → PL-06 yetiştirme kabı (ağırlık + hidden
+taşıma?) ya da ekolojide öğrenmeyi dondurma ablasyonu (M-05 sınavı).
+
+**Beyan (M-09):** σ=0 bir deneyci kararıdır; "ölüm gerçek" kuralının
+ağırlık kısmını fiilen kaldırır (yaşantı değil yapı miras alınır, PL-06
+tartışması). Bit sayılmaz; anayasal soru olarak Ali'ye işaretli.

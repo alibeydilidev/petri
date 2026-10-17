@@ -228,9 +228,17 @@
   ödüyor) → ekolojideki 52'nin birincil kaynağı drift değil kanal
   maliyeti (bu kaydın (ii) "drift" teşhisi ikincil kaynağa düşer).
   Yuva: (600, 0.5) → 408 tur, hasat korunur; f≤0.25 yuva-sonu uçurumu.
-  **BEKLEYEN (Ali):** yuva ayarı (tavsiye 600/0.5) + kanal stratejisi
-  (tavsiye: açık kalsın, yuva sinyal maliyetini de indirsin). Sonra
-  S3-C olay görevi klon+yuva ekolojisiyle koşulur (PL-30).
+  **KARAR (Ali, 2026-10-18 gece):** yuva (600, 0.5) + kanal açık
+  onaylandı; oto karar + push yetkisi. **S3-E SONUCU:** ekoloji 138 tur
+  (çıta 300 ✗), dil doğmadı (MI 0.001 bit), kanal net zarar (61 vs 83).
+  Drift baskın → PL-31 σ merdiveni (S3-F) koşuluyor.
+- **PL-31 — Halef mutasyonu σ (DP-01b dozu) (AÇIK, S3-F koşuluyor):**
+  S3-E: σ=0.01 ile klon yetkinliği ~65. nesilde eriyor (ömür 185→138,
+  hasat 7.4→2.8/1K); kanal/olay kolları bunun üstüne biniyor. S3-F
+  σ ∈ {0, 0.002} merdiveni (FINDINGS S3-F ön-kayıt). σ=0 "ölüm gerçek"
+  kuralının ağırlık ayağını fiilen kaldırır (PL-06 gerilimi) — anayasal
+  soru olarak Ali'ye işaretli; oto-karar yetkisiyle koşuluyor, karar
+  sonuçla birlikte sunulacak.
 - **PL-29 — Ölüm ucuz / yuva çiftçiliği riski (AÇIK, S3-D kaydı):**
   Ekolojide ölen slot 100 enerjiyle ve (b) ile yuva korumasıyla yeniden
   doğar. Oracle f≤0.25'te klonların yuva biter bitmez öldüğünü gösterdi

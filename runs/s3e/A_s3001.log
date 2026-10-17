@@ -1,0 +1,22 @@
+[t=  1000] ölüm 54 (medyan ömür 78.0) | nesil [10, 8, 12, 11, 13] | A-hasat 54 | olay isabet(pencere) 0.2424 | sinyal/ajan-turu 0.71 (pencere 0.71) | 75.5 ms/tur
+[t=  2000] ölüm 122 (medyan ömür 73.0) | nesil [23, 22, 27, 24, 26] | A-hasat 77 | olay isabet(pencere) 0.1939 | sinyal/ajan-turu 0.7007 (pencere 0.6914) | 76.7 ms/tur
+[t=  3000] ölüm 189 (medyan ömür 73.0) | nesil [38, 37, 39, 38, 37] | A-hasat 91 | olay isabet(pencere) 0.2303 | sinyal/ajan-turu 0.6764 (pencere 0.6278) | 76.2 ms/tur
+[t=  4000] ölüm 260 (medyan ömür 72.0) | nesil [53, 51, 54, 52, 50] | A-hasat 106 | olay isabet(pencere) 0.2118 | sinyal/ajan-turu 0.6845 (pencere 0.709) | 75.9 ms/tur
+[t=  5000] ölüm 331 (medyan ömür 69.0) | nesil [67, 65, 69, 67, 63] | A-hasat 125 | olay isabet(pencere) 0.1939 | sinyal/ajan-turu 0.6913 (pencere 0.7182) | 75.7 ms/tur
+[t=  6000] ölüm 403 (medyan ömür 68.0) | nesil [82, 79, 82, 81, 79] | A-hasat 143 | olay isabet(pencere) 0.1758 | sinyal/ajan-turu 0.7071 (pencere 0.7864) | 75.5 ms/tur
+[t=  7000] ölüm 471 (medyan ömür 69.0) | nesil [93, 93, 95, 95, 95] | A-hasat 151 | olay isabet(pencere) 0.2294 | sinyal/ajan-turu 0.7011 (pencere 0.6652) | 75.5 ms/tur
+[t=  8000] ölüm 537 (medyan ömür 69.0) | nesil [109, 106, 109, 107, 106] | A-hasat 157 | olay isabet(pencere) 0.1879 | sinyal/ajan-turu 0.7033 (pencere 0.718) | 75.5 ms/tur
+[t=  9000] ölüm 607 (medyan ömür 69.0) | nesil [124, 120, 123, 122, 118] | A-hasat 167 | olay isabet(pencere) 0.2242 | sinyal/ajan-turu 0.7148 (pencere 0.807) | 75.5 ms/tur
+[t= 10000] ölüm 682 (medyan ömür 66.0) | nesil [139, 135, 139, 136, 133] | A-hasat 178 | olay isabet(pencere) 0.1706 | sinyal/ajan-turu 0.7274 (pencere 0.8408) | 75.4 ms/tur
+[t= 11000] ölüm 757 (medyan ömür 66.0) | nesil [155, 150, 154, 152, 146] | A-hasat 193 | olay isabet(pencere) 0.2 | sinyal/ajan-turu 0.7393 (pencere 0.859) | 75.3 ms/tur
+[t= 12000] ölüm 827 (medyan ömür 66.0) | nesil [170, 163, 169, 164, 161] | A-hasat 205 | olay isabet(pencere) 0.2303 | sinyal/ajan-turu 0.7317 (pencere 0.6478) | 75.1 ms/tur
+[t= 13000] ölüm 901 (medyan ömür 66.0) | nesil [184, 177, 184, 178, 178] | A-hasat 215 | olay isabet(pencere) 0.1941 | sinyal/ajan-turu 0.7331 (pencere 0.7502) | 74.9 ms/tur
+[t= 14000] ölüm 976 (medyan ömür 64.0) | nesil [200, 192, 199, 194, 191] | A-hasat 223 | olay isabet(pencere) 0.2 | sinyal/ajan-turu 0.7352 (pencere 0.7614) | 75.0 ms/tur
+[t= 15000] ölüm 1050 (medyan ömür 63.0) | nesil [213, 207, 215, 208, 207] | A-hasat 237 | olay isabet(pencere) 0.1636 | sinyal/ajan-turu 0.7432 (pencere 0.8564) | 75.1 ms/tur
+[t= 16000] ölüm 1127 (medyan ömür 62.0) | nesil [229, 221, 230, 223, 224] | A-hasat 241 | olay isabet(pencere) 0.2118 | sinyal/ajan-turu 0.7548 (pencere 0.9276) | 75.2 ms/tur
+[t= 17000] ölüm 1200 (medyan ömür 62.0) | nesil [243, 236, 244, 239, 238] | A-hasat 247 | olay isabet(pencere) 0.2061 | sinyal/ajan-turu 0.7589 (pencere 0.8244) | 75.3 ms/tur
+[t= 18000] ölüm 1263 (medyan ömür 63.0) | nesil [257, 247, 255, 255, 249] | A-hasat 249 | olay isabet(pencere) 0.2848 | sinyal/ajan-turu 0.754 (pencere 0.6706) | 75.1 ms/tur
+[t= 19000] ölüm 1330 (medyan ömür 64.0) | nesil [272, 258, 265, 271, 264] | A-hasat 257 | olay isabet(pencere) 0.1706 | sinyal/ajan-turu 0.7458 (pencere 0.5998) | 75.0 ms/tur
+[t= 20000] ölüm 1401 (medyan ömür 64.0) | nesil [288, 273, 276, 287, 277] | A-hasat 261 | olay isabet(pencere) 0.1758 | sinyal/ajan-turu 0.7476 (pencere 0.7804) | 75.0 ms/tur
+
+yazıldı: runs/s3e/A_s3001/breath.json | toplam ölüm 1401 | soy kütüğü 1406 kayıt | A-hasat 261 | B-açılış 0 | olay isabet 0.2048048048048048 | sinyal/ajan-turu 0.748

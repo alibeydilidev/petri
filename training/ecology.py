@@ -177,7 +177,8 @@ class Ledger:
     SCALARS = ("harvests_a", "b_shares", "signals_sent",
                "event_turns", "event_hits", "pending_turns",
                "pending_signals", "heard_in_window_turns",
-               "event_turns_heard", "event_hits_heard")
+               "event_turns_heard", "event_hits_heard",
+               "event_own_consistent", "event_stay")
 
     def __init__(self) -> None:
         self.agent_turns = 0
@@ -288,7 +289,12 @@ def _observe(world: World, i: int, c: Citizen, energy: float):
 def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 log_every: int = 1000, founding: str = "roster",
                 nest: tuple[int, float] = (0, 1.0), events: bool = False,
-                channel: str = "open") -> None:
+                channel: str = "open",
+                mutation_sigma: float | None = None) -> None:
+    """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
+    =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
+    from population.lifecycle import MUTATION_SIGMA
+    sigma = MUTATION_SIGMA if mutation_sigma is None else float(mutation_sigma)
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
     wcfg = dataclasses.replace(WCFG, **EVENT_KW) if events else WCFG
     mute = channel == "mute"
@@ -345,6 +351,12 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 hit = acts[i] == safe
                 if hit:
                     c.event_hits += 1
+                # Teşhis: eylem kendi ipucunun aday kümesinde mi (şans 0.5 —
+                # "kendi bitini okuyor mu"); STAY payı (M-25 kaçış yolu i).
+                if acts[i] in ev.candidates(i):
+                    c.event_own_consistent += 1
+                if acts[i] == 0:
+                    c.event_stay += 1
                 if c.heard_in_window:
                     c.event_turns_heard += 1
                     if hit:
@@ -367,7 +379,7 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 child_agent = successor(
                     c.agent, c.agent.cfg,
                     torch_seed=10_000 + deaths, np_seed=20_000 + deaths,
-                    rng=succ_rng)
+                    rng=succ_rng, sigma=sigma)
                 child = Citizen(c.slot, child_agent, gen=c.gen + 1,
                                 parent=c.id, birth_turn=turn, mute=mute)
                 # Yeni beden: doğum yeri DÜNYANIN rng'sinden (anayasa —
@@ -429,7 +441,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     cue_sym = ledger.cue_symbol + sum(c.cue_symbol for c in cits)
     out = {"turns": turns, "world_seed": world_seed,
            "arm": {"founding": founding, "nest": list(nest),
-                   "events": events, "channel": channel},
+                   "events": events, "channel": channel,
+                   "mutation_sigma": sigma},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -470,10 +483,12 @@ def main() -> None:
                     metavar=("T", "F"))
     ap.add_argument("--events", action="store_true")
     ap.add_argument("--channel", choices=["open", "mute"], default="open")
+    ap.add_argument("--sigma", type=float, default=None,
+                    help="halef mutasyonu σ (varsayılan 0.01)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
-                events=a.events, channel=a.channel)
+                events=a.events, channel=a.channel, mutation_sigma=a.sigma)
 
 
 if __name__ == "__main__":
