@@ -1949,3 +1949,87 @@ kodlamasını değiştirmeden ceza/öncü-süre kalibrasyonu (dünya-tarafı)
 ya da PL-27 (a) seçeneği (ayrı öncü kanalı, ~1-2 bit; Ali kararı,
 anayasal). G-algı ✓ ama A1 ✗ → "görüyor, söylemiyor": sinyal-sonuç
 zinciri teşhisi. A1 ✓ → ADAY GÖZLEM, Beş Kapı.
+
+## S3-G — KISMİ SONUÇLAR (G2/G3 + algı probu; G1 50K sürüyor) (2026-10-18, gece)
+
+Veri: `runs/s3g/G2_*`, `runs/s3g/G3_*`, prob `runs/s3g/probe_g23_*.json`
+(`training/precursor_probe.py`).
+
+| kol | ceza | kanal | medyan ömür | olay/yaşam | isabet | kendi-ipucu tutarlılık | STAY payı | hasat/1K |
+|---|---|---|---|---|---|---|---|---|
+| G2 | 10 | açık | **134** (125-135) | 4.5 | 0.20-0.21 | 0.41-0.43 | 0.33-0.41 | 9-10 |
+| G3 | 25 | kapalı | **99.5** (96-103) | 3.3 | 0.20-0.23 | 0.41-0.45 | 0.15-0.26 | 12-14 |
+| A0 (S3-F) | 25 | açık | 83 | 2.7 | 0.20-0.22 | 0.42 | 0.27-0.31 | 9-10 |
+
+- **G-doz ✗:** ceza 10 ömrü 83→134 çıkarıyor ama isabet şans altında
+  kalıyor; olay/yaşam 4.5 (çıta 5'in altında, N*=50'nin çok altında).
+- **G-algı (davranışsal) ✗:** kendi-ipucu tutarlılığı her kolda 0.41-0.45
+  < 0.5. Olay anındaki eylem kendi ipucundan BAĞIMSIZ.
+- **A2 referansı:** kanal-kapalı G3 (99.5) vs kanal-açık A0 (83):
+  kanal σ=0.002'de de net zarar; A σ=0.002 (G1) ile kesin karşılaştırma
+  G1 bitince.
+- **A1 ✗:** G2'de I(ipucu;sembol) 0.0-0.0007 bit, p 0.09-0.64.
+
+### Algı probu — **model öncüyü GÖRÜYOR, ama eyleme bağlamıyor** (yeni teşhis)
+Protokol: aynı seed'li iki dünya (öncülü / öncüsüz), 8 tur STAY ile
+hidden'a işleme, olay turunda 6 eylem için tahmini enerji. 32 bağlam ×
+30 çekirdek (6 koşum × 5 slot, ~120-180. nesil). Bilinen-negatif:
+olay görmemiş transplant.
+
+| | bilinen-negatif | G2 (ceza 10) | G3 (ceza 25) |
+|---|---|---|---|
+| ΔE ortalama (öncülü − öncüsüz) | **+0.00004** | **−0.028 … −0.058** | **−0.038 … −0.139** |
+| eylem-koşullu yayılım (spread) | 0.0035 | 0.005-0.015 | 0.007-0.041 |
+| kendi-ipucu hizası (argmax ∈ aday; şans 0.5) | 0.41 | 0.0-0.53 (ort. ~0.35) | 0.0-0.66 (ort. ~0.42) |
+| güvenli-eylem farkı | 0.007 | −0.004 … +0.011 | −0.001 … +0.012 |
+
+- **Öncü algılanıyor:** öncü varken olay turu için tahmin edilen
+  enerji 30/30 çekirdekte düşüyor; etki büyüklüğü gürültü tabanının
+  ~1000 katı ve CEZAYLA ÖLÇEKLİ (ceza 10 → ~−0.04; ceza 25 → ~−0.10 ≈
+  beklenen 0.75×ceza/100 değerinin yarısı). Model "tehlike geliyor"u
+  öğrenmiş — tehlike kanalındaki yalıtık öncü hücreyi gerçek
+  tehlikeden ayırıp (öncü enerji çekmez) gelecek bir sıçramaya
+  bağlamış. Bu, PL-27(c)'nin "ajan öncüyü kendisi ayıracak" bahsinin
+  kısmen KAZANILDIĞI anlamına gelir (iç temsil ölçümü; davranış değil).
+- **Ama eyleme bağlı DEĞİL:** yayılım küçük (ceza 25'te tabanın 2-10
+  katı), kendi-ipucu hizası şans civarı, güvenli-eylem farkı sıfır.
+  Yani öğrenilen şey "öncü ⇒ enerji düşecek" (eylemden bağımsız beklenti),
+  öğrenilmeyen şey "ipucu ⇒ hangi eylem güvenli". Planlayıcı bu
+  beklentiyle hiçbir şey yapamaz çünkü her eylem eşit kötü görünüyor
+  → isabet şans. Kanal sorusu bu katmanın üstünde: ajan KENDİ bitini
+  bile eyleme çeviremezken başkasının bitini talep etmesi beklenemez.
+- **M-14 okuması:** (ipucu durumu × eylem) = 4×6 = 24 hücre; soy başına
+  ~667 olay/20K → hücre başına ~28 örnek; ceza sıçraması enerji
+  kafasında zayıf (S2.10: sıçramalar %25-75 eksik). Yetersiz ama
+  umutsuz değil: ya daha çok örnek (sıklık ↑, ceza ↓, aynı basınç/tur),
+  ya seçilim (küçük bir eylem-koşullu avantaj soy hattında çoğalsın).
+
+## S3-H — ÖN-KAYIT: seçilim ve deneyim sıklığı (koşumdan önce, M-08) (2026-10-18, gece)
+
+**Taban:** G1'in ilk 20K'sı (A, σ=0.002, ceza 25, her 30 tur, seçilimsiz).
+İki kol, her biri tabandan TEK değişkenle ayrılır (M-06); 3 seed, 20K.
+
+| kol | değişken | ayar |
+|---|---|---|
+| H1 | **seçilim (PL-22 a)** | `selection=max_age`: ölen slotun halefi, yaşayanlar arasında en uzun süredir hayatta olanın ağırlıklarından (+σ=0.002). Ajana bit gitmez; nüfus kuralı (M-09). |
+| H2 | **deneyim sıklığı (M-14)** | `event_every=10, penalty=8`: beklenen kayıp/tur 0.80 (taban 0.83 — basınç sabit), olay sayısı 3× |
+
+**Çıtalar (son 10K penceresi):**
+- **H-algı:** kendi-ipucu tutarlılığı > 0.55 (şans 0.5) herhangi bir kolda.
+- **H-sel:** H1 medyan ömür ≥ taban × 1.2 VE isabet > taban + 0.03.
+- **H-dose:** H2 isabet > 0.25 VE olay/yaşam ≥ 10.
+- **Prob:** `final_weights.pt` üzerinde kendi-ipucu hizası > 0.6 ya da
+  güvenli-eylem farkı > 0.02 (taban 0.007) — iç temsilde eylem-koşullu iz.
+- **A1 (dil):** değişmedi.
+
+**Öngörüler (bağlayıcı):** H-sel ömür ✓ (seçilim hasat yetkinliğini
+çoğaltır, 0.7), isabet ✗ (0.7). H-dose: olay/yaşam ≥10 ✓, isabet ✗
+(0.6) ama prob yayılımı artar (0.6). H-algı ✗ (0.65). A1 ✗ (0.9).
+
+**Sonuç matrisi:** ikisi de ✗ → eylem-koşullu öğrenme bu mimari/
+ufukta kurulamıyor; ya 50K+ seçilim+sıklık birlikte (M-06 ihlali
+değil: iki geçen/geçmeyen değişkenin birleşimi ayrı ön-kayıtla), ya da
+Ali'ye anayasal soru (PL-27 a: ayrı öncü kanalı; ya da olay cezasının
+eylem-koşullu yapısının gözlemde görünür olması — her ikisi bit yazar).
+H-algı ✓ → kanal sorusu yeniden sorulabilir hâle gelir: seçilim/sıklık
+ile 50K koşum + A/K karşılaştırması.

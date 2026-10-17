@@ -217,3 +217,27 @@ def test_s3e_arm_determinism(tmp_path):
         for v in j["vitals"]:
             v.pop("ms_per_turn")
     assert ja == jb, "S3-E kolu bit-eş değil"
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3h_selection_parent_is_living_oldest(tmp_path):
+    """S3-H: max_age seçiliminde halefin ebeveyni ölen değil, o anda
+    yaşayan en yaşlı sakindir; soy kütüğü bunu yansıtır."""
+    import json
+
+    from training.ecology import run_ecology
+    run_ecology(150, str(tmp_path / "s"), world_seed=42, log_every=50,
+                founding="clone", nest=(600, 0.5), events=True,
+                mutation_sigma=0.002, selection="max_age", event_every=10,
+                event_penalty=8.0)
+    j = json.load(open(tmp_path / "s" / "breath.json"))
+    assert j["arm"]["selection"] == "max_age"
+    assert j["world"]["event_every"] == 10 and j["world"]["event_penalty"] == 8.0
+    births = [g for g in j["genealogy"] if g["birth_turn"] > 0]
+    assert births, "ölüm yok — test boş"
+    # ebeveyn, doğum anında yaşayan bir sakin olmalı (kendi slotu olmayabilir)
+    ids_by_birth = {g["id"]: g["birth_turn"] for g in j["genealogy"]}
+    cross = sum(1 for g in births if g["parent"].split(".")[0] != g["slot"])
+    assert all(ids_by_birth[g["parent"]] < g["birth_turn"] for g in births)
+    assert cross >= 1, "hiç çapraz-slot miras yok; seçilim çalışmıyor olabilir"

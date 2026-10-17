@@ -292,7 +292,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 channel: str = "open",
                 mutation_sigma: float | None = None,
                 event_penalty: float | None = None,
-                save_weights: bool = True) -> None:
+                save_weights: bool = True, event_every: int | None = None,
+                selection: str = "none") -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -301,6 +302,10 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     wcfg = dataclasses.replace(WCFG, **EVENT_KW) if events else WCFG
     if events and event_penalty is not None:   # S3-G doz kalibrasyonu
         wcfg = dataclasses.replace(wcfg, event_penalty=float(event_penalty))
+    if events and event_every is not None:     # S3-H sıklık (M-14 deneyim)
+        wcfg = dataclasses.replace(wcfg, event_every=int(event_every))
+    if selection not in ("none", "max_age"):
+        raise ValueError(selection)
     mute = channel == "mute"
     world = World(wcfg, n_entities=5, seed=world_seed)
     cits = founding_population(founding=founding, nest=nest, mute=mute)
@@ -380,12 +385,22 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
             if not c.homeo.alive:
                 ledger.retire(c, turn)
                 deaths = ledger.deaths
+                # S3-H seçilim (PL-22 a): halef, ölenin değil YAŞAYANLAR
+                # arasında en uzun süredir hayatta olanın ağırlıklarından
+                # türer (en uzun yaşayan soy çoğalır). Ajana bit gitmez;
+                # nüfus kuralıdır (M-09). "none": DP-01b (ölenin tortusu).
+                parent_c = c
+                if selection == "max_age":
+                    living = [x for x in cits if x.homeo.alive]
+                    if living:
+                        parent_c = max(living, key=lambda x: (turn - x.birth_turn,
+                                                             -cits.index(x)))
                 child_agent = successor(
-                    c.agent, c.agent.cfg,
+                    parent_c.agent, c.agent.cfg,
                     torch_seed=10_000 + deaths, np_seed=20_000 + deaths,
                     rng=succ_rng, sigma=sigma)
                 child = Citizen(c.slot, child_agent, gen=c.gen + 1,
-                                parent=c.id, birth_turn=turn, mute=mute)
+                                parent=parent_c.id, birth_turn=turn, mute=mute)
                 # Yeni beden: doğum yeri DÜNYANIN rng'sinden (anayasa —
                 # eski kod succ_rng kullanıyordu, bkz. World.respawn_entity).
                 world.respawn_entity(i)
@@ -446,7 +461,9 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     out = {"turns": turns, "world_seed": world_seed,
            "arm": {"founding": founding, "nest": list(nest),
                    "events": events, "channel": channel,
-                   "mutation_sigma": sigma},
+                   "mutation_sigma": sigma, "selection": selection,
+                   "event_every": wcfg.event_every,
+                   "event_penalty": wcfg.event_penalty},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -496,11 +513,15 @@ def main() -> None:
                     help="halef mutasyonu σ (varsayılan 0.01)")
     ap.add_argument("--event-penalty", type=float, default=None,
                     help="olay cezası (varsayılan EVENT_KW 25)")
+    ap.add_argument("--event-every", type=int, default=None,
+                    help="olay periyodu (varsayılan 30)")
+    ap.add_argument("--selection", choices=["none", "max_age"], default="none")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
                 events=a.events, channel=a.channel, mutation_sigma=a.sigma,
-                event_penalty=a.event_penalty)
+                event_penalty=a.event_penalty, event_every=a.event_every,
+                selection=a.selection)
 
 
 if __name__ == "__main__":
