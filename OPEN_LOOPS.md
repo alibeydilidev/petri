@@ -187,11 +187,12 @@
   asimetrik olay enjeksiyonu S3-C'de yazıldı (`world/events.py`),
   fiziği testli, varsayılan KAPALI (bit-eş korunum:
   `test_disabled_by_default_is_bit_identical`).
-- **PL-26 — Kaynak doküman repoda yok (AÇIK, kayıt):** CLAUDE.md
-  "çelişki halinde kaynak doküman kazanır" diyor ama `PETRI_TALIMAT.md`
-  dizinde mevcut değil. Anayasal hakem erişilemez; spec'e dayanan her
-  yorum (4.2 kanal, 4.3 roster, 4-6× B bandı) şu an ikincil kaynaktan
-  okunuyor.
+- **PL-26 — Kaynak doküman repoda yok (KAPALI, 2026-10-18):**
+  `PETRI_TALIMAT.md` repoda mevcut (commit ce97904, 2026-10-06; ilk
+  oturum açılışında doğrulandı). Anayasal hakem erişilebilir. Özgün
+  kayıt: CLAUDE.md "çelişki halinde kaynak doküman kazanır" diyordu ama
+  dosya dizinde yoktu; spec'e dayanan yorumlar (4.2 kanal, 4.3 roster,
+  4-6× B bandı) ikincil kaynaktan okunuyordu.
 - **PL-22 — Ekoloji nefes alamadı (S3 ilk nefes, ÇERÇEVE KARARI Ali'de):**
   5-ajan/ölüm-gerçek/seçilimsiz-mutasyon rejiminde medyan ömür 53-66 tur
   (öğrenme ufkunun ~750× altında); kanal maliyet baskısıyla söndü;
@@ -213,7 +214,37 @@
   patolojisinin TERSİ).
   **Sıra şerhi:** PL-25 (B keşfedilebilirliği) bu karardan ÖNCE
   kapanmalı; aksi halde a/b/c'nin hiçbiri B basıncını doğuramaz.
-  Taban veri düzeltilmiş enstrümanla yenileniyor → `runs/s3_breath_v2/`.
+  **Taban veri v2 TAMAMLANDI** (`runs/s3_breath_v2/breath.json`, 20K
+  tur / 100K ajan-turu): 1714 ölüm, medyan ömür 52, A-hasat 79,
+  B-açılış 0, sinyal oranı 0.681 plato; sembol entropisi 3.9897/4 bit
+  (yapı yok; sosyal katman için ön-kayıtlı gürültü tabanı 0.0103 bit).
+  Ayrıntı FINDINGS "S3 TABAN ÇİZGİSİ v2".
+  **KARAR (Ali, 2026-10-18):** önce (c) 5× seed-3 klon taban + (b) yuva
+  dönemi; seçilim (a) sonra ayrı değişken (M-06). Başlangıç: M-21 gereği
+  nüfus fizibilite oracle'ı (öğrenen ajan koşumundan ÖNCE).
+  **ORACLE SONUCU (2026-10-18, FINDINGS S3-D):** kapasite ✓; klon taban
+  ✓ (5 klon kanal-kapalı 118 tur); ASIL KIRILMA KANAL: kanal açılınca
+  78 tur (dondurulmuş klon turların %77'sinde sinyal yayıp maliyet
+  ödüyor) → ekolojideki 52'nin birincil kaynağı drift değil kanal
+  maliyeti (bu kaydın (ii) "drift" teşhisi ikincil kaynağa düşer).
+  Yuva: (600, 0.5) → 408 tur, hasat korunur; f≤0.25 yuva-sonu uçurumu.
+  **BEKLEYEN (Ali):** yuva ayarı (tavsiye 600/0.5) + kanal stratejisi
+  (tavsiye: açık kalsın, yuva sinyal maliyetini de indirsin). Sonra
+  S3-C olay görevi klon+yuva ekolojisiyle koşulur (PL-30).
+- **PL-29 — Ölüm ucuz / yuva çiftçiliği riski (AÇIK, S3-D kaydı):**
+  Ekolojide ölen slot 100 enerjiyle ve (b) ile yuva korumasıyla yeniden
+  doğar. Oracle f≤0.25'te klonların yuva biter bitmez öldüğünü gösterdi
+  (15/15). Ekolojide bu, "yuvada yaşa, öl, yuvaya dön" döngüsü üretebilir
+  (M-25 kaçış yolu; ölçülmedi, halefsiz oracle göremez). İzleme: ölüm
+  sayısı / nesil hızı / yuva-içi ölüm payı. Olası kapatıcılar (Ali):
+  halef doğum enerjisi < 100; yuva yalnız kurucu nesle; seçilim (a).
+- **PL-30 — S3-C olay görevi + klon/yuva ekolojisi (SIRADAKİ, Ali
+  onayı bekliyor):** `training/ecology.py` için (c) 5×A2 transplant
+  kurucu kadro + (b) nest parametreleri + `event_every>0`. Öncesinde
+  ecology.py `apply_turn(signal_cost=)` yoluna geçmeli (yuva sinyali
+  kapsasın; f=1'de bit-eş değil, kayan nokta sırası değişir — determinizm
+  testi yeniden koşulur, eski breath kayıtları etkilenmez). Ön-kayıt
+  (M-08) yazılmadan koşulmaz.
 - **PL-20 — Kısmi miras gerilimi (S3 açılışı, kayıt):** "seed-3 tabanı +
   roster heterojenliği" tam bağdaşmıyor: farklı obs_radius/memory_dim
   mimarileri ağırlık devralamaz. Uygulanan: A2 slotu transplant+mutasyon,

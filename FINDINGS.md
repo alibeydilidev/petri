@@ -1510,3 +1510,181 @@ kapalı. Ali'nin PL-13 tezi ("temsil ihtiyacın gölgesidir") ile TUTARLI
 ama hâlâ test edilmemiş: ihtiyaç (hareket) hiç doğmadı. S2.9 bu
 döngüyü veri yönünden kırmayı deniyor; kayma-eşdeğişimli mimari çözüm
 M-18 gereği YASAK (bağımlı değişkeni mimariye yazmak olur).
+
+## S3-D — NÜFUS ORACLE'I ÖN-KAYIT (koşumdan önce, M-08) (2026-10-18)
+
+**Bağlam.** PL-22 KARARI (Ali, 2026-10-18): ekoloji çerçevesi önce
+(c) 5× seed-3 klon taban + (b) yuva dönemi; seçilim (a) sonra, ayrı
+değişken (M-06). M-21 gereği öğrenen-ajan koşumundan ÖNCE nüfus
+fizibilite oracle'ı: tek-ajan yetkinliğinin 5-ajan rejimine taşınıp
+taşınmadığı ÖLÇÜLÜR, varsayılmaz. Araç: `training/pop_oracle.py`
+(ölçüm aleti, ajan değil → KERNEL_BUDGET'a bit yazmaz; deneyci
+kararları M-09 gereği aşağıda beyanlı).
+
+**Dünya:** economy v3 (24 A, A=45, B=180, m=0.6), kanal küresel (PL-28),
+olaylar KAPALI (event_every=0). Tavan 3000 tur, 5 dünya seed'i
+(9100+e). **Halef YOK:** ölen ölü kalır (oracle, ekoloji değil; ölü
+beden entity kanalında hayalet olarak görünür — b_oracle emsali,
+beyanlı sınır).
+
+### Aşama A — `capacity`: dünya 5 yetkin ajanı taşıyor mu? (M-02)
+Scripted A-oracle (`training/oracle.py::OraclePolicy`, tarama fazı
+ajan indeksine göre kaydırılmış — b_oracle dersi) × n ∈ {1, 5}.
+- **Çıta A:** n=5 medyan ömür ≥ 0.75 × n=1 medyan ömür.
+- Düşerse: sorun ajanda değil dünyada (24 A beş ajana yetmiyor) →
+  (c)/(b) kararı askıya, önce kaynak kalibrasyonu (PL-14 emsali).
+
+### Aşama B — `clone`: (c) transfer merdiveni (M-21)
+Seed-3 transplantı (`transplant_seed3`, MUTASYONSUZ), roster A2 config'i
+(ekolojiyle aynı: cem_iters=2, kanal açık). Dört kol, tek değişken:
+
+| kol | n | kanal | öğrenme | ne ölçer |
+|---|---|---|---|---|
+| L0 `clone1_mute` | 1 | yok (eylem-only planlama) | yok | **cihaz doğrulaması** (M-15): S2.10 eval ömrü 162 |
+| L1 `clone5_mute` | 5 | yok | yok | +4 rakip: yetkinlik rekabete dayanıyor mu |
+| L2 `clone5_open` | 5 | açık (ortak planlama) | yok | +kanal: başkalarının gürültüsü bozuyor mu |
+| L3 `clone5_learn` | 5 | açık | açık (ε açık) | +online öğrenme: koruyor mu, aşındırıyor mu (M-05) |
+
+- **Cihaz kapısı:** L0 medyan ömür [110, 220] dışında ise cihaz bozuk
+  (cem 2 vs 4 farkı beyanlı), merdivenin hiçbir basamağı okunmaz.
+- **Çıta B1 (c tezi):** L1 medyan ömür > 100 (hareket tavanı 62.5 ve
+  gözlenen 52'nin açık üstü) VE ≥ 0.75 × L0.
+- **Çıta B2:** L2 ≥ 0.85 × L1 (kanal gürültüsü yetkinliği bozmuyor).
+- **Öngörü (bağlayıcı):** L3 ≤ L2 (on-policy öğrenme çok-ajan dünyada
+  modeli aşındırır, M-05). L3 > L2 çıkarsa olumlu sürpriz; L3 < 0.6×L2
+  çıkarsa öğrenme ekolojide zararlı → "ölüm gerçek + online" rejimi
+  klon tabanla bile öğrenemez, (b) yetmez, Ali'ye dön.
+
+**Sonuç matrisi (koşumdan önce yorumlanmış):**
+- A✓ B1✓ B2✓ → yetkinlik taşınıyor; ekolojideki 52 turun kaynağı taze
+  slotlar + drift'tir → (c) doğru ilk adım, (b) kalibrasyonuna geç.
+- A✓ B1✗ → yetkinlik rekabette çöküyor (M-21 negatifi); (c) tek başına
+  yetmez; PL-22'ye yeni seçenek: önce 5×klon + 48 A ile kapasite
+  artırımı (M-02), Ali kararı.
+- A✓ B1✓ B2✗ → kanal gürültüsü aşındırıyor; klon tabanın kanal-körü
+  başlatılıp kanalı sonradan "açması" düşünülür (PL-08 emsali).
+- A✗ → dünya kalibrasyonu, yukarıda.
+
+### Aşama C — `nest`: (b) kalibrasyonu
+Yuva = yaş < `nest_turns` iken metabolizma + eylem + sinyal maliyeti ×
+`nest_factor` (`agent/config.py`, `agent/homeostasis.py`; varsayılan
+T=0/f=1 bit-eş). **Analitik sınır (koşumdan önce):** hasat etmeyen,
+her tur hareket eden ajan yuvada 100/(f·1.6) tur yaşar: f=0.5 → 125,
+f=0.25 → 250, f=0.1 → 625. Yani (b), f>0 iken SIFIRDAN öğrenme
+penceresi (~45K tur, S2 yayı) AÇAMAZ; rolü klon halefinin mutasyon
+şokunu yumuşatmak ve hasat zincirini kurmaya vakit vermektir. Bu
+beyan edilmeden "yuva öğrenme penceresi açar" denemez.
+Izgara: (T,f) ∈ {(0,1.0), (600,0.5), (600,0.25), (600,0.1), (2000,0.1)};
+kollar: `random5` (yetkinsizlik tabanı, ucuz), `fresh5` (eğitimsiz
+çekirdek + MPC, öğrenmesiz), `clone5_learn` (asıl kol). 3 seed.
+- **Çıta C1 (cihaz):** `random5` medyan ömrü analitik sınırın ±%25'i
+  içinde (yuva muhasebesi doğru çalışıyor).
+- **Çıta C2 (fayda):** en az bir (T,f) noktasında `clone5_learn`
+  medyan ömrü yuvasız koluna göre ≥ +%30 VE A-hasat/ajan-turu düşmüyor
+  (yuva tembellik üretmiyor).
+- **Öngörü:** fresh5 hiçbir noktada 520'yi (10× gözlenen) geçmez;
+  geçerse (b) beklenenden güçlü.
+
+### Kaçış yolları (M-25) ve beyanlar
+- **Ölüm ucuz:** ekolojide ölen slot 100 enerjiyle yeniden doğar; yuva
+  bunu güçlendirir (ölüp yuvaya dönmek, hasat etmekten ucuz olabilir).
+  Oracle halefsiz olduğu için ÖLÇMEZ; ekoloji koşumuna geçmeden önce
+  "doğum enerjisi" / "yuva yalnız ilk nesil" seçenekleri açık loop
+  (PL-29 adayı). Tuzak kurulmadan sayıldı, kapatılmadı.
+- **Hediye yok:** klon kolları gerçek seed-3 ağırlıklarını kullanır
+  (ölçüm nesnesi), scripted kol A konumlarını yalnız gözlemden görür.
+- **Roster ertelendi:** (c) tüm slotları A2 mimarisine indirger
+  (PL-20 alternatifi). Heterojenlik sonraki değişken.
+- **Zaman damgası:** bu bölüm koşumdan önce yazıldı; sonuçlar ayrı
+  başlıkta.
+
+## S3-D — NÜFUS ORACLE'I SONUÇLAR (2026-10-18)
+
+Veri: `runs/s3d_capacity.json`, `runs/s3d_clone.json`, `runs/s3d_nest.json`,
+log `runs/s3d_pop_oracle.log`. Dünya hash'i dosyalarda. Halefsiz oracle,
+tavan 3000; hiçbir kol sansürlenmedi. B-açılış her yerde 0 (olay görevi
+kapalı, beklenen).
+
+### Aşama A — kapasite: **GEÇTİ**
+| kol | n | medyan ömür | hasat/1K ajan-turu |
+|---|---|---|---|
+| oracle1 | 1 | 184 | 40.9 |
+| oracle5 | 5 | **214** | 51.7 |
+
+Çıta A (≥ 0.75×184 = 138) rahat geçti; beş scripted ajan tekinden uzun
+yaşıyor (A hasatta anında yer değiştirdiği için rekabet değil, bağımsız
+tarama var). **Dünya 5 yetkin ajanı taşıyor; sorun dünyada değil.**
+
+### Aşama B — klon merdiveni: **A✓ B1✓ B2✗** hücresi
+| kol | tek değişken | medyan | ortalama | hasat/1K | sinyal oranı | çıta |
+|---|---|---|---|---|---|---|
+| L0 clone1_mute | — | **156** | 307 | 30.0 | 0 | cihaz [110,220] ✓ |
+| L1 clone5_mute | +4 rakip | **118** | 140 | 18.9 | 0 | >100 ✓, ≥117 ✓ (kıl payı) |
+| L2 clone5_open | +kanal | **78** | 88 | 17.7 | **0.768** | ≥100 ✗ |
+| L3 clone5_learn | +öğrenme | **83** | 103 | 15.6 | 0.502 | öngörü L3≤L2: tutmadı (≈) |
+
+- **Cihaz geçerli:** L0 = 156, S2.10 eval ömrü 162 ile uyumlu
+  (cem 2 vs 4 farkına rağmen). Not: seed-3'ün tek-ajan ömrü STAY
+  tabanını (167) HİÇ aşmıyordu; "yetkinlik" marjinaldir, bu okumanın
+  tavanıdır.
+- **(c) tezi desteklendi, kıl payı:** rekabet yetkinliği %24 aşındırıyor
+  ama klon taban hareket tavanının (62.5) ve ekolojideki 52'nin açık
+  üstünde kalıyor.
+- **ASIL KIRILMA KANALDA (B2 düştü):** kanal açılınca 118 → 78. Mekanizma
+  çoğunlukla KENDİ sinyal maliyeti: dondurulmuş klon turların %77'sinde
+  sinyal yayıyor (eğitilmemiş sinyal sütunları → argmax sinyalli
+  satırlara düşüyor; S3 ENSTRÜMAN ŞERHİ'ndeki "taze A2 sinyal-delisi"
+  bulgusunun transplant hâli). Tur maliyeti 1.6 → ~2.0, ömür ×0.78 →
+  beklenen ~92, ölçülen 78; kalan fark alınan-sinyal gürültüsü.
+  **Ekolojideki 52 turluk ömrün birincil kaynağı drift ya da taze slot
+  değil, kanalın klonu boğmasıdır** (yeni teşhis; PL-22 metni buna göre
+  düzeltildi).
+- **Öğrenme nötr:** L3 ≈ L2. Ne koruyor ne aşındırıyor; ömür zaten
+  öğrenmeye yetmiyor. M-05 öngörüsü (aşındırır) bu ufukta gözlenmedi.
+
+### Aşama C — yuva: **ömrü uzatıyor, kendine yeterlilik kurmuyor**
+| (T, f) | random5 | analitik | fresh5 | clone5_learn | hasat/1K (clone) |
+|---|---|---|---|---|---|
+| (0, 1.0) | 71 | 70 | 50 | 83 | 17.4 |
+| (600, 0.5) | 140 | 140 | 99 | **408** | 16.7 |
+| (600, 0.25) | 279 | 280 | 199 | **636** | 14.8 |
+| (600, 0.1) | 611 | 600 (yuva sonu) | 495 | 677 | 12.8 |
+| (2000, 0.1) | 703 | 700 | 495 | **2061** | 11.3 |
+
+(random analitik: ortalama tur maliyeti 1.43 × f; yuva sonu sınırı.)
+- **C1 cihaz ✓:** random5 analitik sınırla ±%3 içinde; yuva muhasebesi
+  doğru.
+- **C2 fayda:** her noktada ömür ≥ +%30 ✓. Hasat şartı: f=0.5'te −%4
+  (✓), f=0.25'te −%15 (sınırda), f=0.1'de −%26/−%35 (✗, **tembellik**).
+- **Öngörü tuttu:** fresh5 hiçbir noktada 520'yi geçmedi (azami 495).
+- **Yuva-sonu uçurumu (M-25 kaçış yolu GERÇEKLEŞTİ):** f≤0.25'te
+  klonların neredeyse tamamı yuva biter bitmez ölüyor (T=600 → 603-712;
+  T=2000 → 2023-2129; 15/15 ve 14/15). 600 ya da 2000 turluk öğrenme
+  penceresi hasat oranını YÜKSELTMEDİ (sabit/düşen) → pencere içinde
+  öğrenilen şey tam maliyette hayatta kalmaya çevrilmiyor. f=0.5
+  tek "gerçek ekoloji" noktası: ölümler yuva içine ve dışına yayılmış
+  (145-613), hasat korunmuş.
+- **Hiçbir kol STAY tabanını (167, tam maliyet) öğrenmeyle aşmadı.**
+  Bu S2 yayının bilinen sınırıdır; yuva onu değiştirmiyor, sadece
+  erteliyor.
+
+### Karar girdisi (Ali'ye)
+1. **Yuva ayarı:** tavsiye (T=600, f=0.5): +%390 ömür, hasat korunur,
+   uçurum yok. f=0.25 daha uzun ama yuva-sonu uçurumu ve −%15 hasat.
+2. **Kanal maliyeti klonu boğuyor** — üç seçenek: (i) kanalı yuva
+   bitene kadar KAPALI tut, sonra aç (kademeli; obs_dim sabit, yalnız
+   sinyal gönderimi/alımı maskelenir); (ii) kanal açık, yuva sinyal
+   maliyetini de indiriyor (mevcut uygulama; f=0.5'te zaten ölçüldü:
+   408); (iii) sinyal maliyetini anayasal 0.5'ten düşürmek (deneyin
+   basıncını zayıflatır, tavsiye edilmez). Tavsiye: **(ii)** — kanal
+   anayasal olarak açık ve pahalı kalır, yuva çocuklukta yumuşatır;
+   (i) ayrı değişken olarak sonra denenebilir (M-06).
+3. **Ölüm ucuz** (PL-29): ekolojide halef 100 enerji + yuvayla doğar;
+   yuva-sonu uçurumu + ucuz ölüm = "yuva çiftçiliği" riski. Ekoloji
+   koşumunda ölüm sayısı/nesil hızı birincil izleme metriği olmalı.
+
+### Yeni ders var mı?
+YOK (kapsıyor). Kanal bulgusu M-21'in ("transfer ölçülür") bir örneği:
+genişleyen eylem uzayına taşınan yetkinlik yeni boyutta rastgele harcar.
+Yuva-sonu uçurumu M-25'in tasarım anında sayılmış kaçış yoludur;
+ölçüldü, kapatılmadı (PL-29).

@@ -1,0 +1,102 @@
+  [oracle1 T=0 f=1.0] seed 0: ömür [241] | hasat [8] | 0.0 sn
+  [oracle1 T=0 f=1.0] seed 1: ömür [184] | hasat [8] | 0.0 sn
+  [oracle1 T=0 f=1.0] seed 2: ömür [557] | hasat [29] | 0.0 sn
+  [oracle1 T=0 f=1.0] seed 3: ömür [63] | hasat [0] | 0.0 sn
+  [oracle1 T=0 f=1.0] seed 4: ömür [79] | hasat [1] | 0.0 sn
+[capacity]      oracle1 T=   0 f=1.0  | medyan ömür  184.0 | hasat/1K  40.93 | sansür 0/5 | 0.0 sn
+  [oracle5 T=0 f=1.0] seed 0: ömür [185, 109, 541, 490, 353] | hasat [8, 2, 27, 31, 21] | 0.0 sn
+  [oracle5 T=0 f=1.0] seed 1: ömür [571, 537, 557, 127, 832] | hasat [42, 23, 24, 3, 50] | 0.1 sn
+  [oracle5 T=0 f=1.0] seed 2: ömür [63, 153, 143, 137, 565] | hasat [0, 4, 6, 4, 29] | 0.0 sn
+  [oracle5 T=0 f=1.0] seed 3: ömür [91, 63, 489, 597, 412] | hasat [1, 0, 32, 38, 27] | 0.0 sn
+  [oracle5 T=0 f=1.0] seed 4: ömür [85, 63, 238, 214, 63] | hasat [2, 0, 13, 10, 0] | 0.0 sn
+[capacity]      oracle5 T=   0 f=1.0  | medyan ömür  214.0 | hasat/1K  51.71 | sansür 0/25 | 0.1 sn
+
+yazıldı: runs/s3d_capacity.json
+  [clone1_mute T=0 f=1.0] seed 0: ömür [156] | hasat [3] | 1.7 sn
+  [clone1_mute T=0 f=1.0] seed 1: ömür [540] | hasat [17] | 6.1 sn
+  [clone1_mute T=0 f=1.0] seed 2: ömür [124] | hasat [2] | 1.4 sn
+  [clone1_mute T=0 f=1.0] seed 3: ömür [565] | hasat [21] | 6.4 sn
+  [clone1_mute T=0 f=1.0] seed 4: ömür [149] | hasat [3] | 1.7 sn
+[clone]  clone1_mute T=   0 f=1.0  | medyan ömür  156.0 | hasat/1K  29.99 | sansür 0/5 | 17.3 sn
+  [clone5_mute T=0 f=1.0] seed 0: ömür [168, 91, 67, 175, 141] | hasat [3, 1, 0, 4, 3] | 7.2 sn
+  [clone5_mute T=0 f=1.0] seed 1: ömür [64, 121, 357, 102, 86] | hasat [0, 0, 10, 0, 1] | 8.0 sn
+  [clone5_mute T=0 f=1.0] seed 2: ömür [71, 72, 64, 264, 142] | hasat [0, 0, 0, 9, 2] | 6.9 sn
+  [clone5_mute T=0 f=1.0] seed 3: ömür [261, 180, 118, 152, 255] | hasat [6, 4, 1, 3, 11] | 12.1 sn
+  [clone5_mute T=0 f=1.0] seed 4: ömür [89, 86, 234, 63, 64] | hasat [0, 1, 7, 0, 0] | 6.9 sn
+[clone]  clone5_mute T=   0 f=1.0  | medyan ömür  118.0 | hasat/1K  18.93 | sansür 0/25 | 41.1 sn
+  [clone5_open T=0 f=1.0] seed 0: ömür [204, 51, 62, 81, 60] | hasat [7, 0, 0, 1, 1] | 5.8 sn
+  [clone5_open T=0 f=1.0] seed 1: ömür [74, 116, 73, 58, 118] | hasat [1, 2, 1, 0, 4] | 5.4 sn
+  [clone5_open T=0 f=1.0] seed 2: ömür [78, 120, 50, 206, 72] | hasat [1, 1, 0, 6, 1] | 6.3 sn
+  [clone5_open T=0 f=1.0] seed 3: ömür [94, 89, 70, 86, 85] | hasat [3, 1, 1, 2, 2] | 5.4 sn
+  [clone5_open T=0 f=1.0] seed 4: ömür [97, 70, 84, 50, 51] | hasat [2, 1, 1, 0, 0] | 4.2 sn
+[clone]  clone5_open T=   0 f=1.0  | medyan ömür   78.0 | hasat/1K  17.74 | sansür 0/25 | 27.1 sn
+  [clone5_learn T=0 f=1.0] seed 0: ömür [50, 54, 242, 54, 85] | hasat [0, 0, 6, 0, 2] | 6.5 sn
+  [clone5_learn T=0 f=1.0] seed 1: ömür [291, 50, 58, 136, 124] | hasat [9, 0, 0, 1, 4] | 8.7 sn
+  [clone5_learn T=0 f=1.0] seed 2: ömür [94, 75, 162, 83, 51] | hasat [2, 1, 2, 1, 0] | 5.9 sn
+  [clone5_learn T=0 f=1.0] seed 3: ömür [108, 131, 94, 147, 57] | hasat [1, 4, 2, 1, 1] | 6.9 sn
+  [clone5_learn T=0 f=1.0] seed 4: ömür [48, 59, 203, 60, 49] | hasat [0, 0, 3, 0, 0] | 5.6 sn
+[clone] clone5_learn T=   0 f=1.0  | medyan ömür   83.0 | hasat/1K  15.59 | sansür 0/25 | 33.6 sn
+
+yazıldı: runs/s3d_clone.json
+  [random5 T=0 f=1.0] seed 0: ömür [66, 69, 72, 71, 98] | hasat [0, 0, 0, 0, 1] | 0.0 sn
+  [random5 T=0 f=1.0] seed 1: ömür [71, 66, 69, 72, 76] | hasat [0, 0, 0, 0, 0] | 0.0 sn
+  [random5 T=0 f=1.0] seed 2: ömür [69, 69, 74, 71, 72] | hasat [0, 0, 0, 0, 0] | 0.0 sn
+[nest]      random5 T=   0 f=1.0  | medyan ömür   71.0 | hasat/1K   0.92 | sansür 0/15 | 0.0 sn
+  [fresh5 T=0 f=1.0] seed 0: ömür [50, 61, 51, 61, 49] | hasat [0, 0, 0, 0, 0] | 3.3 sn
+  [fresh5 T=0 f=1.0] seed 1: ömür [61, 50, 62, 54, 49] | hasat [0, 0, 0, 0, 0] | 3.4 sn
+  [fresh5 T=0 f=1.0] seed 2: ömür [48, 49, 48, 62, 49] | hasat [0, 0, 0, 0, 0] | 3.1 sn
+[nest]       fresh5 T=   0 f=1.0  | medyan ömür   50.0 | hasat/1K    0.0 | sansür 0/15 | 9.8 sn
+  [clone5_learn T=0 f=1.0] seed 0: ömür [50, 54, 242, 54, 85] | hasat [0, 0, 6, 0, 2] | 6.1 sn
+  [clone5_learn T=0 f=1.0] seed 1: ömür [291, 50, 58, 136, 124] | hasat [9, 0, 0, 1, 4] | 8.4 sn
+  [clone5_learn T=0 f=1.0] seed 2: ömür [94, 75, 162, 83, 51] | hasat [2, 1, 2, 1, 0] | 5.8 sn
+[nest] clone5_learn T=   0 f=1.0  | medyan ömür   83.0 | hasat/1K   17.4 | sansür 0/15 | 20.3 sn
+  [random5 T=600 f=0.5] seed 0: ömür [139, 141, 139, 142, 170] | hasat [0, 0, 0, 0, 1] | 0.0 sn
+  [random5 T=600 f=0.5] seed 1: ömür [145, 136, 137, 140, 144] | hasat [0, 0, 0, 0, 0] | 0.0 sn
+  [random5 T=600 f=0.5] seed 2: ömür [137, 202, 146, 138, 139] | hasat [0, 1, 0, 0, 0] | 0.0 sn
+[nest]      random5 T= 600 f=0.5  | medyan ömür  140.0 | hasat/1K   0.91 | sansür 0/15 | 0.0 sn
+  [fresh5 T=600 f=0.5] seed 0: ömür [99, 121, 101, 123, 97] | hasat [0, 0, 0, 0, 0] | 6.7 sn
+  [fresh5 T=600 f=0.5] seed 1: ömür [123, 98, 123, 107, 96] | hasat [0, 0, 0, 0, 0] | 6.8 sn
+  [fresh5 T=600 f=0.5] seed 2: ömür [96, 98, 96, 122, 97] | hasat [0, 0, 0, 0, 0] | 6.2 sn
+[nest]       fresh5 T= 600 f=0.5  | medyan ömür   99.0 | hasat/1K    0.0 | sansür 0/15 | 19.7 sn
+  [clone5_learn T=600 f=0.5] seed 0: ömür [145, 230, 235, 168, 425] | hasat [0, 3, 4, 2, 7] | 15.9 sn
+  [clone5_learn T=600 f=0.5] seed 1: ömür [432, 578, 340, 558, 613] | hasat [3, 8, 5, 9, 12] | 33.4 sn
+  [clone5_learn T=600 f=0.5] seed 2: ömür [408, 605, 380, 314, 545] | hasat [9, 15, 6, 5, 12] | 29.7 sn
+[nest] clone5_learn T= 600 f=0.5  | medyan ömür  408.0 | hasat/1K  16.73 | sansür 0/15 | 79.0 sn
+  [random5 T=600 f=0.25] seed 0: ömür [276, 283, 277, 282, 310] | hasat [0, 0, 0, 0, 1] | 0.0 sn
+  [random5 T=600 f=0.25] seed 1: ömür [279, 274, 276, 284, 280] | hasat [0, 0, 0, 0, 0] | 0.0 sn
+  [random5 T=600 f=0.25] seed 2: ömür [275, 387, 284, 275, 274] | hasat [0, 1, 0, 0, 0] | 0.0 sn
+[nest]      random5 T= 600 f=0.25 | medyan ömür  279.0 | hasat/1K   0.46 | sansür 0/15 | 0.0 sn
+  [fresh5 T=600 f=0.25] seed 0: ömür [198, 240, 199, 245, 195] | hasat [0, 0, 0, 0, 0] | 13.6 sn
+  [fresh5 T=600 f=0.25] seed 1: ömür [246, 194, 245, 219, 192] | hasat [0, 0, 0, 0, 0] | 13.9 sn
+  [fresh5 T=600 f=0.25] seed 2: ömür [360, 196, 193, 243, 194] | hasat [2, 0, 0, 0, 0] | 13.5 sn
+[nest]       fresh5 T= 600 f=0.25 | medyan ömür  199.0 | hasat/1K    0.6 | sansür 0/15 | 41.0 sn
+  [clone5_learn T=600 f=0.25] seed 0: ömür [636, 621, 697, 642, 603] | hasat [12, 7, 12, 7, 8] | 37.4 sn
+  [clone5_learn T=600 f=0.25] seed 1: ömür [698, 681, 645, 226, 604] | hasat [5, 13, 12, 0, 9] | 33.3 sn
+  [clone5_learn T=600 f=0.25] seed 2: ömür [712, 622, 633, 661, 624] | hasat [14, 11, 10, 8, 10] | 39.0 sn
+[nest] clone5_learn T= 600 f=0.25 | medyan ömür  636.0 | hasat/1K  14.83 | sansür 0/15 | 109.7 sn
+  [random5 T=600 f=0.1] seed 0: ömür [610, 611, 610, 611, 612] | hasat [0, 0, 0, 0, 1] | 0.0 sn
+  [random5 T=600 f=0.1] seed 1: ömür [611, 610, 610, 611, 609] | hasat [0, 0, 0, 0, 0] | 0.0 sn
+  [random5 T=600 f=0.1] seed 2: ömür [609, 619, 641, 610, 639] | hasat [0, 1, 1, 0, 1] | 0.0 sn
+[nest]      random5 T= 600 f=0.1  | medyan ömür  611.0 | hasat/1K   0.43 | sansür 0/15 | 0.0 sn
+  [fresh5 T=600 f=0.1] seed 0: ömür [493, 599, 495, 601, 486] | hasat [0, 0, 0, 0, 0] | 31.6 sn
+  [fresh5 T=600 f=0.1] seed 1: ömür [602, 485, 572, 620, 481] | hasat [0, 0, 0, 2, 0] | 31.7 sn
+  [fresh5 T=600 f=0.1] seed 2: ömür [563, 487, 486, 601, 486] | hasat [1, 0, 0, 0, 0] | 32.8 sn
+[nest]       fresh5 T= 600 f=0.1  | medyan ömür  495.0 | hasat/1K   0.37 | sansür 0/15 | 96.1 sn
+  [clone5_learn T=600 f=0.1] seed 0: ömür [637, 705, 646, 711, 648] | hasat [8, 9, 6, 12, 6] | 57.5 sn
+  [clone5_learn T=600 f=0.1] seed 1: ömür [648, 871, 619, 677, 669] | hasat [9, 16, 3, 9, 7] | 58.5 sn
+  [clone5_learn T=600 f=0.1] seed 2: ömür [718, 674, 767, 750, 715] | hasat [10, 11, 6, 9, 13] | 53.8 sn
+[nest] clone5_learn T= 600 f=0.1  | medyan ömür  677.0 | hasat/1K  12.82 | sansür 0/15 | 169.8 sn
+  [random5 T=2000 f=0.1] seed 0: ömür [688, 705, 697, 703, 727] | hasat [0, 0, 0, 0, 1] | 0.0 sn
+  [random5 T=2000 f=0.1] seed 1: ömür [1019, 700, 699, 704, 695] | hasat [1, 0, 0, 0, 0] | 0.0 sn
+  [random5 T=2000 f=0.1] seed 2: ömür [686, 801, 1017, 692, 999] | hasat [0, 1, 1, 0, 1] | 0.0 sn
+[nest]      random5 T=2000 f=0.1  | medyan ömür  703.0 | hasat/1K   0.43 | sansür 0/15 | 0.0 sn
+  [fresh5 T=2000 f=0.1] seed 0: ömür [493, 599, 495, 609, 486] | hasat [0, 0, 0, 0, 0] | 31.7 sn
+  [fresh5 T=2000 f=0.1] seed 1: ömür [612, 485, 572, 799, 481] | hasat [0, 0, 0, 2, 0] | 32.1 sn
+  [fresh5 T=2000 f=0.1] seed 2: ömür [563, 487, 486, 607, 486] | hasat [1, 0, 0, 0, 0] | 28.5 sn
+[nest]       fresh5 T=2000 f=0.1  | medyan ömür  495.0 | hasat/1K   0.36 | sansür 0/15 | 92.3 sn
+  [clone5_learn T=2000 f=0.1] seed 0: ömür [2047, 2084, 2048, 2129, 2119] | hasat [21, 25, 22, 25, 27] | 123.5 sn
+  [clone5_learn T=2000 f=0.1] seed 1: ömür [2074, 2023, 781, 2086, 2043] | hasat [24, 30, 3, 24, 24] | 137.5 sn
+  [clone5_learn T=2000 f=0.1] seed 2: ömür [2051, 2047, 2100, 2061, 2110] | hasat [20, 28, 17, 22, 25] | 137.8 sn
+[nest] clone5_learn T=2000 f=0.1  | medyan ömür 2061.0 | hasat/1K  11.31 | sansür 0/15 | 398.8 sn
+
+yazıldı: runs/s3d_nest.json

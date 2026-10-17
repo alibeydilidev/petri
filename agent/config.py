@@ -52,6 +52,12 @@ class AgentConfig:
     # decoder'a girmez, eskisi gibi hidden üzerinden akar). M-19 doğum
     # günü testi kapısından geçmek zorunda. Varsayılan "dense" bit-eş.
     decoder_type: str = "dense"
+    # S3-D / PL-22 (b): YUVA DÖNEMİ. Yaş < nest_turns iken metabolizma +
+    # eylem + sinyal maliyeti nest_factor ile çarpılır. Ajana bit gitmez
+    # (gözlem/loss/mimari değişmez; ekonomi parametresi — M-09 kaydı
+    # KERNEL_BUDGET S3-D notu). Varsayılan T=0 / f=1 bit-eş.
+    nest_turns: int = 0
+    nest_factor: float = 1.0
     # --- S1 öğrenme ---
     tbptt_window: int = 8       # truncated BPTT pencere uzunluğu
     energy_loss_weight: float = 10.0  # K-106: enerji boyutunun loss ağırlığı

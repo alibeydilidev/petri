@@ -1,0 +1,2120 @@
+{
+  "stage": "nest",
+  "max_turns": 3000,
+  "seeds": 3,
+  "world": {
+    "grid_size": 64,
+    "toroidal": true,
+    "resource_a_count": 24,
+    "resource_a_energy": 45.0,
+    "resource_a_drift_every": 200,
+    "resource_b_count": 3,
+    "resource_b_energy": 180.0,
+    "resource_b_min_agents": 2,
+    "resource_b_sync_window": 2,
+    "hazard_spawn_every": 500,
+    "hazard_drain_per_turn": 5.0,
+    "hazard_radius": 2,
+    "hazard_duration": 250,
+    "event_visibility_split": true,
+    "seed": 42,
+    "economy_version": 3,
+    "signal_range": 32,
+    "event_every": 0,
+    "event_lead": 8,
+    "event_duration": 1,
+    "event_penalty": 25.0,
+    "event_polarities": 4
+  },
+  "world_config_hash": "178ec5d0e61be2e3",
+  "agent_cfg": {
+    "obs_radius": 4,
+    "memory_dim": 128,
+    "learning_rate": 0.0005,
+    "channel_bits": 4,
+    "signal_energy_cost": 0.5,
+    "move_energy_cost": 1.0,
+    "interact_energy_cost": 1.0,
+    "base_metabolism": 0.6,
+    "max_energy": 100.0,
+    "mpc_horizon": 10,
+    "mpc_candidates": 64,
+    "mpc_epsilon": 0.1,
+    "mpc_cem_iters": 2,
+    "mpc_elites": 8,
+    "mpc_constant_candidates": true,
+    "mpc_macro_candidates": true,
+    "mpc_score_horizon": null,
+    "per_enabled": true,
+    "per_buffer_size": 2000,
+    "per_alpha": 0.6,
+    "per_batch": 4,
+    "per_stratify_prob": 0.3,
+    "per_spatial_weight": 4.0,
+    "eps_move_bias": 0.5,
+    "interoception": true,
+    "channel_open": true,
+    "decoder_type": "conv",
+    "nest_turns": 0,
+    "nest_factor": 1.0,
+    "tbptt_window": 8,
+    "energy_loss_weight": 10.0
+  },
+  "results": [
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 71.0,
+      "mean_lifetime": 72.3,
+      "min_lifetime": 66,
+      "max_lifetime": 98,
+      "censored": 0,
+      "harvests_total": 1,
+      "harvest_per_1k_agent_turns": 0.92,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "random5",
+      "nest": [
+        0,
+        1.0
+      ],
+      "rows": [
+        {
+          "arm": "random5",
+          "seed": 9100,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            66,
+            69,
+            72,
+            71,
+            98
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 376,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9101,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            71,
+            66,
+            69,
+            72,
+            76
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 354,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9102,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            69,
+            69,
+            74,
+            71,
+            72
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 355,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 50.0,
+      "mean_lifetime": 53.6,
+      "min_lifetime": 48,
+      "max_lifetime": 62,
+      "censored": 0,
+      "harvests_total": 0,
+      "harvest_per_1k_agent_turns": 0.0,
+      "signal_rate": 0.6007,
+      "b_openings_total": 0,
+      "seconds": 9.8,
+      "arm": "fresh5",
+      "nest": [
+        0,
+        1.0
+      ],
+      "rows": [
+        {
+          "arm": "fresh5",
+          "seed": 9100,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            50,
+            61,
+            51,
+            61,
+            49
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            45,
+            9,
+            51,
+            5,
+            46
+          ],
+          "agent_turns": 272,
+          "b_openings": 0,
+          "seconds": 3.3
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9101,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            61,
+            50,
+            62,
+            54,
+            49
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            5,
+            47,
+            4,
+            29,
+            47
+          ],
+          "agent_turns": 276,
+          "b_openings": 0,
+          "seconds": 3.4
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9102,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            48,
+            49,
+            48,
+            62,
+            49
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            47,
+            48,
+            47,
+            6,
+            47
+          ],
+          "agent_turns": 256,
+          "b_openings": 0,
+          "seconds": 3.1
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 83.0,
+      "mean_lifetime": 107.3,
+      "min_lifetime": 50,
+      "max_lifetime": 291,
+      "censored": 0,
+      "harvests_total": 28,
+      "harvest_per_1k_agent_turns": 17.4,
+      "signal_rate": 0.519,
+      "b_openings_total": 0,
+      "seconds": 20.3,
+      "arm": "clone5_learn",
+      "nest": [
+        0,
+        1.0
+      ],
+      "rows": [
+        {
+          "arm": "clone5_learn",
+          "seed": 9100,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            50,
+            54,
+            242,
+            54,
+            85
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            6,
+            0,
+            2
+          ],
+          "signals": [
+            44,
+            51,
+            111,
+            28,
+            49
+          ],
+          "agent_turns": 485,
+          "b_openings": 0,
+          "seconds": 6.1
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9101,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            291,
+            50,
+            58,
+            136,
+            124
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            9,
+            0,
+            0,
+            1,
+            4
+          ],
+          "signals": [
+            114,
+            47,
+            17,
+            30,
+            84
+          ],
+          "agent_turns": 659,
+          "b_openings": 0,
+          "seconds": 8.4
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9102,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            94,
+            75,
+            162,
+            83,
+            51
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            2,
+            1,
+            2,
+            1,
+            0
+          ],
+          "signals": [
+            90,
+            69,
+            29,
+            30,
+            42
+          ],
+          "agent_turns": 465,
+          "b_openings": 0,
+          "seconds": 5.8
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 140.0,
+      "mean_lifetime": 146.3,
+      "min_lifetime": 136,
+      "max_lifetime": 202,
+      "censored": 0,
+      "harvests_total": 2,
+      "harvest_per_1k_agent_turns": 0.91,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "random5",
+      "nest": [
+        600,
+        0.5
+      ],
+      "rows": [
+        {
+          "arm": "random5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            139,
+            141,
+            139,
+            142,
+            170
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 731,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            145,
+            136,
+            137,
+            140,
+            144
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 702,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            137,
+            202,
+            146,
+            138,
+            139
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 762,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 99.0,
+      "mean_lifetime": 106.5,
+      "min_lifetime": 96,
+      "max_lifetime": 123,
+      "censored": 0,
+      "harvests_total": 0,
+      "harvest_per_1k_agent_turns": 0.0,
+      "signal_rate": 0.6105,
+      "b_openings_total": 0,
+      "seconds": 19.7,
+      "arm": "fresh5",
+      "nest": [
+        600,
+        0.5
+      ],
+      "rows": [
+        {
+          "arm": "fresh5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            99,
+            121,
+            101,
+            123,
+            97
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            93,
+            19,
+            101,
+            9,
+            90
+          ],
+          "agent_turns": 541,
+          "b_openings": 0,
+          "seconds": 6.7
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            123,
+            98,
+            123,
+            107,
+            96
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            10,
+            96,
+            9,
+            60,
+            94
+          ],
+          "agent_turns": 547,
+          "b_openings": 0,
+          "seconds": 6.8
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            96,
+            98,
+            96,
+            122,
+            97
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            95,
+            96,
+            94,
+            14,
+            95
+          ],
+          "agent_turns": 509,
+          "b_openings": 0,
+          "seconds": 6.2
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 408.0,
+      "mean_lifetime": 398.4,
+      "min_lifetime": 145,
+      "max_lifetime": 613,
+      "censored": 0,
+      "harvests_total": 100,
+      "harvest_per_1k_agent_turns": 16.73,
+      "signal_rate": 0.5412,
+      "b_openings_total": 0,
+      "seconds": 79.0,
+      "arm": "clone5_learn",
+      "nest": [
+        600,
+        0.5
+      ],
+      "rows": [
+        {
+          "arm": "clone5_learn",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            145,
+            230,
+            235,
+            168,
+            425
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            3,
+            4,
+            2,
+            7
+          ],
+          "signals": [
+            51,
+            186,
+            174,
+            147,
+            161
+          ],
+          "agent_turns": 1203,
+          "b_openings": 0,
+          "seconds": 15.9
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            432,
+            578,
+            340,
+            558,
+            613
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            3,
+            8,
+            5,
+            9,
+            12
+          ],
+          "signals": [
+            103,
+            266,
+            114,
+            138,
+            264
+          ],
+          "agent_turns": 2521,
+          "b_openings": 0,
+          "seconds": 33.4
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.5
+          ],
+          "lifetimes": [
+            408,
+            605,
+            380,
+            314,
+            545
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            9,
+            15,
+            6,
+            5,
+            12
+          ],
+          "signals": [
+            365,
+            573,
+            162,
+            181,
+            349
+          ],
+          "agent_turns": 2252,
+          "b_openings": 0,
+          "seconds": 29.7
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 279.0,
+      "mean_lifetime": 287.7,
+      "min_lifetime": 274,
+      "max_lifetime": 387,
+      "censored": 0,
+      "harvests_total": 2,
+      "harvest_per_1k_agent_turns": 0.46,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "random5",
+      "nest": [
+        600,
+        0.25
+      ],
+      "rows": [
+        {
+          "arm": "random5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            276,
+            283,
+            277,
+            282,
+            310
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1428,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            279,
+            274,
+            276,
+            284,
+            280
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1393,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            275,
+            387,
+            284,
+            275,
+            274
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1495,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 199.0,
+      "mean_lifetime": 223.9,
+      "min_lifetime": 192,
+      "max_lifetime": 360,
+      "censored": 0,
+      "harvests_total": 2,
+      "harvest_per_1k_agent_turns": 0.6,
+      "signal_rate": 0.6246,
+      "b_openings_total": 0,
+      "seconds": 41.0,
+      "arm": "fresh5",
+      "nest": [
+        600,
+        0.25
+      ],
+      "rows": [
+        {
+          "arm": "fresh5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            198,
+            240,
+            199,
+            245,
+            195
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            184,
+            38,
+            197,
+            23,
+            181
+          ],
+          "agent_turns": 1077,
+          "b_openings": 0,
+          "seconds": 13.6
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            246,
+            194,
+            245,
+            219,
+            192
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            16,
+            189,
+            22,
+            108,
+            188
+          ],
+          "agent_turns": 1096,
+          "b_openings": 0,
+          "seconds": 13.9
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            360,
+            196,
+            193,
+            243,
+            194
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            2,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            357,
+            190,
+            187,
+            28,
+            190
+          ],
+          "agent_turns": 1186,
+          "b_openings": 0,
+          "seconds": 13.5
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 636.0,
+      "mean_lifetime": 620.3,
+      "min_lifetime": 226,
+      "max_lifetime": 712,
+      "censored": 0,
+      "harvests_total": 138,
+      "harvest_per_1k_agent_turns": 14.83,
+      "signal_rate": 0.7175,
+      "b_openings_total": 0,
+      "seconds": 109.7,
+      "arm": "clone5_learn",
+      "nest": [
+        600,
+        0.25
+      ],
+      "rows": [
+        {
+          "arm": "clone5_learn",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            636,
+            621,
+            697,
+            642,
+            603
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            12,
+            7,
+            12,
+            7,
+            8
+          ],
+          "signals": [
+            463,
+            477,
+            532,
+            403,
+            492
+          ],
+          "agent_turns": 3199,
+          "b_openings": 0,
+          "seconds": 37.4
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            698,
+            681,
+            645,
+            226,
+            604
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            5,
+            13,
+            12,
+            0,
+            9
+          ],
+          "signals": [
+            282,
+            560,
+            599,
+            180,
+            426
+          ],
+          "agent_turns": 2854,
+          "b_openings": 0,
+          "seconds": 33.3
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.25
+          ],
+          "lifetimes": [
+            712,
+            622,
+            633,
+            661,
+            624
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            14,
+            11,
+            10,
+            8,
+            10
+          ],
+          "signals": [
+            405,
+            574,
+            476,
+            337,
+            470
+          ],
+          "agent_turns": 3252,
+          "b_openings": 0,
+          "seconds": 39.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 611.0,
+      "mean_lifetime": 614.9,
+      "min_lifetime": 609,
+      "max_lifetime": 641,
+      "censored": 0,
+      "harvests_total": 4,
+      "harvest_per_1k_agent_turns": 0.43,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "random5",
+      "nest": [
+        600,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "random5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            610,
+            611,
+            610,
+            611,
+            612
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 3054,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            611,
+            610,
+            610,
+            611,
+            609
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 3051,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            609,
+            619,
+            641,
+            610,
+            639
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 3118,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 495.0,
+      "mean_lifetime": 537.1,
+      "min_lifetime": 481,
+      "max_lifetime": 620,
+      "censored": 0,
+      "harvests_total": 3,
+      "harvest_per_1k_agent_turns": 0.37,
+      "signal_rate": 0.6203,
+      "b_openings_total": 0,
+      "seconds": 96.1,
+      "arm": "fresh5",
+      "nest": [
+        600,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "fresh5",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            493,
+            599,
+            495,
+            601,
+            486
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            465,
+            96,
+            487,
+            63,
+            458
+          ],
+          "agent_turns": 2674,
+          "b_openings": 0,
+          "seconds": 31.6
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            602,
+            485,
+            572,
+            620,
+            481
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          "signals": [
+            51,
+            465,
+            67,
+            322,
+            471
+          ],
+          "agent_turns": 2760,
+          "b_openings": 0,
+          "seconds": 31.7
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            563,
+            487,
+            486,
+            601,
+            486
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            556,
+            479,
+            464,
+            77,
+            477
+          ],
+          "agent_turns": 2623,
+          "b_openings": 0,
+          "seconds": 32.8
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 677.0,
+      "mean_lifetime": 697.0,
+      "min_lifetime": 619,
+      "max_lifetime": 871,
+      "censored": 0,
+      "harvests_total": 134,
+      "harvest_per_1k_agent_turns": 12.82,
+      "signal_rate": 0.7451,
+      "b_openings_total": 0,
+      "seconds": 169.8,
+      "arm": "clone5_learn",
+      "nest": [
+        600,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "clone5_learn",
+          "seed": 9100,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            637,
+            705,
+            646,
+            711,
+            648
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            8,
+            9,
+            6,
+            12,
+            6
+          ],
+          "signals": [
+            578,
+            485,
+            453,
+            663,
+            469
+          ],
+          "agent_turns": 3347,
+          "b_openings": 0,
+          "seconds": 57.5
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9101,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            648,
+            871,
+            619,
+            677,
+            669
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            9,
+            16,
+            3,
+            9,
+            7
+          ],
+          "signals": [
+            336,
+            722,
+            544,
+            562,
+            465
+          ],
+          "agent_turns": 3484,
+          "b_openings": 0,
+          "seconds": 58.5
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9102,
+          "nest": [
+            600,
+            0.1
+          ],
+          "lifetimes": [
+            718,
+            674,
+            767,
+            750,
+            715
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            10,
+            11,
+            6,
+            9,
+            13
+          ],
+          "signals": [
+            674,
+            560,
+            299,
+            470,
+            510
+          ],
+          "agent_turns": 3624,
+          "b_openings": 0,
+          "seconds": 53.8
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 703.0,
+      "mean_lifetime": 768.8,
+      "min_lifetime": 686,
+      "max_lifetime": 1019,
+      "censored": 0,
+      "harvests_total": 5,
+      "harvest_per_1k_agent_turns": 0.43,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "random5",
+      "nest": [
+        2000,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "random5",
+          "seed": 9100,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            688,
+            705,
+            697,
+            703,
+            727
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 3520,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9101,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            1019,
+            700,
+            699,
+            704,
+            695
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 3817,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "random5",
+          "seed": 9102,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            686,
+            801,
+            1017,
+            692,
+            999
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            1,
+            1,
+            0,
+            1
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 4195,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 495.0,
+      "mean_lifetime": 550.7,
+      "min_lifetime": 481,
+      "max_lifetime": 799,
+      "censored": 0,
+      "harvests_total": 3,
+      "harvest_per_1k_agent_turns": 0.36,
+      "signal_rate": 0.6162,
+      "b_openings_total": 0,
+      "seconds": 92.3,
+      "arm": "fresh5",
+      "nest": [
+        2000,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "fresh5",
+          "seed": 9100,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            493,
+            599,
+            495,
+            609,
+            486
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            465,
+            96,
+            487,
+            64,
+            458
+          ],
+          "agent_turns": 2682,
+          "b_openings": 0,
+          "seconds": 31.7
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9101,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            612,
+            485,
+            572,
+            799,
+            481
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          "signals": [
+            52,
+            465,
+            67,
+            412,
+            471
+          ],
+          "agent_turns": 2949,
+          "b_openings": 0,
+          "seconds": 32.1
+        },
+        {
+          "arm": "fresh5",
+          "seed": 9102,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            563,
+            487,
+            486,
+            607,
+            486
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            1,
+            0,
+            0,
+            0,
+            0
+          ],
+          "signals": [
+            556,
+            479,
+            464,
+            77,
+            477
+          ],
+          "agent_turns": 2629,
+          "b_openings": 0,
+          "seconds": 28.5
+        }
+      ]
+    },
+    {
+      "n_agents_total": 15,
+      "median_lifetime": 2061.0,
+      "mean_lifetime": 1986.9,
+      "min_lifetime": 781,
+      "max_lifetime": 2129,
+      "censored": 0,
+      "harvests_total": 337,
+      "harvest_per_1k_agent_turns": 11.31,
+      "signal_rate": 0.7546,
+      "b_openings_total": 0,
+      "seconds": 398.8,
+      "arm": "clone5_learn",
+      "nest": [
+        2000,
+        0.1
+      ],
+      "rows": [
+        {
+          "arm": "clone5_learn",
+          "seed": 9100,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            2047,
+            2084,
+            2048,
+            2129,
+            2119
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            21,
+            25,
+            22,
+            25,
+            27
+          ],
+          "signals": [
+            1746,
+            1406,
+            1598,
+            1955,
+            1470
+          ],
+          "agent_turns": 10427,
+          "b_openings": 0,
+          "seconds": 123.5
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9101,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            2074,
+            2023,
+            781,
+            2086,
+            2043
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            24,
+            30,
+            3,
+            24,
+            24
+          ],
+          "signals": [
+            1387,
+            1707,
+            702,
+            1521,
+            1620
+          ],
+          "agent_turns": 9007,
+          "b_openings": 0,
+          "seconds": 137.5
+        },
+        {
+          "arm": "clone5_learn",
+          "seed": 9102,
+          "nest": [
+            2000,
+            0.1
+          ],
+          "lifetimes": [
+            2051,
+            2047,
+            2100,
+            2061,
+            2110
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            20,
+            28,
+            17,
+            22,
+            25
+          ],
+          "signals": [
+            1662,
+            1778,
+            1043,
+            1494,
+            1400
+          ],
+          "agent_turns": 10369,
+          "b_openings": 0,
+          "seconds": 137.8
+        }
+      ]
+    }
+  ]
+}

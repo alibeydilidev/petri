@@ -1,0 +1,415 @@
+{
+  "stage": "capacity",
+  "max_turns": 3000,
+  "seeds": 5,
+  "world": {
+    "grid_size": 64,
+    "toroidal": true,
+    "resource_a_count": 24,
+    "resource_a_energy": 45.0,
+    "resource_a_drift_every": 200,
+    "resource_b_count": 3,
+    "resource_b_energy": 180.0,
+    "resource_b_min_agents": 2,
+    "resource_b_sync_window": 2,
+    "hazard_spawn_every": 500,
+    "hazard_drain_per_turn": 5.0,
+    "hazard_radius": 2,
+    "hazard_duration": 250,
+    "event_visibility_split": true,
+    "seed": 42,
+    "economy_version": 3,
+    "signal_range": 32,
+    "event_every": 0,
+    "event_lead": 8,
+    "event_duration": 1,
+    "event_penalty": 25.0,
+    "event_polarities": 4
+  },
+  "world_config_hash": "178ec5d0e61be2e3",
+  "agent_cfg": {
+    "obs_radius": 4,
+    "memory_dim": 128,
+    "learning_rate": 0.0005,
+    "channel_bits": 4,
+    "signal_energy_cost": 0.5,
+    "move_energy_cost": 1.0,
+    "interact_energy_cost": 1.0,
+    "base_metabolism": 0.6,
+    "max_energy": 100.0,
+    "mpc_horizon": 10,
+    "mpc_candidates": 64,
+    "mpc_epsilon": 0.1,
+    "mpc_cem_iters": 2,
+    "mpc_elites": 8,
+    "mpc_constant_candidates": true,
+    "mpc_macro_candidates": true,
+    "mpc_score_horizon": null,
+    "per_enabled": true,
+    "per_buffer_size": 2000,
+    "per_alpha": 0.6,
+    "per_batch": 4,
+    "per_stratify_prob": 0.3,
+    "per_spatial_weight": 4.0,
+    "eps_move_bias": 0.5,
+    "interoception": true,
+    "channel_open": true,
+    "decoder_type": "conv",
+    "nest_turns": 0,
+    "nest_factor": 1.0,
+    "tbptt_window": 8,
+    "energy_loss_weight": 10.0
+  },
+  "results": [
+    {
+      "n_agents_total": 5,
+      "median_lifetime": 184.0,
+      "mean_lifetime": 224.8,
+      "min_lifetime": 63,
+      "max_lifetime": 557,
+      "censored": 0,
+      "harvests_total": 46,
+      "harvest_per_1k_agent_turns": 40.93,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.0,
+      "arm": "oracle1",
+      "nest": [
+        0,
+        1.0
+      ],
+      "rows": [
+        {
+          "arm": "oracle1",
+          "seed": 9100,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            241
+          ],
+          "censored": [
+            false
+          ],
+          "harvests": [
+            8
+          ],
+          "signals": [
+            0
+          ],
+          "agent_turns": 241,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle1",
+          "seed": 9101,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            184
+          ],
+          "censored": [
+            false
+          ],
+          "harvests": [
+            8
+          ],
+          "signals": [
+            0
+          ],
+          "agent_turns": 184,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle1",
+          "seed": 9102,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            557
+          ],
+          "censored": [
+            false
+          ],
+          "harvests": [
+            29
+          ],
+          "signals": [
+            0
+          ],
+          "agent_turns": 557,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle1",
+          "seed": 9103,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            63
+          ],
+          "censored": [
+            false
+          ],
+          "harvests": [
+            0
+          ],
+          "signals": [
+            0
+          ],
+          "agent_turns": 63,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle1",
+          "seed": 9104,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            79
+          ],
+          "censored": [
+            false
+          ],
+          "harvests": [
+            1
+          ],
+          "signals": [
+            0
+          ],
+          "agent_turns": 79,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    },
+    {
+      "n_agents_total": 25,
+      "median_lifetime": 214.0,
+      "mean_lifetime": 307.1,
+      "min_lifetime": 63,
+      "max_lifetime": 832,
+      "censored": 0,
+      "harvests_total": 397,
+      "harvest_per_1k_agent_turns": 51.71,
+      "signal_rate": 0.0,
+      "b_openings_total": 0,
+      "seconds": 0.1,
+      "arm": "oracle5",
+      "nest": [
+        0,
+        1.0
+      ],
+      "rows": [
+        {
+          "arm": "oracle5",
+          "seed": 9100,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            185,
+            109,
+            541,
+            490,
+            353
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            8,
+            2,
+            27,
+            31,
+            21
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1678,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle5",
+          "seed": 9101,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            571,
+            537,
+            557,
+            127,
+            832
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            42,
+            23,
+            24,
+            3,
+            50
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 2624,
+          "b_openings": 0,
+          "seconds": 0.1
+        },
+        {
+          "arm": "oracle5",
+          "seed": 9102,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            63,
+            153,
+            143,
+            137,
+            565
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            0,
+            4,
+            6,
+            4,
+            29
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1061,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle5",
+          "seed": 9103,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            91,
+            63,
+            489,
+            597,
+            412
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            1,
+            0,
+            32,
+            38,
+            27
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 1652,
+          "b_openings": 0,
+          "seconds": 0.0
+        },
+        {
+          "arm": "oracle5",
+          "seed": 9104,
+          "nest": [
+            0,
+            1.0
+          ],
+          "lifetimes": [
+            85,
+            63,
+            238,
+            214,
+            63
+          ],
+          "censored": [
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "harvests": [
+            2,
+            0,
+            13,
+            10,
+            0
+          ],
+          "signals": [
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "agent_turns": 663,
+          "b_openings": 0,
+          "seconds": 0.0
+        }
+      ]
+    }
+  ]
+}

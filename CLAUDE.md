@@ -69,10 +69,15 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
 - **PL-28 KAPALI (Ali): `signal_range` 8 → 32 = KÜRESEL.** Sembolün
   taşıyabildiği tek şey KİMLİĞİ. İtiraz testi: küresel menzil S3-B'nin
   ÇATAL C'sini değiştirmiyor (kanalsız `vision` hâlâ önde).
-- **SIRADAKİ ADIM:** S3-C'yi öğrenen ajanlarla koşmak — gözlem boyutu
-  değişmedi ama fizik değişti; MPC'nin sinyali eyleme çevirmesi
-  gerekiyor. Ondan önce PL-22 (ekoloji çerçevesi: seçilim / yuva /
-  klon taban) kararı gerekli: ömür 52 turken hiçbir şey öğrenilemez.
+- **PL-22 KARAR (Ali, 2026-10-18): (c) 5× seed-3 klon taban + (b) yuva
+  dönemi; seçilim (a) sonra.** S3-D nüfus oracle'ı (`training/pop_oracle.py`,
+  FINDINGS S3-D): kapasite ✓, klon taban ✓ (118 tur), **kanal klonu
+  boğuyor** (açılınca 78; dondurulmuş klon %77 sinyal yayıyor) → 52
+  turluk ömrün birincil kaynağı kanal maliyeti. Yuva (600, f=0.5) →
+  408 tur, hasat korunur; f≤0.25 yuva-sonu uçurumu (PL-29).
+- **SIRADAKİ ADIM:** Ali'den yuva ayarı + kanal stratejisi onayı (PL-22
+  bekleyen), sonra PL-30: S3-C olay görevini klon+yuva ekolojisiyle
+  koşmak (ön-kayıt önce).
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

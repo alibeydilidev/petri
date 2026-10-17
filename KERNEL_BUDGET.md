@@ -111,6 +111,30 @@ KAPALI, bit-eş), `event_lead=8`, `event_duration=1`, `event_penalty=25`,
   aktif olduğunu bilir (M-06: tek değişken HANGİ eylem). Bu kollar
   öğrenilmiş bir dilin TAVANINI ölçer, tipik başarımını değil.
 
+## S3-D notu — PL-22 çerçevesi: klon taban + yuva dönemi (ajan-tarafı 0 bit; M-09)
+Ali kararı (2026-10-18): önce (c) 5× seed-3 klon taban + (b) yuva
+dönemi; seçilim (a) sonra, ayrı değişken. Deftere BİT satırı açılmaz,
+ama üç deneyci kararı M-09 gereği kayda geçer:
+- **Yuva dönemi (b):** `AgentConfig.nest_turns` / `nest_factor`
+  (`agent/homeostasis.py`). Yaş < T iken ajanın KENDİ maliyetleri
+  (metabolizma + eylem + sinyal) f ile çarpılır; dünyadan gelen delta
+  (hasat/tehlike) değişmez. Gözlem, loss, mimari, başlatma değişmez →
+  içerik 0 bit. Ama ekonomi kararıdır: "genç ajan ucuz yaşar" bir
+  gelişim koruması emsalidir (ekolojik: yavru bakımı). Varsayılan
+  T=0/f=1 bit-eş (`tests/test_pop_oracle.py::test_nest_defaults_bit_identical`).
+  Analitik sınır beyanlı: f>0 iken hasatsız ajan 100/(f·1.6) tur yaşar;
+  yuva sıfırdan öğrenme penceresi (~45K tur) AÇAMAZ.
+- **Klon taban (c):** kurucu kadronun 5 slotu da seed-3 transplantı
+  (A2 mimarisi); roster heterojenliği (doküman 4.3) ERTELENDİ (PL-20
+  alternatifi fiilen seçildi). Bu, ekolojiye öğrenilmiş bir başlangıç
+  noktası vermektir — ajan-içi prior değil, nüfus-tarihi kararıdır;
+  bit sayılmaz, ama "sıfırdan ekoloji" iddiası artık yapılamaz (beyan).
+- **Nüfus oracle'ı** (`training/pop_oracle.py`): ölçüm aleti, ajan
+  değil; klon kolları gerçek seed-3 ağırlıklarını ÖLÇÜM NESNESİ olarak
+  koşar (hediye yok). `MutePlanner` eylem-only planlama yalnız oracle
+  içindir (kanal farkını izole eder, M-06). Ölü beden hayalet olarak
+  görünür (halefsiz oracle sınırı, b_oracle emsali).
+
 ## S3-B notu — koordinasyon oracle'ı (ajan-tarafı 0 bit; M-09 gereği kayıt)
 `training/b_oracle.py` ajana HİÇBİR ŞEY vermez (ajan kodu değil, ölçüm
 aletidir — `training/oracle.py` emsali) → deftere bit satırı açılmaz.
