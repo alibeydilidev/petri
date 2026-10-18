@@ -1,0 +1,160 @@
+{
+  "known_negative_seed3": {
+    "n_contexts": 64,
+    "spread_mean": 0.00352,
+    "spread_p90": 0.00467,
+    "own_align_rate": 0.438,
+    "safe_gap_mean": 0.00687,
+    "mean_dE": -8e-05
+  },
+  "runs/s3k/KA_s3001/final_weights.pt:A0": {
+    "n_contexts": 64,
+    "spread_mean": 0.03613,
+    "spread_p90": 0.04616,
+    "own_align_rate": 0.375,
+    "safe_gap_mean": 0.00868,
+    "mean_dE": -0.07946,
+    "id": "A0.g2408",
+    "gen": 2408
+  },
+  "runs/s3k/KA_s3001/final_weights.pt:A1": {
+    "n_contexts": 64,
+    "spread_mean": 0.02446,
+    "spread_p90": 0.0333,
+    "own_align_rate": 0.484,
+    "safe_gap_mean": 0.00437,
+    "mean_dE": -0.18425,
+    "id": "A1.g2456",
+    "gen": 2456
+  },
+  "runs/s3k/KA_s3001/final_weights.pt:A2": {
+    "n_contexts": 64,
+    "spread_mean": 0.04461,
+    "spread_p90": 0.05063,
+    "own_align_rate": 0.391,
+    "safe_gap_mean": -0.0002,
+    "mean_dE": -0.06997,
+    "id": "A2.g2519",
+    "gen": 2519
+  },
+  "runs/s3k/KA_s3001/final_weights.pt:A3": {
+    "n_contexts": 64,
+    "spread_mean": 0.08164,
+    "spread_p90": 0.09046,
+    "own_align_rate": 0.672,
+    "safe_gap_mean": 0.01611,
+    "mean_dE": -0.15502,
+    "id": "A3.g2516",
+    "gen": 2516
+  },
+  "runs/s3k/KA_s3001/final_weights.pt:A4": {
+    "n_contexts": 64,
+    "spread_mean": 0.04253,
+    "spread_p90": 0.05831,
+    "own_align_rate": 0.734,
+    "safe_gap_mean": 0.00738,
+    "mean_dE": -0.07557,
+    "id": "A4.g2331",
+    "gen": 2331
+  },
+  "runs/s3k/KK_s3001/final_weights.pt:A0": {
+    "n_contexts": 64,
+    "spread_mean": 0.08651,
+    "spread_p90": 0.11036,
+    "own_align_rate": 0.641,
+    "safe_gap_mean": 0.02794,
+    "mean_dE": -0.09619,
+    "id": "A0.g2150",
+    "gen": 2150
+  },
+  "runs/s3k/KK_s3001/final_weights.pt:A1": {
+    "n_contexts": 64,
+    "spread_mean": 0.05505,
+    "spread_p90": 0.06588,
+    "own_align_rate": 0.125,
+    "safe_gap_mean": 0.00357,
+    "mean_dE": 0.00416,
+    "id": "A1.g2209",
+    "gen": 2209
+  },
+  "runs/s3k/KK_s3001/final_weights.pt:A2": {
+    "n_contexts": 64,
+    "spread_mean": 0.04423,
+    "spread_p90": 0.05053,
+    "own_align_rate": 0.766,
+    "safe_gap_mean": 0.01693,
+    "mean_dE": -0.00332,
+    "id": "A2.g2097",
+    "gen": 2097
+  },
+  "runs/s3k/KK_s3001/final_weights.pt:A3": {
+    "n_contexts": 64,
+    "spread_mean": 0.04713,
+    "spread_p90": 0.05762,
+    "own_align_rate": 0.797,
+    "safe_gap_mean": 0.01946,
+    "mean_dE": -0.05055,
+    "id": "A3.g2144",
+    "gen": 2144
+  },
+  "runs/s3k/KK_s3001/final_weights.pt:A4": {
+    "n_contexts": 64,
+    "spread_mean": 0.04344,
+    "spread_p90": 0.06386,
+    "own_align_rate": 0.703,
+    "safe_gap_mean": 0.0118,
+    "mean_dE": -0.00045,
+    "id": "A4.g2078",
+    "gen": 2078
+  },
+  "runs/s3k/KK_s3002/final_weights.pt:A0": {
+    "n_contexts": 64,
+    "spread_mean": 0.03606,
+    "spread_p90": 0.04771,
+    "own_align_rate": 0.516,
+    "safe_gap_mean": 0.01509,
+    "mean_dE": -0.00659,
+    "id": "A0.g2012",
+    "gen": 2012
+  },
+  "runs/s3k/KK_s3002/final_weights.pt:A1": {
+    "n_contexts": 64,
+    "spread_mean": 0.06124,
+    "spread_p90": 0.06684,
+    "own_align_rate": 0.797,
+    "safe_gap_mean": 0.01585,
+    "mean_dE": -0.02388,
+    "id": "A1.g2156",
+    "gen": 2156
+  },
+  "runs/s3k/KK_s3002/final_weights.pt:A2": {
+    "n_contexts": 64,
+    "spread_mean": 0.02832,
+    "spread_p90": 0.03522,
+    "own_align_rate": 0.594,
+    "safe_gap_mean": 0.00969,
+    "mean_dE": -0.02363,
+    "id": "A2.g2123",
+    "gen": 2123
+  },
+  "runs/s3k/KK_s3002/final_weights.pt:A3": {
+    "n_contexts": 64,
+    "spread_mean": 0.057,
+    "spread_p90": 0.06791,
+    "own_align_rate": 0.219,
+    "safe_gap_mean": 0.01201,
+    "mean_dE": -0.01648,
+    "id": "A3.g2151",
+    "gen": 2151
+  },
+  "runs/s3k/KK_s3002/final_weights.pt:A4": {
+    "n_contexts": 64,
+    "spread_mean": 0.03617,
+    "spread_p90": 0.0536,
+    "own_align_rate": 0.438,
+    "safe_gap_mean": 0.0066,
+    "mean_dE": -0.00105,
+    "id": "A4.g2148",
+    "gen": 2148
+  }
+}

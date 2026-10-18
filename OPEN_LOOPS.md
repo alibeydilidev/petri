@@ -232,6 +232,26 @@
   onaylandı; oto karar + push yetkisi. **S3-E SONUCU:** ekoloji 138 tur
   (çıta 300 ✗), dil doğmadı (MI 0.001 bit), kanal net zarar (61 vs 83).
   Drift baskın → PL-31 σ merdiveni (S3-F) koşuluyor.
+- **PL-32 — Kanal neden öğrenmeyi yavaşlatıyor? (AÇIK, S3-L koşuluyor):**
+  S3-K: kanal açıkken kendi-ipucu öğrenmesi 100K'da başlamıyor (0.24
+  düz) — kapalıyken 0.31 ↑. Üç aday mekanizma: planlayıcı aday
+  seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
+  maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
+  (konuş, duyma). 0 bit.
+- **PL-33 — Tuzağın eksik dişlisi: göndericiye dönen fayda (AÇIK,
+  anayasal tasarım, Ali/Claude):** sinyalin bireysel beklenen değeri
+  ≤ 0 (küresel olay, kişisel ceza, kimliksiz kanal, akrabalık yok) →
+  hiçbir öğrenen sistem sinyal seçmez. Seçenekler: (a) soy düzeyinde
+  seçilim ("paylaşan soy çoğalır": halef, en çok hayatta kalan SOYDAN
+  değil, hayatta kalma + ortak isabet puanı yüksek soydan — ödül değil
+  demografi, ama tasarım kararı), (b) olay cezasının kısmen paylaşılması
+  (görev değişir), (c) tekrarlanan eş / yerel kanal (PL-28'i geri alır).
+  M-28 ders adayı (FINDINGS S3 kapanış).
+- **PL-30 — (KAPALI, S3-E…K koşuldu):** olay görevi klon+yuva
+  ekolojisiyle 15 koşum; hükümler FINDINGS S3 KAPANIŞ.
+- **PL-22 — (KAPALI, 2026-10-19):** çerçeve (c)+(b)+σ=0.002 ekoloji
+  kararlı (266 tur, olaysız); seçilim (a) 20K'da etkisiz (S3-H);
+  soy-düzeyi seçilim PL-33'e devredildi.
 - **PL-31 — Halef mutasyonu σ (DP-01b dozu) (AÇIK, S3-F koşuluyor):**
   S3-E: σ=0.01 ile klon yetkinliği ~65. nesilde eriyor (ömür 185→138,
   hasat 7.4→2.8/1K); kanal/olay kolları bunun üstüne biniyor. S3-F

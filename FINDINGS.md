@@ -2288,3 +2288,127 @@ alıcının duyduğu sembolü kendi enerji tahminine bağlaması gerekir —
 **M-25 kaçış yolları:** hep-STAY (%25 → şimdi ölçülüyor: STAY payı);
 "öl ve yuvaya dön" (PL-29: ölüm sayısı raporlanır); sinyalin
 maliyetsizleşmesi yok (0.5, yuva yarıya indirir, beyanlı).
+
+## S3-K — SONUÇLAR: **kanal-kapalı ekoloji kendi ipucunu öğreniyor; kanal öğrenmeyi yavaşlatıyor; dil doğmadı** (2026-10-19, sabah)
+
+Veri: `runs/s3k/{KA,KK}_s300{1,2,3}/breath.json` (100K tur), özet
+`runs/s3k/summary.json`, prob `runs/s3k/probe_k.json`.
+
+| kol | medyan ömür | isabet 0-20K → 40-60K → **80-100K** | kendi-ipucu (kümülatif) | STAY | hasat/1K | sinyal | ölüm/100K |
+|---|---|---|---|---|---|---|---|
+| **K-K** kanal kapalı | 42 | 0.22 → 0.26 → **0.30 / 0.31 / 0.31** | 0.51-0.54 | 0.30 | 5.7-6.2 | 0 | ~10.6K |
+| **K-A** kanal açık | 40 | 0.22 → 0.24 → **0.24 / 0.24 / 0.25** | 0.47-0.48 | 0.21-0.28 | 3.6-4.5 | 0.72-0.81 | ~12.1K |
+
+- **K1 (kendi-ipucu ekolojide): harfen ✗, yönde ✓.** Kanal-kapalı
+  ekolojide isabet 3/3 seed'de tekdüze yükseliyor (0.22 → 0.31; şans
+  ~0.22, tavan 0.50); kümülatif kendi-ipucu 0.53 (başlangıç 0.45 →
+  son pencere tahmini ~0.6; pencere sayacı enstrümanda yoktu — eklendi).
+  Çıta (0.70 / 0.40) 100K'da ulaşılmadı; okulun 0.86/0.44'üne ekoloji
+  ~3× daha yavaş gidiyor (ölüm her ~42 turda hidden/PER sıfırlar, 5
+  rakip, σ=0.002). **Ekoloji öğreniyor; yalnız yavaş.**
+- **K2 ✗ (ters yönde):** K-A isabeti K-K'nın 0.06 ALTINDA; kanal
+  açıkken kendi-ipucu öğrenmesi 100K boyunca başlamıyor (0.24 düz).
+- **K3 ✗:** I(ipucu;sembol) 0.0003-0.0005 bit (p=0: n≈300K sinyal;
+  etki gürültü tabanının altında), H(sembol) 3.98-3.99/4. Uyarı
+  penceresinde sinyal oranı (0.72-0.82) genel oranla aynı. **Konuşan
+  yok.**
+- **K4 ölçülemez:** duyma payı 1.0 (M-03; "duymadı" kümesi 2-3 olay).
+- **K5 ✓ harfen (40 ≥ 0.9×42), ✗ ruhen:** hasat %30 düşük, ölüm %14
+  fazla; kanal net maliyet.
+- **Prob (K-K soyları):** güvenli-eylem farkı 0.012-0.028 (ikiz p95
+  0.006; çıta 0.02'yi 4/10 çekirdek geçiyor), hiza 0.6-0.8 çoğunlukta.
+  K-A: karışık (0.38-0.73), fark 0.00-0.016. Okul deseniyle tutarlı.
+
+**Mekanizma (kanal neden öğrenmeyi yavaşlatıyor; hipotez, ölçülmedi):**
+(i) ortak planlama 64 adayı eylem×sinyal uzayına (6×17) yayıyor →
+eylem araması seyreliyor (K-111'in tersi), (ii) alınan 16 + efferens
+17 boyutluk anlamsız girdi, enerji tahmininin ipucu hücrelerine
+odaklanmasını zorlaştırıyor (gürültü), (iii) sinyal maliyeti ömrü
+kısaltıp öğrenme penceresini daraltıyor. Ayırt edici deney: "yalnız
+duy" (sinyal gönderimi kapalı, alım açık) ve "yalnız konuş" kolları
+(S3-L, ön-kayıt aşağıda — koşulmadı).
+
+**Öngörü karnesi:** K1 ✓ (0.7) → harfen yanlış, yönde doğru; K2 ✗
+doğru (ve ters yön sürpriz); K3 0.01-0.03 bit → gerçek 0.0003
+(daha da düşük); K4 ölçülemez doğru; K5 ✗ beklenirken harfen geçti.
+
+**Yeni ders var mı?** YOK (kapsıyor): M-27 + M-21. Kanal-açık kolun
+öğrenmeyi yavaşlatması S3-D/E'de ölçülen "kanal boğuyor" bulgusunun
+öğrenme-hızı yüzü.
+
+---
+
+# S3 KAPANIŞ RAPORU (2026-10-19)
+
+## Hükümler (H1-H4) — kanıtla
+
+| H | Hipotez | Hüküm | Kanıt | Etiket |
+|---|---|---|---|---|
+| **H1** | Ölümlü + eyleyen tahmin makinesi öz-model geliştirir | **Karışık, çoğunlukla NEGATİF** | Uzamsal yol entegrasyonu: negatif/karıştırılmış (S2, PL-13; hareketsiz rejim M-03). Tek-adım öz-hareket: yerellik iskelesiyle KAZANILDI (S2.10, K-113, M-19 geçti). İnteroseptif öz-enerji: varyans-eşleşmiş kontrolde DÜŞTÜ (S2.10-ek, PL-15). | Negatif (yol entegrasyonu), kazanılmış (öz-hareket, iskeleli), düşmüş (öz-enerji) |
+| **H2** | Opaklık + koordinasyon → karşılıklı modelleme | **TEST EDİLMEDİ** | Ön koşul (iletişimin doğması) sağlanmadı; P2 probu açılmadı (M-07: P1 pozitif kontrolü yok). | Açık |
+| **H3** | Kısıtlı kanal sinyali içselleştirir | **TEST EDİLEMEDİ → ön koşul NEGATİF** | İçselleştirilecek bir sinyal kullanımı doğmadı (S3-E…K). | Ön koşul negatif |
+| **H4** | Asimetrik bilgi + kanal kıtlığı proto-gramer doğurur | **NEGATİF (bu koşullarda, 100K tur)** | Tuzak kuruldu ve oracle'dan geçti (S3-C). Öğrenen ekolojide: ajanlar kendi ipucunu öğreniyor (okul 0.86; ekoloji 100K'da 0.31 isabet ↑), ama kanal ipucu bilgisi TAŞIMIYOR (MI ≤ 0.0005 bit, 15 koşum), kanal açıkken öğrenme YAVAŞLIYOR, kanal net maliyet. Sembol entropisi tavanda. | Negatif, mekanizmalı |
+| **H0** | Her şey reaktif hesaplama | **Çürütülmedi** | Hiçbir pozitif bulgu Beş Kapı'dan geçmedi. Tek aday gözlem: iç modelde eylem-koşullu ipucu izi (S3-H, 1/3 soy; M-04 geçti, tekrar ✗). | Ayakta |
+
+## Ne öğrendik (mekanizma zinciri, geceden)
+1. **Drift öğrenmeyi siliyordu** (σ=0.01, 65. nesil) → σ=0.002 ile
+   ekoloji ilk kez kararlı (138 → 266 tur). [S3-E/F, M-26]
+2. **Yuva ömrü uzatır, yeterlilik kurmaz**; f≤0.25 uçurum. [S3-D]
+3. **Kanal, eğitilmemiş klonu boğar** (%77 rastgele sinyal, maliyet +
+   gürültü): 118 → 78 tur. [S3-D]
+4. **Model öncüyü görüyor** (ΔE cezayla ölçekli, 30/30 çekirdek) ama
+   başta eyleme bağlamıyor. [S3-G prob]
+5. **Tek ajan kendi ipucunu ÖĞRENİYOR** (6/6, 0.86), λ revizyonu gerekmez;
+   darboğaz ekolojik: deneyim × ölüm × gürültü. [S3-J, M-27]
+6. **Kanal-kapalı ekoloji de öğreniyor** (yavaş); **kanal açıkken
+   öğrenemiyor**. Kanal şu hâliyle iletişim aracı değil, gürültü +
+   maliyet. [S3-K]
+Doz (ceza), zamanlama (lead), seçilim (20K), sıklık: tek başına hiçbiri
+davranışı değiştirmedi. [S3-G/H/I]
+
+## Neden dil doğmadı (dürüst teşhis)
+Kanalın kullanılması için alıcının "duyduğum sembol ⇒ enerjim" zincirini,
+göndericinin "ipucum ⇒ sembolüm ⇒ (başkasının eylemi ⇒) benim enerjim"
+zincirini öğrenmesi gerekir. İkincisi DOLAYLIDIR: göndericinin sinyali
+kendi enerjisini doğrudan etkilemez (küresel olay, kişisel ceza); fayda
+ancak karşılıklılıkla döner. Ödül yok, akrabalık yok, tekrarlanan eş
+yok (küresel kanal, kimliksiz). Bu koşullarda sinyal göndermenin
+bireysel beklenen değeri ≤ 0 → MPC sinyalden kaçınır (tutarlı modelde
+0.35'e düşen sinyal oranı tam bunu gösterdi). **Tuzağın eksik dişlisi:
+göndericiye dönen fayda.** Alarm çağrısının ekolojik emsali akrabalık
+seçilimi/karşılıklılıkla çalışır; burada ikisi de yok. Bu, anayasal
+bir tasarım sorusudur (seçilim (a) soy düzeyinde bunu sağlayabilir:
+paylaşan soylar daha çok çoğalır).
+
+## Ali adına verilen kararlar (18-19 Ekim gecesi; her biri defterde)
+| karar | nerede | bit |
+|---|---|---|
+| Yuva (600, 0.5), kanal açık | PL-22, KERNEL S3-D | 0 |
+| σ=0.002 ekoloji varsayılanı | PL-31 | 0 (DP-01b dozu) |
+| event_lead/every/penalty/selection parametrik, koşuldu | S3-G/H/I ön-kayıtlar | 0 (dünya-tarafı) |
+| λ_enerji revizyonu YAPILMADI (okul gereksiz gösterdi) | S3-J | 0 |
+| Anayasal adım (öncü kanalı) ATILMADI | S3-I/J | 0 |
+**Toplam yeni prior: 0 bit.** KERNEL_BUDGET değişmedi.
+
+## Beş Kapı durumu (pozitif iddia yok)
+Tek aday gözlem (iç modelde eylem-koşullu ipucu izi): M-04 ikiz ✓,
+tekrar ✗ (1/3 soy; S3-K'da K-K soylarında daha yaygın ama n=2 seed
+probe), zaman çizgisi ✗ (ağırlık anlık kaydı yok), nakit ✗ (davranış
+0.31/0.5), bütçe ✓ (0 bit). **İDDİA yok.**
+
+## Sıradaki merdiven (öneri; Ali kararı)
+- **S3-L (0 bit, ayırt edici):** "yalnız duy" / "yalnız konuş" kolları —
+  kanalın öğrenmeyi neden yavaşlattığını ayırır (planlayıcı seyrelmesi
+  mi, girdi gürültüsü mü, maliyet mi).
+- **S3-M (0 bit, uzun):** K-K 300K+ → kendi-ipucu tavanına (0.5) ulaşma;
+  sonra kanal AÇILIR (kademeli: PL-08 emsali) — tavandaki ajan için
+  başkasının biti tek kazanç yolu.
+- **S3-N (anayasal, seçilim (a) soy düzeyi):** "paylaşan soy çoğalır"
+  — göndericiye dönen faydayı nüfus dinamiğiyle yaratmak; ödül değil,
+  demografi. Deneyin ruhuna en yakın anayasal adım.
+- Sonra H2/P2.
+
+## Yeni ders var mı?
+M-26, M-27 işlendi. Ek aday: **"Tuzağın geri dönüş yolunu kur"** —
+sinyalin göndericiye beklenen değeri hesaplanmadan (M-25'in gelir
+tarafı) kanal basıncı doğmaz. S3-N kararıyla birlikte M-28 olur.

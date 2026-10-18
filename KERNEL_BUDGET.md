@@ -135,6 +135,24 @@ ama üç deneyci kararı M-09 gereği kayda geçer:
   içindir (kanal farkını izole eder, M-06). Ölü beden hayalet olarak
   görünür (halefsiz oracle sınırı, b_oracle emsali).
 
+## S3-E…K notu — gece koşumları (ajan-tarafı 0 bit; M-09 deneyci kararları, 2026-10-18/19)
+Ali yetki devriyle Claude'un verdiği kararlar; hiçbiri ajana bit yazmaz,
+hepsi dünya/nüfus parametresidir ve FINDINGS ön-kayıtlarında beyanlıdır:
+- **σ=0.002** halef mutasyonu (PL-31; DP-01b dozu). Drift öğrenmeyi
+  siliyordu (M-26). "Ölüm gerçek" bedene/yaşantıya, yapıya değil.
+- **Yuva (600, 0.5)** her nesilde (PL-29 riski kayıtlı).
+- **Olay zamanlaması** `event_every` 30→10, `event_lead` 8→4/2, ceza
+  25/10/8: dünya-tarafı kalibrasyon, ajana söylenmez.
+- **Seçilim `max_age`** (S3-H): nüfus kuralı; 20K'da etkisiz.
+- **Olay okulu** (S3-J): tek-ajan tavan ölçümü, yetiştirme kabı rejimi
+  (PL-06 emsali); ekoloji iddiası değil.
+- **K-106 revizyonu (λ 10→30) DENENDİ ve GERİ ÇEKİLDİ** (okulda fark
+  yok) → defter değişmedi.
+- **Anayasal basamak (PL-27 a: ayrı öncü kanalı) ATILMADI**: okul,
+  mevcut kodlamanın öğrenilebilir olduğunu gösterdi.
+Gözlemci enstrümanları (`analyze_s3e.py`, `precursor_probe.py`,
+`event_school.py`) ajana gitmez.
+
 ## S3-B notu — koordinasyon oracle'ı (ajan-tarafı 0 bit; M-09 gereği kayıt)
 `training/b_oracle.py` ajana HİÇBİR ŞEY vermez (ajan kodu değil, ölçüm
 aletidir — `training/oracle.py` emsali) → deftere bit satırı açılmaz.

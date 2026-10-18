@@ -9,10 +9,12 @@ Her ajan yalnızca üç şeyden oluşur: **tahmin makinesi + homeostaz (ölüml�
 + kısıtlı sinyal kanalı.** Dil, duygu ve ödül şekillendirme verilmez. Davranış
 değil, iç temsiller ölçülür. Negatif sonuç da sonuçtur.
 
-**Durum (2026-07-27):** S0–S2.10 tek-ajan yayı kapandı. S3 (nüfus + kanal)
-açık. Yeni dil tuzağı (S3-C, alarm çağrısı görevi) oracle'dan **geçti**.
-Öğrenen ajanlarla koşmadan önce Ali'nin PL-22 (ekoloji çerçevesi) kararı
-bekleniyor.
+**Durum (2026-10-19):** S3 kapandı (FINDINGS "S3 KAPANIŞ RAPORU"). Dil
+tuzağı öğrenen ajanlarla 15 koşumda sınandı: ajanlar kendi ipuçlarını
+öğreniyor, **kanal hiçbir bilgi taşımıyor ve öğrenmeyi yavaşlatıyor**
+→ H4 bu koşullarda **negatif**, mekanizmasıyla (göndericiye dönen fayda
+yok). Ekoloji ilk kez kararlı (σ=0.002). Yeni prior 0 bit. Sıradaki:
+PL-32 ayırıcı ablasyon, PL-33 eksik dişli tasarımı.
 
 ---
 

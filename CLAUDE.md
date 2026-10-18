@@ -75,9 +75,15 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   boğuyor** (açılınca 78; dondurulmuş klon %77 sinyal yayıyor) → 52
   turluk ömrün birincil kaynağı kanal maliyeti. Yuva (600, f=0.5) →
   408 tur, hasat korunur; f≤0.25 yuva-sonu uçurumu (PL-29).
-- **SIRADAKİ ADIM:** Ali'den yuva ayarı + kanal stratejisi onayı (PL-22
-  bekleyen), sonra PL-30: S3-C olay görevini klon+yuva ekolojisiyle
-  koşmak (ön-kayıt önce).
+- **S3 KAPANIŞ (2026-10-19, FINDINGS "S3 KAPANIŞ RAPORU"):** 15 koşum
+  (S3-E…K). σ=0.002 ile ekoloji kararlı; model öncüyü görüyor; tek ajan
+  kendi ipucunu öğreniyor (0.86); kanal-kapalı ekoloji öğreniyor (0.31↑);
+  kanal açıkken öğrenemiyor; kanal 0 bilgi taşıyor (MI ≤0.0005 bit).
+  **H4 NEGATİF (bu koşullarda), H3 ön koşul negatif, H2 test edilmedi,
+  H1 karışık.** Yeni prior: 0 bit. Teşhis: göndericiye dönen fayda yok
+  (PL-33). Ali: tüm kararlar Claude'da (18 Ekim), defterli.
+- **SIRADAKİ ADIM:** S3-L (PL-32 ayırıcı, 0 bit) → S3-N (PL-33 eksik
+  dişli: soy-düzeyi seçilim; anayasal, defterli) → H2/P2.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 
