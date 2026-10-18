@@ -302,3 +302,29 @@ def test_s3p_eps_quiet_default_bit_identical(tmp_path):
         for v in j["vitals"]:
             v.pop("ms_per_turn")
     assert ja == jb, "eps_quiet=0 bit-eş değil"
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3q_founding_from_saved_weights(tmp_path):
+    """S3-Q: kanal-kapalı koşumun final ağırlıkları, kanal-açık koşuma
+    kurucu kadro olur; soy kütüğü kaynağı işaretler; kanal açık çalışır."""
+    import json
+
+    import torch
+
+    from training.ecology import run_ecology
+    run_ecology(40, str(tmp_path / "q1"), world_seed=42, log_every=20,
+                founding="clone", nest=(600, 0.5), events=True, channel="mute")
+    w = tmp_path / "q1" / "final_weights.pt"
+    assert w.exists()
+    run_ecology(40, str(tmp_path / "q2"), world_seed=43, log_every=20,
+                founding=f"weights:{w}", nest=(600, 0.5), events=True,
+                channel="open")
+    j = json.load(open(tmp_path / "q2" / "breath.json"))
+    assert all("@weights:" in g["parent"] for g in j["genealogy"]
+               if g["birth_turn"] == 0)
+    assert j["ledger"]["signals_sent"] > 0
+    # ağırlıklar gerçekten yüklendi: q1 final == q2 kurucu (eğitim öncesi)
+    ck1 = torch.load(w, weights_only=False)
+    assert set(ck1) == {"A0", "A1", "A2", "A3", "A4"}

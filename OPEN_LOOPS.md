@@ -242,6 +242,8 @@
   (S3-O/P). Seçenekler FINDINGS "S3 KAPANIŞ EKİ": A öğrenme mekaniği
   revizyonu (bit yazar), B kademeli kanal + 300K (0 bit), C tuzağı
   yeniden tasarla (anayasal). Tavsiye B → A.
+  **KARAR (Ali, 19 Ekim öğle): B.** S3-Q ön-kayıtlı (FINDINGS); Q1 300K
+  kanal-kapalı koşuluyor, sonra Q2 kademeli açılış.
 - **PL-32 (KAPALI, 2026-10-19):** kanal yavaşlatması = öğrenilmiş sahte
   sinyal primi (M-05) + maliyet; bütçe (S3-O) ve ε susma (S3-P) yarıya
   indirdi, silemedi. Özgün kayıt:

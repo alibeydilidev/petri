@@ -38,7 +38,12 @@ import numpy as np
 import torch
 
 from agent.channel import NO_SIGNAL, N_SYMBOLS, own_signal_onehot, received_vector
+from agent.config import AgentConfig as AgentConfigFromDict_
 from agent.homeostasis import Homeostasis
+
+
+def AgentConfigFromDict(d: dict):
+    return AgentConfigFromDict_(**d)
 from agent.mpc import MPCPlanner
 from population.lifecycle import successor, transplant_seed3
 from population.roster import ROSTER, agent_cfg
@@ -282,6 +287,25 @@ def founding_population(turn: int = 0, founding: str = "roster",
         extra["mpc_signal_candidate_frac"] = float(signal_candidate_frac)
     if eps_signal_quiet is not None:
         extra["eps_signal_quiet_prob"] = float(eps_signal_quiet)
+    if founding.startswith("weights:"):
+        # S3-Q (Program B): kurucu kadro, önceki koşumun final_weights.pt
+        # dosyasındaki 5 çekirdek (kademeli kanal: önce kanal-kapalı
+        # öğren, sonra aynı ağırlıklarla kanalı aç). Config'in gözlem
+        # boyutları aynı (kanal fiziksel olarak hep açık); yuva/arama
+        # parametreleri bu koşumun ayarlarıyla EZİLİR (deneyci kararı).
+        ck = torch.load(founding.split(":", 1)[1], weights_only=False)
+        cits = []
+        for i, (slot, *_rest) in enumerate(ROSTER):
+            entry = ck[slot]
+            cfg = dataclasses.replace(AgentConfigFromDict(entry["cfg"]),
+                                      nest_turns=nest[0], nest_factor=nest[1],
+                                      **extra)
+            agent = OnlineAgent(cfg, torch_seed=1000 + i, np_seed=2000 + i)
+            agent.core.load_state_dict(entry["state_dict"])
+            cits.append(Citizen(slot, agent, gen=0,
+                                parent=f"{entry['id']}@{founding}",
+                                birth_turn=turn, mute=mute, channel=channel))
+        return cits
     for i, (slot, *_rest) in enumerate(ROSTER):
         if founding == "clone":
             # PL-22 (c): tüm slotlar seed-3 transplantı, A2 mimarisi,
@@ -555,7 +579,8 @@ def main() -> None:
     ap.add_argument("--out", default="runs/s3_breath")
     ap.add_argument("--world-seed", type=int, default=3001)
     ap.add_argument("--log-every", type=int, default=1000)
-    ap.add_argument("--founding", choices=["roster", "clone"], default="roster")
+    ap.add_argument("--founding", default="roster",
+                    help="roster | clone | weights:<final_weights.pt>")
     ap.add_argument("--nest", type=float, nargs=2, default=(0, 1.0),
                     metavar=("T", "F"))
     ap.add_argument("--events", action="store_true")

@@ -2768,3 +2768,47 @@ sonra A.
 kalıcı yapılmadı). Anayasal basamak atılmadı. **Toplam yeni prior: 0.**
 
 **Yeni ders:** M-28 işlendi (aşağıda METODOLOJI).
+
+## S3-Q — ÖN-KAYIT: Program B, kademeli kanal (koşumdan önce, M-08) (2026-10-19, öğleden sonra)
+
+**Karar (Ali, 19 Ekim: "B ile devam").** Tez: kanal, yetkinsiz ajana
+açılınca giriş ücreti öğrenmeyi boğuyor (S3-K…P). Yetkin ajana
+(kendi-ipucu tavanında) açılırsa sinyal doğru fiyatlanır mı ve
+başkasının biti için kullanılır mı?
+
+**Q1 — tavana çık (kanal kapalı, 300K, 3 seed):** klon kadro, yuva
+(600, 0.5), σ=0.002, her 10 tur, lead 4, ceza 25, s=0.5, mute. Son
+ağırlıklar kaydedilir.
+- **Q1a:** son 20K isabet ≥ 0.40 VE kendi-ipucu ≥ 0.75 (okul 100K'da
+  0.44/0.86; ekoloji ~3× yavaş → 300K).
+- **Q1b (zaman çizgisi):** isabet tekdüze ↑ (her 100K dilim öncekinden
+  büyük).
+
+**Q2 — kanalı aç (100K, 3 seed, Q1 final ağırlıklarından kurucu kadro):**
+kollar **Q2-A** kanal açık (ortak planlama, frac 1.0, eps_quiet 0 —
+anayasal varsayılanlar) ve **Q2-K** kanal kapalı devam (kontrol: aynı
+ağırlıklar, aynı dünya).
+- **Q2a (doğru fiyatlama):** Q2-A sinyal oranı son 20K < 0.30 VE prob'da
+  prim < +0.1 (yetkin model sinyali −0.5 enerji olarak öğreniyor).
+- **Q2b (giriş ücreti kalktı mı):** Q2-A isabet ≥ Q2-K − 0.02.
+- **Q2c (kanal fayda, H3/H4):** Q2-A isabet > Q2-K + 0.05 VE > 0.50
+  (kendi-ipucu tavanının üstü — yalnız başkasının bitiyle mümkün).
+- **Q2d (konuşan/dinleyen):** MI ≥ 0.05 bit MM p<0.05; VEYA pencere
+  sinyal oranı ≥ 1.3× pencere dışı; VEYA "duydu" koşullu isabet > "duymadı"
+  + 0.05 (sinyal oranı düşerse "duymadı" kümesi artık boş olmaz).
+
+**Öngörüler (bağlayıcı):** Q1a ✓ (0.6; 300K yetmeyebilir). Q2a ✓ (0.55):
+yetkin modelin enerji kafası sinyal maliyetini görür; prim yine
+oluşabilir (M-05 mekanizması yetkinlikten bağımsız) — bu yüzden 0.55.
+Q2b ✓ (0.6). Q2c ✗ (0.8), Q2d ✗ (0.7).
+
+**Sonuç matrisi:** Q2a✓ Q2b✓ Q2c✗ → giriş ücreti tezi DOĞRULANDI ama
+dil yine yok → kalan engel fayda zincirinin keşfi (alıcı: duyduğum
+sembol ⇒ eylem) → Program A (öğrenme mekaniği) ya da seçilim; S3
+nihai hüküm "negatif, mekanizmalı, iki katman çözüldü". Q2a✗ → prim
+yetkinlikten bağımsız → Program A zorunlu. Q2c✓ → ADAY GÖZLEM, Beş
+Kapı (Q2-K ablasyon hazır; ikiz; bit-eş tekrar; zaman çizgisi; 0 bit).
+
+**Beyan (M-09):** Q2 kurucu kadrosu öğrenmiş ağırlıklardır (nüfus-tarihi
+kararı, PL-06/klon emsali); yuva Q2'de de her nesilde. Bit: 0.
+Hesap: Q1 ~7 saat (3 paralel), Q2 ~2,5 saat.
