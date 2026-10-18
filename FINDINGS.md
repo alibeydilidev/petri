@@ -2205,3 +2205,86 @@ basamak 2 (öncü kanalı / enerji kafası), Ali'ye sabah raporunda açık.
 
 **Beyan:** okul kanal-kapalıdır (kendi-ipucu sorusu); "ölüm gerçek"
 askıda (S1 emsali, ekoloji iddiası değil tavan ölçümü).
+
+## S3-J — SONUÇLAR: **TEK AJAN KENDİ İPUCUNU ÖĞRENİYOR (6/6 seed)** (2026-10-19, gece)
+
+Veri: `runs/s3j/*/school.json`, prob `runs/s3j/probe_school.json`.
+
+| kol | seed | kendi-ipucu 10K→100K (10K pencereleri) | isabet son 20K | STAY | ölüm/10K |
+|---|---|---|---|---|---|
+| base | 0 | 0.44 → 0.50 → 0.60 → 0.76 → 0.82 → 0.85 → … → **0.87** | 0.44-0.45 | 0.44 | ~185 |
+| base | 1 | 0.47 → 0.51 → 0.58 → 0.70 → 0.80 → 0.84 → … → **0.87** | 0.42-0.43 | 0.46 | ~188 |
+| base | 2 | 0.49 → 0.53 → 0.66 → 0.78 → 0.81 → 0.84 → … → **0.86** | 0.39-0.45 | 0.47 | ~185 |
+| λ30 | 0-2 | 0.41-0.49 → … → **0.84-0.88** | 0.43-0.45 | 0.45-0.48 | ~187 |
+
+- **J-öğrenir ✓ (6/6):** kendi-ipucu tutarlılığı şans (0.5) → 0.86; isabet
+  0.23 → 0.44, kendi-ipucu tavanına (0.50) yaklaşıyor. Eşik (0.55)
+  ~25-30K turda (≈2.5-3K olay deneyimi); plato ~60K.
+- **J-λ ✗:** λ=30 ≈ λ=10 (fark < 0.02). Öğrenme sinyali darboğaz DEĞİL
+  → **K-106 revizyonu gerekmiyor; anayasal adım atılmadı (0 bit).**
+- **Prob:** güvenli-eylem farkı 0.019-0.024 (ikiz p95 0.006; çıta 0.02
+  ✓), yayılım 0.04-0.07 (taban 0.0025), hiza 0.53-1.0 (prob protokolü
+  lead=8 ile koşuyor, okul lead=2 — hiza ölçüsü protokol-uyumsuz, fark
+  ölçüsü esas).
+- **Ölüm rejimi okulda da sertti** (~53 turda bir beden sıfırlama); yine
+  de öğrendi → "ölüm gerçek" ağırlık sürdükçe öğrenmeyi engellemiyor.
+  **Ekolojideki tıkanıklık mimari değil: olay DENEYİMİ sayısı × (lead 8,
+  her 30 tur, drift, rekabet).** G1 50K'daki yavaş yükseliş bununla
+  tutarlı: 50K × (1/30) ≈ 1.7K olay/soy, okulun eşiğinin altında.
+- **Öngörü karnesi:** J-base yavaş öğrenir, 100K'da 0.50-0.60 → YANLIŞ
+  yönde iyimser çıktı (0.86); J-λ30 daha hızlı → YANLIŞ (eşit).
+
+**Yeni ders var mı?** VAR → **M-27 (taslak): Ekolojiyi yargılamadan
+önce tek-ajan tavanını ölç.** "Nüfus öğrenemiyor" teşhisi, aynı
+görevi tek ajanın sınırsız deneyimle öğrenip öğrenemediği ölçülmeden
+eksiktir; tavan şans düzeyindeyse mimari, değilse ekolojik parametre
+sorunudur. (S3-G/H/I üç basamak bu ölçüm olmadan harcandı; okul 25
+dakikada ayırdı. M-01/M-02/M-21'in nüfus-öncesi özel hâli.)
+
+## S3-K — ÖN-KAYIT: DİL TUZAĞI, kurulu hâliyle (koşumdan önce, M-08) (2026-10-19, gece)
+
+**Mantık.** Tek ajan kendi bitini öğreniyor (S3-J) → isabet tavanı 0.50.
+Tavanı aşmanın TEK yolu başkasının biti = kanal. Ekoloji okulun
+öğrenme koşullarına yaklaştırılır (olay sıklığı, lead), kanal açık/kapalı
+karşılaştırılır. H3/H4 için ilk gerçek test.
+
+**Ayar:** klon kadro, yuva (600, 0.5), σ=0.002, seçilimsiz, olay **her 10
+tur**, **lead=4** (kanal için zaman payı: gör → yayınla → duy → eyle),
+ceza 25, K=4, kanal küresel, **100K tur**, 3 seed. Kollar: **K-A** kanal
+açık, **K-K** kanal kapalı (mute). Beklenen basınç: şansta 1.9 enerji/
+tur kayıp → ömür kısa (~40-60), soy hattı öğrenir (okul emsali).
+
+**Çıtalar (son 20K penceresi, ≥2/3 seed):**
+- **K1 (kendi-ipucu ekolojide):** K-K kendi-ipucu > 0.70, isabet > 0.40.
+  (Okul 0.86/0.44'e ulaştı; ekolojiye %20 pay.)
+- **K2 (kanal fayda — H3/H4 kapısı):** K-A isabet > K-K isabet + 0.05 VE
+  K-A isabet > 0.50 (kendi-ipucu TAVANININ üstü — ancak başkasının
+  bitiyle mümkün).
+- **K3 (sembol-ipucu olumsallığı):** I(ipucu; sembol) ≥ 0.05 bit (MM,
+  perm p < 0.05) — konuşan var mı.
+- **K4 (dinleyen var mı):** uyarı penceresinde sinyal duyan ajanların
+  isabeti, duymayanlardan +0.05 yüksek (küresel kanal + yüksek sinyal
+  oranında "duymadı" kümesi boş kalabilir — o zaman ölçülemez, M-03).
+- **K5 (maliyet):** K-A ömrü ≥ 0.9 × K-K (kanal net zarar vermiyor).
+
+**Öngörüler (bağlayıcı):** K1 ✓ (0.7). K2 ✗ (0.7): kanal hâlâ ε-gürültüsü
+(16/17) + eğitilmemiş sütunlar; sinyalin modelde sonucu olması için
+alıcının duyduğu sembolü kendi enerji tahminine bağlaması gerekir —
+100K'da belki başlar. K3: MI 0.01-0.03 bit (çıtanın altı, tabanın üstü;
+0.5). K4 ölçülemez (0.6). K5 ✗ (0.6).
+
+**Sonuç matrisi:**
+- K1✓ K2✗ K3✗ → tuzak kurulu ama dil doğmadı (BEKLENEN): H3/H4 için
+  "bu koşullarda, 100K turda negatif"; S3 kapanışı bu hükümle yazılır,
+  sonraki merdiven (300K+, seçilim, ε-sinyal payı) Ali'ye önerilir.
+- K1✓ K3✓ K2✗ → "konuşan var, dinleyen yok" → ADAY GÖZLEM (H4 yönünde
+  sembol-dünya olumsallığı); alıcı tarafı teşhisi.
+- K1✓ K2✓ → ADAY GÖZLEM güçlü; Beş Kapı: K-K ablasyonu (hazır), ikiz,
+  bit-eş tekrar, zaman çizgisi (pencere), KERNEL_BUDGET (0 yeni bit).
+  İDDİA Ali ile.
+- K1✗ → ekoloji okul koşullarında bile öğrenemiyor → rekabet/ölüm
+  sıfırlaması teşhisi, S3 kapanışı "ekolojik negatif".
+
+**M-25 kaçış yolları:** hep-STAY (%25 → şimdi ölçülüyor: STAY payı);
+"öl ve yuvaya dön" (PL-29: ölüm sayısı raporlanır); sinyalin
+maliyetsizleşmesi yok (0.5, yuva yarıya indirir, beyanlı).
