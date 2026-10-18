@@ -2033,3 +2033,109 @@ Ali'ye anayasal soru (PL-27 a: ayrı öncü kanalı; ya da olay cezasının
 eylem-koşullu yapısının gözlemde görünür olması — her ikisi bit yazar).
 H-algı ✓ → kanal sorusu yeniden sorulabilir hâle gelir: seçilim/sıklık
 ile 50K koşum + A/K karşılaştırması.
+
+### S3-G tamamlandı — G1 (50K, süre) sonucu
+| seed | medyan ömür 20K→50K | isabet 0-10K | 10-20K | 20-35K | 35-50K | kendi-ipucu | hasat/1K |
+|---|---|---|---|---|---|---|---|
+| 3001 | 81→85 | 0.194 | 0.217 | 0.239 | **0.247** | 0.462 | 5.6 |
+| 3002 | 79→79 | 0.191 | 0.223 | 0.240 | **0.240** | 0.456 | 6.4 |
+| 3003 | 82→87 | 0.211 | 0.231 | 0.246 | **0.258** | 0.471 | 5.0 |
+
+- **G-süre: sınırda** (son 10K − ilk 10K = +0.053 / +0.049 / +0.047;
+  çıta +0.05 → 1/3 harfen geçer, 3/3 tekdüze YÜKSELİYOR). Soy hattında
+  (σ=0.002) olay isabeti yavaş ama kararlı artıyor: 50K'da şans altından
+  şans üstüne (0.19 → 0.25). Kendi-ipucu 0.46 (0.42'den ↑, hâlâ < 0.5).
+  Öğrenme VAR, hızı ~+0.015 / 10K; kendi-ipucu tavanı 0.50'ye bu hızla
+  ~150K tur. Ömür 85'te düz, hasat 50K boyunca 9 → 5/1K DÜŞÜYOR (olay
+  tetikte tutma hasadı yiyor; H2'deki donma eğiliminin yavaş hâli).
+- **A2 (σ=0.002):** G1@20K isabet ≈ 0.22 vs G3 (kanal kapalı) 0.21,
+  ömür 81 vs 99.5 → kanal yine net zarar, isabete katkı yok. **A2 ✗.**
+- **A1 ✗:** MI 0.0002-0.0004 bit.
+
+## S3-H — SONUÇLAR: **seçilim ✗, sıklık ✗; iç modelde ilk kıpırtı (n=1 seed)** (2026-10-18, gece)
+
+Veri: `runs/s3h/`, `runs/s3h/summary.json`, prob `runs/s3h/probe_h*.json`.
+
+| kol | medyan ömür | olay/yaşam | isabet | kendi-ipucu tutarlılık | STAY payı | hasat/1K | sinyal |
+|---|---|---|---|---|---|---|---|
+| taban A0 (σ=0, S3-F) | 83 | 2.7 | 0.20-0.22 | 0.42 | 0.27-0.31 | 9-10 | 0.71 |
+| H1 seçilim (max_age) | **86** (85-89) | 2.9 | 0.22 | 0.44-0.45 | 0.25-0.34 | 8-10.5 | 0.70 |
+| H2 sıklık (10/ceza 8) | **85** (80-87) | 8.5 | 0.22 | 0.43 | **0.38-0.47** | **5.7-6.8** | 0.61 |
+
+- **H-sel ✗:** ömür +4% (çıta +20%), isabet +0.01 (çıta +0.03).
+  Seçilim 20K'da davranışı değiştirmedi.
+- **H-dose ✗:** isabet 0.22 (çıta >0.25), olay/yaşam 8.5 (çıta ≥10).
+  Yan etki: STAY payı ve hasat düşüşü — sık öncü, "enerji düşecek"
+  beklentisini sürekli açık tutuyor, planlayıcı donuyor (hasat %40 ↓).
+  M-25 kaçış yolu (hep STAY) sıklıkla güçleniyor.
+- **H-algı (davranış) ✗:** 0.43-0.45 her yerde.
+- **A1 ✗:** MI 0.0-0.0007 bit.
+
+### Algı probu (S3-H ağırlıkları)
+| | H1_s3001 (5 çekirdek) | H1_s3002 | H2_s3001/2 |
+|---|---|---|---|
+| ΔE ortalama | −0.06 … −0.11 | −0.13 … −0.16 | −0.08 … −0.12 |
+| kendi-ipucu hizası (32 bağlam) | **0.66 / 0.69 / 0.78 / 0.75 / 0.91** | 0.34-0.63 | 0.0-0.69 |
+| güvenli-eylem farkı | **0.012-0.019** (taban 0.007) | 0.004-0.008 | 0.001-0.008 |
+
+- H1_s3001'de beş çekirdeğin HEPSİNDE iç model kendi ipucuyla hizalı
+  ve güvenli eylemi ayırıyor — ama bu beş çekirdek max_age seçilimiyle
+  AYNI soydan (bağımsız gözlem sayısı ~1); H1_s3002'de yok. Davranışa
+  (0.44) yansımıyor: ya etki planlayıcının CEM gürültüsünde kayboluyor
+  (0.015 enerji farkı, ε ve 64 adaylık havuzda), ya da hizalanma
+  olay turunda değil başka adımda. **Etiket: ÖN-GÖZLEM, aday gözlem
+  bile değil** (n=1 soy); 96 bağlamlı tekrar aşağıda.
+- **96 bağlam tekrarı:** H1_s3001 beş çekirdek hizası 0.59 / 0.60 /
+  0.80 / 0.79 / 0.95 (binom p: 0.04 … <1e-8), güvenli-eylem farkı
+  0.011-0.017 (taban 0.007). H1_s3003: 0.52-0.59, güvenli-eylem farkı
+  NEGATİF (−0.001 … −0.005). H1_s3002 (32 bağlam): 0.34-0.63.
+  **Hüküm: 3 soydan 1'inde iç modelde eylem-koşullu ipucu izi → ADAY
+  GÖZLEM (en fazla).** Davranışa yansımıyor (0.44). İkiz kontrolü (M-04)
+  yapılmadı: bilinen-negatif transplant 0.42, ama rastgele-ağırlıklı
+  ikiz ayrıca koşulmalı — S3 kapanışında Beş Kapı listesine.
+
+**Öngörü karnesi:** H-sel ömür ✓ tahmini → YANLIŞ (ömür artmadı);
+H-sel isabet ✗ → doğru; H-dose olay/yaşam ≥10 → YANLIŞ (8.5); isabet
+✗ → doğru; prob yayılımı artar → kısmen (H1'de); H-algı ✗ → doğru.
+
+**Sonuç matrisi hücresi: ikisi de ✗.** Ön-kayıt iki yol veriyordu:
+birleşik 50K ya da anayasal soru. **Karar (Ali yetki devri, 18 Ekim
+gecesi: "sen ver kararı"):** anayasal adımdan ÖNCE atlanmış 0-bitlik bir
+dünya-tarafı kalibrasyon var — **uyarı öncesi süre** `event_lead`.
+Gerekçe: prob modelin öncüyü gördüğünü söylüyor; eksik olan 8 tur
+sonrasını DOĞRU TURDA planlamak (10 turluk hayal ufkunun 8. adımı; S2.10
+H_eff ölçümleri rollout güvenilirliğinin birkaç adımda eridiğini
+göstermişti, M-17). lead=8 S3-C oracle kalibrasyonundan geldi, scripted
+ajan için zamanlama bedava idi; öğrenen ajan için değil (M-21). Kanal
+için 2 tur yeterli (sinyal aynı tur duyulur, sonraki gözlemde görülür,
+olay turunda eyleme döner — zamanlama testi: lead=2'de öncü 2 gözlemde
+görünür). Önce bu, sonra gerekirse PL-27(a).
+
+## S3-I — ÖN-KAYIT: uyarı penceresi (event_lead) merdiveni (koşumdan önce, M-08) (2026-10-18, gece)
+
+**Tek değişken:** `event_lead` ∈ {2, 4}; taban lead=8 (A0/G1). Diğer
+her şey: klon + yuva (600, 0.5) + σ=0.002 + ceza 25 + her 30 tur +
+kanal açık + seçilimsiz. 3 seed, 20K. **0 prior biti** (dünya-tarafı
+zamanlama; KERNEL_BUDGET S3-I notu).
+
+**Çıtalar (son 10K):**
+- **I-algı:** kendi-ipucu tutarlılığı > 0.55 (ilk kez şansın üstü).
+- **I-isabet:** isabet > 0.30 (şans ~0.20-0.25; kendi-ipucu tavanı 0.50).
+- **I-ömür:** medyan ömür > taban (83) × 1.15.
+- **A1/A2 (dil):** aynı (MI ≥ 0.05 bit; A − K isabet > +0.05 — K için
+  lead=2 kanal-kapalı kolu, I-algı geçerse koşulur).
+- **Prob:** kendi-ipucu hizası > 0.6 (≥2 seed), güvenli-eylem farkı > 0.02.
+
+**Öngörüler (bağlayıcı):** lead=2'de I-algı GEÇER (0.6) — zamanlama
+yükü kalkınca iç modeldeki iz davranışa dönebilir; lead=4 arada.
+I-isabet lead=2'de 0.30'u geçer (0.5). A1 yine düşer (0.85): kendi
+bitini kullanmak kanaldan bağımsız; kanal için lead=2 tek-tur pencere
+dar, lead=4 kolu kanal sorusunun asıl adayı.
+
+**M-25:** lead kısalması kaçış yolu açmaz (acıdan öğrenme kilidi
+event_duration=1 duruyor; kendi-ipucu tavanı 0.5 değişmez).
+**Sonuç matrisi:** I-algı✓ → kanal sorusu yeniden açılır: lead=4'te
+A/K karşılaştırması 50K (S3-J). I-algı✗ (lead=2'de bile) → zamanlama
+değil, eylem-koşullu enerji öğrenmesi engelli → anayasal merdiven:
+(1) PL-27(a) ayrı öncü kanalı (~1-2 bit), (2) enerji kafasına olay
+turu için ayrı çıkış (~2 bit, M-18 sınırında).

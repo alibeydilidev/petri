@@ -1,0 +1,8489 @@
+{
+  "turns": 20000,
+  "world_seed": 3001,
+  "arm": {
+    "founding": "clone",
+    "nest": [
+      600,
+      0.5
+    ],
+    "events": true,
+    "channel": "open",
+    "mutation_sigma": 0.002,
+    "selection": "max_age",
+    "event_every": 30,
+    "event_penalty": 25.0
+  },
+  "world": {
+    "grid_size": 64,
+    "toroidal": true,
+    "resource_a_count": 24,
+    "resource_a_energy": 45.0,
+    "resource_a_drift_every": 200,
+    "resource_b_count": 3,
+    "resource_b_energy": 180.0,
+    "resource_b_min_agents": 2,
+    "resource_b_sync_window": 2,
+    "hazard_spawn_every": 500,
+    "hazard_drain_per_turn": 5.0,
+    "hazard_radius": 2,
+    "hazard_duration": 250,
+    "event_visibility_split": true,
+    "seed": 42,
+    "economy_version": 3,
+    "signal_range": 32,
+    "event_every": 30,
+    "event_lead": 8,
+    "event_duration": 1,
+    "event_penalty": 25.0,
+    "event_polarities": 4
+  },
+  "world_config_hash": "ace6032885072ca7",
+  "genealogy": [
+    {
+      "id": "A0.g0",
+      "slot": "A0",
+      "parent": "seed3(S2.10)",
+      "birth_turn": 0
+    },
+    {
+      "id": "A1.g0",
+      "slot": "A1",
+      "parent": "seed3(S2.10)",
+      "birth_turn": 0
+    },
+    {
+      "id": "A2.g0",
+      "slot": "A2",
+      "parent": "seed3(S2.10)",
+      "birth_turn": 0
+    },
+    {
+      "id": "A3.g0",
+      "slot": "A3",
+      "parent": "seed3(S2.10)",
+      "birth_turn": 0
+    },
+    {
+      "id": "A4.g0",
+      "slot": "A4",
+      "parent": "seed3(S2.10)",
+      "birth_turn": 0
+    },
+    {
+      "id": "A0.g1",
+      "slot": "A0",
+      "parent": "A1.g0",
+      "birth_turn": 98
+    },
+    {
+      "id": "A2.g1",
+      "slot": "A2",
+      "parent": "A1.g0",
+      "birth_turn": 98
+    },
+    {
+      "id": "A4.g1",
+      "slot": "A4",
+      "parent": "A1.g0",
+      "birth_turn": 100
+    },
+    {
+      "id": "A0.g2",
+      "slot": "A0",
+      "parent": "A1.g0",
+      "birth_turn": 161
+    },
+    {
+      "id": "A2.g2",
+      "slot": "A2",
+      "parent": "A1.g0",
+      "birth_turn": 167
+    },
+    {
+      "id": "A3.g1",
+      "slot": "A3",
+      "parent": "A1.g0",
+      "birth_turn": 188
+    },
+    {
+      "id": "A4.g2",
+      "slot": "A4",
+      "parent": "A1.g0",
+      "birth_turn": 188
+    },
+    {
+      "id": "A1.g1",
+      "slot": "A1",
+      "parent": "A0.g2",
+      "birth_turn": 193
+    },
+    {
+      "id": "A0.g3",
+      "slot": "A0",
+      "parent": "A3.g1",
+      "birth_turn": 218
+    },
+    {
+      "id": "A2.g3",
+      "slot": "A2",
+      "parent": "A3.g1",
+      "birth_turn": 218
+    },
+    {
+      "id": "A4.g3",
+      "slot": "A4",
+      "parent": "A3.g1",
+      "birth_turn": 263
+    },
+    {
+      "id": "A1.g2",
+      "slot": "A1",
+      "parent": "A3.g1",
+      "birth_turn": 265
+    },
+    {
+      "id": "A3.g2",
+      "slot": "A3",
+      "parent": "A0.g3",
+      "birth_turn": 289
+    },
+    {
+      "id": "A2.g4",
+      "slot": "A2",
+      "parent": "A0.g3",
+      "birth_turn": 312
+    },
+    {
+      "id": "A4.g4",
+      "slot": "A4",
+      "parent": "A0.g3",
+      "birth_turn": 336
+    },
+    {
+      "id": "A1.g3",
+      "slot": "A1",
+      "parent": "A0.g3",
+      "birth_turn": 393
+    },
+    {
+      "id": "A0.g4",
+      "slot": "A0",
+      "parent": "A3.g2",
+      "birth_turn": 398
+    },
+    {
+      "id": "A2.g5",
+      "slot": "A2",
+      "parent": "A3.g2",
+      "birth_turn": 428
+    },
+    {
+      "id": "A3.g3",
+      "slot": "A3",
+      "parent": "A4.g4",
+      "birth_turn": 448
+    },
+    {
+      "id": "A0.g5",
+      "slot": "A0",
+      "parent": "A4.g4",
+      "birth_turn": 465
+    },
+    {
+      "id": "A1.g4",
+      "slot": "A1",
+      "parent": "A4.g4",
+      "birth_turn": 488
+    },
+    {
+      "id": "A4.g5",
+      "slot": "A4",
+      "parent": "A2.g5",
+      "birth_turn": 517
+    },
+    {
+      "id": "A2.g6",
+      "slot": "A2",
+      "parent": "A0.g5",
+      "birth_turn": 518
+    },
+    {
+      "id": "A3.g4",
+      "slot": "A3",
+      "parent": "A0.g5",
+      "birth_turn": 518
+    },
+    {
+      "id": "A0.g6",
+      "slot": "A0",
+      "parent": "A1.g4",
+      "birth_turn": 573
+    },
+    {
+      "id": "A1.g5",
+      "slot": "A1",
+      "parent": "A4.g5",
+      "birth_turn": 578
+    },
+    {
+      "id": "A4.g6",
+      "slot": "A4",
+      "parent": "A2.g6",
+      "birth_turn": 598
+    },
+    {
+      "id": "A2.g7",
+      "slot": "A2",
+      "parent": "A3.g4",
+      "birth_turn": 639
+    },
+    {
+      "id": "A1.g6",
+      "slot": "A1",
+      "parent": "A3.g4",
+      "birth_turn": 646
+    },
+    {
+      "id": "A0.g7",
+      "slot": "A0",
+      "parent": "A3.g4",
+      "birth_turn": 668
+    },
+    {
+      "id": "A3.g5",
+      "slot": "A3",
+      "parent": "A4.g6",
+      "birth_turn": 698
+    },
+    {
+      "id": "A2.g8",
+      "slot": "A2",
+      "parent": "A4.g6",
+      "birth_turn": 733
+    },
+    {
+      "id": "A0.g8",
+      "slot": "A0",
+      "parent": "A4.g6",
+      "birth_turn": 758
+    },
+    {
+      "id": "A4.g7",
+      "slot": "A4",
+      "parent": "A1.g6",
+      "birth_turn": 770
+    },
+    {
+      "id": "A1.g7",
+      "slot": "A1",
+      "parent": "A3.g5",
+      "birth_turn": 793
+    },
+    {
+      "id": "A3.g6",
+      "slot": "A3",
+      "parent": "A2.g8",
+      "birth_turn": 802
+    },
+    {
+      "id": "A0.g9",
+      "slot": "A0",
+      "parent": "A2.g8",
+      "birth_turn": 824
+    },
+    {
+      "id": "A4.g8",
+      "slot": "A4",
+      "parent": "A2.g8",
+      "birth_turn": 836
+    },
+    {
+      "id": "A1.g8",
+      "slot": "A1",
+      "parent": "A3.g6",
+      "birth_turn": 848
+    },
+    {
+      "id": "A2.g9",
+      "slot": "A2",
+      "parent": "A3.g6",
+      "birth_turn": 848
+    },
+    {
+      "id": "A3.g7",
+      "slot": "A3",
+      "parent": "A0.g9",
+      "birth_turn": 897
+    },
+    {
+      "id": "A2.g10",
+      "slot": "A2",
+      "parent": "A0.g9",
+      "birth_turn": 954
+    },
+    {
+      "id": "A0.g10",
+      "slot": "A0",
+      "parent": "A4.g8",
+      "birth_turn": 956
+    },
+    {
+      "id": "A1.g9",
+      "slot": "A1",
+      "parent": "A4.g8",
+      "birth_turn": 1036
+    },
+    {
+      "id": "A0.g11",
+      "slot": "A0",
+      "parent": "A4.g8",
+      "birth_turn": 1045
+    },
+    {
+      "id": "A3.g8",
+      "slot": "A3",
+      "parent": "A4.g8",
+      "birth_turn": 1058
+    },
+    {
+      "id": "A2.g11",
+      "slot": "A2",
+      "parent": "A1.g9",
+      "birth_turn": 1088
+    },
+    {
+      "id": "A4.g9",
+      "slot": "A4",
+      "parent": "A1.g9",
+      "birth_turn": 1088
+    },
+    {
+      "id": "A3.g9",
+      "slot": "A3",
+      "parent": "A1.g9",
+      "birth_turn": 1124
+    },
+    {
+      "id": "A1.g10",
+      "slot": "A1",
+      "parent": "A0.g11",
+      "birth_turn": 1125
+    },
+    {
+      "id": "A2.g12",
+      "slot": "A2",
+      "parent": "A0.g11",
+      "birth_turn": 1161
+    },
+    {
+      "id": "A4.g10",
+      "slot": "A4",
+      "parent": "A0.g11",
+      "birth_turn": 1188
+    },
+    {
+      "id": "A0.g12",
+      "slot": "A0",
+      "parent": "A3.g9",
+      "birth_turn": 1208
+    },
+    {
+      "id": "A2.g13",
+      "slot": "A2",
+      "parent": "A3.g9",
+      "birth_turn": 1310
+    },
+    {
+      "id": "A4.g11",
+      "slot": "A4",
+      "parent": "A3.g9",
+      "birth_turn": 1316
+    },
+    {
+      "id": "A1.g11",
+      "slot": "A1",
+      "parent": "A3.g9",
+      "birth_turn": 1328
+    },
+    {
+      "id": "A0.g13",
+      "slot": "A0",
+      "parent": "A3.g9",
+      "birth_turn": 1334
+    },
+    {
+      "id": "A3.g10",
+      "slot": "A3",
+      "parent": "A2.g13",
+      "birth_turn": 1358
+    },
+    {
+      "id": "A2.g14",
+      "slot": "A2",
+      "parent": "A4.g11",
+      "birth_turn": 1385
+    },
+    {
+      "id": "A4.g12",
+      "slot": "A4",
+      "parent": "A1.g11",
+      "birth_turn": 1388
+    },
+    {
+      "id": "A1.g12",
+      "slot": "A1",
+      "parent": "A0.g13",
+      "birth_turn": 1418
+    },
+    {
+      "id": "A4.g13",
+      "slot": "A4",
+      "parent": "A0.g13",
+      "birth_turn": 1448
+    },
+    {
+      "id": "A2.g15",
+      "slot": "A2",
+      "parent": "A0.g13",
+      "birth_turn": 1477
+    },
+    {
+      "id": "A0.g14",
+      "slot": "A0",
+      "parent": "A3.g10",
+      "birth_turn": 1501
+    },
+    {
+      "id": "A3.g11",
+      "slot": "A3",
+      "parent": "A1.g12",
+      "birth_turn": 1517
+    },
+    {
+      "id": "A4.g14",
+      "slot": "A4",
+      "parent": "A1.g12",
+      "birth_turn": 1525
+    },
+    {
+      "id": "A0.g15",
+      "slot": "A0",
+      "parent": "A1.g12",
+      "birth_turn": 1555
+    },
+    {
+      "id": "A4.g15",
+      "slot": "A4",
+      "parent": "A1.g12",
+      "birth_turn": 1574
+    },
+    {
+      "id": "A2.g16",
+      "slot": "A2",
+      "parent": "A1.g12",
+      "birth_turn": 1581
+    },
+    {
+      "id": "A1.g13",
+      "slot": "A1",
+      "parent": "A3.g11",
+      "birth_turn": 1608
+    },
+    {
+      "id": "A2.g17",
+      "slot": "A2",
+      "parent": "A3.g11",
+      "birth_turn": 1630
+    },
+    {
+      "id": "A0.g16",
+      "slot": "A0",
+      "parent": "A3.g11",
+      "birth_turn": 1631
+    },
+    {
+      "id": "A1.g14",
+      "slot": "A1",
+      "parent": "A3.g11",
+      "birth_turn": 1664
+    },
+    {
+      "id": "A4.g16",
+      "slot": "A4",
+      "parent": "A3.g11",
+      "birth_turn": 1688
+    },
+    {
+      "id": "A1.g15",
+      "slot": "A1",
+      "parent": "A2.g17",
+      "birth_turn": 1718
+    },
+    {
+      "id": "A3.g12",
+      "slot": "A3",
+      "parent": "A2.g17",
+      "birth_turn": 1718
+    },
+    {
+      "id": "A2.g18",
+      "slot": "A2",
+      "parent": "A0.g16",
+      "birth_turn": 1748
+    },
+    {
+      "id": "A4.g17",
+      "slot": "A4",
+      "parent": "A0.g16",
+      "birth_turn": 1748
+    },
+    {
+      "id": "A3.g13",
+      "slot": "A3",
+      "parent": "A0.g16",
+      "birth_turn": 1787
+    },
+    {
+      "id": "A1.g16",
+      "slot": "A1",
+      "parent": "A0.g16",
+      "birth_turn": 1804
+    },
+    {
+      "id": "A0.g17",
+      "slot": "A0",
+      "parent": "A2.g18",
+      "birth_turn": 1808
+    },
+    {
+      "id": "A4.g18",
+      "slot": "A4",
+      "parent": "A2.g18",
+      "birth_turn": 1820
+    },
+    {
+      "id": "A3.g14",
+      "slot": "A3",
+      "parent": "A2.g18",
+      "birth_turn": 1838
+    },
+    {
+      "id": "A2.g19",
+      "slot": "A2",
+      "parent": "A1.g16",
+      "birth_turn": 1840
+    },
+    {
+      "id": "A3.g15",
+      "slot": "A3",
+      "parent": "A1.g16",
+      "birth_turn": 1917
+    },
+    {
+      "id": "A0.g18",
+      "slot": "A0",
+      "parent": "A4.g18",
+      "birth_turn": 1928
+    },
+    {
+      "id": "A1.g17",
+      "slot": "A1",
+      "parent": "A4.g18",
+      "birth_turn": 1928
+    },
+    {
+      "id": "A4.g19",
+      "slot": "A4",
+      "parent": "A2.g19",
+      "birth_turn": 1955
+    },
+    {
+      "id": "A2.g20",
+      "slot": "A2",
+      "parent": "A3.g15",
+      "birth_turn": 1958
+    },
+    {
+      "id": "A3.g16",
+      "slot": "A3",
+      "parent": "A0.g18",
+      "birth_turn": 1966
+    },
+    {
+      "id": "A1.g18",
+      "slot": "A1",
+      "parent": "A0.g18",
+      "birth_turn": 2018
+    },
+    {
+      "id": "A3.g17",
+      "slot": "A3",
+      "parent": "A0.g18",
+      "birth_turn": 2018
+    },
+    {
+      "id": "A4.g20",
+      "slot": "A4",
+      "parent": "A0.g18",
+      "birth_turn": 2025
+    },
+    {
+      "id": "A0.g19",
+      "slot": "A0",
+      "parent": "A2.g20",
+      "birth_turn": 2043
+    },
+    {
+      "id": "A1.g19",
+      "slot": "A1",
+      "parent": "A2.g20",
+      "birth_turn": 2078
+    },
+    {
+      "id": "A3.g18",
+      "slot": "A3",
+      "parent": "A2.g20",
+      "birth_turn": 2084
+    },
+    {
+      "id": "A0.g20",
+      "slot": "A0",
+      "parent": "A2.g20",
+      "birth_turn": 2094
+    },
+    {
+      "id": "A2.g21",
+      "slot": "A2",
+      "parent": "A1.g19",
+      "birth_turn": 2108
+    },
+    {
+      "id": "A4.g21",
+      "slot": "A4",
+      "parent": "A1.g19",
+      "birth_turn": 2108
+    },
+    {
+      "id": "A3.g19",
+      "slot": "A3",
+      "parent": "A1.g19",
+      "birth_turn": 2138
+    },
+    {
+      "id": "A0.g21",
+      "slot": "A0",
+      "parent": "A1.g19",
+      "birth_turn": 2143
+    },
+    {
+      "id": "A2.g22",
+      "slot": "A2",
+      "parent": "A1.g19",
+      "birth_turn": 2168
+    },
+    {
+      "id": "A4.g22",
+      "slot": "A4",
+      "parent": "A1.g19",
+      "birth_turn": 2174
+    },
+    {
+      "id": "A0.g22",
+      "slot": "A0",
+      "parent": "A1.g19",
+      "birth_turn": 2198
+    },
+    {
+      "id": "A1.g20",
+      "slot": "A1",
+      "parent": "A3.g19",
+      "birth_turn": 2201
+    },
+    {
+      "id": "A3.g20",
+      "slot": "A3",
+      "parent": "A2.g22",
+      "birth_turn": 2206
+    },
+    {
+      "id": "A1.g21",
+      "slot": "A1",
+      "parent": "A2.g22",
+      "birth_turn": 2258
+    },
+    {
+      "id": "A4.g23",
+      "slot": "A4",
+      "parent": "A2.g22",
+      "birth_turn": 2266
+    },
+    {
+      "id": "A0.g23",
+      "slot": "A0",
+      "parent": "A4.g23",
+      "birth_turn": 2348
+    },
+    {
+      "id": "A1.g22",
+      "slot": "A1",
+      "parent": "A4.g23",
+      "birth_turn": 2348
+    },
+    {
+      "id": "A2.g23",
+      "slot": "A2",
+      "parent": "A4.g23",
+      "birth_turn": 2348
+    },
+    {
+      "id": "A3.g21",
+      "slot": "A3",
+      "parent": "A4.g23",
+      "birth_turn": 2348
+    },
+    {
+      "id": "A2.g24",
+      "slot": "A2",
+      "parent": "A4.g23",
+      "birth_turn": 2408
+    },
+    {
+      "id": "A1.g23",
+      "slot": "A1",
+      "parent": "A4.g23",
+      "birth_turn": 2414
+    },
+    {
+      "id": "A0.g24",
+      "slot": "A0",
+      "parent": "A3.g21",
+      "birth_turn": 2438
+    },
+    {
+      "id": "A4.g24",
+      "slot": "A4",
+      "parent": "A3.g21",
+      "birth_turn": 2438
+    },
+    {
+      "id": "A3.g22",
+      "slot": "A3",
+      "parent": "A2.g24",
+      "birth_turn": 2447
+    },
+    {
+      "id": "A1.g24",
+      "slot": "A1",
+      "parent": "A2.g24",
+      "birth_turn": 2498
+    },
+    {
+      "id": "A2.g25",
+      "slot": "A2",
+      "parent": "A0.g24",
+      "birth_turn": 2508
+    },
+    {
+      "id": "A1.g25",
+      "slot": "A1",
+      "parent": "A0.g24",
+      "birth_turn": 2558
+    },
+    {
+      "id": "A4.g25",
+      "slot": "A4",
+      "parent": "A0.g24",
+      "birth_turn": 2558
+    },
+    {
+      "id": "A3.g23",
+      "slot": "A3",
+      "parent": "A0.g24",
+      "birth_turn": 2588
+    },
+    {
+      "id": "A2.g26",
+      "slot": "A2",
+      "parent": "A0.g24",
+      "birth_turn": 2604
+    },
+    {
+      "id": "A1.g26",
+      "slot": "A1",
+      "parent": "A0.g24",
+      "birth_turn": 2639
+    },
+    {
+      "id": "A4.g26",
+      "slot": "A4",
+      "parent": "A0.g24",
+      "birth_turn": 2678
+    },
+    {
+      "id": "A0.g25",
+      "slot": "A0",
+      "parent": "A3.g23",
+      "birth_turn": 2693
+    },
+    {
+      "id": "A2.g27",
+      "slot": "A2",
+      "parent": "A3.g23",
+      "birth_turn": 2704
+    },
+    {
+      "id": "A4.g27",
+      "slot": "A4",
+      "parent": "A3.g23",
+      "birth_turn": 2749
+    },
+    {
+      "id": "A1.g27",
+      "slot": "A1",
+      "parent": "A3.g23",
+      "birth_turn": 2768
+    },
+    {
+      "id": "A0.g26",
+      "slot": "A0",
+      "parent": "A3.g23",
+      "birth_turn": 2782
+    },
+    {
+      "id": "A3.g24",
+      "slot": "A3",
+      "parent": "A2.g27",
+      "birth_turn": 2798
+    },
+    {
+      "id": "A4.g28",
+      "slot": "A4",
+      "parent": "A2.g27",
+      "birth_turn": 2825
+    },
+    {
+      "id": "A1.g28",
+      "slot": "A1",
+      "parent": "A2.g27",
+      "birth_turn": 2858
+    },
+    {
+      "id": "A2.g28",
+      "slot": "A2",
+      "parent": "A0.g26",
+      "birth_turn": 2867
+    },
+    {
+      "id": "A0.g27",
+      "slot": "A0",
+      "parent": "A3.g24",
+      "birth_turn": 2888
+    },
+    {
+      "id": "A3.g25",
+      "slot": "A3",
+      "parent": "A4.g28",
+      "birth_turn": 2912
+    },
+    {
+      "id": "A1.g29",
+      "slot": "A1",
+      "parent": "A4.g28",
+      "birth_turn": 2918
+    },
+    {
+      "id": "A0.g28",
+      "slot": "A0",
+      "parent": "A2.g28",
+      "birth_turn": 2948
+    },
+    {
+      "id": "A4.g29",
+      "slot": "A4",
+      "parent": "A2.g28",
+      "birth_turn": 2948
+    },
+    {
+      "id": "A3.g26",
+      "slot": "A3",
+      "parent": "A2.g28",
+      "birth_turn": 2975
+    },
+    {
+      "id": "A1.g30",
+      "slot": "A1",
+      "parent": "A2.g28",
+      "birth_turn": 3008
+    },
+    {
+      "id": "A2.g29",
+      "slot": "A2",
+      "parent": "A0.g28",
+      "birth_turn": 3038
+    },
+    {
+      "id": "A3.g27",
+      "slot": "A3",
+      "parent": "A0.g28",
+      "birth_turn": 3079
+    },
+    {
+      "id": "A1.g31",
+      "slot": "A1",
+      "parent": "A0.g28",
+      "birth_turn": 3104
+    },
+    {
+      "id": "A0.g29",
+      "slot": "A0",
+      "parent": "A4.g29",
+      "birth_turn": 3106
+    },
+    {
+      "id": "A2.g30",
+      "slot": "A2",
+      "parent": "A4.g29",
+      "birth_turn": 3110
+    },
+    {
+      "id": "A4.g30",
+      "slot": "A4",
+      "parent": "A3.g27",
+      "birth_turn": 3128
+    },
+    {
+      "id": "A3.g28",
+      "slot": "A3",
+      "parent": "A1.g31",
+      "birth_turn": 3158
+    },
+    {
+      "id": "A0.g30",
+      "slot": "A0",
+      "parent": "A1.g31",
+      "birth_turn": 3188
+    },
+    {
+      "id": "A2.g31",
+      "slot": "A2",
+      "parent": "A1.g31",
+      "birth_turn": 3191
+    },
+    {
+      "id": "A1.g32",
+      "slot": "A1",
+      "parent": "A4.g30",
+      "birth_turn": 3209
+    },
+    {
+      "id": "A4.g31",
+      "slot": "A4",
+      "parent": "A3.g28",
+      "birth_turn": 3248
+    },
+    {
+      "id": "A0.g31",
+      "slot": "A0",
+      "parent": "A3.g28",
+      "birth_turn": 3271
+    },
+    {
+      "id": "A2.g32",
+      "slot": "A2",
+      "parent": "A1.g32",
+      "birth_turn": 3278
+    },
+    {
+      "id": "A3.g29",
+      "slot": "A3",
+      "parent": "A1.g32",
+      "birth_turn": 3278
+    },
+    {
+      "id": "A4.g32",
+      "slot": "A4",
+      "parent": "A1.g32",
+      "birth_turn": 3312
+    },
+    {
+      "id": "A0.g32",
+      "slot": "A0",
+      "parent": "A2.g32",
+      "birth_turn": 3338
+    },
+    {
+      "id": "A1.g33",
+      "slot": "A1",
+      "parent": "A2.g32",
+      "birth_turn": 3338
+    },
+    {
+      "id": "A2.g33",
+      "slot": "A2",
+      "parent": "A3.g29",
+      "birth_turn": 3368
+    },
+    {
+      "id": "A4.g33",
+      "slot": "A4",
+      "parent": "A3.g29",
+      "birth_turn": 3395
+    },
+    {
+      "id": "A1.g34",
+      "slot": "A1",
+      "parent": "A0.g32",
+      "birth_turn": 3398
+    },
+    {
+      "id": "A3.g30",
+      "slot": "A3",
+      "parent": "A0.g32",
+      "birth_turn": 3398
+    },
+    {
+      "id": "A0.g33",
+      "slot": "A0",
+      "parent": "A2.g33",
+      "birth_turn": 3458
+    },
+    {
+      "id": "A4.g34",
+      "slot": "A4",
+      "parent": "A2.g33",
+      "birth_turn": 3476
+    },
+    {
+      "id": "A3.g31",
+      "slot": "A3",
+      "parent": "A2.g33",
+      "birth_turn": 3488
+    },
+    {
+      "id": "A1.g35",
+      "slot": "A1",
+      "parent": "A2.g33",
+      "birth_turn": 3520
+    },
+    {
+      "id": "A4.g35",
+      "slot": "A4",
+      "parent": "A2.g33",
+      "birth_turn": 3546
+    },
+    {
+      "id": "A0.g34",
+      "slot": "A0",
+      "parent": "A2.g33",
+      "birth_turn": 3548
+    },
+    {
+      "id": "A2.g34",
+      "slot": "A2",
+      "parent": "A3.g31",
+      "birth_turn": 3568
+    },
+    {
+      "id": "A1.g36",
+      "slot": "A1",
+      "parent": "A3.g31",
+      "birth_turn": 3578
+    },
+    {
+      "id": "A0.g35",
+      "slot": "A0",
+      "parent": "A4.g35",
+      "birth_turn": 3638
+    },
+    {
+      "id": "A3.g32",
+      "slot": "A3",
+      "parent": "A4.g35",
+      "birth_turn": 3638
+    },
+    {
+      "id": "A2.g35",
+      "slot": "A2",
+      "parent": "A4.g35",
+      "birth_turn": 3653
+    },
+    {
+      "id": "A1.g37",
+      "slot": "A1",
+      "parent": "A4.g35",
+      "birth_turn": 3672
+    },
+    {
+      "id": "A2.g36",
+      "slot": "A2",
+      "parent": "A4.g35",
+      "birth_turn": 3703
+    },
+    {
+      "id": "A0.g36",
+      "slot": "A0",
+      "parent": "A4.g35",
+      "birth_turn": 3704
+    },
+    {
+      "id": "A4.g36",
+      "slot": "A4",
+      "parent": "A3.g32",
+      "birth_turn": 3720
+    },
+    {
+      "id": "A1.g38",
+      "slot": "A1",
+      "parent": "A3.g32",
+      "birth_turn": 3728
+    },
+    {
+      "id": "A3.g33",
+      "slot": "A3",
+      "parent": "A2.g36",
+      "birth_turn": 3730
+    },
+    {
+      "id": "A2.g37",
+      "slot": "A2",
+      "parent": "A0.g36",
+      "birth_turn": 3758
+    },
+    {
+      "id": "A4.g37",
+      "slot": "A4",
+      "parent": "A0.g36",
+      "birth_turn": 3774
+    },
+    {
+      "id": "A0.g37",
+      "slot": "A0",
+      "parent": "A1.g38",
+      "birth_turn": 3799
+    },
+    {
+      "id": "A2.g38",
+      "slot": "A2",
+      "parent": "A1.g38",
+      "birth_turn": 3818
+    },
+    {
+      "id": "A3.g34",
+      "slot": "A3",
+      "parent": "A1.g38",
+      "birth_turn": 3823
+    },
+    {
+      "id": "A1.g39",
+      "slot": "A1",
+      "parent": "A4.g37",
+      "birth_turn": 3830
+    },
+    {
+      "id": "A4.g38",
+      "slot": "A4",
+      "parent": "A0.g37",
+      "birth_turn": 3848
+    },
+    {
+      "id": "A3.g35",
+      "slot": "A3",
+      "parent": "A0.g37",
+      "birth_turn": 3878
+    },
+    {
+      "id": "A3.g36",
+      "slot": "A3",
+      "parent": "A0.g37",
+      "birth_turn": 3938
+    },
+    {
+      "id": "A4.g39",
+      "slot": "A4",
+      "parent": "A0.g37",
+      "birth_turn": 3945
+    },
+    {
+      "id": "A2.g39",
+      "slot": "A2",
+      "parent": "A0.g37",
+      "birth_turn": 3950
+    },
+    {
+      "id": "A1.g40",
+      "slot": "A1",
+      "parent": "A0.g37",
+      "birth_turn": 3998
+    },
+    {
+      "id": "A2.g40",
+      "slot": "A2",
+      "parent": "A0.g37",
+      "birth_turn": 4009
+    },
+    {
+      "id": "A0.g38",
+      "slot": "A0",
+      "parent": "A3.g36",
+      "birth_turn": 4039
+    },
+    {
+      "id": "A4.g40",
+      "slot": "A4",
+      "parent": "A3.g36",
+      "birth_turn": 4041
+    },
+    {
+      "id": "A2.g41",
+      "slot": "A2",
+      "parent": "A3.g36",
+      "birth_turn": 4065
+    },
+    {
+      "id": "A3.g37",
+      "slot": "A3",
+      "parent": "A1.g40",
+      "birth_turn": 4069
+    },
+    {
+      "id": "A1.g41",
+      "slot": "A1",
+      "parent": "A0.g38",
+      "birth_turn": 4088
+    },
+    {
+      "id": "A2.g42",
+      "slot": "A2",
+      "parent": "A0.g38",
+      "birth_turn": 4118
+    },
+    {
+      "id": "A4.g41",
+      "slot": "A4",
+      "parent": "A0.g38",
+      "birth_turn": 4118
+    },
+    {
+      "id": "A0.g39",
+      "slot": "A0",
+      "parent": "A3.g37",
+      "birth_turn": 4148
+    },
+    {
+      "id": "A2.g43",
+      "slot": "A2",
+      "parent": "A3.g37",
+      "birth_turn": 4178
+    },
+    {
+      "id": "A1.g42",
+      "slot": "A1",
+      "parent": "A3.g37",
+      "birth_turn": 4182
+    },
+    {
+      "id": "A4.g42",
+      "slot": "A4",
+      "parent": "A3.g37",
+      "birth_turn": 4238
+    },
+    {
+      "id": "A3.g38",
+      "slot": "A3",
+      "parent": "A0.g39",
+      "birth_turn": 4250
+    },
+    {
+      "id": "A0.g40",
+      "slot": "A0",
+      "parent": "A2.g43",
+      "birth_turn": 4269
+    },
+    {
+      "id": "A4.g43",
+      "slot": "A4",
+      "parent": "A2.g43",
+      "birth_turn": 4313
+    },
+    {
+      "id": "A2.g44",
+      "slot": "A2",
+      "parent": "A1.g42",
+      "birth_turn": 4327
+    },
+    {
+      "id": "A0.g41",
+      "slot": "A0",
+      "parent": "A1.g42",
+      "birth_turn": 4328
+    },
+    {
+      "id": "A3.g39",
+      "slot": "A3",
+      "parent": "A1.g42",
+      "birth_turn": 4358
+    },
+    {
+      "id": "A2.g45",
+      "slot": "A2",
+      "parent": "A1.g42",
+      "birth_turn": 4388
+    },
+    {
+      "id": "A4.g44",
+      "slot": "A4",
+      "parent": "A1.g42",
+      "birth_turn": 4418
+    },
+    {
+      "id": "A3.g40",
+      "slot": "A3",
+      "parent": "A1.g42",
+      "birth_turn": 4449
+    },
+    {
+      "id": "A2.g46",
+      "slot": "A2",
+      "parent": "A1.g42",
+      "birth_turn": 4479
+    },
+    {
+      "id": "A1.g43",
+      "slot": "A1",
+      "parent": "A0.g41",
+      "birth_turn": 4483
+    },
+    {
+      "id": "A0.g42",
+      "slot": "A0",
+      "parent": "A4.g44",
+      "birth_turn": 4530
+    },
+    {
+      "id": "A4.g45",
+      "slot": "A4",
+      "parent": "A3.g40",
+      "birth_turn": 4537
+    },
+    {
+      "id": "A1.g44",
+      "slot": "A1",
+      "parent": "A3.g40",
+      "birth_turn": 4560
+    },
+    {
+      "id": "A2.g47",
+      "slot": "A2",
+      "parent": "A0.g42",
+      "birth_turn": 4568
+    },
+    {
+      "id": "A3.g41",
+      "slot": "A3",
+      "parent": "A0.g42",
+      "birth_turn": 4568
+    },
+    {
+      "id": "A4.g46",
+      "slot": "A4",
+      "parent": "A0.g42",
+      "birth_turn": 4587
+    },
+    {
+      "id": "A0.g43",
+      "slot": "A0",
+      "parent": "A1.g44",
+      "birth_turn": 4599
+    },
+    {
+      "id": "A1.g45",
+      "slot": "A1",
+      "parent": "A2.g47",
+      "birth_turn": 4614
+    },
+    {
+      "id": "A3.g42",
+      "slot": "A3",
+      "parent": "A2.g47",
+      "birth_turn": 4645
+    },
+    {
+      "id": "A0.g44",
+      "slot": "A0",
+      "parent": "A2.g47",
+      "birth_turn": 4689
+    },
+    {
+      "id": "A3.g43",
+      "slot": "A3",
+      "parent": "A2.g47",
+      "birth_turn": 4693
+    },
+    {
+      "id": "A4.g47",
+      "slot": "A4",
+      "parent": "A2.g47",
+      "birth_turn": 4705
+    },
+    {
+      "id": "A1.g46",
+      "slot": "A1",
+      "parent": "A2.g47",
+      "birth_turn": 4727
+    },
+    {
+      "id": "A0.g45",
+      "slot": "A0",
+      "parent": "A2.g47",
+      "birth_turn": 4747
+    },
+    {
+      "id": "A2.g48",
+      "slot": "A2",
+      "parent": "A3.g43",
+      "birth_turn": 4748
+    },
+    {
+      "id": "A1.g47",
+      "slot": "A1",
+      "parent": "A3.g43",
+      "birth_turn": 4800
+    },
+    {
+      "id": "A2.g49",
+      "slot": "A2",
+      "parent": "A3.g43",
+      "birth_turn": 4820
+    },
+    {
+      "id": "A3.g44",
+      "slot": "A3",
+      "parent": "A4.g47",
+      "birth_turn": 4897
+    },
+    {
+      "id": "A4.g48",
+      "slot": "A4",
+      "parent": "A0.g45",
+      "birth_turn": 4898
+    },
+    {
+      "id": "A0.g46",
+      "slot": "A0",
+      "parent": "A1.g47",
+      "birth_turn": 4903
+    },
+    {
+      "id": "A2.g50",
+      "slot": "A2",
+      "parent": "A1.g47",
+      "birth_turn": 4928
+    },
+    {
+      "id": "A0.g47",
+      "slot": "A0",
+      "parent": "A1.g47",
+      "birth_turn": 4958
+    },
+    {
+      "id": "A1.g48",
+      "slot": "A1",
+      "parent": "A3.g44",
+      "birth_turn": 4993
+    },
+    {
+      "id": "A4.g49",
+      "slot": "A4",
+      "parent": "A3.g44",
+      "birth_turn": 4996
+    },
+    {
+      "id": "A2.g51",
+      "slot": "A2",
+      "parent": "A3.g44",
+      "birth_turn": 5018
+    },
+    {
+      "id": "A2.g52",
+      "slot": "A2",
+      "parent": "A3.g44",
+      "birth_turn": 5036
+    },
+    {
+      "id": "A1.g49",
+      "slot": "A1",
+      "parent": "A3.g44",
+      "birth_turn": 5054
+    },
+    {
+      "id": "A4.g50",
+      "slot": "A4",
+      "parent": "A3.g44",
+      "birth_turn": 5054
+    },
+    {
+      "id": "A0.g48",
+      "slot": "A0",
+      "parent": "A3.g44",
+      "birth_turn": 5103
+    },
+    {
+      "id": "A3.g45",
+      "slot": "A3",
+      "parent": "A2.g52",
+      "birth_turn": 5108
+    },
+    {
+      "id": "A4.g51",
+      "slot": "A4",
+      "parent": "A2.g52",
+      "birth_turn": 5109
+    },
+    {
+      "id": "A1.g50",
+      "slot": "A1",
+      "parent": "A2.g52",
+      "birth_turn": 5112
+    },
+    {
+      "id": "A3.g46",
+      "slot": "A3",
+      "parent": "A2.g52",
+      "birth_turn": 5167
+    },
+    {
+      "id": "A0.g49",
+      "slot": "A0",
+      "parent": "A2.g52",
+      "birth_turn": 5198
+    },
+    {
+      "id": "A2.g53",
+      "slot": "A2",
+      "parent": "A4.g51",
+      "birth_turn": 5199
+    },
+    {
+      "id": "A3.g47",
+      "slot": "A3",
+      "parent": "A4.g51",
+      "birth_turn": 5216
+    },
+    {
+      "id": "A4.g52",
+      "slot": "A4",
+      "parent": "A1.g50",
+      "birth_turn": 5269
+    },
+    {
+      "id": "A2.g54",
+      "slot": "A2",
+      "parent": "A1.g50",
+      "birth_turn": 5277
+    },
+    {
+      "id": "A0.g50",
+      "slot": "A0",
+      "parent": "A1.g50",
+      "birth_turn": 5288
+    },
+    {
+      "id": "A1.g51",
+      "slot": "A1",
+      "parent": "A3.g47",
+      "birth_turn": 5313
+    },
+    {
+      "id": "A4.g53",
+      "slot": "A4",
+      "parent": "A3.g47",
+      "birth_turn": 5318
+    },
+    {
+      "id": "A3.g48",
+      "slot": "A3",
+      "parent": "A2.g54",
+      "birth_turn": 5348
+    },
+    {
+      "id": "A2.g55",
+      "slot": "A2",
+      "parent": "A0.g50",
+      "birth_turn": 5352
+    },
+    {
+      "id": "A0.g51",
+      "slot": "A0",
+      "parent": "A4.g53",
+      "birth_turn": 5378
+    },
+    {
+      "id": "A1.g52",
+      "slot": "A1",
+      "parent": "A4.g53",
+      "birth_turn": 5378
+    },
+    {
+      "id": "A2.g56",
+      "slot": "A2",
+      "parent": "A4.g53",
+      "birth_turn": 5425
+    },
+    {
+      "id": "A4.g54",
+      "slot": "A4",
+      "parent": "A3.g48",
+      "birth_turn": 5438
+    },
+    {
+      "id": "A3.g49",
+      "slot": "A3",
+      "parent": "A0.g51",
+      "birth_turn": 5465
+    },
+    {
+      "id": "A0.g52",
+      "slot": "A0",
+      "parent": "A1.g52",
+      "birth_turn": 5468
+    },
+    {
+      "id": "A1.g53",
+      "slot": "A1",
+      "parent": "A3.g49",
+      "birth_turn": 5498
+    },
+    {
+      "id": "A2.g57",
+      "slot": "A2",
+      "parent": "A3.g49",
+      "birth_turn": 5498
+    },
+    {
+      "id": "A4.g55",
+      "slot": "A4",
+      "parent": "A3.g49",
+      "birth_turn": 5498
+    },
+    {
+      "id": "A3.g50",
+      "slot": "A3",
+      "parent": "A0.g52",
+      "birth_turn": 5528
+    },
+    {
+      "id": "A0.g53",
+      "slot": "A0",
+      "parent": "A1.g53",
+      "birth_turn": 5558
+    },
+    {
+      "id": "A4.g56",
+      "slot": "A4",
+      "parent": "A1.g53",
+      "birth_turn": 5602
+    },
+    {
+      "id": "A1.g54",
+      "slot": "A1",
+      "parent": "A2.g57",
+      "birth_turn": 5610
+    },
+    {
+      "id": "A3.g51",
+      "slot": "A3",
+      "parent": "A2.g57",
+      "birth_turn": 5645
+    },
+    {
+      "id": "A1.g55",
+      "slot": "A1",
+      "parent": "A2.g57",
+      "birth_turn": 5672
+    },
+    {
+      "id": "A4.g57",
+      "slot": "A4",
+      "parent": "A2.g57",
+      "birth_turn": 5674
+    },
+    {
+      "id": "A0.g54",
+      "slot": "A0",
+      "parent": "A2.g57",
+      "birth_turn": 5678
+    },
+    {
+      "id": "A2.g58",
+      "slot": "A2",
+      "parent": "A1.g55",
+      "birth_turn": 5738
+    },
+    {
+      "id": "A3.g52",
+      "slot": "A3",
+      "parent": "A1.g55",
+      "birth_turn": 5738
+    },
+    {
+      "id": "A4.g58",
+      "slot": "A4",
+      "parent": "A1.g55",
+      "birth_turn": 5738
+    },
+    {
+      "id": "A0.g55",
+      "slot": "A0",
+      "parent": "A1.g55",
+      "birth_turn": 5743
+    },
+    {
+      "id": "A1.g56",
+      "slot": "A1",
+      "parent": "A2.g58",
+      "birth_turn": 5786
+    },
+    {
+      "id": "A3.g53",
+      "slot": "A3",
+      "parent": "A2.g58",
+      "birth_turn": 5842
+    },
+    {
+      "id": "A2.g59",
+      "slot": "A2",
+      "parent": "A4.g58",
+      "birth_turn": 5857
+    },
+    {
+      "id": "A0.g56",
+      "slot": "A0",
+      "parent": "A4.g58",
+      "birth_turn": 5858
+    },
+    {
+      "id": "A1.g57",
+      "slot": "A1",
+      "parent": "A4.g58",
+      "birth_turn": 5858
+    },
+    {
+      "id": "A4.g59",
+      "slot": "A4",
+      "parent": "A3.g53",
+      "birth_turn": 5882
+    },
+    {
+      "id": "A2.g60",
+      "slot": "A2",
+      "parent": "A3.g53",
+      "birth_turn": 5911
+    },
+    {
+      "id": "A0.g57",
+      "slot": "A0",
+      "parent": "A3.g53",
+      "birth_turn": 5918
+    },
+    {
+      "id": "A1.g58",
+      "slot": "A1",
+      "parent": "A3.g53",
+      "birth_turn": 5918
+    },
+    {
+      "id": "A3.g54",
+      "slot": "A3",
+      "parent": "A4.g59",
+      "birth_turn": 5951
+    },
+    {
+      "id": "A4.g60",
+      "slot": "A4",
+      "parent": "A2.g60",
+      "birth_turn": 5963
+    },
+    {
+      "id": "A2.g61",
+      "slot": "A2",
+      "parent": "A0.g57",
+      "birth_turn": 5992
+    },
+    {
+      "id": "A0.g58",
+      "slot": "A0",
+      "parent": "A1.g58",
+      "birth_turn": 5999
+    },
+    {
+      "id": "A1.g59",
+      "slot": "A1",
+      "parent": "A3.g54",
+      "birth_turn": 6022
+    },
+    {
+      "id": "A4.g61",
+      "slot": "A4",
+      "parent": "A3.g54",
+      "birth_turn": 6038
+    },
+    {
+      "id": "A2.g62",
+      "slot": "A2",
+      "parent": "A3.g54",
+      "birth_turn": 6068
+    },
+    {
+      "id": "A0.g59",
+      "slot": "A0",
+      "parent": "A3.g54",
+      "birth_turn": 6094
+    },
+    {
+      "id": "A2.g63",
+      "slot": "A2",
+      "parent": "A3.g54",
+      "birth_turn": 6128
+    },
+    {
+      "id": "A4.g62",
+      "slot": "A4",
+      "parent": "A3.g54",
+      "birth_turn": 6130
+    },
+    {
+      "id": "A3.g55",
+      "slot": "A3",
+      "parent": "A1.g59",
+      "birth_turn": 6138
+    },
+    {
+      "id": "A0.g60",
+      "slot": "A0",
+      "parent": "A1.g59",
+      "birth_turn": 6152
+    },
+    {
+      "id": "A4.g63",
+      "slot": "A4",
+      "parent": "A1.g59",
+      "birth_turn": 6188
+    },
+    {
+      "id": "A0.g61",
+      "slot": "A0",
+      "parent": "A1.g59",
+      "birth_turn": 6204
+    },
+    {
+      "id": "A2.g64",
+      "slot": "A2",
+      "parent": "A1.g59",
+      "birth_turn": 6248
+    },
+    {
+      "id": "A0.g62",
+      "slot": "A0",
+      "parent": "A1.g59",
+      "birth_turn": 6254
+    },
+    {
+      "id": "A3.g56",
+      "slot": "A3",
+      "parent": "A1.g59",
+      "birth_turn": 6270
+    },
+    {
+      "id": "A1.g60",
+      "slot": "A1",
+      "parent": "A4.g63",
+      "birth_turn": 6274
+    },
+    {
+      "id": "A4.g64",
+      "slot": "A4",
+      "parent": "A2.g64",
+      "birth_turn": 6278
+    },
+    {
+      "id": "A0.g63",
+      "slot": "A0",
+      "parent": "A2.g64",
+      "birth_turn": 6329
+    },
+    {
+      "id": "A3.g57",
+      "slot": "A3",
+      "parent": "A2.g64",
+      "birth_turn": 6338
+    },
+    {
+      "id": "A1.g61",
+      "slot": "A1",
+      "parent": "A2.g64",
+      "birth_turn": 6347
+    },
+    {
+      "id": "A4.g65",
+      "slot": "A4",
+      "parent": "A2.g64",
+      "birth_turn": 6351
+    },
+    {
+      "id": "A2.g65",
+      "slot": "A2",
+      "parent": "A0.g63",
+      "birth_turn": 6380
+    },
+    {
+      "id": "A0.g64",
+      "slot": "A0",
+      "parent": "A1.g61",
+      "birth_turn": 6398
+    },
+    {
+      "id": "A3.g58",
+      "slot": "A3",
+      "parent": "A1.g61",
+      "birth_turn": 6398
+    },
+    {
+      "id": "A1.g62",
+      "slot": "A1",
+      "parent": "A4.g65",
+      "birth_turn": 6440
+    },
+    {
+      "id": "A4.g66",
+      "slot": "A4",
+      "parent": "A2.g65",
+      "birth_turn": 6476
+    },
+    {
+      "id": "A0.g65",
+      "slot": "A0",
+      "parent": "A2.g65",
+      "birth_turn": 6496
+    },
+    {
+      "id": "A2.g66",
+      "slot": "A2",
+      "parent": "A3.g58",
+      "birth_turn": 6523
+    },
+    {
+      "id": "A4.g67",
+      "slot": "A4",
+      "parent": "A3.g58",
+      "birth_turn": 6525
+    },
+    {
+      "id": "A0.g66",
+      "slot": "A0",
+      "parent": "A3.g58",
+      "birth_turn": 6578
+    },
+    {
+      "id": "A2.g67",
+      "slot": "A2",
+      "parent": "A3.g58",
+      "birth_turn": 6578
+    },
+    {
+      "id": "A4.g68",
+      "slot": "A4",
+      "parent": "A3.g58",
+      "birth_turn": 6608
+    },
+    {
+      "id": "A3.g59",
+      "slot": "A3",
+      "parent": "A1.g62",
+      "birth_turn": 6627
+    },
+    {
+      "id": "A0.g67",
+      "slot": "A0",
+      "parent": "A1.g62",
+      "birth_turn": 6638
+    },
+    {
+      "id": "A2.g68",
+      "slot": "A2",
+      "parent": "A1.g62",
+      "birth_turn": 6652
+    },
+    {
+      "id": "A0.g68",
+      "slot": "A0",
+      "parent": "A4.g68",
+      "birth_turn": 6698
+    },
+    {
+      "id": "A1.g63",
+      "slot": "A1",
+      "parent": "A4.g68",
+      "birth_turn": 6698
+    },
+    {
+      "id": "A3.g60",
+      "slot": "A3",
+      "parent": "A4.g68",
+      "birth_turn": 6728
+    },
+    {
+      "id": "A2.g69",
+      "slot": "A2",
+      "parent": "A4.g68",
+      "birth_turn": 6745
+    },
+    {
+      "id": "A4.g69",
+      "slot": "A4",
+      "parent": "A0.g68",
+      "birth_turn": 6758
+    },
+    {
+      "id": "A3.g61",
+      "slot": "A3",
+      "parent": "A0.g68",
+      "birth_turn": 6788
+    },
+    {
+      "id": "A0.g69",
+      "slot": "A0",
+      "parent": "A1.g63",
+      "birth_turn": 6789
+    },
+    {
+      "id": "A1.g64",
+      "slot": "A1",
+      "parent": "A2.g69",
+      "birth_turn": 6800
+    },
+    {
+      "id": "A2.g70",
+      "slot": "A2",
+      "parent": "A4.g69",
+      "birth_turn": 6804
+    },
+    {
+      "id": "A4.g70",
+      "slot": "A4",
+      "parent": "A3.g61",
+      "birth_turn": 6823
+    },
+    {
+      "id": "A2.g71",
+      "slot": "A2",
+      "parent": "A3.g61",
+      "birth_turn": 6855
+    },
+    {
+      "id": "A0.g70",
+      "slot": "A0",
+      "parent": "A3.g61",
+      "birth_turn": 6862
+    },
+    {
+      "id": "A1.g65",
+      "slot": "A1",
+      "parent": "A3.g61",
+      "birth_turn": 6895
+    },
+    {
+      "id": "A2.g72",
+      "slot": "A2",
+      "parent": "A3.g61",
+      "birth_turn": 6908
+    },
+    {
+      "id": "A0.g71",
+      "slot": "A0",
+      "parent": "A4.g70",
+      "birth_turn": 6938
+    },
+    {
+      "id": "A3.g62",
+      "slot": "A3",
+      "parent": "A4.g70",
+      "birth_turn": 6938
+    },
+    {
+      "id": "A1.g66",
+      "slot": "A1",
+      "parent": "A4.g70",
+      "birth_turn": 6944
+    },
+    {
+      "id": "A4.g71",
+      "slot": "A4",
+      "parent": "A2.g72",
+      "birth_turn": 6968
+    },
+    {
+      "id": "A2.g73",
+      "slot": "A2",
+      "parent": "A0.g71",
+      "birth_turn": 6998
+    },
+    {
+      "id": "A0.g72",
+      "slot": "A0",
+      "parent": "A3.g62",
+      "birth_turn": 7028
+    },
+    {
+      "id": "A3.g63",
+      "slot": "A3",
+      "parent": "A1.g66",
+      "birth_turn": 7047
+    },
+    {
+      "id": "A2.g74",
+      "slot": "A2",
+      "parent": "A1.g66",
+      "birth_turn": 7106
+    },
+    {
+      "id": "A3.g64",
+      "slot": "A3",
+      "parent": "A1.g66",
+      "birth_turn": 7126
+    },
+    {
+      "id": "A1.g67",
+      "slot": "A1",
+      "parent": "A4.g71",
+      "birth_turn": 7130
+    },
+    {
+      "id": "A3.g65",
+      "slot": "A3",
+      "parent": "A4.g71",
+      "birth_turn": 7216
+    },
+    {
+      "id": "A0.g73",
+      "slot": "A0",
+      "parent": "A4.g71",
+      "birth_turn": 7224
+    },
+    {
+      "id": "A1.g68",
+      "slot": "A1",
+      "parent": "A4.g71",
+      "birth_turn": 7250
+    },
+    {
+      "id": "A2.g75",
+      "slot": "A2",
+      "parent": "A4.g71",
+      "birth_turn": 7268
+    },
+    {
+      "id": "A4.g72",
+      "slot": "A4",
+      "parent": "A3.g65",
+      "birth_turn": 7269
+    },
+    {
+      "id": "A0.g74",
+      "slot": "A0",
+      "parent": "A3.g65",
+      "birth_turn": 7317
+    },
+    {
+      "id": "A1.g69",
+      "slot": "A1",
+      "parent": "A3.g65",
+      "birth_turn": 7324
+    },
+    {
+      "id": "A2.g76",
+      "slot": "A2",
+      "parent": "A3.g65",
+      "birth_turn": 7328
+    },
+    {
+      "id": "A4.g73",
+      "slot": "A4",
+      "parent": "A3.g65",
+      "birth_turn": 7361
+    },
+    {
+      "id": "A1.g70",
+      "slot": "A1",
+      "parent": "A3.g65",
+      "birth_turn": 7374
+    },
+    {
+      "id": "A3.g66",
+      "slot": "A3",
+      "parent": "A0.g74",
+      "birth_turn": 7388
+    },
+    {
+      "id": "A2.g77",
+      "slot": "A2",
+      "parent": "A0.g74",
+      "birth_turn": 7396
+    },
+    {
+      "id": "A0.g75",
+      "slot": "A0",
+      "parent": "A4.g73",
+      "birth_turn": 7418
+    },
+    {
+      "id": "A1.g71",
+      "slot": "A1",
+      "parent": "A4.g73",
+      "birth_turn": 7426
+    },
+    {
+      "id": "A2.g78",
+      "slot": "A2",
+      "parent": "A4.g73",
+      "birth_turn": 7460
+    },
+    {
+      "id": "A3.g67",
+      "slot": "A3",
+      "parent": "A4.g73",
+      "birth_turn": 7461
+    },
+    {
+      "id": "A4.g74",
+      "slot": "A4",
+      "parent": "A0.g75",
+      "birth_turn": 7466
+    },
+    {
+      "id": "A0.g76",
+      "slot": "A0",
+      "parent": "A1.g71",
+      "birth_turn": 7504
+    },
+    {
+      "id": "A1.g72",
+      "slot": "A1",
+      "parent": "A2.g78",
+      "birth_turn": 7508
+    },
+    {
+      "id": "A2.g79",
+      "slot": "A2",
+      "parent": "A3.g67",
+      "birth_turn": 7509
+    },
+    {
+      "id": "A3.g68",
+      "slot": "A3",
+      "parent": "A0.g76",
+      "birth_turn": 7538
+    },
+    {
+      "id": "A4.g75",
+      "slot": "A4",
+      "parent": "A0.g76",
+      "birth_turn": 7538
+    },
+    {
+      "id": "A0.g77",
+      "slot": "A0",
+      "parent": "A1.g72",
+      "birth_turn": 7556
+    },
+    {
+      "id": "A1.g73",
+      "slot": "A1",
+      "parent": "A2.g79",
+      "birth_turn": 7603
+    },
+    {
+      "id": "A4.g76",
+      "slot": "A4",
+      "parent": "A2.g79",
+      "birth_turn": 7615
+    },
+    {
+      "id": "A0.g78",
+      "slot": "A0",
+      "parent": "A2.g79",
+      "birth_turn": 7628
+    },
+    {
+      "id": "A2.g80",
+      "slot": "A2",
+      "parent": "A1.g73",
+      "birth_turn": 7658
+    },
+    {
+      "id": "A3.g69",
+      "slot": "A3",
+      "parent": "A1.g73",
+      "birth_turn": 7658
+    },
+    {
+      "id": "A4.g77",
+      "slot": "A4",
+      "parent": "A1.g73",
+      "birth_turn": 7688
+    },
+    {
+      "id": "A1.g74",
+      "slot": "A1",
+      "parent": "A0.g78",
+      "birth_turn": 7714
+    },
+    {
+      "id": "A0.g79",
+      "slot": "A0",
+      "parent": "A2.g80",
+      "birth_turn": 7718
+    },
+    {
+      "id": "A3.g70",
+      "slot": "A3",
+      "parent": "A2.g80",
+      "birth_turn": 7748
+    },
+    {
+      "id": "A2.g81",
+      "slot": "A2",
+      "parent": "A4.g77",
+      "birth_turn": 7753
+    },
+    {
+      "id": "A1.g75",
+      "slot": "A1",
+      "parent": "A4.g77",
+      "birth_turn": 7778
+    },
+    {
+      "id": "A4.g78",
+      "slot": "A4",
+      "parent": "A0.g79",
+      "birth_turn": 7780
+    },
+    {
+      "id": "A0.g80",
+      "slot": "A0",
+      "parent": "A3.g70",
+      "birth_turn": 7810
+    },
+    {
+      "id": "A2.g82",
+      "slot": "A2",
+      "parent": "A3.g70",
+      "birth_turn": 7827
+    },
+    {
+      "id": "A1.g76",
+      "slot": "A1",
+      "parent": "A3.g70",
+      "birth_turn": 7860
+    },
+    {
+      "id": "A4.g79",
+      "slot": "A4",
+      "parent": "A3.g70",
+      "birth_turn": 7868
+    },
+    {
+      "id": "A0.g81",
+      "slot": "A0",
+      "parent": "A3.g70",
+      "birth_turn": 7886
+    },
+    {
+      "id": "A3.g71",
+      "slot": "A3",
+      "parent": "A2.g82",
+      "birth_turn": 7898
+    },
+    {
+      "id": "A2.g83",
+      "slot": "A2",
+      "parent": "A1.g76",
+      "birth_turn": 7910
+    },
+    {
+      "id": "A1.g77",
+      "slot": "A1",
+      "parent": "A4.g79",
+      "birth_turn": 7921
+    },
+    {
+      "id": "A3.g72",
+      "slot": "A3",
+      "parent": "A0.g81",
+      "birth_turn": 7958
+    },
+    {
+      "id": "A4.g80",
+      "slot": "A4",
+      "parent": "A0.g81",
+      "birth_turn": 7958
+    },
+    {
+      "id": "A0.g82",
+      "slot": "A0",
+      "parent": "A2.g83",
+      "birth_turn": 7962
+    },
+    {
+      "id": "A1.g78",
+      "slot": "A1",
+      "parent": "A2.g83",
+      "birth_turn": 8005
+    },
+    {
+      "id": "A2.g84",
+      "slot": "A2",
+      "parent": "A3.g72",
+      "birth_turn": 8011
+    },
+    {
+      "id": "A0.g83",
+      "slot": "A0",
+      "parent": "A3.g72",
+      "birth_turn": 8018
+    },
+    {
+      "id": "A4.g81",
+      "slot": "A4",
+      "parent": "A3.g72",
+      "birth_turn": 8046
+    },
+    {
+      "id": "A3.g73",
+      "slot": "A3",
+      "parent": "A1.g78",
+      "birth_turn": 8091
+    },
+    {
+      "id": "A1.g79",
+      "slot": "A1",
+      "parent": "A2.g84",
+      "birth_turn": 8111
+    },
+    {
+      "id": "A2.g85",
+      "slot": "A2",
+      "parent": "A0.g83",
+      "birth_turn": 8115
+    },
+    {
+      "id": "A0.g84",
+      "slot": "A0",
+      "parent": "A4.g81",
+      "birth_turn": 8116
+    },
+    {
+      "id": "A4.g82",
+      "slot": "A4",
+      "parent": "A3.g73",
+      "birth_turn": 8138
+    },
+    {
+      "id": "A3.g74",
+      "slot": "A3",
+      "parent": "A1.g79",
+      "birth_turn": 8141
+    },
+    {
+      "id": "A1.g80",
+      "slot": "A1",
+      "parent": "A2.g85",
+      "birth_turn": 8196
+    },
+    {
+      "id": "A4.g83",
+      "slot": "A4",
+      "parent": "A2.g85",
+      "birth_turn": 8206
+    },
+    {
+      "id": "A2.g86",
+      "slot": "A2",
+      "parent": "A0.g84",
+      "birth_turn": 8228
+    },
+    {
+      "id": "A3.g75",
+      "slot": "A3",
+      "parent": "A0.g84",
+      "birth_turn": 8228
+    },
+    {
+      "id": "A0.g85",
+      "slot": "A0",
+      "parent": "A1.g80",
+      "birth_turn": 8257
+    },
+    {
+      "id": "A1.g81",
+      "slot": "A1",
+      "parent": "A4.g83",
+      "birth_turn": 8258
+    },
+    {
+      "id": "A4.g84",
+      "slot": "A4",
+      "parent": "A2.g86",
+      "birth_turn": 8260
+    },
+    {
+      "id": "A0.g86",
+      "slot": "A0",
+      "parent": "A2.g86",
+      "birth_turn": 8327
+    },
+    {
+      "id": "A1.g82",
+      "slot": "A1",
+      "parent": "A2.g86",
+      "birth_turn": 8339
+    },
+    {
+      "id": "A3.g76",
+      "slot": "A3",
+      "parent": "A2.g86",
+      "birth_turn": 8348
+    },
+    {
+      "id": "A2.g87",
+      "slot": "A2",
+      "parent": "A4.g84",
+      "birth_turn": 8351
+    },
+    {
+      "id": "A0.g87",
+      "slot": "A0",
+      "parent": "A4.g84",
+      "birth_turn": 8436
+    },
+    {
+      "id": "A1.g83",
+      "slot": "A1",
+      "parent": "A4.g84",
+      "birth_turn": 8438
+    },
+    {
+      "id": "A3.g77",
+      "slot": "A3",
+      "parent": "A4.g84",
+      "birth_turn": 8438
+    },
+    {
+      "id": "A4.g85",
+      "slot": "A4",
+      "parent": "A2.g87",
+      "birth_turn": 8449
+    },
+    {
+      "id": "A2.g88",
+      "slot": "A2",
+      "parent": "A0.g87",
+      "birth_turn": 8468
+    },
+    {
+      "id": "A0.g88",
+      "slot": "A0",
+      "parent": "A1.g83",
+      "birth_turn": 8515
+    },
+    {
+      "id": "A2.g89",
+      "slot": "A2",
+      "parent": "A1.g83",
+      "birth_turn": 8561
+    },
+    {
+      "id": "A4.g86",
+      "slot": "A4",
+      "parent": "A1.g83",
+      "birth_turn": 8580
+    },
+    {
+      "id": "A1.g84",
+      "slot": "A1",
+      "parent": "A0.g88",
+      "birth_turn": 8588
+    },
+    {
+      "id": "A3.g78",
+      "slot": "A3",
+      "parent": "A0.g88",
+      "birth_turn": 8588
+    },
+    {
+      "id": "A0.g89",
+      "slot": "A0",
+      "parent": "A2.g89",
+      "birth_turn": 8618
+    },
+    {
+      "id": "A2.g90",
+      "slot": "A2",
+      "parent": "A4.g86",
+      "birth_turn": 8628
+    },
+    {
+      "id": "A4.g87",
+      "slot": "A4",
+      "parent": "A1.g84",
+      "birth_turn": 8655
+    },
+    {
+      "id": "A3.g79",
+      "slot": "A3",
+      "parent": "A1.g84",
+      "birth_turn": 8669
+    },
+    {
+      "id": "A0.g90",
+      "slot": "A0",
+      "parent": "A2.g90",
+      "birth_turn": 8678
+    },
+    {
+      "id": "A1.g85",
+      "slot": "A1",
+      "parent": "A2.g90",
+      "birth_turn": 8678
+    },
+    {
+      "id": "A4.g88",
+      "slot": "A4",
+      "parent": "A2.g90",
+      "birth_turn": 8744
+    },
+    {
+      "id": "A2.g91",
+      "slot": "A2",
+      "parent": "A3.g79",
+      "birth_turn": 8745
+    },
+    {
+      "id": "A1.g86",
+      "slot": "A1",
+      "parent": "A0.g90",
+      "birth_turn": 8768
+    },
+    {
+      "id": "A3.g80",
+      "slot": "A3",
+      "parent": "A0.g90",
+      "birth_turn": 8768
+    },
+    {
+      "id": "A4.g89",
+      "slot": "A4",
+      "parent": "A0.g90",
+      "birth_turn": 8798
+    },
+    {
+      "id": "A0.g91",
+      "slot": "A0",
+      "parent": "A2.g91",
+      "birth_turn": 8858
+    },
+    {
+      "id": "A1.g87",
+      "slot": "A1",
+      "parent": "A2.g91",
+      "birth_turn": 8858
+    },
+    {
+      "id": "A4.g90",
+      "slot": "A4",
+      "parent": "A2.g91",
+      "birth_turn": 8872
+    },
+    {
+      "id": "A2.g92",
+      "slot": "A2",
+      "parent": "A3.g80",
+      "birth_turn": 8884
+    },
+    {
+      "id": "A3.g81",
+      "slot": "A3",
+      "parent": "A0.g91",
+      "birth_turn": 8895
+    },
+    {
+      "id": "A1.g88",
+      "slot": "A1",
+      "parent": "A0.g91",
+      "birth_turn": 8948
+    },
+    {
+      "id": "A0.g92",
+      "slot": "A0",
+      "parent": "A4.g90",
+      "birth_turn": 8954
+    },
+    {
+      "id": "A4.g91",
+      "slot": "A4",
+      "parent": "A2.g92",
+      "birth_turn": 8956
+    },
+    {
+      "id": "A2.g93",
+      "slot": "A2",
+      "parent": "A3.g81",
+      "birth_turn": 8978
+    },
+    {
+      "id": "A3.g82",
+      "slot": "A3",
+      "parent": "A1.g88",
+      "birth_turn": 8988
+    },
+    {
+      "id": "A1.g89",
+      "slot": "A1",
+      "parent": "A0.g92",
+      "birth_turn": 9024
+    },
+    {
+      "id": "A4.g92",
+      "slot": "A4",
+      "parent": "A0.g92",
+      "birth_turn": 9033
+    },
+    {
+      "id": "A0.g93",
+      "slot": "A0",
+      "parent": "A2.g93",
+      "birth_turn": 9038
+    },
+    {
+      "id": "A3.g83",
+      "slot": "A3",
+      "parent": "A2.g93",
+      "birth_turn": 9039
+    },
+    {
+      "id": "A2.g94",
+      "slot": "A2",
+      "parent": "A1.g89",
+      "birth_turn": 9072
+    },
+    {
+      "id": "A4.g93",
+      "slot": "A4",
+      "parent": "A1.g89",
+      "birth_turn": 9098
+    },
+    {
+      "id": "A1.g90",
+      "slot": "A1",
+      "parent": "A0.g93",
+      "birth_turn": 9117
+    },
+    {
+      "id": "A0.g94",
+      "slot": "A0",
+      "parent": "A3.g83",
+      "birth_turn": 9130
+    },
+    {
+      "id": "A4.g94",
+      "slot": "A4",
+      "parent": "A3.g83",
+      "birth_turn": 9158
+    },
+    {
+      "id": "A1.g91",
+      "slot": "A1",
+      "parent": "A0.g94",
+      "birth_turn": 9188
+    },
+    {
+      "id": "A2.g95",
+      "slot": "A2",
+      "parent": "A0.g94",
+      "birth_turn": 9188
+    },
+    {
+      "id": "A3.g84",
+      "slot": "A3",
+      "parent": "A0.g94",
+      "birth_turn": 9188
+    },
+    {
+      "id": "A0.g95",
+      "slot": "A0",
+      "parent": "A4.g94",
+      "birth_turn": 9216
+    },
+    {
+      "id": "A1.g92",
+      "slot": "A1",
+      "parent": "A4.g94",
+      "birth_turn": 9271
+    },
+    {
+      "id": "A4.g95",
+      "slot": "A4",
+      "parent": "A2.g95",
+      "birth_turn": 9277
+    },
+    {
+      "id": "A2.g96",
+      "slot": "A2",
+      "parent": "A3.g84",
+      "birth_turn": 9305
+    },
+    {
+      "id": "A0.g96",
+      "slot": "A0",
+      "parent": "A3.g84",
+      "birth_turn": 9308
+    },
+    {
+      "id": "A3.g85",
+      "slot": "A3",
+      "parent": "A1.g92",
+      "birth_turn": 9317
+    },
+    {
+      "id": "A2.g97",
+      "slot": "A2",
+      "parent": "A1.g92",
+      "birth_turn": 9371
+    },
+    {
+      "id": "A4.g96",
+      "slot": "A4",
+      "parent": "A1.g92",
+      "birth_turn": 9373
+    },
+    {
+      "id": "A3.g86",
+      "slot": "A3",
+      "parent": "A1.g92",
+      "birth_turn": 9398
+    },
+    {
+      "id": "A2.g98",
+      "slot": "A2",
+      "parent": "A1.g92",
+      "birth_turn": 9429
+    },
+    {
+      "id": "A4.g97",
+      "slot": "A4",
+      "parent": "A1.g92",
+      "birth_turn": 9431
+    },
+    {
+      "id": "A1.g93",
+      "slot": "A1",
+      "parent": "A0.g96",
+      "birth_turn": 9444
+    },
+    {
+      "id": "A0.g97",
+      "slot": "A0",
+      "parent": "A2.g98",
+      "birth_turn": 9458
+    },
+    {
+      "id": "A3.g87",
+      "slot": "A3",
+      "parent": "A2.g98",
+      "birth_turn": 9458
+    },
+    {
+      "id": "A1.g94",
+      "slot": "A1",
+      "parent": "A4.g97",
+      "birth_turn": 9518
+    },
+    {
+      "id": "A2.g99",
+      "slot": "A2",
+      "parent": "A4.g97",
+      "birth_turn": 9518
+    },
+    {
+      "id": "A4.g98",
+      "slot": "A4",
+      "parent": "A0.g97",
+      "birth_turn": 9562
+    },
+    {
+      "id": "A0.g98",
+      "slot": "A0",
+      "parent": "A3.g87",
+      "birth_turn": 9574
+    },
+    {
+      "id": "A3.g88",
+      "slot": "A3",
+      "parent": "A1.g94",
+      "birth_turn": 9578
+    },
+    {
+      "id": "A1.g95",
+      "slot": "A1",
+      "parent": "A2.g99",
+      "birth_turn": 9608
+    },
+    {
+      "id": "A2.g100",
+      "slot": "A2",
+      "parent": "A4.g98",
+      "birth_turn": 9618
+    },
+    {
+      "id": "A4.g99",
+      "slot": "A4",
+      "parent": "A0.g98",
+      "birth_turn": 9627
+    },
+    {
+      "id": "A0.g99",
+      "slot": "A0",
+      "parent": "A1.g95",
+      "birth_turn": 9644
+    },
+    {
+      "id": "A3.g89",
+      "slot": "A3",
+      "parent": "A1.g95",
+      "birth_turn": 9644
+    },
+    {
+      "id": "A4.g100",
+      "slot": "A4",
+      "parent": "A1.g95",
+      "birth_turn": 9678
+    },
+    {
+      "id": "A1.g96",
+      "slot": "A1",
+      "parent": "A2.g100",
+      "birth_turn": 9684
+    },
+    {
+      "id": "A0.g100",
+      "slot": "A0",
+      "parent": "A3.g89",
+      "birth_turn": 9698
+    },
+    {
+      "id": "A2.g101",
+      "slot": "A2",
+      "parent": "A3.g89",
+      "birth_turn": 9698
+    },
+    {
+      "id": "A1.g97",
+      "slot": "A1",
+      "parent": "A3.g89",
+      "birth_turn": 9755
+    },
+    {
+      "id": "A3.g90",
+      "slot": "A3",
+      "parent": "A4.g100",
+      "birth_turn": 9758
+    },
+    {
+      "id": "A2.g102",
+      "slot": "A2",
+      "parent": "A4.g100",
+      "birth_turn": 9773
+    },
+    {
+      "id": "A0.g101",
+      "slot": "A0",
+      "parent": "A4.g100",
+      "birth_turn": 9788
+    },
+    {
+      "id": "A1.g98",
+      "slot": "A1",
+      "parent": "A4.g100",
+      "birth_turn": 9806
+    },
+    {
+      "id": "A3.g91",
+      "slot": "A3",
+      "parent": "A2.g102",
+      "birth_turn": 9818
+    },
+    {
+      "id": "A4.g101",
+      "slot": "A4",
+      "parent": "A2.g102",
+      "birth_turn": 9818
+    },
+    {
+      "id": "A1.g99",
+      "slot": "A1",
+      "parent": "A2.g102",
+      "birth_turn": 9856
+    },
+    {
+      "id": "A4.g102",
+      "slot": "A4",
+      "parent": "A2.g102",
+      "birth_turn": 9914
+    },
+    {
+      "id": "A0.g102",
+      "slot": "A0",
+      "parent": "A2.g102",
+      "birth_turn": 9927
+    },
+    {
+      "id": "A1.g100",
+      "slot": "A1",
+      "parent": "A2.g102",
+      "birth_turn": 9931
+    },
+    {
+      "id": "A2.g103",
+      "slot": "A2",
+      "parent": "A3.g91",
+      "birth_turn": 9937
+    },
+    {
+      "id": "A3.g92",
+      "slot": "A3",
+      "parent": "A4.g102",
+      "birth_turn": 9938
+    },
+    {
+      "id": "A4.g103",
+      "slot": "A4",
+      "parent": "A0.g102",
+      "birth_turn": 9968
+    },
+    {
+      "id": "A2.g104",
+      "slot": "A2",
+      "parent": "A0.g102",
+      "birth_turn": 9998
+    },
+    {
+      "id": "A1.g101",
+      "slot": "A1",
+      "parent": "A0.g102",
+      "birth_turn": 10022
+    },
+    {
+      "id": "A3.g93",
+      "slot": "A3",
+      "parent": "A0.g102",
+      "birth_turn": 10028
+    },
+    {
+      "id": "A4.g104",
+      "slot": "A4",
+      "parent": "A0.g102",
+      "birth_turn": 10028
+    },
+    {
+      "id": "A0.g103",
+      "slot": "A0",
+      "parent": "A2.g104",
+      "birth_turn": 10041
+    },
+    {
+      "id": "A2.g105",
+      "slot": "A2",
+      "parent": "A1.g101",
+      "birth_turn": 10058
+    },
+    {
+      "id": "A1.g102",
+      "slot": "A1",
+      "parent": "A3.g93",
+      "birth_turn": 10074
+    },
+    {
+      "id": "A3.g94",
+      "slot": "A3",
+      "parent": "A4.g104",
+      "birth_turn": 10088
+    },
+    {
+      "id": "A2.g106",
+      "slot": "A2",
+      "parent": "A4.g104",
+      "birth_turn": 10136
+    },
+    {
+      "id": "A4.g105",
+      "slot": "A4",
+      "parent": "A0.g103",
+      "birth_turn": 10148
+    },
+    {
+      "id": "A3.g95",
+      "slot": "A3",
+      "parent": "A0.g103",
+      "birth_turn": 10163
+    },
+    {
+      "id": "A1.g103",
+      "slot": "A1",
+      "parent": "A0.g103",
+      "birth_turn": 10174
+    },
+    {
+      "id": "A2.g107",
+      "slot": "A2",
+      "parent": "A0.g103",
+      "birth_turn": 10187
+    },
+    {
+      "id": "A4.g106",
+      "slot": "A4",
+      "parent": "A0.g103",
+      "birth_turn": 10222
+    },
+    {
+      "id": "A0.g104",
+      "slot": "A0",
+      "parent": "A3.g95",
+      "birth_turn": 10230
+    },
+    {
+      "id": "A1.g104",
+      "slot": "A1",
+      "parent": "A3.g95",
+      "birth_turn": 10252
+    },
+    {
+      "id": "A2.g108",
+      "slot": "A2",
+      "parent": "A3.g95",
+      "birth_turn": 10263
+    },
+    {
+      "id": "A4.g107",
+      "slot": "A4",
+      "parent": "A3.g95",
+      "birth_turn": 10298
+    },
+    {
+      "id": "A1.g105",
+      "slot": "A1",
+      "parent": "A3.g95",
+      "birth_turn": 10303
+    },
+    {
+      "id": "A2.g109",
+      "slot": "A2",
+      "parent": "A3.g95",
+      "birth_turn": 10316
+    },
+    {
+      "id": "A3.g96",
+      "slot": "A3",
+      "parent": "A0.g104",
+      "birth_turn": 10320
+    },
+    {
+      "id": "A0.g105",
+      "slot": "A0",
+      "parent": "A4.g107",
+      "birth_turn": 10363
+    },
+    {
+      "id": "A1.g106",
+      "slot": "A1",
+      "parent": "A4.g107",
+      "birth_turn": 10381
+    },
+    {
+      "id": "A1.g107",
+      "slot": "A1",
+      "parent": "A4.g107",
+      "birth_turn": 10448
+    },
+    {
+      "id": "A3.g97",
+      "slot": "A3",
+      "parent": "A4.g107",
+      "birth_turn": 10448
+    },
+    {
+      "id": "A4.g108",
+      "slot": "A4",
+      "parent": "A2.g109",
+      "birth_turn": 10520
+    },
+    {
+      "id": "A1.g108",
+      "slot": "A1",
+      "parent": "A2.g109",
+      "birth_turn": 10527
+    },
+    {
+      "id": "A3.g98",
+      "slot": "A3",
+      "parent": "A2.g109",
+      "birth_turn": 10540
+    },
+    {
+      "id": "A0.g106",
+      "slot": "A0",
+      "parent": "A2.g109",
+      "birth_turn": 10566
+    },
+    {
+      "id": "A2.g110",
+      "slot": "A2",
+      "parent": "A4.g108",
+      "birth_turn": 10568
+    },
+    {
+      "id": "A1.g109",
+      "slot": "A1",
+      "parent": "A4.g108",
+      "birth_turn": 10577
+    },
+    {
+      "id": "A0.g107",
+      "slot": "A0",
+      "parent": "A4.g108",
+      "birth_turn": 10628
+    },
+    {
+      "id": "A1.g110",
+      "slot": "A1",
+      "parent": "A4.g108",
+      "birth_turn": 10628
+    },
+    {
+      "id": "A3.g99",
+      "slot": "A3",
+      "parent": "A4.g108",
+      "birth_turn": 10637
+    },
+    {
+      "id": "A4.g109",
+      "slot": "A4",
+      "parent": "A2.g110",
+      "birth_turn": 10646
+    },
+    {
+      "id": "A2.g111",
+      "slot": "A2",
+      "parent": "A0.g107",
+      "birth_turn": 10658
+    },
+    {
+      "id": "A0.g108",
+      "slot": "A0",
+      "parent": "A1.g110",
+      "birth_turn": 10701
+    },
+    {
+      "id": "A3.g100",
+      "slot": "A3",
+      "parent": "A1.g110",
+      "birth_turn": 10710
+    },
+    {
+      "id": "A2.g112",
+      "slot": "A2",
+      "parent": "A1.g110",
+      "birth_turn": 10718
+    },
+    {
+      "id": "A4.g110",
+      "slot": "A4",
+      "parent": "A1.g110",
+      "birth_turn": 10718
+    },
+    {
+      "id": "A1.g111",
+      "slot": "A1",
+      "parent": "A0.g108",
+      "birth_turn": 10734
+    },
+    {
+      "id": "A4.g111",
+      "slot": "A4",
+      "parent": "A0.g108",
+      "birth_turn": 10778
+    },
+    {
+      "id": "A0.g109",
+      "slot": "A0",
+      "parent": "A3.g100",
+      "birth_turn": 10808
+    },
+    {
+      "id": "A1.g112",
+      "slot": "A1",
+      "parent": "A3.g100",
+      "birth_turn": 10808
+    },
+    {
+      "id": "A2.g113",
+      "slot": "A2",
+      "parent": "A3.g100",
+      "birth_turn": 10808
+    },
+    {
+      "id": "A1.g113",
+      "slot": "A1",
+      "parent": "A3.g100",
+      "birth_turn": 10870
+    },
+    {
+      "id": "A4.g112",
+      "slot": "A4",
+      "parent": "A3.g100",
+      "birth_turn": 10872
+    },
+    {
+      "id": "A3.g101",
+      "slot": "A3",
+      "parent": "A0.g109",
+      "birth_turn": 10885
+    },
+    {
+      "id": "A0.g110",
+      "slot": "A0",
+      "parent": "A2.g113",
+      "birth_turn": 10898
+    },
+    {
+      "id": "A2.g114",
+      "slot": "A2",
+      "parent": "A1.g113",
+      "birth_turn": 10914
+    },
+    {
+      "id": "A1.g114",
+      "slot": "A1",
+      "parent": "A4.g112",
+      "birth_turn": 10950
+    },
+    {
+      "id": "A3.g102",
+      "slot": "A3",
+      "parent": "A4.g112",
+      "birth_turn": 10958
+    },
+    {
+      "id": "A4.g113",
+      "slot": "A4",
+      "parent": "A0.g110",
+      "birth_turn": 10968
+    },
+    {
+      "id": "A0.g111",
+      "slot": "A0",
+      "parent": "A2.g114",
+      "birth_turn": 10988
+    },
+    {
+      "id": "A1.g115",
+      "slot": "A1",
+      "parent": "A3.g102",
+      "birth_turn": 11018
+    },
+    {
+      "id": "A2.g115",
+      "slot": "A2",
+      "parent": "A3.g102",
+      "birth_turn": 11018
+    },
+    {
+      "id": "A4.g114",
+      "slot": "A4",
+      "parent": "A3.g102",
+      "birth_turn": 11020
+    },
+    {
+      "id": "A0.g112",
+      "slot": "A0",
+      "parent": "A3.g102",
+      "birth_turn": 11063
+    },
+    {
+      "id": "A3.g103",
+      "slot": "A3",
+      "parent": "A1.g115",
+      "birth_turn": 11074
+    },
+    {
+      "id": "A2.g116",
+      "slot": "A2",
+      "parent": "A1.g115",
+      "birth_turn": 11078
+    },
+    {
+      "id": "A4.g115",
+      "slot": "A4",
+      "parent": "A1.g115",
+      "birth_turn": 11078
+    },
+    {
+      "id": "A1.g116",
+      "slot": "A1",
+      "parent": "A0.g112",
+      "birth_turn": 11116
+    },
+    {
+      "id": "A3.g104",
+      "slot": "A3",
+      "parent": "A0.g112",
+      "birth_turn": 11127
+    },
+    {
+      "id": "A4.g116",
+      "slot": "A4",
+      "parent": "A0.g112",
+      "birth_turn": 11138
+    },
+    {
+      "id": "A2.g117",
+      "slot": "A2",
+      "parent": "A0.g112",
+      "birth_turn": 11154
+    },
+    {
+      "id": "A1.g117",
+      "slot": "A1",
+      "parent": "A0.g112",
+      "birth_turn": 11168
+    },
+    {
+      "id": "A4.g117",
+      "slot": "A4",
+      "parent": "A0.g112",
+      "birth_turn": 11188
+    },
+    {
+      "id": "A0.g113",
+      "slot": "A0",
+      "parent": "A3.g104",
+      "birth_turn": 11228
+    },
+    {
+      "id": "A4.g118",
+      "slot": "A4",
+      "parent": "A3.g104",
+      "birth_turn": 11238
+    },
+    {
+      "id": "A1.g118",
+      "slot": "A1",
+      "parent": "A3.g104",
+      "birth_turn": 11241
+    },
+    {
+      "id": "A2.g118",
+      "slot": "A2",
+      "parent": "A3.g104",
+      "birth_turn": 11253
+    },
+    {
+      "id": "A3.g105",
+      "slot": "A3",
+      "parent": "A0.g113",
+      "birth_turn": 11255
+    },
+    {
+      "id": "A0.g114",
+      "slot": "A0",
+      "parent": "A4.g118",
+      "birth_turn": 11288
+    },
+    {
+      "id": "A4.g119",
+      "slot": "A4",
+      "parent": "A1.g118",
+      "birth_turn": 11289
+    },
+    {
+      "id": "A3.g106",
+      "slot": "A3",
+      "parent": "A1.g118",
+      "birth_turn": 11318
+    },
+    {
+      "id": "A1.g119",
+      "slot": "A1",
+      "parent": "A2.g118",
+      "birth_turn": 11323
+    },
+    {
+      "id": "A4.g120",
+      "slot": "A4",
+      "parent": "A2.g118",
+      "birth_turn": 11348
+    },
+    {
+      "id": "A0.g115",
+      "slot": "A0",
+      "parent": "A3.g106",
+      "birth_turn": 11378
+    },
+    {
+      "id": "A1.g120",
+      "slot": "A1",
+      "parent": "A3.g106",
+      "birth_turn": 11378
+    },
+    {
+      "id": "A2.g119",
+      "slot": "A2",
+      "parent": "A3.g106",
+      "birth_turn": 11378
+    },
+    {
+      "id": "A3.g107",
+      "slot": "A3",
+      "parent": "A4.g120",
+      "birth_turn": 11408
+    },
+    {
+      "id": "A0.g116",
+      "slot": "A0",
+      "parent": "A4.g120",
+      "birth_turn": 11438
+    },
+    {
+      "id": "A2.g120",
+      "slot": "A2",
+      "parent": "A4.g120",
+      "birth_turn": 11443
+    },
+    {
+      "id": "A1.g121",
+      "slot": "A1",
+      "parent": "A4.g120",
+      "birth_turn": 11463
+    },
+    {
+      "id": "A4.g121",
+      "slot": "A4",
+      "parent": "A3.g107",
+      "birth_turn": 11468
+    },
+    {
+      "id": "A0.g117",
+      "slot": "A0",
+      "parent": "A1.g121",
+      "birth_turn": 11498
+    },
+    {
+      "id": "A2.g121",
+      "slot": "A2",
+      "parent": "A1.g121",
+      "birth_turn": 11498
+    },
+    {
+      "id": "A3.g108",
+      "slot": "A3",
+      "parent": "A1.g121",
+      "birth_turn": 11498
+    },
+    {
+      "id": "A4.g122",
+      "slot": "A4",
+      "parent": "A1.g121",
+      "birth_turn": 11555
+    },
+    {
+      "id": "A0.g118",
+      "slot": "A0",
+      "parent": "A1.g121",
+      "birth_turn": 11581
+    },
+    {
+      "id": "A2.g122",
+      "slot": "A2",
+      "parent": "A1.g121",
+      "birth_turn": 11588
+    },
+    {
+      "id": "A3.g109",
+      "slot": "A3",
+      "parent": "A1.g121",
+      "birth_turn": 11588
+    },
+    {
+      "id": "A1.g122",
+      "slot": "A1",
+      "parent": "A4.g122",
+      "birth_turn": 11618
+    },
+    {
+      "id": "A4.g123",
+      "slot": "A4",
+      "parent": "A0.g118",
+      "birth_turn": 11624
+    },
+    {
+      "id": "A0.g119",
+      "slot": "A0",
+      "parent": "A2.g122",
+      "birth_turn": 11635
+    },
+    {
+      "id": "A2.g123",
+      "slot": "A2",
+      "parent": "A1.g122",
+      "birth_turn": 11648
+    },
+    {
+      "id": "A3.g110",
+      "slot": "A3",
+      "parent": "A1.g122",
+      "birth_turn": 11648
+    },
+    {
+      "id": "A4.g124",
+      "slot": "A4",
+      "parent": "A1.g122",
+      "birth_turn": 11678
+    },
+    {
+      "id": "A0.g120",
+      "slot": "A0",
+      "parent": "A1.g122",
+      "birth_turn": 11683
+    },
+    {
+      "id": "A1.g123",
+      "slot": "A1",
+      "parent": "A2.g123",
+      "birth_turn": 11691
+    },
+    {
+      "id": "A2.g124",
+      "slot": "A2",
+      "parent": "A4.g124",
+      "birth_turn": 11720
+    },
+    {
+      "id": "A3.g111",
+      "slot": "A3",
+      "parent": "A4.g124",
+      "birth_turn": 11720
+    },
+    {
+      "id": "A4.g125",
+      "slot": "A4",
+      "parent": "A0.g120",
+      "birth_turn": 11750
+    },
+    {
+      "id": "A0.g121",
+      "slot": "A0",
+      "parent": "A1.g123",
+      "birth_turn": 11758
+    },
+    {
+      "id": "A3.g112",
+      "slot": "A3",
+      "parent": "A1.g123",
+      "birth_turn": 11769
+    },
+    {
+      "id": "A1.g124",
+      "slot": "A1",
+      "parent": "A2.g124",
+      "birth_turn": 11789
+    },
+    {
+      "id": "A2.g125",
+      "slot": "A2",
+      "parent": "A4.g125",
+      "birth_turn": 11794
+    },
+    {
+      "id": "A0.g122",
+      "slot": "A0",
+      "parent": "A4.g125",
+      "birth_turn": 11807
+    },
+    {
+      "id": "A4.g126",
+      "slot": "A4",
+      "parent": "A3.g112",
+      "birth_turn": 11822
+    },
+    {
+      "id": "A3.g113",
+      "slot": "A3",
+      "parent": "A1.g124",
+      "birth_turn": 11828
+    },
+    {
+      "id": "A1.g125",
+      "slot": "A1",
+      "parent": "A2.g125",
+      "birth_turn": 11837
+    },
+    {
+      "id": "A2.g126",
+      "slot": "A2",
+      "parent": "A0.g122",
+      "birth_turn": 11864
+    },
+    {
+      "id": "A4.g127",
+      "slot": "A4",
+      "parent": "A0.g122",
+      "birth_turn": 11870
+    },
+    {
+      "id": "A1.g126",
+      "slot": "A1",
+      "parent": "A0.g122",
+      "birth_turn": 11888
+    },
+    {
+      "id": "A0.g123",
+      "slot": "A0",
+      "parent": "A3.g113",
+      "birth_turn": 11900
+    },
+    {
+      "id": "A3.g114",
+      "slot": "A3",
+      "parent": "A2.g126",
+      "birth_turn": 11903
+    },
+    {
+      "id": "A2.g127",
+      "slot": "A2",
+      "parent": "A4.g127",
+      "birth_turn": 11918
+    },
+    {
+      "id": "A4.g128",
+      "slot": "A4",
+      "parent": "A1.g126",
+      "birth_turn": 11943
+    },
+    {
+      "id": "A1.g127",
+      "slot": "A1",
+      "parent": "A0.g123",
+      "birth_turn": 11948
+    },
+    {
+      "id": "A0.g124",
+      "slot": "A0",
+      "parent": "A3.g114",
+      "birth_turn": 11949
+    },
+    {
+      "id": "A2.g128",
+      "slot": "A2",
+      "parent": "A3.g114",
+      "birth_turn": 11978
+    },
+    {
+      "id": "A3.g115",
+      "slot": "A3",
+      "parent": "A4.g128",
+      "birth_turn": 11994
+    },
+    {
+      "id": "A0.g125",
+      "slot": "A0",
+      "parent": "A1.g127",
+      "birth_turn": 12038
+    },
+    {
+      "id": "A2.g129",
+      "slot": "A2",
+      "parent": "A1.g127",
+      "birth_turn": 12038
+    },
+    {
+      "id": "A4.g129",
+      "slot": "A4",
+      "parent": "A1.g127",
+      "birth_turn": 12038
+    },
+    {
+      "id": "A1.g128",
+      "slot": "A1",
+      "parent": "A3.g115",
+      "birth_turn": 12061
+    },
+    {
+      "id": "A3.g116",
+      "slot": "A3",
+      "parent": "A0.g125",
+      "birth_turn": 12068
+    },
+    {
+      "id": "A0.g126",
+      "slot": "A0",
+      "parent": "A2.g129",
+      "birth_turn": 12110
+    },
+    {
+      "id": "A2.g130",
+      "slot": "A2",
+      "parent": "A4.g129",
+      "birth_turn": 12111
+    },
+    {
+      "id": "A3.g117",
+      "slot": "A3",
+      "parent": "A4.g129",
+      "birth_turn": 12128
+    },
+    {
+      "id": "A1.g129",
+      "slot": "A1",
+      "parent": "A4.g129",
+      "birth_turn": 12133
+    },
+    {
+      "id": "A4.g130",
+      "slot": "A4",
+      "parent": "A0.g126",
+      "birth_turn": 12175
+    },
+    {
+      "id": "A0.g127",
+      "slot": "A0",
+      "parent": "A2.g130",
+      "birth_turn": 12182
+    },
+    {
+      "id": "A1.g130",
+      "slot": "A1",
+      "parent": "A2.g130",
+      "birth_turn": 12188
+    },
+    {
+      "id": "A4.g131",
+      "slot": "A4",
+      "parent": "A2.g130",
+      "birth_turn": 12223
+    },
+    {
+      "id": "A3.g118",
+      "slot": "A3",
+      "parent": "A2.g130",
+      "birth_turn": 12227
+    },
+    {
+      "id": "A0.g128",
+      "slot": "A0",
+      "parent": "A4.g131",
+      "birth_turn": 12248
+    },
+    {
+      "id": "A1.g131",
+      "slot": "A1",
+      "parent": "A4.g131",
+      "birth_turn": 12248
+    },
+    {
+      "id": "A2.g131",
+      "slot": "A2",
+      "parent": "A4.g131",
+      "birth_turn": 12248
+    },
+    {
+      "id": "A3.g119",
+      "slot": "A3",
+      "parent": "A0.g128",
+      "birth_turn": 12278
+    },
+    {
+      "id": "A4.g132",
+      "slot": "A4",
+      "parent": "A0.g128",
+      "birth_turn": 12278
+    },
+    {
+      "id": "A0.g129",
+      "slot": "A0",
+      "parent": "A2.g131",
+      "birth_turn": 12308
+    },
+    {
+      "id": "A1.g132",
+      "slot": "A1",
+      "parent": "A2.g131",
+      "birth_turn": 12308
+    },
+    {
+      "id": "A2.g132",
+      "slot": "A2",
+      "parent": "A4.g132",
+      "birth_turn": 12338
+    },
+    {
+      "id": "A3.g120",
+      "slot": "A3",
+      "parent": "A4.g132",
+      "birth_turn": 12338
+    },
+    {
+      "id": "A1.g133",
+      "slot": "A1",
+      "parent": "A0.g129",
+      "birth_turn": 12368
+    },
+    {
+      "id": "A4.g133",
+      "slot": "A4",
+      "parent": "A0.g129",
+      "birth_turn": 12368
+    },
+    {
+      "id": "A3.g121",
+      "slot": "A3",
+      "parent": "A0.g129",
+      "birth_turn": 12398
+    },
+    {
+      "id": "A0.g130",
+      "slot": "A0",
+      "parent": "A2.g132",
+      "birth_turn": 12406
+    },
+    {
+      "id": "A1.g134",
+      "slot": "A1",
+      "parent": "A2.g132",
+      "birth_turn": 12428
+    },
+    {
+      "id": "A2.g133",
+      "slot": "A2",
+      "parent": "A4.g133",
+      "birth_turn": 12435
+    },
+    {
+      "id": "A3.g122",
+      "slot": "A3",
+      "parent": "A4.g133",
+      "birth_turn": 12479
+    },
+    {
+      "id": "A1.g135",
+      "slot": "A1",
+      "parent": "A4.g133",
+      "birth_turn": 12488
+    },
+    {
+      "id": "A2.g134",
+      "slot": "A2",
+      "parent": "A4.g133",
+      "birth_turn": 12509
+    },
+    {
+      "id": "A3.g123",
+      "slot": "A3",
+      "parent": "A0.g130",
+      "birth_turn": 12548
+    },
+    {
+      "id": "A4.g134",
+      "slot": "A4",
+      "parent": "A0.g130",
+      "birth_turn": 12548
+    },
+    {
+      "id": "A0.g131",
+      "slot": "A0",
+      "parent": "A1.g135",
+      "birth_turn": 12574
+    },
+    {
+      "id": "A1.g136",
+      "slot": "A1",
+      "parent": "A3.g123",
+      "birth_turn": 12578
+    },
+    {
+      "id": "A2.g135",
+      "slot": "A2",
+      "parent": "A3.g123",
+      "birth_turn": 12578
+    },
+    {
+      "id": "A3.g124",
+      "slot": "A3",
+      "parent": "A4.g134",
+      "birth_turn": 12608
+    },
+    {
+      "id": "A2.g136",
+      "slot": "A2",
+      "parent": "A0.g131",
+      "birth_turn": 12638
+    },
+    {
+      "id": "A4.g135",
+      "slot": "A4",
+      "parent": "A0.g131",
+      "birth_turn": 12638
+    },
+    {
+      "id": "A1.g137",
+      "slot": "A1",
+      "parent": "A0.g131",
+      "birth_turn": 12650
+    },
+    {
+      "id": "A3.g125",
+      "slot": "A3",
+      "parent": "A0.g131",
+      "birth_turn": 12668
+    },
+    {
+      "id": "A0.g132",
+      "slot": "A0",
+      "parent": "A2.g136",
+      "birth_turn": 12691
+    },
+    {
+      "id": "A2.g137",
+      "slot": "A2",
+      "parent": "A1.g137",
+      "birth_turn": 12698
+    },
+    {
+      "id": "A4.g136",
+      "slot": "A4",
+      "parent": "A1.g137",
+      "birth_turn": 12698
+    },
+    {
+      "id": "A1.g138",
+      "slot": "A1",
+      "parent": "A3.g125",
+      "birth_turn": 12728
+    },
+    {
+      "id": "A2.g138",
+      "slot": "A2",
+      "parent": "A0.g132",
+      "birth_turn": 12758
+    },
+    {
+      "id": "A3.g126",
+      "slot": "A3",
+      "parent": "A0.g132",
+      "birth_turn": 12758
+    },
+    {
+      "id": "A4.g137",
+      "slot": "A4",
+      "parent": "A0.g132",
+      "birth_turn": 12760
+    },
+    {
+      "id": "A1.g139",
+      "slot": "A1",
+      "parent": "A0.g132",
+      "birth_turn": 12818
+    },
+    {
+      "id": "A3.g127",
+      "slot": "A3",
+      "parent": "A0.g132",
+      "birth_turn": 12818
+    },
+    {
+      "id": "A4.g138",
+      "slot": "A4",
+      "parent": "A0.g132",
+      "birth_turn": 12818
+    },
+    {
+      "id": "A0.g133",
+      "slot": "A0",
+      "parent": "A2.g138",
+      "birth_turn": 12825
+    },
+    {
+      "id": "A2.g139",
+      "slot": "A2",
+      "parent": "A1.g139",
+      "birth_turn": 12852
+    },
+    {
+      "id": "A1.g140",
+      "slot": "A1",
+      "parent": "A4.g138",
+      "birth_turn": 12878
+    },
+    {
+      "id": "A3.g128",
+      "slot": "A3",
+      "parent": "A4.g138",
+      "birth_turn": 12878
+    },
+    {
+      "id": "A2.g140",
+      "slot": "A2",
+      "parent": "A0.g133",
+      "birth_turn": 12908
+    },
+    {
+      "id": "A4.g139",
+      "slot": "A4",
+      "parent": "A0.g133",
+      "birth_turn": 12908
+    },
+    {
+      "id": "A1.g141",
+      "slot": "A1",
+      "parent": "A0.g133",
+      "birth_turn": 12938
+    },
+    {
+      "id": "A0.g134",
+      "slot": "A0",
+      "parent": "A3.g128",
+      "birth_turn": 12943
+    },
+    {
+      "id": "A4.g140",
+      "slot": "A4",
+      "parent": "A3.g128",
+      "birth_turn": 12979
+    },
+    {
+      "id": "A2.g141",
+      "slot": "A2",
+      "parent": "A3.g128",
+      "birth_turn": 12989
+    },
+    {
+      "id": "A3.g129",
+      "slot": "A3",
+      "parent": "A1.g141",
+      "birth_turn": 12991
+    },
+    {
+      "id": "A0.g135",
+      "slot": "A0",
+      "parent": "A1.g141",
+      "birth_turn": 12998
+    },
+    {
+      "id": "A2.g142",
+      "slot": "A2",
+      "parent": "A1.g141",
+      "birth_turn": 13039
+    },
+    {
+      "id": "A1.g142",
+      "slot": "A1",
+      "parent": "A4.g140",
+      "birth_turn": 13040
+    },
+    {
+      "id": "A4.g141",
+      "slot": "A4",
+      "parent": "A3.g129",
+      "birth_turn": 13058
+    },
+    {
+      "id": "A0.g136",
+      "slot": "A0",
+      "parent": "A3.g129",
+      "birth_turn": 13079
+    },
+    {
+      "id": "A3.g130",
+      "slot": "A3",
+      "parent": "A2.g142",
+      "birth_turn": 13088
+    },
+    {
+      "id": "A1.g143",
+      "slot": "A1",
+      "parent": "A2.g142",
+      "birth_turn": 13113
+    },
+    {
+      "id": "A0.g137",
+      "slot": "A0",
+      "parent": "A2.g142",
+      "birth_turn": 13130
+    },
+    {
+      "id": "A4.g142",
+      "slot": "A4",
+      "parent": "A2.g142",
+      "birth_turn": 13148
+    },
+    {
+      "id": "A2.g143",
+      "slot": "A2",
+      "parent": "A1.g143",
+      "birth_turn": 13178
+    },
+    {
+      "id": "A3.g131",
+      "slot": "A3",
+      "parent": "A1.g143",
+      "birth_turn": 13178
+    },
+    {
+      "id": "A0.g138",
+      "slot": "A0",
+      "parent": "A1.g143",
+      "birth_turn": 13180
+    },
+    {
+      "id": "A1.g144",
+      "slot": "A1",
+      "parent": "A4.g142",
+      "birth_turn": 13185
+    },
+    {
+      "id": "A0.g139",
+      "slot": "A0",
+      "parent": "A4.g142",
+      "birth_turn": 13202
+    },
+    {
+      "id": "A4.g143",
+      "slot": "A4",
+      "parent": "A2.g143",
+      "birth_turn": 13224
+    },
+    {
+      "id": "A3.g132",
+      "slot": "A3",
+      "parent": "A2.g143",
+      "birth_turn": 13238
+    },
+    {
+      "id": "A2.g144",
+      "slot": "A2",
+      "parent": "A1.g144",
+      "birth_turn": 13251
+    },
+    {
+      "id": "A1.g145",
+      "slot": "A1",
+      "parent": "A0.g139",
+      "birth_turn": 13268
+    },
+    {
+      "id": "A0.g140",
+      "slot": "A0",
+      "parent": "A4.g143",
+      "birth_turn": 13275
+    },
+    {
+      "id": "A0.g141",
+      "slot": "A0",
+      "parent": "A4.g143",
+      "birth_turn": 13328
+    },
+    {
+      "id": "A1.g146",
+      "slot": "A1",
+      "parent": "A4.g143",
+      "birth_turn": 13349
+    },
+    {
+      "id": "A4.g144",
+      "slot": "A4",
+      "parent": "A3.g132",
+      "birth_turn": 13358
+    },
+    {
+      "id": "A2.g145",
+      "slot": "A2",
+      "parent": "A3.g132",
+      "birth_turn": 13363
+    },
+    {
+      "id": "A0.g142",
+      "slot": "A0",
+      "parent": "A3.g132",
+      "birth_turn": 13388
+    },
+    {
+      "id": "A4.g145",
+      "slot": "A4",
+      "parent": "A3.g132",
+      "birth_turn": 13435
+    },
+    {
+      "id": "A0.g143",
+      "slot": "A0",
+      "parent": "A1.g146",
+      "birth_turn": 13448
+    },
+    {
+      "id": "A3.g133",
+      "slot": "A3",
+      "parent": "A1.g146",
+      "birth_turn": 13448
+    },
+    {
+      "id": "A1.g147",
+      "slot": "A1",
+      "parent": "A4.g145",
+      "birth_turn": 13478
+    },
+    {
+      "id": "A2.g146",
+      "slot": "A2",
+      "parent": "A4.g145",
+      "birth_turn": 13478
+    },
+    {
+      "id": "A4.g146",
+      "slot": "A4",
+      "parent": "A0.g143",
+      "birth_turn": 13486
+    },
+    {
+      "id": "A0.g144",
+      "slot": "A0",
+      "parent": "A3.g133",
+      "birth_turn": 13508
+    },
+    {
+      "id": "A3.g134",
+      "slot": "A3",
+      "parent": "A1.g147",
+      "birth_turn": 13538
+    },
+    {
+      "id": "A1.g148",
+      "slot": "A1",
+      "parent": "A2.g146",
+      "birth_turn": 13552
+    },
+    {
+      "id": "A2.g147",
+      "slot": "A2",
+      "parent": "A4.g146",
+      "birth_turn": 13568
+    },
+    {
+      "id": "A4.g147",
+      "slot": "A4",
+      "parent": "A0.g144",
+      "birth_turn": 13578
+    },
+    {
+      "id": "A1.g149",
+      "slot": "A1",
+      "parent": "A0.g144",
+      "birth_turn": 13628
+    },
+    {
+      "id": "A4.g148",
+      "slot": "A4",
+      "parent": "A0.g144",
+      "birth_turn": 13631
+    },
+    {
+      "id": "A0.g145",
+      "slot": "A0",
+      "parent": "A3.g134",
+      "birth_turn": 13646
+    },
+    {
+      "id": "A3.g135",
+      "slot": "A3",
+      "parent": "A2.g147",
+      "birth_turn": 13681
+    },
+    {
+      "id": "A1.g150",
+      "slot": "A1",
+      "parent": "A2.g147",
+      "birth_turn": 13688
+    },
+    {
+      "id": "A0.g146",
+      "slot": "A0",
+      "parent": "A2.g147",
+      "birth_turn": 13696
+    },
+    {
+      "id": "A2.g148",
+      "slot": "A2",
+      "parent": "A4.g148",
+      "birth_turn": 13699
+    },
+    {
+      "id": "A4.g149",
+      "slot": "A4",
+      "parent": "A3.g135",
+      "birth_turn": 13718
+    },
+    {
+      "id": "A3.g136",
+      "slot": "A3",
+      "parent": "A1.g150",
+      "birth_turn": 13763
+    },
+    {
+      "id": "A0.g147",
+      "slot": "A0",
+      "parent": "A1.g150",
+      "birth_turn": 13778
+    },
+    {
+      "id": "A1.g151",
+      "slot": "A1",
+      "parent": "A2.g148",
+      "birth_turn": 13811
+    },
+    {
+      "id": "A3.g137",
+      "slot": "A3",
+      "parent": "A2.g148",
+      "birth_turn": 13826
+    },
+    {
+      "id": "A4.g150",
+      "slot": "A4",
+      "parent": "A2.g148",
+      "birth_turn": 13830
+    },
+    {
+      "id": "A0.g148",
+      "slot": "A0",
+      "parent": "A2.g148",
+      "birth_turn": 13851
+    },
+    {
+      "id": "A1.g152",
+      "slot": "A1",
+      "parent": "A3.g137",
+      "birth_turn": 13898
+    },
+    {
+      "id": "A2.g149",
+      "slot": "A2",
+      "parent": "A3.g137",
+      "birth_turn": 13898
+    },
+    {
+      "id": "A0.g149",
+      "slot": "A0",
+      "parent": "A3.g137",
+      "birth_turn": 13933
+    },
+    {
+      "id": "A4.g151",
+      "slot": "A4",
+      "parent": "A3.g137",
+      "birth_turn": 13934
+    },
+    {
+      "id": "A3.g138",
+      "slot": "A3",
+      "parent": "A1.g152",
+      "birth_turn": 13937
+    },
+    {
+      "id": "A2.g150",
+      "slot": "A2",
+      "parent": "A1.g152",
+      "birth_turn": 13985
+    },
+    {
+      "id": "A1.g153",
+      "slot": "A1",
+      "parent": "A0.g149",
+      "birth_turn": 13988
+    },
+    {
+      "id": "A0.g150",
+      "slot": "A0",
+      "parent": "A4.g151",
+      "birth_turn": 14018
+    },
+    {
+      "id": "A3.g139",
+      "slot": "A3",
+      "parent": "A4.g151",
+      "birth_turn": 14018
+    },
+    {
+      "id": "A4.g152",
+      "slot": "A4",
+      "parent": "A2.g150",
+      "birth_turn": 14020
+    },
+    {
+      "id": "A1.g154",
+      "slot": "A1",
+      "parent": "A2.g150",
+      "birth_turn": 14066
+    },
+    {
+      "id": "A0.g151",
+      "slot": "A0",
+      "parent": "A3.g139",
+      "birth_turn": 14108
+    },
+    {
+      "id": "A2.g151",
+      "slot": "A2",
+      "parent": "A3.g139",
+      "birth_turn": 14108
+    },
+    {
+      "id": "A3.g140",
+      "slot": "A3",
+      "parent": "A4.g152",
+      "birth_turn": 14122
+    },
+    {
+      "id": "A4.g153",
+      "slot": "A4",
+      "parent": "A1.g154",
+      "birth_turn": 14132
+    },
+    {
+      "id": "A1.g155",
+      "slot": "A1",
+      "parent": "A0.g151",
+      "birth_turn": 14146
+    },
+    {
+      "id": "A4.g154",
+      "slot": "A4",
+      "parent": "A0.g151",
+      "birth_turn": 14198
+    },
+    {
+      "id": "A0.g152",
+      "slot": "A0",
+      "parent": "A3.g140",
+      "birth_turn": 14228
+    },
+    {
+      "id": "A2.g152",
+      "slot": "A2",
+      "parent": "A3.g140",
+      "birth_turn": 14228
+    },
+    {
+      "id": "A3.g141",
+      "slot": "A3",
+      "parent": "A1.g155",
+      "birth_turn": 14258
+    },
+    {
+      "id": "A1.g156",
+      "slot": "A1",
+      "parent": "A4.g154",
+      "birth_turn": 14297
+    },
+    {
+      "id": "A4.g155",
+      "slot": "A4",
+      "parent": "A0.g152",
+      "birth_turn": 14318
+    },
+    {
+      "id": "A0.g153",
+      "slot": "A0",
+      "parent": "A3.g141",
+      "birth_turn": 14348
+    },
+    {
+      "id": "A2.g153",
+      "slot": "A2",
+      "parent": "A3.g141",
+      "birth_turn": 14348
+    },
+    {
+      "id": "A3.g142",
+      "slot": "A3",
+      "parent": "A1.g156",
+      "birth_turn": 14358
+    },
+    {
+      "id": "A1.g157",
+      "slot": "A1",
+      "parent": "A4.g155",
+      "birth_turn": 14368
+    },
+    {
+      "id": "A3.g143",
+      "slot": "A3",
+      "parent": "A4.g155",
+      "birth_turn": 14411
+    },
+    {
+      "id": "A1.g158",
+      "slot": "A1",
+      "parent": "A4.g155",
+      "birth_turn": 14438
+    },
+    {
+      "id": "A2.g154",
+      "slot": "A2",
+      "parent": "A4.g155",
+      "birth_turn": 14438
+    },
+    {
+      "id": "A0.g154",
+      "slot": "A0",
+      "parent": "A4.g155",
+      "birth_turn": 14460
+    },
+    {
+      "id": "A3.g144",
+      "slot": "A3",
+      "parent": "A4.g155",
+      "birth_turn": 14484
+    },
+    {
+      "id": "A0.g155",
+      "slot": "A0",
+      "parent": "A4.g155",
+      "birth_turn": 14508
+    },
+    {
+      "id": "A1.g159",
+      "slot": "A1",
+      "parent": "A4.g155",
+      "birth_turn": 14528
+    },
+    {
+      "id": "A3.g145",
+      "slot": "A3",
+      "parent": "A4.g155",
+      "birth_turn": 14558
+    },
+    {
+      "id": "A4.g156",
+      "slot": "A4",
+      "parent": "A2.g154",
+      "birth_turn": 14569
+    },
+    {
+      "id": "A1.g160",
+      "slot": "A1",
+      "parent": "A2.g154",
+      "birth_turn": 14619
+    },
+    {
+      "id": "A4.g157",
+      "slot": "A4",
+      "parent": "A2.g154",
+      "birth_turn": 14624
+    },
+    {
+      "id": "A2.g155",
+      "slot": "A2",
+      "parent": "A0.g155",
+      "birth_turn": 14655
+    },
+    {
+      "id": "A1.g161",
+      "slot": "A1",
+      "parent": "A0.g155",
+      "birth_turn": 14678
+    },
+    {
+      "id": "A4.g158",
+      "slot": "A4",
+      "parent": "A0.g155",
+      "birth_turn": 14678
+    },
+    {
+      "id": "A0.g156",
+      "slot": "A0",
+      "parent": "A3.g145",
+      "birth_turn": 14685
+    },
+    {
+      "id": "A2.g156",
+      "slot": "A2",
+      "parent": "A3.g145",
+      "birth_turn": 14708
+    },
+    {
+      "id": "A3.g146",
+      "slot": "A3",
+      "parent": "A1.g161",
+      "birth_turn": 14730
+    },
+    {
+      "id": "A1.g162",
+      "slot": "A1",
+      "parent": "A4.g158",
+      "birth_turn": 14738
+    },
+    {
+      "id": "A0.g157",
+      "slot": "A0",
+      "parent": "A4.g158",
+      "birth_turn": 14740
+    },
+    {
+      "id": "A2.g157",
+      "slot": "A2",
+      "parent": "A4.g158",
+      "birth_turn": 14768
+    },
+    {
+      "id": "A4.g159",
+      "slot": "A4",
+      "parent": "A3.g146",
+      "birth_turn": 14793
+    },
+    {
+      "id": "A0.g158",
+      "slot": "A0",
+      "parent": "A3.g146",
+      "birth_turn": 14798
+    },
+    {
+      "id": "A1.g163",
+      "slot": "A1",
+      "parent": "A3.g146",
+      "birth_turn": 14798
+    },
+    {
+      "id": "A0.g159",
+      "slot": "A0",
+      "parent": "A4.g159",
+      "birth_turn": 14858
+    },
+    {
+      "id": "A2.g158",
+      "slot": "A2",
+      "parent": "A4.g159",
+      "birth_turn": 14858
+    },
+    {
+      "id": "A3.g147",
+      "slot": "A3",
+      "parent": "A4.g159",
+      "birth_turn": 14858
+    },
+    {
+      "id": "A0.g160",
+      "slot": "A0",
+      "parent": "A1.g163",
+      "birth_turn": 14918
+    },
+    {
+      "id": "A2.g159",
+      "slot": "A2",
+      "parent": "A1.g163",
+      "birth_turn": 14918
+    },
+    {
+      "id": "A3.g148",
+      "slot": "A3",
+      "parent": "A1.g163",
+      "birth_turn": 14918
+    },
+    {
+      "id": "A4.g160",
+      "slot": "A4",
+      "parent": "A1.g163",
+      "birth_turn": 14918
+    },
+    {
+      "id": "A3.g149",
+      "slot": "A3",
+      "parent": "A1.g163",
+      "birth_turn": 14991
+    },
+    {
+      "id": "A0.g161",
+      "slot": "A0",
+      "parent": "A1.g163",
+      "birth_turn": 14992
+    },
+    {
+      "id": "A2.g160",
+      "slot": "A2",
+      "parent": "A1.g163",
+      "birth_turn": 14993
+    },
+    {
+      "id": "A1.g164",
+      "slot": "A1",
+      "parent": "A4.g160",
+      "birth_turn": 15008
+    },
+    {
+      "id": "A4.g161",
+      "slot": "A4",
+      "parent": "A3.g149",
+      "birth_turn": 15033
+    },
+    {
+      "id": "A2.g161",
+      "slot": "A2",
+      "parent": "A3.g149",
+      "birth_turn": 15045
+    },
+    {
+      "id": "A3.g150",
+      "slot": "A3",
+      "parent": "A0.g161",
+      "birth_turn": 15067
+    },
+    {
+      "id": "A1.g165",
+      "slot": "A1",
+      "parent": "A0.g161",
+      "birth_turn": 15119
+    },
+    {
+      "id": "A0.g162",
+      "slot": "A0",
+      "parent": "A2.g161",
+      "birth_turn": 15128
+    },
+    {
+      "id": "A4.g162",
+      "slot": "A4",
+      "parent": "A2.g161",
+      "birth_turn": 15128
+    },
+    {
+      "id": "A3.g151",
+      "slot": "A3",
+      "parent": "A2.g161",
+      "birth_turn": 15158
+    },
+    {
+      "id": "A2.g162",
+      "slot": "A2",
+      "parent": "A1.g165",
+      "birth_turn": 15181
+    },
+    {
+      "id": "A0.g163",
+      "slot": "A0",
+      "parent": "A1.g165",
+      "birth_turn": 15188
+    },
+    {
+      "id": "A4.g163",
+      "slot": "A4",
+      "parent": "A1.g165",
+      "birth_turn": 15200
+    },
+    {
+      "id": "A1.g166",
+      "slot": "A1",
+      "parent": "A3.g151",
+      "birth_turn": 15209
+    },
+    {
+      "id": "A3.g152",
+      "slot": "A3",
+      "parent": "A2.g162",
+      "birth_turn": 15235
+    },
+    {
+      "id": "A1.g167",
+      "slot": "A1",
+      "parent": "A2.g162",
+      "birth_turn": 15257
+    },
+    {
+      "id": "A4.g164",
+      "slot": "A4",
+      "parent": "A2.g162",
+      "birth_turn": 15257
+    },
+    {
+      "id": "A0.g164",
+      "slot": "A0",
+      "parent": "A2.g162",
+      "birth_turn": 15272
+    },
+    {
+      "id": "A3.g153",
+      "slot": "A3",
+      "parent": "A2.g162",
+      "birth_turn": 15289
+    },
+    {
+      "id": "A1.g168",
+      "slot": "A1",
+      "parent": "A2.g162",
+      "birth_turn": 15308
+    },
+    {
+      "id": "A4.g165",
+      "slot": "A4",
+      "parent": "A2.g162",
+      "birth_turn": 15308
+    },
+    {
+      "id": "A0.g165",
+      "slot": "A0",
+      "parent": "A2.g162",
+      "birth_turn": 15321
+    },
+    {
+      "id": "A2.g163",
+      "slot": "A2",
+      "parent": "A3.g153",
+      "birth_turn": 15327
+    },
+    {
+      "id": "A3.g154",
+      "slot": "A3",
+      "parent": "A1.g168",
+      "birth_turn": 15368
+    },
+    {
+      "id": "A1.g169",
+      "slot": "A1",
+      "parent": "A4.g165",
+      "birth_turn": 15371
+    },
+    {
+      "id": "A2.g164",
+      "slot": "A2",
+      "parent": "A4.g165",
+      "birth_turn": 15383
+    },
+    {
+      "id": "A4.g166",
+      "slot": "A4",
+      "parent": "A0.g165",
+      "birth_turn": 15398
+    },
+    {
+      "id": "A0.g166",
+      "slot": "A0",
+      "parent": "A2.g164",
+      "birth_turn": 15428
+    },
+    {
+      "id": "A1.g170",
+      "slot": "A1",
+      "parent": "A2.g164",
+      "birth_turn": 15428
+    },
+    {
+      "id": "A3.g155",
+      "slot": "A3",
+      "parent": "A2.g164",
+      "birth_turn": 15428
+    },
+    {
+      "id": "A2.g165",
+      "slot": "A2",
+      "parent": "A4.g166",
+      "birth_turn": 15440
+    },
+    {
+      "id": "A4.g167",
+      "slot": "A4",
+      "parent": "A0.g166",
+      "birth_turn": 15458
+    },
+    {
+      "id": "A1.g171",
+      "slot": "A1",
+      "parent": "A0.g166",
+      "birth_turn": 15488
+    },
+    {
+      "id": "A2.g166",
+      "slot": "A2",
+      "parent": "A0.g166",
+      "birth_turn": 15496
+    },
+    {
+      "id": "A0.g167",
+      "slot": "A0",
+      "parent": "A0.g166",
+      "birth_turn": 15548
+    },
+    {
+      "id": "A1.g172",
+      "slot": "A1",
+      "parent": "A0.g167",
+      "birth_turn": 15548
+    },
+    {
+      "id": "A2.g167",
+      "slot": "A2",
+      "parent": "A0.g167",
+      "birth_turn": 15548
+    },
+    {
+      "id": "A3.g156",
+      "slot": "A3",
+      "parent": "A0.g167",
+      "birth_turn": 15548
+    },
+    {
+      "id": "A4.g168",
+      "slot": "A4",
+      "parent": "A0.g167",
+      "birth_turn": 15548
+    },
+    {
+      "id": "A4.g169",
+      "slot": "A4",
+      "parent": "A0.g167",
+      "birth_turn": 15618
+    },
+    {
+      "id": "A2.g168",
+      "slot": "A2",
+      "parent": "A0.g167",
+      "birth_turn": 15638
+    },
+    {
+      "id": "A1.g173",
+      "slot": "A1",
+      "parent": "A0.g167",
+      "birth_turn": 15639
+    },
+    {
+      "id": "A3.g157",
+      "slot": "A3",
+      "parent": "A0.g167",
+      "birth_turn": 15643
+    },
+    {
+      "id": "A0.g168",
+      "slot": "A0",
+      "parent": "A4.g169",
+      "birth_turn": 15668
+    },
+    {
+      "id": "A3.g158",
+      "slot": "A3",
+      "parent": "A4.g169",
+      "birth_turn": 15698
+    },
+    {
+      "id": "A1.g174",
+      "slot": "A1",
+      "parent": "A4.g169",
+      "birth_turn": 15728
+    },
+    {
+      "id": "A2.g169",
+      "slot": "A2",
+      "parent": "A4.g169",
+      "birth_turn": 15728
+    },
+    {
+      "id": "A4.g170",
+      "slot": "A4",
+      "parent": "A0.g168",
+      "birth_turn": 15733
+    },
+    {
+      "id": "A0.g169",
+      "slot": "A0",
+      "parent": "A3.g158",
+      "birth_turn": 15735
+    },
+    {
+      "id": "A3.g159",
+      "slot": "A3",
+      "parent": "A1.g174",
+      "birth_turn": 15772
+    },
+    {
+      "id": "A0.g170",
+      "slot": "A0",
+      "parent": "A1.g174",
+      "birth_turn": 15788
+    },
+    {
+      "id": "A2.g170",
+      "slot": "A2",
+      "parent": "A1.g174",
+      "birth_turn": 15788
+    },
+    {
+      "id": "A1.g175",
+      "slot": "A1",
+      "parent": "A4.g170",
+      "birth_turn": 15803
+    },
+    {
+      "id": "A4.g171",
+      "slot": "A4",
+      "parent": "A3.g159",
+      "birth_turn": 15808
+    },
+    {
+      "id": "A3.g160",
+      "slot": "A3",
+      "parent": "A0.g170",
+      "birth_turn": 15824
+    },
+    {
+      "id": "A0.g171",
+      "slot": "A0",
+      "parent": "A1.g175",
+      "birth_turn": 15848
+    },
+    {
+      "id": "A2.g171",
+      "slot": "A2",
+      "parent": "A1.g175",
+      "birth_turn": 15848
+    },
+    {
+      "id": "A4.g172",
+      "slot": "A4",
+      "parent": "A1.g175",
+      "birth_turn": 15859
+    },
+    {
+      "id": "A1.g176",
+      "slot": "A1",
+      "parent": "A3.g160",
+      "birth_turn": 15866
+    },
+    {
+      "id": "A3.g161",
+      "slot": "A3",
+      "parent": "A0.g171",
+      "birth_turn": 15899
+    },
+    {
+      "id": "A2.g172",
+      "slot": "A2",
+      "parent": "A0.g171",
+      "birth_turn": 15908
+    },
+    {
+      "id": "A1.g177",
+      "slot": "A1",
+      "parent": "A0.g171",
+      "birth_turn": 15918
+    },
+    {
+      "id": "A0.g172",
+      "slot": "A0",
+      "parent": "A4.g172",
+      "birth_turn": 15938
+    },
+    {
+      "id": "A4.g173",
+      "slot": "A4",
+      "parent": "A3.g161",
+      "birth_turn": 15940
+    },
+    {
+      "id": "A3.g162",
+      "slot": "A3",
+      "parent": "A2.g172",
+      "birth_turn": 15957
+    },
+    {
+      "id": "A2.g173",
+      "slot": "A2",
+      "parent": "A1.g177",
+      "birth_turn": 15997
+    },
+    {
+      "id": "A4.g174",
+      "slot": "A4",
+      "parent": "A1.g177",
+      "birth_turn": 15998
+    },
+    {
+      "id": "A0.g173",
+      "slot": "A0",
+      "parent": "A1.g177",
+      "birth_turn": 15999
+    },
+    {
+      "id": "A2.g174",
+      "slot": "A2",
+      "parent": "A1.g177",
+      "birth_turn": 16048
+    },
+    {
+      "id": "A1.g178",
+      "slot": "A1",
+      "parent": "A3.g162",
+      "birth_turn": 16069
+    },
+    {
+      "id": "A3.g163",
+      "slot": "A3",
+      "parent": "A4.g174",
+      "birth_turn": 16081
+    },
+    {
+      "id": "A0.g174",
+      "slot": "A0",
+      "parent": "A4.g174",
+      "birth_turn": 16088
+    },
+    {
+      "id": "A4.g175",
+      "slot": "A4",
+      "parent": "A2.g174",
+      "birth_turn": 16089
+    },
+    {
+      "id": "A2.g175",
+      "slot": "A2",
+      "parent": "A1.g178",
+      "birth_turn": 16125
+    },
+    {
+      "id": "A0.g175",
+      "slot": "A0",
+      "parent": "A1.g178",
+      "birth_turn": 16148
+    },
+    {
+      "id": "A1.g179",
+      "slot": "A1",
+      "parent": "A3.g163",
+      "birth_turn": 16151
+    },
+    {
+      "id": "A3.g164",
+      "slot": "A3",
+      "parent": "A4.g175",
+      "birth_turn": 16154
+    },
+    {
+      "id": "A4.g176",
+      "slot": "A4",
+      "parent": "A2.g175",
+      "birth_turn": 16159
+    },
+    {
+      "id": "A2.g176",
+      "slot": "A2",
+      "parent": "A0.g175",
+      "birth_turn": 16204
+    },
+    {
+      "id": "A1.g180",
+      "slot": "A1",
+      "parent": "A0.g175",
+      "birth_turn": 16213
+    },
+    {
+      "id": "A2.g177",
+      "slot": "A2",
+      "parent": "A0.g175",
+      "birth_turn": 16254
+    },
+    {
+      "id": "A4.g177",
+      "slot": "A4",
+      "parent": "A0.g175",
+      "birth_turn": 16261
+    },
+    {
+      "id": "A0.g176",
+      "slot": "A0",
+      "parent": "A3.g164",
+      "birth_turn": 16273
+    },
+    {
+      "id": "A3.g165",
+      "slot": "A3",
+      "parent": "A1.g180",
+      "birth_turn": 16294
+    },
+    {
+      "id": "A1.g181",
+      "slot": "A1",
+      "parent": "A2.g177",
+      "birth_turn": 16299
+    },
+    {
+      "id": "A0.g177",
+      "slot": "A0",
+      "parent": "A2.g177",
+      "birth_turn": 16358
+    },
+    {
+      "id": "A1.g182",
+      "slot": "A1",
+      "parent": "A2.g177",
+      "birth_turn": 16358
+    },
+    {
+      "id": "A3.g166",
+      "slot": "A3",
+      "parent": "A2.g177",
+      "birth_turn": 16358
+    },
+    {
+      "id": "A4.g178",
+      "slot": "A4",
+      "parent": "A2.g177",
+      "birth_turn": 16372
+    },
+    {
+      "id": "A2.g178",
+      "slot": "A2",
+      "parent": "A0.g177",
+      "birth_turn": 16388
+    },
+    {
+      "id": "A0.g178",
+      "slot": "A0",
+      "parent": "A1.g182",
+      "birth_turn": 16418
+    },
+    {
+      "id": "A3.g167",
+      "slot": "A3",
+      "parent": "A1.g182",
+      "birth_turn": 16418
+    },
+    {
+      "id": "A1.g183",
+      "slot": "A1",
+      "parent": "A4.g178",
+      "birth_turn": 16448
+    },
+    {
+      "id": "A2.g179",
+      "slot": "A2",
+      "parent": "A4.g178",
+      "birth_turn": 16448
+    },
+    {
+      "id": "A3.g168",
+      "slot": "A3",
+      "parent": "A4.g178",
+      "birth_turn": 16478
+    },
+    {
+      "id": "A0.g179",
+      "slot": "A0",
+      "parent": "A4.g178",
+      "birth_turn": 16521
+    },
+    {
+      "id": "A1.g184",
+      "slot": "A1",
+      "parent": "A4.g178",
+      "birth_turn": 16548
+    },
+    {
+      "id": "A2.g180",
+      "slot": "A2",
+      "parent": "A4.g178",
+      "birth_turn": 16568
+    },
+    {
+      "id": "A1.g185",
+      "slot": "A1",
+      "parent": "A4.g178",
+      "birth_turn": 16598
+    },
+    {
+      "id": "A0.g180",
+      "slot": "A0",
+      "parent": "A4.g178",
+      "birth_turn": 16616
+    },
+    {
+      "id": "A3.g169",
+      "slot": "A3",
+      "parent": "A4.g178",
+      "birth_turn": 16616
+    },
+    {
+      "id": "A2.g181",
+      "slot": "A2",
+      "parent": "A4.g178",
+      "birth_turn": 16628
+    },
+    {
+      "id": "A4.g179",
+      "slot": "A4",
+      "parent": "A1.g185",
+      "birth_turn": 16658
+    },
+    {
+      "id": "A2.g182",
+      "slot": "A2",
+      "parent": "A1.g185",
+      "birth_turn": 16688
+    },
+    {
+      "id": "A1.g186",
+      "slot": "A1",
+      "parent": "A0.g180",
+      "birth_turn": 16697
+    },
+    {
+      "id": "A0.g181",
+      "slot": "A0",
+      "parent": "A3.g169",
+      "birth_turn": 16714
+    },
+    {
+      "id": "A4.g180",
+      "slot": "A4",
+      "parent": "A3.g169",
+      "birth_turn": 16718
+    },
+    {
+      "id": "A3.g170",
+      "slot": "A3",
+      "parent": "A2.g182",
+      "birth_turn": 16737
+    },
+    {
+      "id": "A1.g187",
+      "slot": "A1",
+      "parent": "A2.g182",
+      "birth_turn": 16748
+    },
+    {
+      "id": "A0.g182",
+      "slot": "A0",
+      "parent": "A2.g182",
+      "birth_turn": 16787
+    },
+    {
+      "id": "A1.g188",
+      "slot": "A1",
+      "parent": "A2.g182",
+      "birth_turn": 16816
+    },
+    {
+      "id": "A3.g171",
+      "slot": "A3",
+      "parent": "A2.g182",
+      "birth_turn": 16816
+    },
+    {
+      "id": "A4.g181",
+      "slot": "A4",
+      "parent": "A2.g182",
+      "birth_turn": 16839
+    },
+    {
+      "id": "A2.g183",
+      "slot": "A2",
+      "parent": "A0.g182",
+      "birth_turn": 16851
+    },
+    {
+      "id": "A0.g183",
+      "slot": "A0",
+      "parent": "A4.g181",
+      "birth_turn": 16868
+    },
+    {
+      "id": "A1.g189",
+      "slot": "A1",
+      "parent": "A4.g181",
+      "birth_turn": 16868
+    },
+    {
+      "id": "A3.g172",
+      "slot": "A3",
+      "parent": "A4.g181",
+      "birth_turn": 16868
+    },
+    {
+      "id": "A0.g184",
+      "slot": "A0",
+      "parent": "A4.g181",
+      "birth_turn": 16928
+    },
+    {
+      "id": "A3.g173",
+      "slot": "A3",
+      "parent": "A4.g181",
+      "birth_turn": 16928
+    },
+    {
+      "id": "A2.g184",
+      "slot": "A2",
+      "parent": "A4.g181",
+      "birth_turn": 16937
+    },
+    {
+      "id": "A4.g182",
+      "slot": "A4",
+      "parent": "A1.g189",
+      "birth_turn": 16988
+    },
+    {
+      "id": "A0.g185",
+      "slot": "A0",
+      "parent": "A1.g189",
+      "birth_turn": 17014
+    },
+    {
+      "id": "A1.g190",
+      "slot": "A1",
+      "parent": "A4.g182",
+      "birth_turn": 17018
+    },
+    {
+      "id": "A2.g185",
+      "slot": "A2",
+      "parent": "A4.g182",
+      "birth_turn": 17018
+    },
+    {
+      "id": "A3.g174",
+      "slot": "A3",
+      "parent": "A4.g182",
+      "birth_turn": 17018
+    },
+    {
+      "id": "A4.g183",
+      "slot": "A4",
+      "parent": "A0.g185",
+      "birth_turn": 17048
+    },
+    {
+      "id": "A1.g191",
+      "slot": "A1",
+      "parent": "A0.g185",
+      "birth_turn": 17104
+    },
+    {
+      "id": "A0.g186",
+      "slot": "A0",
+      "parent": "A2.g185",
+      "birth_turn": 17108
+    },
+    {
+      "id": "A2.g186",
+      "slot": "A2",
+      "parent": "A3.g174",
+      "birth_turn": 17111
+    },
+    {
+      "id": "A3.g175",
+      "slot": "A3",
+      "parent": "A4.g183",
+      "birth_turn": 17130
+    },
+    {
+      "id": "A1.g192",
+      "slot": "A1",
+      "parent": "A4.g183",
+      "birth_turn": 17187
+    },
+    {
+      "id": "A0.g187",
+      "slot": "A0",
+      "parent": "A4.g183",
+      "birth_turn": 17198
+    },
+    {
+      "id": "A4.g184",
+      "slot": "A4",
+      "parent": "A2.g186",
+      "birth_turn": 17202
+    },
+    {
+      "id": "A3.g176",
+      "slot": "A3",
+      "parent": "A2.g186",
+      "birth_turn": 17208
+    },
+    {
+      "id": "A2.g187",
+      "slot": "A2",
+      "parent": "A1.g192",
+      "birth_turn": 17228
+    },
+    {
+      "id": "A4.g185",
+      "slot": "A4",
+      "parent": "A1.g192",
+      "birth_turn": 17258
+    },
+    {
+      "id": "A3.g177",
+      "slot": "A3",
+      "parent": "A1.g192",
+      "birth_turn": 17282
+    },
+    {
+      "id": "A0.g188",
+      "slot": "A0",
+      "parent": "A1.g192",
+      "birth_turn": 17284
+    },
+    {
+      "id": "A2.g188",
+      "slot": "A2",
+      "parent": "A1.g192",
+      "birth_turn": 17307
+    },
+    {
+      "id": "A4.g186",
+      "slot": "A4",
+      "parent": "A1.g192",
+      "birth_turn": 17318
+    },
+    {
+      "id": "A1.g193",
+      "slot": "A1",
+      "parent": "A3.g177",
+      "birth_turn": 17345
+    },
+    {
+      "id": "A3.g178",
+      "slot": "A3",
+      "parent": "A0.g188",
+      "birth_turn": 17348
+    },
+    {
+      "id": "A4.g187",
+      "slot": "A4",
+      "parent": "A0.g188",
+      "birth_turn": 17383
+    },
+    {
+      "id": "A0.g189",
+      "slot": "A0",
+      "parent": "A2.g188",
+      "birth_turn": 17398
+    },
+    {
+      "id": "A2.g189",
+      "slot": "A2",
+      "parent": "A1.g193",
+      "birth_turn": 17408
+    },
+    {
+      "id": "A0.g190",
+      "slot": "A0",
+      "parent": "A1.g193",
+      "birth_turn": 17468
+    },
+    {
+      "id": "A3.g179",
+      "slot": "A3",
+      "parent": "A1.g193",
+      "birth_turn": 17468
+    },
+    {
+      "id": "A4.g188",
+      "slot": "A4",
+      "parent": "A1.g193",
+      "birth_turn": 17495
+    },
+    {
+      "id": "A1.g194",
+      "slot": "A1",
+      "parent": "A2.g189",
+      "birth_turn": 17498
+    },
+    {
+      "id": "A2.g190",
+      "slot": "A2",
+      "parent": "A0.g190",
+      "birth_turn": 17517
+    },
+    {
+      "id": "A4.g189",
+      "slot": "A4",
+      "parent": "A0.g190",
+      "birth_turn": 17553
+    },
+    {
+      "id": "A3.g180",
+      "slot": "A3",
+      "parent": "A0.g190",
+      "birth_turn": 17574
+    },
+    {
+      "id": "A1.g195",
+      "slot": "A1",
+      "parent": "A0.g190",
+      "birth_turn": 17588
+    },
+    {
+      "id": "A2.g191",
+      "slot": "A2",
+      "parent": "A0.g190",
+      "birth_turn": 17588
+    },
+    {
+      "id": "A0.g191",
+      "slot": "A0",
+      "parent": "A4.g189",
+      "birth_turn": 17603
+    },
+    {
+      "id": "A4.g190",
+      "slot": "A4",
+      "parent": "A3.g180",
+      "birth_turn": 17606
+    },
+    {
+      "id": "A3.g181",
+      "slot": "A3",
+      "parent": "A1.g195",
+      "birth_turn": 17629
+    },
+    {
+      "id": "A2.g192",
+      "slot": "A2",
+      "parent": "A1.g195",
+      "birth_turn": 17658
+    },
+    {
+      "id": "A4.g191",
+      "slot": "A4",
+      "parent": "A1.g195",
+      "birth_turn": 17659
+    },
+    {
+      "id": "A3.g182",
+      "slot": "A3",
+      "parent": "A1.g195",
+      "birth_turn": 17682
+    },
+    {
+      "id": "A4.g192",
+      "slot": "A4",
+      "parent": "A1.g195",
+      "birth_turn": 17714
+    },
+    {
+      "id": "A0.g192",
+      "slot": "A0",
+      "parent": "A1.g195",
+      "birth_turn": 17719
+    },
+    {
+      "id": "A1.g196",
+      "slot": "A1",
+      "parent": "A2.g192",
+      "birth_turn": 17752
+    },
+    {
+      "id": "A3.g183",
+      "slot": "A3",
+      "parent": "A2.g192",
+      "birth_turn": 17753
+    },
+    {
+      "id": "A4.g193",
+      "slot": "A4",
+      "parent": "A2.g192",
+      "birth_turn": 17798
+    },
+    {
+      "id": "A3.g184",
+      "slot": "A3",
+      "parent": "A2.g192",
+      "birth_turn": 17810
+    },
+    {
+      "id": "A0.g193",
+      "slot": "A0",
+      "parent": "A2.g192",
+      "birth_turn": 17815
+    },
+    {
+      "id": "A2.g193",
+      "slot": "A2",
+      "parent": "A1.g196",
+      "birth_turn": 17833
+    },
+    {
+      "id": "A4.g194",
+      "slot": "A4",
+      "parent": "A1.g196",
+      "birth_turn": 17858
+    },
+    {
+      "id": "A3.g185",
+      "slot": "A3",
+      "parent": "A1.g196",
+      "birth_turn": 17889
+    },
+    {
+      "id": "A1.g197",
+      "slot": "A1",
+      "parent": "A0.g193",
+      "birth_turn": 17913
+    },
+    {
+      "id": "A0.g194",
+      "slot": "A0",
+      "parent": "A4.g194",
+      "birth_turn": 17918
+    },
+    {
+      "id": "A2.g194",
+      "slot": "A2",
+      "parent": "A4.g194",
+      "birth_turn": 17918
+    },
+    {
+      "id": "A4.g195",
+      "slot": "A4",
+      "parent": "A3.g185",
+      "birth_turn": 17948
+    },
+    {
+      "id": "A1.g198",
+      "slot": "A1",
+      "parent": "A3.g185",
+      "birth_turn": 17963
+    },
+    {
+      "id": "A0.g195",
+      "slot": "A0",
+      "parent": "A3.g185",
+      "birth_turn": 18038
+    },
+    {
+      "id": "A3.g186",
+      "slot": "A3",
+      "parent": "A2.g194",
+      "birth_turn": 18048
+    },
+    {
+      "id": "A2.g195",
+      "slot": "A2",
+      "parent": "A4.g195",
+      "birth_turn": 18093
+    },
+    {
+      "id": "A1.g199",
+      "slot": "A1",
+      "parent": "A4.g195",
+      "birth_turn": 18098
+    },
+    {
+      "id": "A0.g196",
+      "slot": "A0",
+      "parent": "A4.g195",
+      "birth_turn": 18125
+    },
+    {
+      "id": "A4.g196",
+      "slot": "A4",
+      "parent": "A3.g186",
+      "birth_turn": 18128
+    },
+    {
+      "id": "A3.g187",
+      "slot": "A3",
+      "parent": "A2.g195",
+      "birth_turn": 18133
+    },
+    {
+      "id": "A2.g196",
+      "slot": "A2",
+      "parent": "A1.g199",
+      "birth_turn": 18159
+    },
+    {
+      "id": "A0.g197",
+      "slot": "A0",
+      "parent": "A1.g199",
+      "birth_turn": 18188
+    },
+    {
+      "id": "A4.g197",
+      "slot": "A4",
+      "parent": "A1.g199",
+      "birth_turn": 18188
+    },
+    {
+      "id": "A1.g200",
+      "slot": "A1",
+      "parent": "A2.g196",
+      "birth_turn": 18218
+    },
+    {
+      "id": "A3.g188",
+      "slot": "A3",
+      "parent": "A2.g196",
+      "birth_turn": 18218
+    },
+    {
+      "id": "A2.g197",
+      "slot": "A2",
+      "parent": "A0.g197",
+      "birth_turn": 18248
+    },
+    {
+      "id": "A4.g198",
+      "slot": "A4",
+      "parent": "A0.g197",
+      "birth_turn": 18278
+    },
+    {
+      "id": "A0.g198",
+      "slot": "A0",
+      "parent": "A2.g197",
+      "birth_turn": 18308
+    },
+    {
+      "id": "A1.g201",
+      "slot": "A1",
+      "parent": "A2.g197",
+      "birth_turn": 18308
+    },
+    {
+      "id": "A3.g189",
+      "slot": "A3",
+      "parent": "A2.g197",
+      "birth_turn": 18308
+    },
+    {
+      "id": "A2.g198",
+      "slot": "A2",
+      "parent": "A4.g198",
+      "birth_turn": 18363
+    },
+    {
+      "id": "A4.g199",
+      "slot": "A4",
+      "parent": "A0.g198",
+      "birth_turn": 18368
+    },
+    {
+      "id": "A1.g202",
+      "slot": "A1",
+      "parent": "A0.g198",
+      "birth_turn": 18398
+    },
+    {
+      "id": "A3.g190",
+      "slot": "A3",
+      "parent": "A0.g198",
+      "birth_turn": 18403
+    },
+    {
+      "id": "A0.g199",
+      "slot": "A0",
+      "parent": "A2.g198",
+      "birth_turn": 18416
+    },
+    {
+      "id": "A2.g199",
+      "slot": "A2",
+      "parent": "A4.g199",
+      "birth_turn": 18428
+    },
+    {
+      "id": "A3.g191",
+      "slot": "A3",
+      "parent": "A4.g199",
+      "birth_turn": 18458
+    },
+    {
+      "id": "A0.g200",
+      "slot": "A0",
+      "parent": "A2.g199",
+      "birth_turn": 18488
+    },
+    {
+      "id": "A1.g203",
+      "slot": "A1",
+      "parent": "A2.g199",
+      "birth_turn": 18488
+    },
+    {
+      "id": "A4.g200",
+      "slot": "A4",
+      "parent": "A2.g199",
+      "birth_turn": 18488
+    },
+    {
+      "id": "A2.g200",
+      "slot": "A2",
+      "parent": "A3.g191",
+      "birth_turn": 18518
+    },
+    {
+      "id": "A3.g192",
+      "slot": "A3",
+      "parent": "A0.g200",
+      "birth_turn": 18548
+    },
+    {
+      "id": "A0.g201",
+      "slot": "A0",
+      "parent": "A1.g203",
+      "birth_turn": 18578
+    },
+    {
+      "id": "A4.g201",
+      "slot": "A4",
+      "parent": "A1.g203",
+      "birth_turn": 18578
+    },
+    {
+      "id": "A2.g201",
+      "slot": "A2",
+      "parent": "A1.g203",
+      "birth_turn": 18621
+    },
+    {
+      "id": "A1.g204",
+      "slot": "A1",
+      "parent": "A3.g192",
+      "birth_turn": 18632
+    },
+    {
+      "id": "A3.g193",
+      "slot": "A3",
+      "parent": "A0.g201",
+      "birth_turn": 18638
+    },
+    {
+      "id": "A0.g202",
+      "slot": "A0",
+      "parent": "A2.g201",
+      "birth_turn": 18668
+    },
+    {
+      "id": "A4.g202",
+      "slot": "A4",
+      "parent": "A2.g201",
+      "birth_turn": 18668
+    },
+    {
+      "id": "A1.g205",
+      "slot": "A1",
+      "parent": "A2.g201",
+      "birth_turn": 18699
+    },
+    {
+      "id": "A2.g202",
+      "slot": "A2",
+      "parent": "A3.g193",
+      "birth_turn": 18712
+    },
+    {
+      "id": "A0.g203",
+      "slot": "A0",
+      "parent": "A3.g193",
+      "birth_turn": 18728
+    },
+    {
+      "id": "A3.g194",
+      "slot": "A3",
+      "parent": "A4.g202",
+      "birth_turn": 18757
+    },
+    {
+      "id": "A1.g206",
+      "slot": "A1",
+      "parent": "A4.g202",
+      "birth_turn": 18758
+    },
+    {
+      "id": "A4.g203",
+      "slot": "A4",
+      "parent": "A2.g202",
+      "birth_turn": 18816
+    },
+    {
+      "id": "A3.g195",
+      "slot": "A3",
+      "parent": "A2.g202",
+      "birth_turn": 18833
+    },
+    {
+      "id": "A2.g203",
+      "slot": "A2",
+      "parent": "A0.g203",
+      "birth_turn": 18848
+    },
+    {
+      "id": "A1.g207",
+      "slot": "A1",
+      "parent": "A0.g203",
+      "birth_turn": 18878
+    },
+    {
+      "id": "A4.g204",
+      "slot": "A4",
+      "parent": "A0.g203",
+      "birth_turn": 18878
+    },
+    {
+      "id": "A0.g204",
+      "slot": "A0",
+      "parent": "A3.g195",
+      "birth_turn": 18884
+    },
+    {
+      "id": "A3.g196",
+      "slot": "A3",
+      "parent": "A2.g203",
+      "birth_turn": 18908
+    },
+    {
+      "id": "A2.g204",
+      "slot": "A2",
+      "parent": "A1.g207",
+      "birth_turn": 18934
+    },
+    {
+      "id": "A4.g205",
+      "slot": "A4",
+      "parent": "A1.g207",
+      "birth_turn": 18966
+    },
+    {
+      "id": "A0.g205",
+      "slot": "A0",
+      "parent": "A1.g207",
+      "birth_turn": 18968
+    },
+    {
+      "id": "A1.g208",
+      "slot": "A1",
+      "parent": "A3.g196",
+      "birth_turn": 18993
+    },
+    {
+      "id": "A3.g197",
+      "slot": "A3",
+      "parent": "A2.g204",
+      "birth_turn": 18998
+    },
+    {
+      "id": "A4.g206",
+      "slot": "A4",
+      "parent": "A2.g204",
+      "birth_turn": 19028
+    },
+    {
+      "id": "A0.g206",
+      "slot": "A0",
+      "parent": "A2.g204",
+      "birth_turn": 19043
+    },
+    {
+      "id": "A1.g209",
+      "slot": "A1",
+      "parent": "A2.g204",
+      "birth_turn": 19079
+    },
+    {
+      "id": "A2.g205",
+      "slot": "A2",
+      "parent": "A3.g197",
+      "birth_turn": 19088
+    },
+    {
+      "id": "A3.g198",
+      "slot": "A3",
+      "parent": "A4.g206",
+      "birth_turn": 19106
+    },
+    {
+      "id": "A0.g207",
+      "slot": "A0",
+      "parent": "A4.g206",
+      "birth_turn": 19134
+    },
+    {
+      "id": "A4.g207",
+      "slot": "A4",
+      "parent": "A1.g209",
+      "birth_turn": 19148
+    },
+    {
+      "id": "A1.g210",
+      "slot": "A1",
+      "parent": "A2.g205",
+      "birth_turn": 19149
+    },
+    {
+      "id": "A2.g206",
+      "slot": "A2",
+      "parent": "A3.g198",
+      "birth_turn": 19159
+    },
+    {
+      "id": "A3.g199",
+      "slot": "A3",
+      "parent": "A0.g207",
+      "birth_turn": 19161
+    },
+    {
+      "id": "A4.g208",
+      "slot": "A4",
+      "parent": "A0.g207",
+      "birth_turn": 19224
+    },
+    {
+      "id": "A2.g207",
+      "slot": "A2",
+      "parent": "A0.g207",
+      "birth_turn": 19236
+    },
+    {
+      "id": "A3.g200",
+      "slot": "A3",
+      "parent": "A0.g207",
+      "birth_turn": 19238
+    },
+    {
+      "id": "A1.g211",
+      "slot": "A1",
+      "parent": "A0.g207",
+      "birth_turn": 19268
+    },
+    {
+      "id": "A0.g208",
+      "slot": "A0",
+      "parent": "A4.g208",
+      "birth_turn": 19298
+    },
+    {
+      "id": "A4.g209",
+      "slot": "A4",
+      "parent": "A2.g207",
+      "birth_turn": 19320
+    },
+    {
+      "id": "A2.g208",
+      "slot": "A2",
+      "parent": "A3.g200",
+      "birth_turn": 19327
+    },
+    {
+      "id": "A3.g201",
+      "slot": "A3",
+      "parent": "A1.g211",
+      "birth_turn": 19332
+    },
+    {
+      "id": "A1.g212",
+      "slot": "A1",
+      "parent": "A0.g208",
+      "birth_turn": 19358
+    },
+    {
+      "id": "A3.g202",
+      "slot": "A3",
+      "parent": "A0.g208",
+      "birth_turn": 19394
+    },
+    {
+      "id": "A0.g209",
+      "slot": "A0",
+      "parent": "A4.g209",
+      "birth_turn": 19404
+    },
+    {
+      "id": "A4.g210",
+      "slot": "A4",
+      "parent": "A2.g208",
+      "birth_turn": 19418
+    },
+    {
+      "id": "A3.g203",
+      "slot": "A3",
+      "parent": "A2.g208",
+      "birth_turn": 19448
+    },
+    {
+      "id": "A2.g209",
+      "slot": "A2",
+      "parent": "A1.g212",
+      "birth_turn": 19454
+    },
+    {
+      "id": "A0.g210",
+      "slot": "A0",
+      "parent": "A1.g212",
+      "birth_turn": 19459
+    },
+    {
+      "id": "A1.g213",
+      "slot": "A1",
+      "parent": "A4.g210",
+      "birth_turn": 19508
+    },
+    {
+      "id": "A0.g211",
+      "slot": "A0",
+      "parent": "A4.g210",
+      "birth_turn": 19512
+    },
+    {
+      "id": "A3.g204",
+      "slot": "A3",
+      "parent": "A4.g210",
+      "birth_turn": 19538
+    },
+    {
+      "id": "A4.g211",
+      "slot": "A4",
+      "parent": "A2.g209",
+      "birth_turn": 19558
+    },
+    {
+      "id": "A1.g214",
+      "slot": "A1",
+      "parent": "A2.g209",
+      "birth_turn": 19562
+    },
+    {
+      "id": "A2.g210",
+      "slot": "A2",
+      "parent": "A0.g211",
+      "birth_turn": 19568
+    },
+    {
+      "id": "A0.g212",
+      "slot": "A0",
+      "parent": "A3.g204",
+      "birth_turn": 19597
+    },
+    {
+      "id": "A3.g205",
+      "slot": "A3",
+      "parent": "A4.g211",
+      "birth_turn": 19616
+    },
+    {
+      "id": "A2.g211",
+      "slot": "A2",
+      "parent": "A4.g211",
+      "birth_turn": 19628
+    },
+    {
+      "id": "A4.g212",
+      "slot": "A4",
+      "parent": "A1.g214",
+      "birth_turn": 19641
+    },
+    {
+      "id": "A0.g213",
+      "slot": "A0",
+      "parent": "A1.g214",
+      "birth_turn": 19672
+    },
+    {
+      "id": "A1.g215",
+      "slot": "A1",
+      "parent": "A2.g211",
+      "birth_turn": 19690
+    },
+    {
+      "id": "A3.g206",
+      "slot": "A3",
+      "parent": "A2.g211",
+      "birth_turn": 19690
+    },
+    {
+      "id": "A2.g212",
+      "slot": "A2",
+      "parent": "A4.g212",
+      "birth_turn": 19718
+    },
+    {
+      "id": "A0.g214",
+      "slot": "A0",
+      "parent": "A4.g212",
+      "birth_turn": 19728
+    },
+    {
+      "id": "A1.g216",
+      "slot": "A1",
+      "parent": "A4.g212",
+      "birth_turn": 19748
+    },
+    {
+      "id": "A3.g207",
+      "slot": "A3",
+      "parent": "A4.g212",
+      "birth_turn": 19752
+    },
+    {
+      "id": "A2.g213",
+      "slot": "A2",
+      "parent": "A4.g212",
+      "birth_turn": 19782
+    },
+    {
+      "id": "A4.g213",
+      "slot": "A4",
+      "parent": "A0.g214",
+      "birth_turn": 19788
+    },
+    {
+      "id": "A0.g215",
+      "slot": "A0",
+      "parent": "A1.g216",
+      "birth_turn": 19808
+    },
+    {
+      "id": "A3.g208",
+      "slot": "A3",
+      "parent": "A1.g216",
+      "birth_turn": 19838
+    },
+    {
+      "id": "A1.g217",
+      "slot": "A1",
+      "parent": "A2.g213",
+      "birth_turn": 19839
+    },
+    {
+      "id": "A2.g214",
+      "slot": "A2",
+      "parent": "A4.g213",
+      "birth_turn": 19854
+    },
+    {
+      "id": "A0.g216",
+      "slot": "A0",
+      "parent": "A4.g213",
+      "birth_turn": 19868
+    },
+    {
+      "id": "A4.g214",
+      "slot": "A4",
+      "parent": "A3.g208",
+      "birth_turn": 19877
+    },
+    {
+      "id": "A1.g218",
+      "slot": "A1",
+      "parent": "A3.g208",
+      "birth_turn": 19898
+    },
+    {
+      "id": "A3.g209",
+      "slot": "A3",
+      "parent": "A2.g214",
+      "birth_turn": 19928
+    },
+    {
+      "id": "A2.g215",
+      "slot": "A2",
+      "parent": "A0.g216",
+      "birth_turn": 19932
+    },
+    {
+      "id": "A0.g217",
+      "slot": "A0",
+      "parent": "A4.g214",
+      "birth_turn": 19933
+    },
+    {
+      "id": "A1.g219",
+      "slot": "A1",
+      "parent": "A4.g214",
+      "birth_turn": 19970
+    },
+    {
+      "id": "A4.g215",
+      "slot": "A4",
+      "parent": "A3.g209",
+      "birth_turn": 19972
+    }
+  ],
+  "deaths": 1075,
+  "vitals": [
+    {
+      "turn": 1000,
+      "energies": [
+        69.3,
+        42.5,
+        87.9,
+        57.9,
+        93.1
+      ],
+      "gens": [
+        10,
+        8,
+        10,
+        7,
+        8
+      ],
+      "deaths": 43,
+      "agent_turns": 5000,
+      "a_harvests": 97,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 3935,
+      "event_turns": 165,
+      "event_hits": 36,
+      "deaths_in_nest": 43,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.787,
+      "signal_rate_window": 0.787,
+      "harvest_rate_window": 0.0194,
+      "event_hit_rate_window": 0.2182,
+      "pending_signal_rate_window": 0.7795,
+      "median_lifespan": 95.0,
+      "ms_per_turn": 77.4
+    },
+    {
+      "turn": 2000,
+      "energies": [
+        67.4,
+        25.7,
+        77.7,
+        40.3,
+        4.8
+      ],
+      "gens": [
+        18,
+        17,
+        20,
+        16,
+        19
+      ],
+      "deaths": 90,
+      "agent_turns": 10000,
+      "a_harvests": 174,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 7918,
+      "event_turns": 330,
+      "event_hits": 75,
+      "deaths_in_nest": 90,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7918,
+      "signal_rate_window": 0.7966,
+      "harvest_rate_window": 0.0154,
+      "event_hit_rate_window": 0.2364,
+      "pending_signal_rate_window": 0.7985,
+      "median_lifespan": 95.0,
+      "ms_per_turn": 77.4
+    },
+    {
+      "turn": 3000,
+      "energies": [
+        78.7,
+        22.9,
+        46.4,
+        89.8,
+        80.2
+      ],
+      "gens": [
+        28,
+        29,
+        28,
+        26,
+        29
+      ],
+      "deaths": 140,
+      "agent_turns": 15000,
+      "a_harvests": 215,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 10717,
+      "event_turns": 495,
+      "event_hits": 121,
+      "deaths_in_nest": 140,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7145,
+      "signal_rate_window": 0.5598,
+      "harvest_rate_window": 0.0082,
+      "event_hit_rate_window": 0.2788,
+      "pending_signal_rate_window": 0.575,
+      "median_lifespan": 92.0,
+      "ms_per_turn": 78.2
+    },
+    {
+      "turn": 4000,
+      "energies": [
+        61.7,
+        97.9,
+        9.0,
+        33.9,
+        20.8
+      ],
+      "gens": [
+        37,
+        40,
+        39,
+        36,
+        39
+      ],
+      "deaths": 191,
+      "agent_turns": 20000,
+      "a_harvests": 268,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 14465,
+      "event_turns": 665,
+      "event_hits": 161,
+      "deaths_in_nest": 191,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7232,
+      "signal_rate_window": 0.7496,
+      "harvest_rate_window": 0.0106,
+      "event_hit_rate_window": 0.2353,
+      "pending_signal_rate_window": 0.7331,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 80.2
+    },
+    {
+      "turn": 5000,
+      "energies": [
+        33.2,
+        93.4,
+        29.3,
+        54.0,
+        96.6
+      ],
+      "gens": [
+        47,
+        48,
+        50,
+        44,
+        49
+      ],
+      "deaths": 238,
+      "agent_turns": 25000,
+      "a_harvests": 354,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 19239,
+      "event_turns": 830,
+      "event_hits": 203,
+      "deaths_in_nest": 238,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7696,
+      "signal_rate_window": 0.9548,
+      "harvest_rate_window": 0.0172,
+      "event_hit_rate_window": 0.2545,
+      "pending_signal_rate_window": 0.9402,
+      "median_lifespan": 91.5,
+      "ms_per_turn": 80.0
+    },
+    {
+      "turn": 6000,
+      "energies": [
+        99.2,
+        33.7,
+        96.1,
+        49.6,
+        58.2
+      ],
+      "gens": [
+        58,
+        58,
+        61,
+        54,
+        60
+      ],
+      "deaths": 291,
+      "agent_turns": 30000,
+      "a_harvests": 400,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 21902,
+      "event_turns": 995,
+      "event_hits": 234,
+      "deaths_in_nest": 291,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7301,
+      "signal_rate_window": 0.5326,
+      "harvest_rate_window": 0.0092,
+      "event_hit_rate_window": 0.1879,
+      "pending_signal_rate_window": 0.5348,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 80.6
+    },
+    {
+      "turn": 7000,
+      "energies": [
+        31.2,
+        56.4,
+        97.9,
+        69.2,
+        68.2
+      ],
+      "gens": [
+        71,
+        66,
+        73,
+        62,
+        71
+      ],
+      "deaths": 343,
+      "agent_turns": 35000,
+      "a_harvests": 480,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 26327,
+      "event_turns": 1165,
+      "event_hits": 265,
+      "deaths_in_nest": 343,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7522,
+      "signal_rate_window": 0.885,
+      "harvest_rate_window": 0.016,
+      "event_hit_rate_window": 0.1824,
+      "pending_signal_rate_window": 0.8824,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 81.4
+    },
+    {
+      "turn": 8000,
+      "energies": [
+        38.4,
+        2.8,
+        10.0,
+        56.2,
+        55.4
+      ],
+      "gens": [
+        82,
+        77,
+        83,
+        72,
+        80
+      ],
+      "deaths": 394,
+      "agent_turns": 40000,
+      "a_harvests": 529,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 29905,
+      "event_turns": 1330,
+      "event_hits": 302,
+      "deaths_in_nest": 394,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7476,
+      "signal_rate_window": 0.7156,
+      "harvest_rate_window": 0.0098,
+      "event_hit_rate_window": 0.2242,
+      "pending_signal_rate_window": 0.7258,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 82.0
+    },
+    {
+      "turn": 9000,
+      "energies": [
+        61.5,
+        48.4,
+        77.9,
+        89.2,
+        32.3
+      ],
+      "gens": [
+        92,
+        88,
+        93,
+        82,
+        91
+      ],
+      "deaths": 446,
+      "agent_turns": 45000,
+      "a_harvests": 559,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 32733,
+      "event_turns": 1495,
+      "event_hits": 344,
+      "deaths_in_nest": 446,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7274,
+      "signal_rate_window": 0.5656,
+      "harvest_rate_window": 0.006,
+      "event_hit_rate_window": 0.2545,
+      "pending_signal_rate_window": 0.5432,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 82.7
+    },
+    {
+      "turn": 10000,
+      "energies": [
+        20.4,
+        23.1,
+        97.9,
+        32.2,
+        41.9
+      ],
+      "gens": [
+        102,
+        100,
+        104,
+        92,
+        103
+      ],
+      "deaths": 501,
+      "agent_turns": 50000,
+      "a_harvests": 604,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 36020,
+      "event_turns": 1665,
+      "event_hits": 384,
+      "deaths_in_nest": 501,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7204,
+      "signal_rate_window": 0.6574,
+      "harvest_rate_window": 0.009,
+      "event_hit_rate_window": 0.2353,
+      "pending_signal_rate_window": 0.6735,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 82.2
+    },
+    {
+      "turn": 11000,
+      "energies": [
+        90.2,
+        26.3,
+        16.6,
+        32.7,
+        45.4
+      ],
+      "gens": [
+        111,
+        114,
+        114,
+        102,
+        113
+      ],
+      "deaths": 554,
+      "agent_turns": 55000,
+      "a_harvests": 664,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 40051,
+      "event_turns": 1830,
+      "event_hits": 426,
+      "deaths_in_nest": 554,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7282,
+      "signal_rate_window": 0.8062,
+      "harvest_rate_window": 0.012,
+      "event_hit_rate_window": 0.2545,
+      "pending_signal_rate_window": 0.7894,
+      "median_lifespan": 90.0,
+      "ms_per_turn": 81.8
+    },
+    {
+      "turn": 12000,
+      "energies": [
+        84.3,
+        21.2,
+        76.9,
+        93.7,
+        68.5
+      ],
+      "gens": [
+        124,
+        127,
+        128,
+        115,
+        128
+      ],
+      "deaths": 622,
+      "agent_turns": 60000,
+      "a_harvests": 705,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 44374,
+      "event_turns": 1995,
+      "event_hits": 457,
+      "deaths_in_nest": 622,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7396,
+      "signal_rate_window": 0.8646,
+      "harvest_rate_window": 0.0082,
+      "event_hit_rate_window": 0.1879,
+      "pending_signal_rate_window": 0.8795,
+      "median_lifespan": 89.0,
+      "ms_per_turn": 82.6
+    },
+    {
+      "turn": 13000,
+      "energies": [
+        98.2,
+        38.2,
+        64.5,
+        67.1,
+        61.1
+      ],
+      "gens": [
+        135,
+        141,
+        141,
+        129,
+        140
+      ],
+      "deaths": 686,
+      "agent_turns": 65000,
+      "a_harvests": 755,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 49055,
+      "event_turns": 2165,
+      "event_hits": 481,
+      "deaths_in_nest": 686,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7547,
+      "signal_rate_window": 0.9362,
+      "harvest_rate_window": 0.01,
+      "event_hit_rate_window": 0.1412,
+      "pending_signal_rate_window": 0.9368,
+      "median_lifespan": 87.0,
+      "ms_per_turn": 82.9
+    },
+    {
+      "turn": 14000,
+      "energies": [
+        23.7,
+        93.4,
+        68.8,
+        18.4,
+        39.5
+      ],
+      "gens": [
+        149,
+        153,
+        150,
+        138,
+        151
+      ],
+      "deaths": 741,
+      "agent_turns": 70000,
+      "a_harvests": 812,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 52888,
+      "event_turns": 2330,
+      "event_hits": 512,
+      "deaths_in_nest": 741,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7555,
+      "signal_rate_window": 0.7666,
+      "harvest_rate_window": 0.0114,
+      "event_hit_rate_window": 0.1879,
+      "pending_signal_rate_window": 0.7697,
+      "median_lifespan": 86.0,
+      "ms_per_turn": 83.2
+    },
+    {
+      "turn": 15000,
+      "energies": [
+        92.4,
+        19.5,
+        94.2,
+        91.6,
+        35.9
+      ],
+      "gens": [
+        161,
+        163,
+        160,
+        149,
+        160
+      ],
+      "deaths": 793,
+      "agent_turns": 75000,
+      "a_harvests": 852,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 56077,
+      "event_turns": 2495,
+      "event_hits": 562,
+      "deaths_in_nest": 793,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7477,
+      "signal_rate_window": 0.6378,
+      "harvest_rate_window": 0.008,
+      "event_hit_rate_window": 0.303,
+      "pending_signal_rate_window": 0.6417,
+      "median_lifespan": 86.0,
+      "ms_per_turn": 83.4
+    },
+    {
+      "turn": 16000,
+      "energies": [
+        99.0,
+        68.6,
+        71.9,
+        47.9,
+        97.9
+      ],
+      "gens": [
+        173,
+        177,
+        173,
+        162,
+        174
+      ],
+      "deaths": 859,
+      "agent_turns": 80000,
+      "a_harvests": 888,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 59837,
+      "event_turns": 2665,
+      "event_hits": 595,
+      "deaths_in_nest": 859,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.748,
+      "signal_rate_window": 0.752,
+      "harvest_rate_window": 0.0072,
+      "event_hit_rate_window": 0.1941,
+      "pending_signal_rate_window": 0.7493,
+      "median_lifespan": 83.0,
+      "ms_per_turn": 83.3
+    },
+    {
+      "turn": 17000,
+      "energies": [
+        9.4,
+        38.3,
+        39.4,
+        20.3,
+        88.7
+      ],
+      "gens": [
+        184,
+        189,
+        184,
+        173,
+        182
+      ],
+      "deaths": 912,
+      "agent_turns": 85000,
+      "a_harvests": 953,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 64418,
+      "event_turns": 2830,
+      "event_hits": 634,
+      "deaths_in_nest": 912,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7579,
+      "signal_rate_window": 0.9162,
+      "harvest_rate_window": 0.013,
+      "event_hit_rate_window": 0.2364,
+      "pending_signal_rate_window": 0.9152,
+      "median_lifespan": 83.0,
+      "ms_per_turn": 83.3
+    },
+    {
+      "turn": 18000,
+      "energies": [
+        67.7,
+        84.7,
+        68.2,
+        32.7,
+        79.2
+      ],
+      "gens": [
+        194,
+        198,
+        194,
+        185,
+        195
+      ],
+      "deaths": 966,
+      "agent_turns": 90000,
+      "a_harvests": 985,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 67631,
+      "event_turns": 2995,
+      "event_hits": 677,
+      "deaths_in_nest": 966,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7515,
+      "signal_rate_window": 0.6426,
+      "harvest_rate_window": 0.0064,
+      "event_hit_rate_window": 0.2606,
+      "pending_signal_rate_window": 0.6576,
+      "median_lifespan": 84.0,
+      "ms_per_turn": 83.2
+    },
+    {
+      "turn": 19000,
+      "energies": [
+        53.9,
+        71.7,
+        74.5,
+        98.4,
+        24.6
+      ],
+      "gens": [
+        205,
+        208,
+        204,
+        197,
+        205
+      ],
+      "deaths": 1019,
+      "agent_turns": 95000,
+      "a_harvests": 1001,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 69152,
+      "event_turns": 3165,
+      "event_hits": 700,
+      "deaths_in_nest": 1019,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7279,
+      "signal_rate_window": 0.3042,
+      "harvest_rate_window": 0.0032,
+      "event_hit_rate_window": 0.1353,
+      "pending_signal_rate_window": 0.3162,
+      "median_lifespan": 86.0,
+      "ms_per_turn": 83.1
+    },
+    {
+      "turn": 20000,
+      "energies": [
+        54.2,
+        68.8,
+        51.9,
+        38.7,
+        62.4
+      ],
+      "gens": [
+        217,
+        219,
+        215,
+        209,
+        215
+      ],
+      "deaths": 1075,
+      "agent_turns": 100000,
+      "a_harvests": 1041,
+      "b_shares": 0,
+      "b_openings": 0,
+      "signals_sent": 71906,
+      "event_turns": 3330,
+      "event_hits": 742,
+      "deaths_in_nest": 1075,
+      "deaths_nest_tail": 0,
+      "signal_rate": 0.7191,
+      "signal_rate_window": 0.5508,
+      "harvest_rate_window": 0.008,
+      "event_hit_rate_window": 0.2545,
+      "pending_signal_rate_window": 0.5955,
+      "median_lifespan": 85.0,
+      "ms_per_turn": 83.0
+    }
+  ],
+  "ledger": {
+    "agent_turns": 100000,
+    "harvests_a": 1041,
+    "b_shares": 0,
+    "signals_sent": 71906,
+    "event_turns": 3330,
+    "event_hits": 742,
+    "pending_turns": 26640,
+    "pending_signals": 19228,
+    "heard_in_window_turns": 3335,
+    "event_turns_heard": 3326,
+    "event_hits_heard": 741,
+    "event_own_consistent": 1479,
+    "event_stay": 826,
+    "a_harvests": 1041,
+    "b_openings": 0,
+    "signal_rate": 0.71906,
+    "event_hit_rate": 0.2228228228228228,
+    "deaths_in_nest": 1075,
+    "deaths_nest_tail": 0,
+    "lifespans": [
+      98,
+      98,
+      100,
+      63,
+      69,
+      188,
+      88,
+      193,
+      57,
+      51,
+      75,
+      72,
+      101,
+      94,
+      73,
+      128,
+      180,
+      116,
+      159,
+      67,
+      95,
+      181,
+      90,
+      70,
+      108,
+      90,
+      81,
+      121,
+      68,
+      95,
+      180,
+      94,
+      90,
+      172,
+      147,
+      104,
+      66,
+      66,
+      55,
+      115,
+      95,
+      106,
+      132,
+      188,
+      89,
+      161,
+      134,
+      252,
+      66,
+      89,
+      73,
+      100,
+      163,
+      149,
+      128,
+      203,
+      126,
+      234,
+      75,
+      72,
+      90,
+      60,
+      92,
+      167,
+      159,
+      77,
+      54,
+      49,
+      104,
+      190,
+      49,
+      76,
+      56,
+      114,
+      54,
+      201,
+      118,
+      60,
+      69,
+      86,
+      177,
+      72,
+      51,
+      92,
+      79,
+      120,
+      124,
+      135,
+      118,
+      49,
+      90,
+      52,
+      70,
+      115,
+      60,
+      66,
+      51,
+      150,
+      83,
+      54,
+      49,
+      60,
+      66,
+      55,
+      123,
+      68,
+      57,
+      92,
+      150,
+      90,
+      180,
+      142,
+      60,
+      66,
+      90,
+      172,
+      99,
+      84,
+      100,
+      60,
+      120,
+      141,
+      96,
+      81,
+      120,
+      255,
+      100,
+      71,
+      129,
+      89,
+      210,
+      76,
+      90,
+      163,
+      106,
+      114,
+      60,
+      60,
+      123,
+      63,
+      90,
+      171,
+      104,
+      96,
+      158,
+      72,
+      180,
+      79,
+      82,
+      81,
+      105,
+      120,
+      83,
+      87,
+      120,
+      64,
+      67,
+      129,
+      90,
+      83,
+      60,
+      120,
+      120,
+      81,
+      90,
+      122,
+      70,
+      90,
+      200,
+      58,
+      90,
+      150,
+      85,
+      94,
+      50,
+      66,
+      174,
+      56,
+      92,
+      55,
+      54,
+      95,
+      60,
+      93,
+      102,
+      74,
+      55,
+      60,
+      97,
+      132,
+      168,
+      59,
+      240,
+      96,
+      56,
+      131,
+      90,
+      53,
+      77,
+      109,
+      60,
+      94,
+      120,
+      181,
+      121,
+      75,
+      149,
+      59,
+      108,
+      61,
+      105,
+      91,
+      91,
+      301,
+      202,
+      119,
+      77,
+      89,
+      119,
+      50,
+      69,
+      54,
+      77,
+      90,
+      48,
+      118,
+      113,
+      58,
+      180,
+      73,
+      72,
+      204,
+      193,
+      156,
+      108,
+      55,
+      193,
+      98,
+      90,
+      18,
+      61,
+      58,
+      145,
+      211,
+      55,
+      58,
+      59,
+      95,
+      163,
+      49,
+      160,
+      78,
+      90,
+      201,
+      49,
+      132,
+      75,
+      90,
+      65,
+      73,
+      120,
+      117,
+      90,
+      120,
+      73,
+      60,
+      63,
+      90,
+      104,
+      112,
+      117,
+      62,
+      72,
+      120,
+      240,
+      93,
+      64,
+      65,
+      114,
+      104,
+      119,
+      115,
+      72,
+      144,
+      54,
+      60,
+      60,
+      109,
+      81,
+      81,
+      81,
+      104,
+      75,
+      76,
+      95,
+      60,
+      92,
+      187,
+      58,
+      58,
+      52,
+      120,
+      50,
+      132,
+      252,
+      90,
+      75,
+      68,
+      73,
+      73,
+      132,
+      69,
+      60,
+      93,
+      125,
+      98,
+      143,
+      49,
+      82,
+      55,
+      83,
+      229,
+      60,
+      74,
+      60,
+      258,
+      101,
+      93,
+      150,
+      60,
+      91,
+      102,
+      59,
+      65,
+      51,
+      73,
+      95,
+      53,
+      76,
+      150,
+      49,
+      145,
+      90,
+      90,
+      109,
+      108,
+      79,
+      186,
+      90,
+      196,
+      120,
+      162,
+      301,
+      93,
+      74,
+      60,
+      92,
+      50,
+      172,
+      68,
+      101,
+      52,
+      64,
+      73,
+      105,
+      86,
+      82,
+      49,
+      77,
+      72,
+      52,
+      95,
+      77,
+      72,
+      149,
+      120,
+      73,
+      111,
+      90,
+      90,
+      95,
+      64,
+      92,
+      92,
+      74,
+      82,
+      88,
+      76,
+      150,
+      83,
+      61,
+      60,
+      90,
+      76,
+      84,
+      101,
+      56,
+      88,
+      133,
+      106,
+      104,
+      98,
+      92,
+      50,
+      85,
+      68,
+      113,
+      87,
+      141,
+      62,
+      54,
+      70,
+      81,
+      120,
+      123,
+      109,
+      99,
+      90,
+      189,
+      117,
+      79,
+      93,
+      131,
+      150,
+      150,
+      103,
+      67,
+      75,
+      81,
+      60,
+      90,
+      89,
+      117,
+      90,
+      99,
+      54,
+      180,
+      90,
+      74,
+      139,
+      127,
+      90,
+      96,
+      84,
+      94,
+      93,
+      76,
+      77,
+      84,
+      51,
+      94,
+      65,
+      93,
+      92,
+      60,
+      71,
+      116,
+      149,
+      86,
+      83,
+      119,
+      117,
+      92,
+      129,
+      66,
+      96,
+      81,
+      58,
+      58,
+      173,
+      150,
+      60,
+      74,
+      89,
+      131,
+      116,
+      120,
+      90,
+      100,
+      65,
+      70,
+      66,
+      51,
+      76,
+      54,
+      80,
+      71,
+      114,
+      75,
+      90,
+      51,
+      60,
+      140,
+      50,
+      96,
+      139,
+      75,
+      164,
+      120,
+      54,
+      61,
+      91,
+      90,
+      60,
+      114,
+      60,
+      52,
+      60,
+      78,
+      120,
+      75,
+      100,
+      51,
+      74,
+      189,
+      78,
+      76,
+      76,
+      51,
+      53,
+      157,
+      133,
+      78,
+      67,
+      128,
+      222,
+      79,
+      92,
+      203,
+      252,
+      50,
+      62,
+      51,
+      97,
+      126,
+      90,
+      73,
+      73,
+      60,
+      72,
+      106,
+      60,
+      107,
+      74,
+      90,
+      62,
+      94,
+      175,
+      90,
+      106,
+      80,
+      73,
+      96,
+      90,
+      68,
+      104,
+      52,
+      75,
+      116,
+      60,
+      58,
+      98,
+      53,
+      60,
+      76,
+      52,
+      50,
+      165,
+      50,
+      73,
+      99,
+      128,
+      60,
+      51,
+      63,
+      82,
+      59,
+      90,
+      55,
+      125,
+      90,
+      60,
+      65,
+      85,
+      120,
+      60,
+      55,
+      90,
+      87,
+      83,
+      90,
+      90,
+      155,
+      69,
+      54,
+      60,
+      60,
+      54,
+      48,
+      73,
+      72,
+      72,
+      72,
+      75,
+      49,
+      98,
+      74,
+      49,
+      72,
+      59,
+      48,
+      70,
+      48,
+      51,
+      93,
+      75,
+      54,
+      73,
+      60,
+      49,
+      60,
+      91,
+      89,
+      60,
+      95,
+      113,
+      74,
+      72,
+      73,
+      60,
+      72,
+      137,
+      72,
+      55,
+      48,
+      99,
+      66,
+      60,
+      137,
+      51,
+      55,
+      60,
+      60,
+      90,
+      60,
+      60,
+      90,
+      60,
+      98,
+      60,
+      97,
+      81,
+      60,
+      74,
+      69,
+      180,
+      168,
+      90,
+      69,
+      60,
+      60,
+      90,
+      72,
+      60,
+      117,
+      60,
+      60,
+      78,
+      60,
+      90,
+      62,
+      90,
+      60,
+      58,
+      134,
+      94,
+      60,
+      60,
+      56,
+      90,
+      60,
+      118,
+      71,
+      81,
+      113,
+      55,
+      50,
+      102,
+      79,
+      81,
+      97,
+      73,
+      51,
+      90,
+      139,
+      90,
+      50,
+      72,
+      22,
+      76,
+      60,
+      73,
+      83,
+      73,
+      53,
+      81,
+      134,
+      112,
+      60,
+      77,
+      60,
+      210,
+      129,
+      115,
+      51,
+      60,
+      90,
+      74,
+      90,
+      92,
+      76,
+      53,
+      138,
+      143,
+      60,
+      50,
+      131,
+      87,
+      82,
+      82,
+      123,
+      63,
+      112,
+      73,
+      87,
+      199,
+      82,
+      104,
+      111,
+      87,
+      90,
+      85,
+      81,
+      86,
+      78,
+      90,
+      123,
+      104,
+      112,
+      80,
+      66,
+      120,
+      120,
+      136,
+      151,
+      120,
+      120,
+      120,
+      100,
+      71,
+      53,
+      70,
+      90,
+      112,
+      73,
+      48,
+      90,
+      74,
+      251,
+      91,
+      55,
+      217,
+      59,
+      54,
+      177,
+      53,
+      172,
+      60,
+      55,
+      60,
+      115,
+      58,
+      60,
+      60,
+      90,
+      128,
+      60,
+      60,
+      60,
+      125,
+      73,
+      74,
+      75,
+      210,
+      115,
+      52,
+      76,
+      111,
+      136,
+      95,
+      91,
+      136,
+      60,
+      72,
+      90,
+      77,
+      48,
+      57,
+      84,
+      54,
+      51,
+      51,
+      49,
+      146,
+      79,
+      63,
+      56,
+      90,
+      107,
+      57,
+      60,
+      57,
+      60,
+      60,
+      56,
+      120,
+      60,
+      52,
+      120,
+      90,
+      70,
+      90,
+      91,
+      95,
+      120,
+      55,
+      89,
+      90,
+      115,
+      67,
+      74,
+      53,
+      60,
+      75,
+      75,
+      52,
+      60,
+      60,
+      51,
+      63,
+      75,
+      60,
+      52,
+      90,
+      81,
+      58,
+      89,
+      58,
+      61,
+      51,
+      151,
+      124,
+      89,
+      91,
+      77,
+      60,
+      82,
+      73,
+      70,
+      79,
+      62,
+      50,
+      102,
+      125,
+      140,
+      86,
+      85,
+      59,
+      64,
+      111,
+      134,
+      60,
+      60,
+      90,
+      60,
+      60,
+      103,
+      100,
+      120,
+      50,
+      95,
+      138,
+      60,
+      286,
+      60,
+      99,
+      98,
+      60,
+      121,
+      51,
+      73,
+      68,
+      79,
+      121,
+      163,
+      81,
+      52,
+      52,
+      60,
+      60,
+      86,
+      149,
+      86,
+      150,
+      81,
+      90,
+      60,
+      86,
+      94,
+      93,
+      112,
+      83,
+      90,
+      154,
+      78,
+      117,
+      56,
+      74,
+      86,
+      79,
+      60,
+      158,
+      66,
+      65,
+      114,
+      101,
+      70,
+      120,
+      112,
+      153,
+      109,
+      58,
+      106,
+      90,
+      71,
+      135,
+      53,
+      55,
+      70,
+      53,
+      53,
+      55,
+      116,
+      164,
+      71,
+      84,
+      57,
+      96,
+      175,
+      60,
+      79,
+      161,
+      103,
+      85,
+      90,
+      50,
+      120,
+      159,
+      175,
+      135,
+      87,
+      180,
+      85,
+      66,
+      63,
+      60,
+      120,
+      85,
+      89,
+      90,
+      120,
+      90,
+      90,
+      115,
+      90,
+      90,
+      95,
+      108,
+      65,
+      55,
+      72,
+      90,
+      120,
+      90,
+      90,
+      90,
+      90,
+      103,
+      144,
+      90,
+      90,
+      90,
+      67,
+      91,
+      60,
+      119,
+      59,
+      148,
+      76,
+      136,
+      120,
+      62,
+      156,
+      75,
+      86,
+      88,
+      84,
+      115,
+      90,
+      62,
+      75,
+      86,
+      154,
+      108,
+      91,
+      120,
+      70,
+      71,
+      55,
+      76,
+      77,
+      77,
+      119,
+      164,
+      96,
+      91,
+      94,
+      90,
+      62,
+      106,
+      98,
+      54,
+      127,
+      55,
+      150,
+      53,
+      90,
+      140,
+      54,
+      114,
+      85,
+      78,
+      60,
+      83,
+      75,
+      128,
+      74,
+      90,
+      56,
+      58,
+      62,
+      64,
+      147,
+      80,
+      86,
+      91,
+      72,
+      60,
+      89,
+      59,
+      90,
+      78,
+      65,
+      72,
+      95
+    ]
+  },
+  "symbol_hist_cumulative": [
+    3930,
+    6738,
+    2599,
+    4662,
+    3171,
+    3724,
+    4688,
+    3198,
+    5806,
+    4568,
+    3924,
+    4993,
+    5012,
+    3376,
+    3684,
+    7833
+  ],
+  "cue_symbol_cumulative": [
+    [
+      255,
+      422,
+      178,
+      324,
+      212,
+      264,
+      362,
+      242,
+      358,
+      292,
+      282,
+      314,
+      313,
+      204,
+      239,
+      493
+    ],
+    [
+      255,
+      444,
+      187,
+      320,
+      200,
+      222,
+      307,
+      214,
+      401,
+      339,
+      239,
+      341,
+      352,
+      221,
+      250,
+      491
+    ],
+    [
+      324,
+      447,
+      192,
+      316,
+      234,
+      265,
+      350,
+      210,
+      427,
+      317,
+      289,
+      332,
+      350,
+      249,
+      274,
+      584
+    ],
+    [
+      242,
+      433,
+      163,
+      297,
+      202,
+      204,
+      305,
+      207,
+      392,
+      288,
+      252,
+      294,
+      294,
+      235,
+      229,
+      494
+    ]
+  ],
+  "final_symbol_hist": {
+    "A0.g217": [
+      0,
+      2,
+      8,
+      3,
+      7,
+      0,
+      3,
+      6,
+      6,
+      5,
+      4,
+      0,
+      0,
+      3,
+      13,
+      5
+    ],
+    "A1.g219": [
+      0,
+      1,
+      1,
+      2,
+      5,
+      0,
+      1,
+      4,
+      3,
+      3,
+      2,
+      0,
+      0,
+      2,
+      3,
+      2
+    ],
+    "A2.g215": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      3
+    ],
+    "A3.g209": [
+      0,
+      0,
+      1,
+      0,
+      0,
+      1,
+      1,
+      2,
+      1,
+      3,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "A4.g215": [
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      2,
+      0,
+      0,
+      1,
+      0,
+      0
+    ]
+  }
+}

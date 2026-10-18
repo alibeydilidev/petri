@@ -293,7 +293,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 mutation_sigma: float | None = None,
                 event_penalty: float | None = None,
                 save_weights: bool = True, event_every: int | None = None,
-                selection: str = "none") -> None:
+                selection: str = "none",
+                event_lead: int | None = None) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -304,6 +305,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
         wcfg = dataclasses.replace(wcfg, event_penalty=float(event_penalty))
     if events and event_every is not None:     # S3-H sıklık (M-14 deneyim)
         wcfg = dataclasses.replace(wcfg, event_every=int(event_every))
+    if events and event_lead is not None:      # S3-I uyarı penceresi (0 bit)
+        wcfg = dataclasses.replace(wcfg, event_lead=int(event_lead))
     if selection not in ("none", "max_age"):
         raise ValueError(selection)
     mute = channel == "mute"
@@ -463,7 +466,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "events": events, "channel": channel,
                    "mutation_sigma": sigma, "selection": selection,
                    "event_every": wcfg.event_every,
-                   "event_penalty": wcfg.event_penalty},
+                   "event_penalty": wcfg.event_penalty,
+                   "event_lead": wcfg.event_lead},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -516,12 +520,14 @@ def main() -> None:
     ap.add_argument("--event-every", type=int, default=None,
                     help="olay periyodu (varsayılan 30)")
     ap.add_argument("--selection", choices=["none", "max_age"], default="none")
+    ap.add_argument("--event-lead", type=int, default=None,
+                    help="öncü ile olay arası tur (varsayılan 8)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
                 events=a.events, channel=a.channel, mutation_sigma=a.sigma,
                 event_penalty=a.event_penalty, event_every=a.event_every,
-                selection=a.selection)
+                selection=a.selection, event_lead=a.event_lead)
 
 
 if __name__ == "__main__":
