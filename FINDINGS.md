@@ -2091,8 +2091,14 @@ Veri: `runs/s3h/`, `runs/s3h/summary.json`, prob `runs/s3h/probe_h*.json`.
   NEGATİF (−0.001 … −0.005). H1_s3002 (32 bağlam): 0.34-0.63.
   **Hüküm: 3 soydan 1'inde iç modelde eylem-koşullu ipucu izi → ADAY
   GÖZLEM (en fazla).** Davranışa yansımıyor (0.44). İkiz kontrolü (M-04)
-  yapılmadı: bilinen-negatif transplant 0.42, ama rastgele-ağırlıklı
-  ikiz ayrıca koşulmalı — S3 kapanışında Beş Kapı listesine.
+  SONRADAN KOŞULDU (`--twins 8`, `runs/s3h/probe_twins.json`): rastgele-
+  init ikizlerde hiza {0, 0.45, 0.55} (dejenere argmax), %95 üst sınır
+  0.552; güvenli-eylem farkı p95 0.006; yayılım p95 0.0025. H1_s3001'in
+  üç çekirdeği (0.80/0.79/0.95; fark 0.011-0.017) ikiz sınırının açık
+  üstünde, ikisi (0.59/0.60) sınırda. **M-04 kapısı: GEÇTİ (bu soy
+  için).** Kalan kapılar: tekrar (bağımsız seed'lerde 1/3), zaman
+  çizgisi (hangi nesilde doğdu — ağırlık anlık kaydı yok), davranışa
+  nakit (0.44, ✗). Etiket ADAY GÖZLEM'de kalır.
 
 **Öngörü karnesi:** H-sel ömür ✓ tahmini → YANLIŞ (ömür artmadı);
 H-sel isabet ✗ → doğru; H-dose olay/yaşam ≥10 → YANLIŞ (8.5); isabet

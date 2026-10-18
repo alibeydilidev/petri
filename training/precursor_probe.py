@@ -121,12 +121,32 @@ def main() -> None:
     ap.add_argument("--weights", nargs="*", default=[])
     ap.add_argument("--out", default=None)
     ap.add_argument("--contexts", type=int, default=48)
+    ap.add_argument("--twins", type=int, default=0,
+                    help="M-04 ikiz kontrolü: aynı config'de N rastgele-"
+                         "ağırlıklı çekirdek (hiza/yayılım şans dağılımı)")
     a = ap.parse_args()
     results = {}
     # Bilinen-negatif: olay görmemiş transplant (A2 config).
     base = transplant_seed3(SEED3, agent_cfg("A2"), torch_seed=1, np_seed=2)
     results["known_negative_seed3"] = probe(base.core, base.cfg, a.contexts)
     print("[negatif] seed3 transplant:", results["known_negative_seed3"])
+    if a.twins:
+        cfg = agent_cfg("A2")
+        rows = []
+        for k in range(a.twins):
+            torch.manual_seed(7000 + k)
+            core = PredictiveCore(cfg)
+            core.eval()
+            rows.append(probe(core, cfg, a.contexts))
+        al = [r["own_align_rate"] for r in rows]
+        sg = [r["safe_gap_mean"] for r in rows]
+        sp = [r["spread_mean"] for r in rows]
+        results["twins_random_init"] = {
+            "n": a.twins, "own_align": al, "safe_gap": sg, "spread": sp,
+            "own_align_p95": round(float(np.percentile(al, 95)), 3),
+            "safe_gap_p95": round(float(np.percentile(sg, 95)), 5),
+            "spread_p95": round(float(np.percentile(sp, 95)), 5)}
+        print("[ikiz] rastgele-init:", results["twins_random_init"])
     for wpath in a.weights:
         ck = torch.load(wpath, weights_only=False)
         for slot, entry in ck.items():
