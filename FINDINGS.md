@@ -2533,3 +2533,68 @@ aday bütçesinin ~%94'ü (16/17) sinyalli satırlara gider — eylem
 araması zayıflar. Çözüm adayı (0 bit, S3-O): planlayıcı aday bütçesini
 eylem ve sinyal için AYIRMAK (K-111 emsali: eylem adayları sinyalsiz
 garantili + ayrı sinyal adayları) — içerik vermez, arama mekaniğidir.
+
+## S3-N — SONUÇLAR: **paylaşılan kayıp kanalı kurtarmadı** (2026-10-19, sabah)
+
+Veri: `runs/s3n/`, `runs/s3n/summary.json` (s=0.5, her 10 tur, lead 4, 100K).
+
+| kol | medyan ömür | isabet 0-20K → 80-100K | kendi-ipucu son 20K | STAY | hasat/1K | sinyal | MI |
+|---|---|---|---|---|---|---|---|
+| **N-A** (açık) | 40 | 0.21 → **0.23 / 0.24 / 0.24** | 0.47 | 0.27-0.29 | 3.9-4.3 | 0.77-0.79 | 0.0003-0.0005 bit |
+| **N-K** (kapalı) | 43 | 0.22 → **0.28 / 0.28 / 0.28** | 0.55-0.56 | 0.23-0.28 | 6.4-7.6 | 0 | — |
+| K-K (s=0) | 42 | 0.22 → 0.31 | ~0.61 | 0.30 | 5.7-6.2 | 0 | — |
+
+- **N2 ✗ (ters):** N-A, N-K'nın 0.04 altında. **N3 ✗:** MI 0.0004 bit,
+  H(sembol) 3.98-3.99. **N4 ✗:** 40 < 43. **N5 ✓:** N-K 0.28 ≥ 0.26 —
+  paylaşım kendi-ipucu öğrenmesini söndürmüyor ama yavaşlatıyor
+  (0.31 → 0.28; bedavacılık payı %50 beklenen yönde).
+- **Hüküm:** göndericiye dönen fayda FİZİKTE artık var (oracle: told
+  184 vs own 142), ama öğrenen ajan ona hiç ulaşamıyor: kanal açık
+  kolda kendi-ipucu öğrenmesi bile başlamıyor (0.47). S3-L ile birlikte
+  mekanizma: gönderme bedeli (planlayıcı seyrelmesi + enerji) fayda
+  doğmadan önce öğrenmeyi boğuyor — tavuk-yumurta.
+
+**Öngörü karnesi:** N2 ✗ (0.65) doğru; N3 0.005-0.03 → gerçek 0.0004
+(yine düşük); N5 ✓ (0.6) doğru.
+
+**Yeni ders var mı?** Aday → **M-28: Tuzağın geri dönüş yolunu kur,
+ama önce giriş ücretini ölç.** Sinyalin göndericiye beklenen değeri
+(M-25'in gelir tarafı) VE sinyal denemenin öğrenme maliyeti birlikte
+hesaplanır; ikincisi birincisinden büyükse fayda hiç keşfedilmez.
+(S3-N: fayda fizikte vardı, giriş ücreti — planlayıcı seyrelmesi +
+enerji — öğrenmeyi 0'da tuttu.) S3-O sonucuyla METODOLOJI'ye.
+
+## S3-O — ÖN-KAYIT: giriş ücretini düşür — planlayıcı aday bütçesi (koşumdan önce, M-08) (2026-10-19, sabah)
+
+**Tek değişken:** `mpc_signal_candidate_frac` (sinyal taşıyabilen
+rastgele aday satırı payı): 1.0 (S3 geometrisi, ~%94 sinyalli) →
+**0.25** ve **0.05**. Diğer her şey S3-N N-A ile aynı (s=0.5, her 10
+tur, lead 4, σ=0.002, klon, yuva, kanal açık), 3 seed, 100K. İçerik
+vermez (hangi sembol/eylem iyi söylenmez); arama mekaniğidir
+(K-109/K-111 soyu; KERNEL S3-O notu, ~1 bit üst sınır beyanı).
+Varsayılan 1.0 bit-eş (test). ε-dalı değişmez (16/17 sinyal, ~%9 tur).
+
+**Çıtalar (son 20K):**
+- **O1 (giriş ücreti düştü mü):** O-25 ve/veya O-05 isabeti ≥ N-K
+  (0.28) − 0.02 — kanal açıkken kendi-ipucu öğrenmesi artık başlıyor;
+  kendi-ipucu > 0.55.
+- **O2 (kanal fayda, H3/H4 kapısı):** herhangi bir O kolu isabeti >
+  N-K + 0.05 VE > 0.50'ye yaklaşma eğilimi (son 20K > ilk 20K + 0.10).
+- **O3 (konuşan):** MI ≥ 0.05 bit MM, p<0.05; VEYA uyarı penceresinde
+  sinyal oranı, pencere dışının ≥ 1.3 katı (zamanlama ipucu — sembol
+  içeriği olmasa da "ne zaman" bilgisi).
+- **O4:** sinyal oranı 0.77'den belirgin düşer (<0.4): ajan sinyali
+  artık rastgele değil seçerek veriyor (ya da hiç vermiyor — ikisi de
+  bilgilendirici; O3 ayırır).
+
+**Öngörüler (bağlayıcı):** O1 ✓ (0.7): seyrelme kalkınca açık kol kapalı
+kola yaklaşır. O4 ✓ (0.8): sinyal oranı 0.1-0.3'e iner (ε + nadir
+planlı). O2 ✗ (0.7), O3 ✗ (0.6): fayda zinciri 100K'da kurulmaz;
+ama ilk kez "konuşmanın bedava olmadığı ve dinlemenin mümkün olduğu"
+bir rejim elde edilir → S3-P: bu rejimde 300K+ (yarın).
+
+**Sonuç matrisi:** O1✓ O2✗ O3✗ → rejim hazır, süre lazım (S3-P uzun
+koşum; Ali'ye önerilir). O1✓ O3✓ → ADAY GÖZLEM (zamanlama/sembol
+olumsallığı), Beş Kapı. O1✗ → giriş ücreti planlayıcı değil enerji
+(sinyal maliyeti 0.5 anayasal; dokunulmaz) → kanal sorusu bu anayasa
+altında kapanır, S3 nihai hüküm negatif-mekanizmalı.

@@ -238,6 +238,9 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-32 SONUÇ (S3-L, 2026-10-19):** yavaşlatan taraf GÖNDERME
+  (speak < K-K; hear ≡ K-K bit-eş). Çözüm adayı S3-O:
+  `mpc_signal_candidate_frac` (0 bit, arama mekaniği) koşuluyor.
 - **PL-33 — Tuzağın eksik dişlisi: göndericiye dönen fayda (AÇIK,
   anayasal tasarım, Ali/Claude):** sinyalin bireysel beklenen değeri
   ≤ 0 (küresel olay, kişisel ceza, kimliksiz kanal, akrabalık yok) →
@@ -250,7 +253,10 @@
   **KARAR (Claude, 2026-10-19 sabah): (b) `event_share=0.5`** — fizik
   değişikliği, 0 bit, s=0 bit-eş testli; (a) nüfus-düzeyi ödül
   şekillendirmeye kaydığı için reddedildi; (c) PL-28'i geri alır.
-  Oracle (M-01) + ekoloji S3-N koşuluyor; beyan: görev "sürü alarmı".
+  Oracle (M-01) ✓ (told 184 vs own 142); ekoloji S3-N: kanal yine
+  kazanmadı (NA 0.23 vs NK 0.28; MI 0.0004) — fayda fizikte var, giriş
+  ücreti (gönderme bedeli) öğrenmeyi boğuyor → S3-O. s=0.5 ekoloji
+  varsayılanı olarak KALIR (beyan: "sürü alarmı").
 - **PL-30 — (KAPALI, S3-E…K koşuldu):** olay görevi klon+yuva
   ekolojisiyle 15 koşum; hükümler FINDINGS S3 KAPANIŞ.
 - **PL-22 — (KAPALI, 2026-10-19):** çerçeve (c)+(b)+σ=0.002 ekoloji

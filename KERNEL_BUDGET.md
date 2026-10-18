@@ -157,6 +157,11 @@ Gözlemci enstrümanları (`analyze_s3e.py`, `precursor_probe.py`,
   mimari değişmez. Ama görev semantiğini değiştiren deneyci kararıdır
   (M-09): "alarm çağrısı" → "sürü alarmı". Varsayılan 0 bit-eş
   (`tests/test_events.py::test_event_share_default_bit_identical_and_math`).
+- **S3-O `mpc_signal_candidate_frac` (PL-32):** ortak planlamada sinyal
+  taşıyabilen rastgele aday satırı payı (1.0 bit-eş → 0.25/0.05).
+  İçerik vermez; arama bütçesinin eylem/sinyal paylaşımı (K-109/K-111
+  soyu). Üst sınır ~1 bit (ızgara {1, .25, .05}); kalıcı olursa K-115
+  satırı açılır. Test: `test_s3o_signal_frac_default_bit_identical_and_quieter`.
 
 ## S3-B notu — koordinasyon oracle'ı (ajan-tarafı 0 bit; M-09 gereği kayıt)
 `training/b_oracle.py` ajana HİÇBİR ŞEY vermez (ajan kodu değil, ölçüm
