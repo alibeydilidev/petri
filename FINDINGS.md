@@ -2694,3 +2694,77 @@ karıştırma) + sinyalin gerçek maliyeti. Planlayıcı bütçesi değil,
 VERİ dengesi sorunu. Son 0-bit basamak: S3-P (ε dalında susma verisi).
 Kollar netleşti: **P-A** eps_quiet=0.5 + frac=0.05; **P-B** eps_quiet=0.5,
 frac=1.0 (M-06 ayrımı: susma verisi tek başına yeter mi).
+
+## S3-P — SONUÇLAR: **susma verisi primi yarılıyor ama kırmıyor; 0-bit merdiven bitti** (2026-10-19, öğle)
+
+Veri: `runs/s3p/`, `runs/s3p/summary.json`, prob `runs/s3p/signal_curse_probe_p.json`.
+
+| kol | eps_quiet | frac | isabet 80-100K | kendi-ipucu son 20K | sinyal son 20K | prob: prim (ort. skor farkı) | argmax→sinyalli @%4 pay | MI |
+|---|---|---|---|---|---|---|---|---|
+| N-A | 0 | 1.0 | 0.23-0.24 | 0.47 | 0.77 | ≈0 (N-A soyunda prim yoktu) | 0.04 | 0.0004 |
+| O-05 | 0 | 0.05 | 0.22-0.25 | 0.44-0.50 | 0.44-0.54 | **+0.5 … +0.9** | 0.88-0.96 | ≤0.0002 |
+| **P-A** | 0.5 | 0.05 | 0.23 / 0.25 / 0.25 | 0.47-0.51 | **0.28-0.37** | +0.36 … +0.61 | 0.21-0.75 | ≤0.0001 |
+| **P-B** | 0.5 | 1.0 | 0.22 / 0.25 / 0.24 | 0.45-0.50 | 0.59-0.63 | +0.1 … +0.46 | 0.04-0.51 | 0.0005 |
+| N-K (kapalı) | — | — | **0.28** | 0.55 | 0 | — | — | — |
+
+- **P1 ✗ (sınırda):** P-A sinyal oranı 0.28-0.37 (çıta <0.30: 1/3 geçer);
+  prob'da prim AYAKTA (+0.4-0.6), argmax sinyalliye payının 5-20 katı.
+  Susma verisi (ε'nın yarısı) primi yarıya indiriyor, söndürmüyor:
+  planlayıcı dalı (%90) veriyi hâlâ sinyal-yüklü üretiyor.
+- **P2 ✗:** isabet 0.23-0.25 < 0.26; kendi-ipucu 0.47-0.51 < 0.55.
+  (P-A'da 0-20K → 80-100K +0.04: öğrenme başlıyor ama N-K'nın gerisinde.)
+- **P3 ✗, P4 ✗:** kanal faydası yok, MI ≈ 0, H(sembol) 3.98-4.00.
+- **Öngörü karnesi:** P1 ✓ (0.7) → YANLIŞ (sınırda ✗); P2 ✓ (0.6) →
+  YANLIŞ; P3/P4 ✗ → doğru.
+
+**Hüküm (PL-32 nihai):** kanal açıkken öğrenmenin yavaşlaması,
+planlayıcının kapalı döngüde kendi sinyaline öğrettiği SAHTE enerji
+priminden kaynaklanır (M-05 nedensel karıştırma); prim, aday bütçesi
+(S3-O) ve ε susma verisiyle (S3-P) azaltılabiliyor ama bu mimaride
+(argmax planlayıcı + on-policy tek model) sıfırlanamıyor. **0 bitlik
+merdiven tükendi.** Kalan çözümler öğrenme MEKANİĞİNE bit yazar:
+(i) karşı-olgusal düzeltme (önem ağırlıklı / çift-sağlam enerji hedefi),
+(ii) model topluluğu + belirsizlik cezası (PL-12 c), (iii) planlayıcının
+eylem ve sinyali ayrı değerlendirmesi (K-103 revizyonu). Hepsi
+KERNEL_BUDGET satırı açar; karar Ali ile (sabah raporu).
+
+---
+
+# S3 KAPANIŞ EKİ (2026-10-19, öğle) — S3-L…P sonrası nihai hüküm
+
+**Hükümler değişmedi; mekanizma zinciri tamamlandı.**
+1. Ekoloji kararlı (σ=0.002) ve ajanlar KENDİ ipuçlarını öğreniyor
+   (okul 0.86; kanal-kapalı ekoloji 100K'da 0.31 isabet ↑, kendi-ipucu
+   ~0.60). [S3-F/J/K/L]
+2. Kanal: 24 koşumda (K/L/N/O/P) hiçbir ipucu bilgisi taşımadı
+   (MI ≤ 0.0005 bit, entropi tavanda); her kolda kanal açıkken
+   kendi-ipucu öğrenmesi yavaşladı. [S3-K…P]
+3. Neden: (a) göndericiye dönen fayda yoktu → fiziğe eklendi (s=0.5),
+   yetmedi; (b) gönderme bedeli: enerji + öğrenilmiş sahte prim
+   (kapalı-döngü karıştırma) → bütçe ve ε dengesi yarıya indirdi,
+   silemedi. Giriş ücreti > keşfedilmemiş fayda → kanal hiç
+   fiyatlanamıyor. [S3-L/N/O/P + problar]
+4. **H4: NEGATİF (bu anayasa altında, 100K tur, 0 yeni bit), mekanizmalı.
+   H3: ön koşul negatif. H2: test edilmedi. H1: karışık (S2 hükmü).
+   H0 ayakta.**
+
+**Sonraki program (Ali kararı; hepsi anayasaya dokunur ya da büyük
+bütçe ister):**
+- **A. Öğrenme mekaniği revizyonu** (bit yazar): karşı-olgusal düzeltilmiş
+  enerji hedefi ya da topluluk belirsizliği; primi kaynağında keser.
+  Tahmini 2-3 gün + 100K koşumlar.
+- **B. Kademeli kanal + uzun süre** (0 bit, bütçe): kanal-kapalı 300K ile
+  kendi-ipucu tavanı (0.5), sonra kanal açılır (öğrenmiş ajan sinyali
+  doğru fiyatlar mı?). Tahmini 1 gün hesaplama.
+- **C. Tuzağı yeniden tasarla** (anayasal): kimlikli/yerel kanal,
+  tekrarlı eş (PL-28 geri), ya da sinyalin alıcıdaki değerini doğrudan
+  gözlemlenebilir kılan görev. Deneyin sorusunu değiştirir.
+Tavsiye: **B önce** (ucuz, 0 bit; "giriş ücreti" tezini test eder),
+sonra A.
+
+**Ali adına verilen ek kararlar (19 Ekim, hepsi defterde):** event_share
+0.5 (fizik), mpc_signal_candidate_frac ve eps_signal_quiet_prob
+(arama/keşif mekaniği, varsayılan bit-eş, üst sınır ~1 bit her biri,
+kalıcı yapılmadı). Anayasal basamak atılmadı. **Toplam yeni prior: 0.**
+
+**Yeni ders:** M-28 işlendi (aşağıda METODOLOJI).

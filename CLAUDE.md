@@ -82,8 +82,13 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   **H4 NEGATİF (bu koşullarda), H3 ön koşul negatif, H2 test edilmedi,
   H1 karışık.** Yeni prior: 0 bit. Teşhis: göndericiye dönen fayda yok
   (PL-33). Ali: tüm kararlar Claude'da (18 Ekim), defterli.
-- **SIRADAKİ ADIM:** S3-L (PL-32 ayırıcı, 0 bit) → S3-N (PL-33 eksik
-  dişli: soy-düzeyi seçilim; anayasal, defterli) → H2/P2.
+- **S3-L…P (19 Ekim):** yavaşlatan taraf gönderme; paylaşılan kayıp
+  (event_share 0.5) faydayı fiziğe ekledi ama yetmedi; planlayıcı kendi
+  sinyaline SAHTE prim öğreniyor (M-05); bütçe/ε susma yarıya indirdi,
+  silemedi. **0-bit merdiven bitti. Nihai: H4 negatif, mekanizmalı.**
+  M-26/27/28 işlendi. Yeni prior 0 bit.
+- **SIRADAKİ ADIM (PL-34, Ali kararı):** B kademeli kanal + 300K (0 bit)
+  → A öğrenme mekaniği revizyonu (bit yazar) → C tuzak yeniden tasarımı.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

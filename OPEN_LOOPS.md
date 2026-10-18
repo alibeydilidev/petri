@@ -238,6 +238,13 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-34 — Sonraki program kararı (AÇIK, Ali):** 0-bit merdiven bitti
+  (S3-O/P). Seçenekler FINDINGS "S3 KAPANIŞ EKİ": A öğrenme mekaniği
+  revizyonu (bit yazar), B kademeli kanal + 300K (0 bit), C tuzağı
+  yeniden tasarla (anayasal). Tavsiye B → A.
+- **PL-32 (KAPALI, 2026-10-19):** kanal yavaşlatması = öğrenilmiş sahte
+  sinyal primi (M-05) + maliyet; bütçe (S3-O) ve ε susma (S3-P) yarıya
+  indirdi, silemedi. Özgün kayıt:
 - **PL-32 SONUÇ (S3-L, 2026-10-19):** yavaşlatan taraf GÖNDERME
   (speak < K-K; hear ≡ K-K bit-eş). Çözüm adayı S3-O:
   `mpc_signal_candidate_frac` (0 bit, arama mekaniği) koşuluyor.

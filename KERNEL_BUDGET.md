@@ -162,6 +162,15 @@ Gözlemci enstrümanları (`analyze_s3e.py`, `precursor_probe.py`,
   İçerik vermez; arama bütçesinin eylem/sinyal paylaşımı (K-109/K-111
   soyu). Üst sınır ~1 bit (ızgara {1, .25, .05}); kalıcı olursa K-115
   satırı açılır. Test: `test_s3o_signal_frac_default_bit_identical_and_quieter`.
+  **Sonuç (S3-O): kalıcı yapılmadı** (prim baskın); varsayılan 1.0 kaldı.
+- **S3-P `eps_signal_quiet_prob` (K-108 revizyon adayı):** ε dalında
+  sinyal/sessizlik dengesi (karşı-olgusal susma verisi, M-05). İçerik
+  vermez; üst sınır ~1 bit. **Sonuç: kalıcı yapılmadı** (primi yarıladı,
+  silmedi); varsayılan 0 (bit-eş) kaldı.
+  Test: `test_s3p_eps_quiet_default_bit_identical`.
+- **Nihai (19 Ekim öğle):** S3-D…P boyunca deftere KALICI bit satırı
+  açılmadı. Açık olan tek kalıcı dünya değişikliği `event_share=0.5`
+  (fizik; görev adı "sürü alarmı").
 
 ## S3-B notu — koordinasyon oracle'ı (ajan-tarafı 0 bit; M-09 gereği kayıt)
 `training/b_oracle.py` ajana HİÇBİR ŞEY vermez (ajan kodu değil, ölçüm

@@ -12,9 +12,12 @@ değil, iç temsiller ölçülür. Negatif sonuç da sonuçtur.
 **Durum (2026-10-19):** S3 kapandı (FINDINGS "S3 KAPANIŞ RAPORU"). Dil
 tuzağı öğrenen ajanlarla 15 koşumda sınandı: ajanlar kendi ipuçlarını
 öğreniyor, **kanal hiçbir bilgi taşımıyor ve öğrenmeyi yavaşlatıyor**
-→ H4 bu koşullarda **negatif**, mekanizmasıyla (göndericiye dönen fayda
-yok). Ekoloji ilk kez kararlı (σ=0.002). Yeni prior 0 bit. Sıradaki:
-PL-32 ayırıcı ablasyon, PL-33 eksik dişli tasarımı.
+→ H4 bu koşullarda **negatif**, mekanizmasıyla: sinyalin göndericiye
+faydası yoktu (fiziğe eklendi, yetmedi) ve planlayıcı kendi sinyaline
+sahte bir enerji primi öğreniyor (kapalı-döngü karıştırma); 0-bitlik
+çareler primi yarıya indirdi, silemedi (toplam 69 koşum). Ekoloji ilk
+kez kararlı (σ=0.002). Yeni prior 0 bit. Sıradaki program kararı
+PL-34 (Ali).
 
 ---
 

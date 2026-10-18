@@ -71,6 +71,16 @@
   keşif) bu sayıya göre seçilir. (PER'den önce hasat olayını
   saysaydık — 45K turda 10 — tamponun tekrarlatacak şey bulamayacağı
   baştan görülürdü; bir koşum tasarruf edilirdi.)
+- **M-28 — Tuzağın geri dönüş yolunu kur, ama önce giriş ücretini
+  ölç** *(S3-N…P, 2026-10-19)*: Bir davranışın (sinyal) kendiliğinden
+  belirmesi için iki hesap gerekir: göndericiye dönen BEKLENEN DEĞER
+  (M-25'in gelir tarafı) ve davranışı DENEMENİN öğrenme maliyeti (enerji
+  + kapalı-döngü karıştırması). İkincisi birincisinden büyükse fayda
+  hiç keşfedilmez; fiziğe fayda eklemek (paylaşılan kayıp) yetmez.
+  Argmax planlayıcı + on-policy tek model, nadir eylemlere sahte prim
+  öğrenir (M-05'in sinyal yüzü); bunu yalnız veri dengesiyle silmek
+  mümkün olmadı. Kural: kanal basıncı tasarlanırken "ilk sinyalin
+  bedeli" ve "ilk faydanın gecikmesi" birlikte, oracle ile ölçülür.
 - **M-27 — Ekolojiyi yargılamadan önce tek-ajan tavanını ölç** *(S3-J,
   2026-10-19)*: "Nüfus X'i öğrenemiyor" teşhisi, aynı görevi TEK ajanın
   sınırsız deneyimle öğrenip öğrenemediği ölçülmeden eksiktir. Tavan

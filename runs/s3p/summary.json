@@ -1,0 +1,884 @@
+{
+  "runs": [
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 0.05,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3001,
+      "deaths": 11666,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 42.9,
+      "a_harvest_per_1k": 4.35,
+      "signal_rate": 0.4049,
+      "pending_signal_rate": 0.4032,
+      "event_hit_rate": 0.2321,
+      "hit_rate_heard": 0.2322,
+      "hit_rate_not_heard": 0.2182,
+      "heard_share_of_events": 0.9928,
+      "own_cue_consistent_rate": 0.4643,
+      "event_stay_share": 0.2984,
+      "deaths_in_nest": 11666,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9984,
+      "mi_cue_symbol": {
+        "n": 80625,
+        "mi_raw_bits": 0.0004,
+        "mi_miller_madow_bits": 0.0,
+        "perm_mean_bits": 0.0004,
+        "perm_p95_bits": 0.0005,
+        "p_value_perm": 0.435,
+        "row_counts": [
+          20086,
+          20512,
+          19958,
+          20069
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 80625,
+        "mi_raw_bits": 0.0001,
+        "mi_miller_madow_bits": 0.0,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0002,
+        "p_value_perm": 0.86,
+        "row_counts": [
+          40044,
+          40581
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.204,
+          "sig": 0.4367,
+          "life": 40.0,
+          "deaths": 1127
+        },
+        {
+          "turn": 20000,
+          "hit": 0.22,
+          "sig": 0.3847,
+          "life": 40.0,
+          "deaths": 2270
+        },
+        {
+          "turn": 30000,
+          "hit": 0.234,
+          "sig": 0.3647,
+          "life": 40.0,
+          "deaths": 3403
+        },
+        {
+          "turn": 40000,
+          "hit": 0.235,
+          "sig": 0.3568,
+          "life": 40.0,
+          "deaths": 4567
+        },
+        {
+          "turn": 50000,
+          "hit": 0.248,
+          "sig": 0.4585,
+          "life": 40.0,
+          "deaths": 5752
+        },
+        {
+          "turn": 60000,
+          "hit": 0.223,
+          "sig": 0.4552,
+          "life": 40.0,
+          "deaths": 6943
+        },
+        {
+          "turn": 70000,
+          "hit": 0.216,
+          "sig": 0.4851,
+          "life": 40.0,
+          "deaths": 8163
+        },
+        {
+          "turn": 80000,
+          "hit": 0.236,
+          "sig": 0.3008,
+          "life": 40.0,
+          "deaths": 9320
+        },
+        {
+          "turn": 90000,
+          "hit": 0.247,
+          "sig": 0.2727,
+          "life": 40.0,
+          "deaths": 10511
+        },
+        {
+          "turn": 100000,
+          "hit": 0.255,
+          "sig": 0.3268,
+          "life": 40.0,
+          "deaths": 11666
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 0.05,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3002,
+      "deaths": 11621,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 43.0,
+      "a_harvest_per_1k": 4.48,
+      "signal_rate": 0.3902,
+      "pending_signal_rate": 0.3851,
+      "event_hit_rate": 0.2314,
+      "hit_rate_heard": 0.2315,
+      "hit_rate_not_heard": 0.2246,
+      "heard_share_of_events": 0.9925,
+      "own_cue_consistent_rate": 0.4631,
+      "event_stay_share": 0.2976,
+      "deaths_in_nest": 11621,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9978,
+      "mi_cue_symbol": {
+        "n": 77015,
+        "mi_raw_bits": 0.0006,
+        "mi_miller_madow_bits": 0.0001,
+        "perm_mean_bits": 0.0004,
+        "perm_p95_bits": 0.0006,
+        "p_value_perm": 0.055,
+        "row_counts": [
+          18715,
+          19773,
+          19097,
+          19430
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 77015,
+        "mi_raw_bits": 0.0002,
+        "mi_miller_madow_bits": 0.0,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0002,
+        "p_value_perm": 0.395,
+        "row_counts": [
+          37812,
+          39203
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.179,
+          "sig": 0.4791,
+          "life": 40.0,
+          "deaths": 1142
+        },
+        {
+          "turn": 20000,
+          "hit": 0.239,
+          "sig": 0.215,
+          "life": 40.0,
+          "deaths": 2257
+        },
+        {
+          "turn": 30000,
+          "hit": 0.239,
+          "sig": 0.3249,
+          "life": 40.0,
+          "deaths": 3398
+        },
+        {
+          "turn": 40000,
+          "hit": 0.219,
+          "sig": 0.3985,
+          "life": 40.0,
+          "deaths": 4553
+        },
+        {
+          "turn": 50000,
+          "hit": 0.227,
+          "sig": 0.3829,
+          "life": 40.0,
+          "deaths": 5718
+        },
+        {
+          "turn": 60000,
+          "hit": 0.239,
+          "sig": 0.3679,
+          "life": 40.0,
+          "deaths": 6908
+        },
+        {
+          "turn": 70000,
+          "hit": 0.246,
+          "sig": 0.3242,
+          "life": 40.0,
+          "deaths": 8082
+        },
+        {
+          "turn": 80000,
+          "hit": 0.252,
+          "sig": 0.4157,
+          "life": 40.0,
+          "deaths": 9262
+        },
+        {
+          "turn": 90000,
+          "hit": 0.235,
+          "sig": 0.393,
+          "life": 40.0,
+          "deaths": 10452
+        },
+        {
+          "turn": 100000,
+          "hit": 0.221,
+          "sig": 0.2773,
+          "life": 40.0,
+          "deaths": 11621
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 0.05,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3003,
+      "deaths": 11603,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 43.1,
+      "a_harvest_per_1k": 4.17,
+      "signal_rate": 0.3766,
+      "pending_signal_rate": 0.3771,
+      "event_hit_rate": 0.232,
+      "hit_rate_heard": 0.2323,
+      "hit_rate_not_heard": 0.2058,
+      "heard_share_of_events": 0.9877,
+      "own_cue_consistent_rate": 0.4683,
+      "event_stay_share": 0.3011,
+      "deaths_in_nest": 11603,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9972,
+      "mi_cue_symbol": {
+        "n": 75419,
+        "mi_raw_bits": 0.0005,
+        "mi_miller_madow_bits": 0.0001,
+        "perm_mean_bits": 0.0004,
+        "perm_p95_bits": 0.0006,
+        "p_value_perm": 0.125,
+        "row_counts": [
+          18676,
+          19089,
+          18246,
+          19408
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 75419,
+        "mi_raw_bits": 0.0003,
+        "mi_miller_madow_bits": 0.0001,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0002,
+        "p_value_perm": 0.025,
+        "row_counts": [
+          36922,
+          38497
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.184,
+          "sig": 0.3467,
+          "life": 40.0,
+          "deaths": 1141
+        },
+        {
+          "turn": 20000,
+          "hit": 0.217,
+          "sig": 0.3478,
+          "life": 40.0,
+          "deaths": 2290
+        },
+        {
+          "turn": 30000,
+          "hit": 0.249,
+          "sig": 0.3797,
+          "life": 40.0,
+          "deaths": 3459
+        },
+        {
+          "turn": 40000,
+          "hit": 0.212,
+          "sig": 0.4955,
+          "life": 40.0,
+          "deaths": 4652
+        },
+        {
+          "turn": 50000,
+          "hit": 0.229,
+          "sig": 0.4685,
+          "life": 40.0,
+          "deaths": 5830
+        },
+        {
+          "turn": 60000,
+          "hit": 0.221,
+          "sig": 0.4341,
+          "life": 40.0,
+          "deaths": 7025
+        },
+        {
+          "turn": 70000,
+          "hit": 0.232,
+          "sig": 0.2533,
+          "life": 40.0,
+          "deaths": 8194
+        },
+        {
+          "turn": 80000,
+          "hit": 0.235,
+          "sig": 0.3236,
+          "life": 40.0,
+          "deaths": 9353
+        },
+        {
+          "turn": 90000,
+          "hit": 0.225,
+          "sig": 0.3349,
+          "life": 40.0,
+          "deaths": 10496
+        },
+        {
+          "turn": 100000,
+          "hit": 0.251,
+          "sig": 0.2424,
+          "life": 40.0,
+          "deaths": 11603
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3001,
+      "deaths": 12194,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 41.0,
+      "a_harvest_per_1k": 4.16,
+      "signal_rate": 0.6357,
+      "pending_signal_rate": 0.6408,
+      "event_hit_rate": 0.2221,
+      "hit_rate_heard": 0.2222,
+      "hit_rate_not_heard": 0.0667,
+      "heard_share_of_events": 0.9997,
+      "own_cue_consistent_rate": 0.4492,
+      "event_stay_share": 0.2462,
+      "deaths_in_nest": 12194,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9864,
+      "mi_cue_symbol": {
+        "n": 128151,
+        "mi_raw_bits": 0.0008,
+        "mi_miller_madow_bits": 0.0005,
+        "perm_mean_bits": 0.0003,
+        "perm_p95_bits": 0.0003,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          31553,
+          32829,
+          31180,
+          32589
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 128151,
+        "mi_raw_bits": 0.0004,
+        "mi_miller_madow_bits": 0.0003,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          62733,
+          65418
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.212,
+          "sig": 0.7305,
+          "life": 40.0,
+          "deaths": 1176
+        },
+        {
+          "turn": 20000,
+          "hit": 0.238,
+          "sig": 0.6075,
+          "life": 40.0,
+          "deaths": 2314
+        },
+        {
+          "turn": 30000,
+          "hit": 0.219,
+          "sig": 0.6735,
+          "life": 40.0,
+          "deaths": 3512
+        },
+        {
+          "turn": 40000,
+          "hit": 0.214,
+          "sig": 0.6323,
+          "life": 40.0,
+          "deaths": 4748
+        },
+        {
+          "turn": 50000,
+          "hit": 0.243,
+          "sig": 0.7546,
+          "life": 40.0,
+          "deaths": 6004
+        },
+        {
+          "turn": 60000,
+          "hit": 0.229,
+          "sig": 0.7306,
+          "life": 40.0,
+          "deaths": 7278
+        },
+        {
+          "turn": 70000,
+          "hit": 0.249,
+          "sig": 0.6503,
+          "life": 40.0,
+          "deaths": 8517
+        },
+        {
+          "turn": 80000,
+          "hit": 0.248,
+          "sig": 0.4094,
+          "life": 40.0,
+          "deaths": 9716
+        },
+        {
+          "turn": 90000,
+          "hit": 0.19,
+          "sig": 0.618,
+          "life": 40.0,
+          "deaths": 10953
+        },
+        {
+          "turn": 100000,
+          "hit": 0.2,
+          "sig": 0.6799,
+          "life": 40.0,
+          "deaths": 12194
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3002,
+      "deaths": 11827,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 42.3,
+      "a_harvest_per_1k": 4.17,
+      "signal_rate": 0.6082,
+      "pending_signal_rate": 0.6194,
+      "event_hit_rate": 0.2424,
+      "hit_rate_heard": 0.2424,
+      "hit_rate_not_heard": 0.2,
+      "heard_share_of_events": 0.9996,
+      "own_cue_consistent_rate": 0.4766,
+      "event_stay_share": 0.2764,
+      "deaths_in_nest": 11827,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9824,
+      "mi_cue_symbol": {
+        "n": 123866,
+        "mi_raw_bits": 0.0008,
+        "mi_miller_madow_bits": 0.0005,
+        "perm_mean_bits": 0.0003,
+        "perm_p95_bits": 0.0004,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          29930,
+          31565,
+          30245,
+          32126
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 123866,
+        "mi_raw_bits": 0.0005,
+        "mi_miller_madow_bits": 0.0004,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          60175,
+          63691
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.205,
+          "sig": 0.7638,
+          "life": 40.0,
+          "deaths": 1153
+        },
+        {
+          "turn": 20000,
+          "hit": 0.251,
+          "sig": 0.7112,
+          "life": 40.0,
+          "deaths": 2331
+        },
+        {
+          "turn": 30000,
+          "hit": 0.231,
+          "sig": 0.5375,
+          "life": 40.0,
+          "deaths": 3523
+        },
+        {
+          "turn": 40000,
+          "hit": 0.251,
+          "sig": 0.6187,
+          "life": 40.0,
+          "deaths": 4680
+        },
+        {
+          "turn": 50000,
+          "hit": 0.25,
+          "sig": 0.5724,
+          "life": 40.0,
+          "deaths": 5875
+        },
+        {
+          "turn": 60000,
+          "hit": 0.219,
+          "sig": 0.6812,
+          "life": 40.0,
+          "deaths": 7080
+        },
+        {
+          "turn": 70000,
+          "hit": 0.265,
+          "sig": 0.4984,
+          "life": 40.0,
+          "deaths": 8286
+        },
+        {
+          "turn": 80000,
+          "hit": 0.281,
+          "sig": 0.6211,
+          "life": 40.0,
+          "deaths": 9452
+        },
+        {
+          "turn": 90000,
+          "hit": 0.261,
+          "sig": 0.6723,
+          "life": 40.0,
+          "deaths": 10634
+        },
+        {
+          "turn": 100000,
+          "hit": 0.235,
+          "sig": 0.6091,
+          "life": 40.0,
+          "deaths": 11827
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "clone",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.5,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.5
+      },
+      "seed": 3003,
+      "deaths": 11903,
+      "median_lifespan": 40.0,
+      "mean_lifespan": 42.0,
+      "a_harvest_per_1k": 4.6,
+      "signal_rate": 0.6521,
+      "pending_signal_rate": 0.6663,
+      "event_hit_rate": 0.2372,
+      "hit_rate_heard": 0.2372,
+      "hit_rate_not_heard": 0.2381,
+      "heard_share_of_events": 0.9996,
+      "own_cue_consistent_rate": 0.4712,
+      "event_stay_share": 0.2639,
+      "deaths_in_nest": 11903,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9825,
+      "mi_cue_symbol": {
+        "n": 133247,
+        "mi_raw_bits": 0.0007,
+        "mi_miller_madow_bits": 0.0005,
+        "perm_mean_bits": 0.0002,
+        "perm_p95_bits": 0.0003,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          32547,
+          33473,
+          32292,
+          34935
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 133247,
+        "mi_raw_bits": 0.0003,
+        "mi_miller_madow_bits": 0.0002,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          64839,
+          68408
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 10000,
+          "hit": 0.25,
+          "sig": 0.558,
+          "life": 40.0,
+          "deaths": 1130
+        },
+        {
+          "turn": 20000,
+          "hit": 0.207,
+          "sig": 0.665,
+          "life": 40.0,
+          "deaths": 2305
+        },
+        {
+          "turn": 30000,
+          "hit": 0.25,
+          "sig": 0.5817,
+          "life": 40.0,
+          "deaths": 3444
+        },
+        {
+          "turn": 40000,
+          "hit": 0.225,
+          "sig": 0.7286,
+          "life": 40.0,
+          "deaths": 4641
+        },
+        {
+          "turn": 50000,
+          "hit": 0.235,
+          "sig": 0.7445,
+          "life": 40.0,
+          "deaths": 5850
+        },
+        {
+          "turn": 60000,
+          "hit": 0.254,
+          "sig": 0.7026,
+          "life": 40.0,
+          "deaths": 7057
+        },
+        {
+          "turn": 70000,
+          "hit": 0.264,
+          "sig": 0.6765,
+          "life": 40.0,
+          "deaths": 8253
+        },
+        {
+          "turn": 80000,
+          "hit": 0.245,
+          "sig": 0.6719,
+          "life": 40.0,
+          "deaths": 9486
+        },
+        {
+          "turn": 90000,
+          "hit": 0.252,
+          "sig": 0.6123,
+          "life": 40.0,
+          "deaths": 10682
+        },
+        {
+          "turn": 100000,
+          "hit": 0.284,
+          "sig": 0.4939,
+          "life": 40.0,
+          "deaths": 11903
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "PA": {
+      "n_runs": 3,
+      "median_lifespan": 40.0,
+      "event_hit_rate": 0.232,
+      "hit_rate_heard": 0.2322,
+      "hit_rate_not_heard": 0.2182,
+      "signal_rate": 0.3902,
+      "pending_signal_rate": 0.3851,
+      "a_harvest_per_1k": 4.35,
+      "own_cue_consistent_rate": 0.4643,
+      "event_stay_share": 0.2984,
+      "mi_cue_symbol_mm_bits": [
+        0.0,
+        0.0001,
+        0.0001
+      ],
+      "mi_cue_symbol_p": [
+        0.435,
+        0.055,
+        0.125
+      ],
+      "deaths": [
+        11666,
+        11621,
+        11603
+      ],
+      "deaths_in_nest": [
+        11666,
+        11621,
+        11603
+      ],
+      "deaths_nest_tail": [
+        0,
+        0,
+        0
+      ]
+    },
+    "PB": {
+      "n_runs": 3,
+      "median_lifespan": 40.0,
+      "event_hit_rate": 0.2372,
+      "hit_rate_heard": 0.2372,
+      "hit_rate_not_heard": 0.2,
+      "signal_rate": 0.6357,
+      "pending_signal_rate": 0.6408,
+      "a_harvest_per_1k": 4.17,
+      "own_cue_consistent_rate": 0.4712,
+      "event_stay_share": 0.2639,
+      "mi_cue_symbol_mm_bits": [
+        0.0005,
+        0.0005,
+        0.0005
+      ],
+      "mi_cue_symbol_p": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "deaths": [
+        12194,
+        11827,
+        11903
+      ],
+      "deaths_in_nest": [
+        12194,
+        11827,
+        11903
+      ],
+      "deaths_nest_tail": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}
