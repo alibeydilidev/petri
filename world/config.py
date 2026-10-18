@@ -52,6 +52,13 @@ class WorldConfig:
     # olay başına YALNIZ 1 bit gözler (event_visibility_split) → bilgi
     # tek ajanda tamamlanmaz, kanal gereklidir.
     event_polarities: int = 4
+    # S3-N / PL-33 (2026-10-19, Claude kararı — Ali yetki devri): olay
+    # kaybının PAYLAŞILAN kısmı. 0.0 = tamamen kişisel (S3-C…L, bit-eş).
+    # s>0: kayıp_i = ceza × [(1−s)·ıska_i + s·ortalama_ıska]. Ekolojik
+    # emsal: sürü savunması — başkasının doğru eylemi benim kaybımı
+    # azaltır; sinyal verenin faydası kendine döner (tuzağın eksik
+    # dişlisi). Fizik değişikliğidir, ajana bit yazmaz (KERNEL S3-N notu).
+    event_share: float = 0.0
 
 
 def config_hash(cfg) -> str:

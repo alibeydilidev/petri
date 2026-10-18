@@ -152,6 +152,11 @@ hepsi dünya/nüfus parametresidir ve FINDINGS ön-kayıtlarında beyanlıdır:
   mevcut kodlamanın öğrenilebilir olduğunu gösterdi.
 Gözlemci enstrümanları (`analyze_s3e.py`, `precursor_probe.py`,
 `event_school.py`) ajana gitmez.
+- **S3-N `event_share=0.5` (PL-33):** olay kaybının yarısı nüfusça
+  paylaşılır (fizik; sürü savunması). Ajana bit yazmaz; gözlem/loss/
+  mimari değişmez. Ama görev semantiğini değiştiren deneyci kararıdır
+  (M-09): "alarm çağrısı" → "sürü alarmı". Varsayılan 0 bit-eş
+  (`tests/test_events.py::test_event_share_default_bit_identical_and_math`).
 
 ## S3-B notu — koordinasyon oracle'ı (ajan-tarafı 0 bit; M-09 gereği kayıt)
 `training/b_oracle.py` ajana HİÇBİR ŞEY vermez (ajan kodu değil, ölçüm

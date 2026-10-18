@@ -247,6 +247,10 @@
   demografi, ama tasarım kararı), (b) olay cezasının kısmen paylaşılması
   (görev değişir), (c) tekrarlanan eş / yerel kanal (PL-28'i geri alır).
   M-28 ders adayı (FINDINGS S3 kapanış).
+  **KARAR (Claude, 2026-10-19 sabah): (b) `event_share=0.5`** — fizik
+  değişikliği, 0 bit, s=0 bit-eş testli; (a) nüfus-düzeyi ödül
+  şekillendirmeye kaydığı için reddedildi; (c) PL-28'i geri alır.
+  Oracle (M-01) + ekoloji S3-N koşuluyor; beyan: görev "sürü alarmı".
 - **PL-30 — (KAPALI, S3-E…K koşuldu):** olay görevi klon+yuva
   ekolojisiyle 15 koşum; hükümler FINDINGS S3 KAPANIŞ.
 - **PL-22 — (KAPALI, 2026-10-19):** çerçeve (c)+(b)+σ=0.002 ekoloji

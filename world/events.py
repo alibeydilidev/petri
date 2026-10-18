@@ -156,8 +156,16 @@ class EventSystem:
         Konumun rolü yok — küresel olay."""
         if not self.active(turn):
             return
-        deltas[np.asarray(actions) != self.safe_action()] -= \
-            self.cfg.event_penalty
+        miss = (np.asarray(actions) != self.safe_action()).astype(np.float64)
+        share = float(getattr(self.cfg, "event_share", 0.0))
+        if share <= 0.0:                      # S3-C…L: tamamen kişisel
+            deltas[miss > 0] -= self.cfg.event_penalty
+            return
+        # S3-N: paylaşılan kayıp (PL-33). Paydada TÜM varlıklar (ölü
+        # bedenler STAY ile sayılır; ekolojide ölü anında ikame edilir).
+        group = float(miss.mean())
+        deltas -= self.cfg.event_penalty * ((1.0 - share) * miss
+                                            + share * group)
 
     def schedule(self, turn: int, rng: np.random.Generator,
                  sample_cell) -> None:

@@ -225,3 +225,26 @@ def test_event_system_off_is_inert():
     ev.schedule(0, np.random.default_rng(0), lambda n: np.zeros((n, 2), int))
     ev.apply_drain(0, np.array([STAY, RIGHT]), d)
     assert not d.any() and ev.polarity == -1
+
+
+def test_event_share_default_bit_identical_and_math():
+    """S3-N: event_share=0 eski muhasebeyle bit-eş; s=0.5'te kayıp
+    (1-s)*ıska_i + s*ortalama_ıska."""
+    import dataclasses
+
+    import numpy as np
+
+    from world.config import WorldConfig
+    from world.events import EventSystem
+    base = dataclasses.replace(WorldConfig(), event_every=30, event_lead=2,
+                               event_penalty=20.0)
+    for share, expected in ((0.0, [0.0, -20.0, -20.0, -20.0]),
+                            (0.5, [-7.5, -17.5, -17.5, -17.5])):
+        cfg = dataclasses.replace(base, event_share=share)
+        ev = EventSystem(cfg, 4)
+        ev.polarity, ev.starts_at, ev.ends_at = 2, 5, 6
+        d = np.zeros(4)
+        ev.apply_drain(5, np.array([2, 0, 1, 3]), d)   # 1 isabet, 3 ıska
+        assert np.allclose(d, expected), (share, d)
+    # paylaşım hash'e girmez (deltas dışı) — state_dict değişmez
+    assert "event_share" not in EventSystem(base, 1).state_dict()

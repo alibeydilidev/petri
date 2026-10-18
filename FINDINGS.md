@@ -2443,3 +2443,47 @@ gerekir (sonraki basamak, gerekirse). Bu turda L-speak asıl kol.
 
 **Öngörüler (bağlayıcı):** L1 ✓ (0.85). L2: L-speak < K-K (0.7) —
 seyrelme + maliyet birlikte.
+
+## S3-N — ÖN-KAYIT: tuzağın eksik dişlisi — paylaşılan olay kaybı (koşumdan önce, M-08) (2026-10-19, sabah)
+
+**Karar (PL-33; Claude, Ali yetki devri).** S3 kapanış teşhisi: sinyal
+vermenin göndericiye dönen faydası yok → öğrenen sistem seçmez.
+Seçenekler: (a) soy-düzeyi seçilim ("başkasının isabeti"ni uygunluğa
+yazmak = nüfus düzeyinde ödül şekillendirme, reddedildi), (b) **olay
+kaybının paylaşılması** (fizik; sürü savunması emsali: sürüde biri
+doğru kaçarsa herkesin riski düşer), (c) yerel/tekrarlı eş (PL-28'i
+geri alır). **(b) seçildi:** `WorldConfig.event_share=s`,
+kayıp_i = ceza × [(1−s)·ıska_i + s·ortalama_ıska]. s=0 bit-eş (test).
+Ajana bit yazmaz; görev semantiği değişir (beyan: "alarm çağrısı"
+artık "sürü alarmı"). s=0.5: kendi eylemi hâlâ yarı ağırlıkta
+(bedavacılık kaçışı sınırlı, M-25), diğerlerinin isabeti diğer yarıyı
+belirler → sinyalin göndericiye beklenen değeri > 0 olur ANCAK
+alıcılar kullanırsa.
+
+**Basamak 1 — oracle (M-01, önce cetvel):** `training/event_oracle.py
+--share 0.5`, n=5, menzil 32, 48 epizot: `deaf/own/told/god` merdiveni.
+- **N1:** told kişi-başı ömrü > own × 1.15 (paylaşımda kanalın değeri
+  var; s=0'da 193 vs 142 = 1.36 idi — paylaşım bunu azaltmamalı).
+- **N0 (cihaz):** s=0.5'te deaf ömrü s=0'dakine yakın (±%20): paylaşım
+  toplam basıncı değiştirmez, dağıtır.
+
+**Basamak 2 — ekoloji:** S3-K ayarı (her 10 tur, lead 4, σ=0.002, klon,
+yuva) + s=0.5; kollar **N-A** (kanal açık) ve **N-K** (kapalı); 3 seed,
+100K.
+- **N2 (kanal fayda):** N-A isabet > N-K + 0.05 (son 20K).
+- **N3 (konuşan):** I(ipucu;sembol) ≥ 0.05 bit MM, p<0.05.
+- **N4 (kanal öder):** N-A ömür ≥ N-K.
+- **N5 (bedavacılık, M-25):** N-K isabeti K-K'dan (0.31) çok düşmemeli
+  (≥ 0.26); düşerse paylaşım kendi-ipucu öğrenmesini söndürüyor.
+
+**Öngörüler (bağlayıcı):** N1 ✓ (0.8). N2 ✗ (0.65): fayda artık var ama
+alıcı "duyduğum sembol ⇒ eylem" zincirini 100K'da kurmayabilir;
+gönderici için fayda ancak alıcı öğrenince doğar (tavuk-yumurta;
+kırılma seçilimle ya da çok uzun koşumla). N3: MI 0.005-0.03 (0.5).
+N5 ✓ (0.6).
+
+**Sonuç matrisi:** N2✓ N3✓ → ADAY GÖZLEM (H4 yönünde), Beş Kapı +
+Ali. N2✗ N3✗ N5✓ → "fayda var, zincir kurulmuyor": tavuk-yumurta →
+S3-O: alıcı tarafını kıran 0-bit basamak (kanal kademeli: önce K-K
+300K ile kendi-ipucu tavanı, sonra kanal aç). N5✗ → paylaşım dozunu
+0.25'e çek.
