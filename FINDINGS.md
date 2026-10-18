@@ -2145,3 +2145,63 @@ A/K karşılaştırması 50K (S3-J). I-algı✗ (lead=2'de bile) → zamanlama
 değil, eylem-koşullu enerji öğrenmesi engelli → anayasal merdiven:
 (1) PL-27(a) ayrı öncü kanalı (~1-2 bit), (2) enerji kafasına olay
 turu için ayrı çıkış (~2 bit, M-18 sınırında).
+
+## S3-I — SONUÇLAR: **lead ✗ — zamanlama darboğaz değil** (2026-10-18, gece)
+
+Veri: `runs/s3i/`, `runs/s3i/summary.json`, prob `runs/s3i/probe_l.json`.
+
+| lead | medyan ömür | isabet | kendi-ipucu | STAY payı | hasat/1K | sinyal | prob yayılım | prob hiza |
+|---|---|---|---|---|---|---|---|---|
+| 8 (A0/G1) | 83 | 0.20-0.22 | 0.42-0.46 | 0.27-0.31 | 9-10 | 0.71 | 0.005-0.015 | ~0.4 |
+| **4** | 84 (79-88) | 0.21-0.24 | 0.43-0.45 | 0.22-0.31 | 8-10 | 0.73 | 0.02-0.05 | 0.02-0.52 |
+| **2** | 90 (86-90) | 0.20-0.21 | 0.41-0.42 | 0.33-0.37 | 9-11 | 0.70 | 0.02-0.05 | 0.03-0.63 |
+
+- **I-algı ✗, I-isabet ✗, I-ömür ✗** (90 < 95). Öncü ile olay arası
+  2 tura inince bile eylem kendi ipucundan bağımsız. **Öngörüm (I-algı
+  lead=2'de geçer, 0.6) YANLIŞ.**
+- Prob: eylem-koşullu yayılım 3× büyüdü (model olay turunda eylemler
+  arasında ARTIK ayrım yapıyor) ama hiza şans, güvenli-eylem farkı ~0:
+  ayrım ipucuyla İLİŞKİSİZ (muhtemelen hareket/STAY maliyet farkı).
+- **Teşhis daralıyor:** bellek/zamanlama değil; "ipucu değeri ⇒ hangi
+  eylem cezasız" eşlemesi enerji kafasında kurulmuyor. G1 50K'daki
+  yavaş yükseliş (0.19→0.25) bunun çok yavaş kurulduğunu söylüyor.
+
+**Sonuç matrisi hücresi: I-algı ✗ → anayasal merdiven.** Ama anayasayı
+değiştirmeden önce bir ölçüm daha (M-01/M-22, karar Claude — Ali yetki
+devri): **öğrenilebilirlik TAVANI**. Ekolojide 5 ajan + ölüm + kanal +
+rekabet varken "öğrenemiyor" demek, tek ajanın sınırsız zamanla
+öğrenip öğrenemediği bilinmeden eksiktir (M-02: önce dünyayı/aparatı
+yargıla). Tavan şans düzeyindeyse sorun ekoloji değil, öğrenme sinyali
+ya da mimaridir ve en ucuz anayasal adım ayrı öncü kanalı DEĞİL, K-106
+(enerji loss ağırlığı) revizyonudur.
+
+## S3-J — ÖN-KAYIT: "olay okulu", tek ajan öğrenilebilirlik tavanı (koşumdan önce, M-08) (2026-10-18, gece)
+
+`training/event_school.py`: tek ajan, yetiştirme kabı rejimi (PL-06:
+ölüm bedeni sıfırlar, ağırlık sürer, σ=0), kanal KAPALI, olay her 10
+tur, lead=2, ceza 25, 100K tur (≈10K olay deneyimi — N*=50'nin 200
+katı). Pencere 10K.
+
+| kol | değişken | seed |
+|---|---|---|
+| J-base | roster A2 config (λ_enerji=10, lr=5e-4) | 3 |
+| J-λ30 | `energy_loss_weight` 10 → 30 (K-106 revizyon adayı, ~1 bit) | 3 |
+
+**Çıtalar (son 20K penceresi):**
+- **J-öğrenir:** kendi-ipucu > 0.55 VE isabet > 0.30.
+- **J-λ:** J-λ30, J-base'den ≥ +0.05 kendi-ipucu önde.
+- Prob (final ağırlık): hiza > 0.6, güvenli-eylem farkı > 0.02.
+
+**Öngörüler (bağlayıcı):** J-base yavaş öğrenir, 100K sonunda kendi-ipucu
+0.50-0.60 (çıtada), 0.5 olasılık; J-λ30 daha hızlı (0.6). İkisi de ✗
+kalırsa (0.3): mimari/planlayıcı engeli → PL-27(a) ya da enerji
+kafası revizyonu; ikisi de anayasal, deftere yazılır.
+
+**Sonuç matrisi:** J-base ✓ → ekoloji sorunu "zaman × gürültü"dür;
+ekolojide 100K+ koşum + seçilim (S3-K). J-base ✗, J-λ30 ✓ → K-106
+revizyonu (λ=30, ~1 bit; M-19 doğum günü kapısından geçer: init'te
+isabet şans olmalı) → ekolojiye taşı. İkisi ✗ → anayasal merdiven
+basamak 2 (öncü kanalı / enerji kafası), Ali'ye sabah raporunda açık.
+
+**Beyan:** okul kanal-kapalıdır (kendi-ipucu sorusu); "ölüm gerçek"
+askıda (S1 emsali, ekoloji iddiası değil tavan ölçümü).
