@@ -71,6 +71,22 @@
   keşif) bu sayıya göre seçilir. (PER'den önce hasat olayını
   saysaydık — 45K turda 10 — tamponun tekrarlatacak şey bulamayacağı
   baştan görülürdü; bir koşum tasarruf edilirdi.)
+- **M-27 — Ekolojiyi yargılamadan önce tek-ajan tavanını ölç** *(S3-J,
+  2026-10-19)*: "Nüfus X'i öğrenemiyor" teşhisi, aynı görevi TEK ajanın
+  sınırsız deneyimle öğrenip öğrenemediği ölçülmeden eksiktir. Tavan
+  şans düzeyindeyse sorun mimari/öğrenme sinyalidir (anayasal adım
+  gerekebilir); tavan yüksekse sorun ekolojik parametredir (deneyim
+  sayısı, ölüm, gürültü) ve anayasaya dokunulmaz. (S3-G/H/I üç basamak
+  — doz, seçilim, zamanlama — bu ölçüm olmadan harcandı; 25 dakikalık
+  "olay okulu" ayırdı: tek ajan kendi ipucunu 6/6 öğrendi, λ
+  revizyonu gereksizdi.) M-01/M-02/M-21'in nüfus-öncesi özel hâli.
+- **M-26 — Sürüklenme cihaz hatası gibi davranır** *(S3-E/F,
+  2026-10-18)*: Seçilimsiz halef mutasyonu, öğrenmeyle kazanılan her
+  şeyi nesil ölçeğinde siler ve bunu "ekoloji öğrenemiyor" gibi
+  gösterir. Nüfus deneyinde σ, ağırlık RMS'ine göre ÖNCE kalibre edilir
+  (kritik nesil ≈ (RMS/σ)²; σ=0.01, RMS 0.08 → 65. nesil), sonra
+  öğrenme yargılanır. (S3 ilk nefes → S3-F arası üç koşum yanlış
+  katmana yazıldı; σ=0.002'de aynı ekoloji 138 → 266 tur ve kararlı.)
 - **M-25 — Tuzak kurmadan önce kaçış yollarını say** *(S3-C,
   2026-07-27)*: Bir yetinin (X) baskı altında kendiliğinden belirip
   belirmeyeceğini ölçecek aparatı kurmadan ÖNCE, ödüle giden alternatif
