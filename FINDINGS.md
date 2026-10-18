@@ -2664,3 +2664,33 @@ nihai hükmü "negatif, mekanizmalı, rejim hazır". P1✗ → prim ε'ya
 dirençli (planlayıcı dalı baskın) → planlayıcı tarafında karşı-olgu
 (frac → 0: sinyal yalnız ε'dan) son 0-bit basamak. P3✓ → ADAY GÖZLEM,
 Beş Kapı.
+
+## S3-O — SONUÇLAR: **aday bütçesini kısmak yetmedi; öğrenilmiş sinyal primi baskın** (2026-10-19)
+
+Veri: `runs/s3o/`, `runs/s3o/summary.json`, prob `runs/s3o/signal_curse_probe_o.json`.
+
+| kol | frac | medyan ömür | isabet 80-100K | kendi-ipucu son 20K | sinyal | pencere-sinyal | hasat/1K | MI |
+|---|---|---|---|---|---|---|---|---|
+| N-A (frac 1.0) | 1.0 | 40 | 0.23-0.24 | 0.47 | 0.77 | 0.78 | 3.9-4.3 | 0.0004 |
+| **O-25** | 0.25 | 40 | 0.23 / 0.23 / 0.24 | 0.44-0.49 | **0.65-0.70** | 0.65-0.71 | 3.7-4.0 | 0.0001 |
+| **O-05** | 0.05 | 40 | 0.22 / 0.25 / 0.23 | 0.44-0.50 | **0.44-0.54** | 0.44-0.54 | 4.0-4.2 | 0.0-0.0002 |
+| N-K (kapalı) | — | 43 | 0.28 | 0.55 | 0 | — | 6.4-7.6 | — |
+
+- **O1 ✗:** isabet 0.22-0.25 < 0.26; kendi-ipucu ≤ 0.50. **O4 ✗:**
+  sinyal oranı ε+pay tabanının (0.05 kolunda ~0.13) 3-4 katı. O2/O3 ✗.
+- **Prob (O05 soyları):** sinyalli satırların ortalama skoru sessizlerden
+  **+0.47 … +0.94** yüksek; %3.8 payla argmax→sinyalli **%88-96**.
+  O25'te de prim var (%65-100). Prim, frac kısıldıkça BÜYÜMÜŞ (K-A
+  +0.3-0.5 → O05 +0.5-0.9): az sinyalli satır → her sinyalin "seçilmiş
+  durumda" görünme olasılığı artar → karıştırma güçlenir (M-05'in
+  öngördüğü yön).
+- **Öngörü karnesi:** O1 ✓ (0.7) → YANLIŞ; O4 ✓ (0.8) → YANLIŞ. İki
+  öngörü de yan prob'un bulduğu primi hesaba katmıyordu (prob, ön-kayıt
+  sonrası kuruldu; sıralama beyanlı).
+
+**Hüküm (PL-32 nihai):** kanalın öğrenmeyi yavaşlatması = ajanın
+kendi sinyaline öğrendiği sahte enerji primi (kapalı-döngü nedensel
+karıştırma) + sinyalin gerçek maliyeti. Planlayıcı bütçesi değil,
+VERİ dengesi sorunu. Son 0-bit basamak: S3-P (ε dalında susma verisi).
+Kollar netleşti: **P-A** eps_quiet=0.5 + frac=0.05; **P-B** eps_quiet=0.5,
+frac=1.0 (M-06 ayrımı: susma verisi tek başına yeter mi).
