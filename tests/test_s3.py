@@ -241,3 +241,22 @@ def test_s3h_selection_parent_is_living_oldest(tmp_path):
     cross = sum(1 for g in births if g["parent"].split(".")[0] != g["slot"])
     assert all(ids_by_birth[g["parent"]] < g["birth_turn"] for g in births)
     assert cross >= 1, "hiç çapraz-slot miras yok; seçilim çalışmıyor olabilir"
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3l_hear_and_speak_modes(tmp_path):
+    """S3-L: hear → sinyal gönderilmez ama duyulabilir (başka gönderen
+    olmadığı için 0); speak → gönderilir, alınan vektör hep sıfır."""
+    import json
+
+    from training.ecology import run_ecology
+    run_ecology(60, str(tmp_path / "h"), world_seed=42, log_every=30,
+                founding="clone", nest=(600, 0.5), events=True, channel="hear")
+    jh = json.load(open(tmp_path / "h" / "breath.json"))
+    assert jh["ledger"]["signals_sent"] == 0 and jh["arm"]["channel"] == "hear"
+    run_ecology(60, str(tmp_path / "s"), world_seed=42, log_every=30,
+                founding="clone", nest=(600, 0.5), events=True, channel="speak")
+    js = json.load(open(tmp_path / "s" / "breath.json"))
+    assert js["ledger"]["signals_sent"] > 0
+    assert js["ledger"]["heard_in_window_turns"] == 0, "speak kolu duymamalı"

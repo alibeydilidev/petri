@@ -220,13 +220,21 @@ class Citizen:
     """Bir slotun canlı sakini: çekirdek + homeostaz + kimlik."""
 
     def __init__(self, slot: str, agent: OnlineAgent, gen: int,
-                 parent: str | None, birth_turn: int, mute: bool = False):
+                 parent: str | None, birth_turn: int, mute: bool = False,
+                 channel: str | None = None):
+        """channel: "open" (konuş+duy), "mute" (ikisi de yok), "hear"
+        (yalnız duy — S3-L), "speak" (yalnız konuş — S3-L). mute=True
+        eski çağrılarla uyum için "mute" demektir."""
         self.slot, self.agent, self.gen = slot, agent, gen
         self.id = f"{slot}.g{gen}"
         self.parent, self.birth_turn = parent, birth_turn
-        self.mute = mute
+        mode = channel or ("mute" if mute else "open")
+        self.channel_mode = mode
+        self.can_send = mode in ("open", "speak")
+        self.can_hear = mode in ("open", "hear")
+        self.mute = not self.can_send
         self.homeo = Homeostasis(agent.cfg)
-        P = MutePlanner if mute else SocialPlanner
+        P = SocialPlanner if self.can_send else MutePlanner
         self.planner = P(agent.cfg, agent.planner.rng)
         for k in Ledger.SCALARS:
             setattr(self, k, 0)
@@ -243,14 +251,15 @@ class Citizen:
                 a = int(rng.integers(1, 5))
             else:
                 a = int(rng.integers(0, N_ACTIONS))
-            s = NO_SIGNAL if self.mute else int(rng.integers(-1, N_SYMBOLS))
+            s = int(rng.integers(-1, N_SYMBOLS)) if self.can_send else NO_SIGNAL
             return a, s
         return self.planner.plan_joint(self.agent.core, self.agent.h, obs_vec)
 
 
 def founding_population(turn: int = 0, founding: str = "roster",
                         nest: tuple[int, float] = (0, 1.0),
-                        mute: bool = False) -> list[Citizen]:
+                        mute: bool = False,
+                        channel: str | None = None) -> list[Citizen]:
     cits = []
     for i, (slot, *_rest) in enumerate(ROSTER):
         if founding == "clone":
@@ -274,12 +283,12 @@ def founding_population(turn: int = 0, founding: str = "roster",
                 agent = OnlineAgent(cfg, torch_seed=1000 + i, np_seed=2000 + i)
                 parent = None
         cits.append(Citizen(slot, agent, gen=0, parent=parent,
-                            birth_turn=turn, mute=mute))
+                            birth_turn=turn, mute=mute, channel=channel))
     return cits
 
 
 def _observe(world: World, i: int, c: Citizen, energy: float):
-    heard = [] if c.mute else world.heard(i, world.cfg.signal_range)
+    heard = world.heard(i, world.cfg.signal_range) if c.can_hear else []
     if heard and world.events.pending(world.turn):
         c.heard_in_window = True
     return encode_obs(world.observe(i, c.agent.cfg.obs_radius), energy,
@@ -309,9 +318,12 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
         wcfg = dataclasses.replace(wcfg, event_lead=int(event_lead))
     if selection not in ("none", "max_age"):
         raise ValueError(selection)
+    if channel not in ("open", "mute", "hear", "speak"):
+        raise ValueError(channel)
     mute = channel == "mute"
     world = World(wcfg, n_entities=5, seed=world_seed)
-    cits = founding_population(founding=founding, nest=nest, mute=mute)
+    cits = founding_population(founding=founding, nest=nest, mute=mute,
+                               channel=channel)
     genealogy = [{"id": c.id, "slot": c.slot, "parent": c.parent,
                   "birth_turn": 0} for c in cits]
     succ_rng = np.random.default_rng(777_001)   # yalnız mutasyon gürültüsü
@@ -403,7 +415,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                     torch_seed=10_000 + deaths, np_seed=20_000 + deaths,
                     rng=succ_rng, sigma=sigma)
                 child = Citizen(c.slot, child_agent, gen=c.gen + 1,
-                                parent=parent_c.id, birth_turn=turn, mute=mute)
+                                parent=parent_c.id, birth_turn=turn, mute=mute,
+                                channel=channel)
                 # Yeni beden: doğum yeri DÜNYANIN rng'sinden (anayasa —
                 # eski kod succ_rng kullanıyordu, bkz. World.respawn_entity).
                 world.respawn_entity(i)
@@ -515,7 +528,8 @@ def main() -> None:
     ap.add_argument("--nest", type=float, nargs=2, default=(0, 1.0),
                     metavar=("T", "F"))
     ap.add_argument("--events", action="store_true")
-    ap.add_argument("--channel", choices=["open", "mute"], default="open")
+    ap.add_argument("--channel", choices=["open", "mute", "hear", "speak"],
+                    default="open")
     ap.add_argument("--sigma", type=float, default=None,
                     help="halef mutasyonu σ (varsayılan 0.01)")
     ap.add_argument("--event-penalty", type=float, default=None,

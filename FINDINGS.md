@@ -2412,3 +2412,34 @@ probe), zaman çizgisi ✗ (ağırlık anlık kaydı yok), nakit ✗ (davranış
 M-26, M-27 işlendi. Ek aday: **"Tuzağın geri dönüş yolunu kur"** —
 sinyalin göndericiye beklenen değeri hesaplanmadan (M-25'in gelir
 tarafı) kanal basıncı doğmaz. S3-N kararıyla birlikte M-28 olur.
+
+## S3-L — ÖN-KAYIT: kanal neden öğrenmeyi yavaşlatıyor? (koşumdan önce, M-08) (2026-10-19, sabah)
+
+**Soru (PL-32).** S3-K'da kanal açıkken kendi-ipucu öğrenmesi başlamadı.
+Üç aday mekanizma, iki ablasyonla ayrılır (0 bit; M-06):
+
+| kol | gönderir | duyar | planlayıcı | ayırdığı mekanizma |
+|---|---|---|---|---|
+| K-K (S3-K) | ✗ | ✗ | eylem-only | taban |
+| K-A (S3-K) | ✓ | ✓ | ortak (6×17) | hepsi |
+| **L-hear** | ✗ | ✓ | eylem-only | yalnız GİRDİ GÜRÜLTÜSÜ (16 boyut alınan sinyal; ama kimse konuşmadığı için alınan vektör pratikte sıfır → bu kol "duyma yolu açık ama boş" kontrolüdür; K-K'ya eşit çıkmalı — CİHAZ kontrolü) |
+| **L-speak** | ✓ | ✗ | ortak (6×17) | planlayıcı seyrelmesi + sinyal maliyeti (girdi gürültüsü yok) |
+
+Not: L-hear'da gönderen yoksa alınan sinyal yoktur; gerçek "girdi
+gürültüsü" kolu için konuşan-ama-öğrenmeyen bir gürültü kaynağı
+gerekir (sonraki basamak, gerekirse). Bu turda L-speak asıl kol.
+
+**Ayar:** S3-K ile aynı (klon, yuva, σ=0.002, her 10 tur, lead 4, ceza
+25, 100K, 3 seed).
+
+**Çıtalar (80-100K penceresi):**
+- **L1:** L-hear isabet ≈ K-K (|fark| < 0.03) — cihaz kontrolü.
+- **L2:** L-speak isabet < K-K − 0.03 → yavaşlamanın kaynağı GÖNDERME
+  tarafı (planlayıcı seyrelmesi ve/veya maliyet). L-speak ≈ K-K →
+  kaynak ALMA tarafı (girdi gürültüsü) → gürültü-kaynağı kolu gerekir.
+- **L3 (ayrıştırma):** L-speak'te sinyal oranı ve ömür; ömür ≈ K-A ise
+  maliyet, planlayıcı seyrelmesini ayırmak için ileride "ortak
+  planlayıcı + maliyet 0" kolu (M-06).
+
+**Öngörüler (bağlayıcı):** L1 ✓ (0.85). L2: L-speak < K-K (0.7) —
+seyrelme + maliyet birlikte.
