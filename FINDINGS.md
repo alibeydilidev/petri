@@ -2501,3 +2501,35 @@ Değer 1.83, gereklilik 0.279, yeterlilik 0.726 (s=0: 1.96 / 0.241 /
 0.709). **Paylaşım basıncı korur, kanalın değerini korur** (told/own
 = 1.30 ≥ 1.15). Veri: `runs/s3n_event_oracle_share05.json`. Basamak
 2 (ekoloji, `runs/s3n/`) başlatıldı.
+
+## S3-L — SONUÇLAR: **yavaşlatan taraf GÖNDERME** (2026-10-19, sabah)
+
+Veri: `runs/s3l/`, `runs/s3l/summary.json`.
+
+| kol | gönderir/duyar | medyan ömür | isabet 0-20K → 80-100K | kendi-ipucu son 20K | hasat/1K | sinyal |
+|---|---|---|---|---|---|---|
+| K-K (S3-K) | ✗/✗ | 42 | 0.22 → 0.30-0.31 | ~0.60 (tahmin) | 5.7-6.2 | 0 |
+| **L-hear** | ✗/✓ | 42 | 0.22 → **0.30 / 0.31 / 0.31** | **0.60-0.63** | 5.7-6.2 | 0 |
+| **L-speak** | ✓/✗ | 40 | 0.21 → **0.26 / 0.26 / 0.27** | 0.52-0.53 | 4.4-5.0 | 0.80-0.85 |
+| K-A (S3-K) | ✓/✓ | 40 | 0.22 → 0.24-0.25 | ~0.48 | 3.6-4.5 | 0.72-0.81 |
+
+- **L1 ✓ (cihaz):** L-hear, K-K ile BİT-EŞ (aynı ölüm sayıları, aynı
+  ömürler): kimse konuşmayınca alınan vektör sıfır → duyma yolu açık
+  olmanın tek başına maliyeti yok; determinizm doğrulaması (M-23).
+- **L2 ✓:** L-speak isabeti K-K'nın 0.04-0.05 altında (çıta 0.03) →
+  yavaşlamanın ana kaynağı GÖNDERME tarafı: ortak planlayıcı (6×17 aday
+  uzayı, 64 adayla seyrelme) + sinyal maliyeti (ömür 42 → 40, hasat
+  −20%). Duyma (K-A − L-speak ≈ −0.015) küçük ek pay: anlamsız 16
+  boyutluk girdi gürültüsü.
+- **Kendi-ipucu son 20K penceresi (yeni sayaç):** L-hear 0.60-0.63 —
+  K1 çıtası (0.70) hâlâ aşılmadı ama şansın (0.5) açık üstünde, 3/3.
+- **MI 0.0003-0.0004 bit** (speak): konuşan yine yok.
+
+**Öngörü karnesi:** L1 ✓ (0.85) doğru; L2 ✓ (0.7) doğru.
+
+**Mekanizma hükmü (PL-32):** kanalın öğrenmeyi yavaşlatması, ajanın
+sinyal "söylemesi"nin bedelidir: her sinyal enerji yakar ve planlayıcı
+aday bütçesinin ~%94'ü (16/17) sinyalli satırlara gider — eylem
+araması zayıflar. Çözüm adayı (0 bit, S3-O): planlayıcı aday bütçesini
+eylem ve sinyal için AYIRMAK (K-111 emsali: eylem adayları sinyalsiz
+garantili + ayrı sinyal adayları) — içerik vermez, arama mekaniğidir.
