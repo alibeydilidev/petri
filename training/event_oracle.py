@@ -178,16 +178,21 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--episodes", type=int, default=48)
+    ap.add_argument("--share", type=float, default=0.0,
+                    help="S3-N: paylaşılan olay kaybı payı (0 = S3-C)")
+    ap.add_argument("--only-n5", action="store_true",
+                    help="yalnız n=5/menzil 32 merdiveni (S3-N hızlı)")
     a = ap.parse_args()
 
     base = dataclasses.replace(WorldConfig(), resource_a_count=24,
                                event_every=30, event_lead=8,
                                event_duration=1, event_penalty=25.0,
-                               event_polarities=4)
+                               event_polarities=4, event_share=a.share)
     out = {"world": dataclasses.asdict(base),
            "config_hash": config_hash(base), "ladder": [], "range_sweep": []}
 
-    for n, rng_ in ((2, 8), (5, 8), (5, 32)):
+    ladders = ((5, 32),) if a.only_n5 else ((2, 8), (5, 8), (5, 32))
+    for n, rng_ in ladders:
         w = dataclasses.replace(base, signal_range=rng_)
         print(f"=== MERDİVEN n={n}, menzil={rng_} ===")
         print(f"{'kol':>10} | {'kişi-başı ömür':>14} | {'isabet':>7}")
@@ -213,6 +218,12 @@ def main() -> None:
               f"(ii) gereklilik {c['necessity_own_share']:.3f} | "
               f"(iii) yeterlilik {c['sufficiency_told_share']:.3f}\n")
 
+    if a.only_n5:
+        pathlib.Path(a.out).parent.mkdir(parents=True, exist_ok=True)
+        with open(a.out, "w") as f:
+            json.dump(out, f, indent=2)
+        print(f"\nyazıldı: {a.out}")
+        return
     print("=== MENZİL KALİBRASYONU (n=5) ===")
     print(f"{'menzil':>7} | {'told ömür':>9} | {'isabet':>7}")
     print("-" * 30)

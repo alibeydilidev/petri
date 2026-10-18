@@ -2487,3 +2487,17 @@ Ali. N2✗ N3✗ N5✓ → "fayda var, zincir kurulmuyor": tavuk-yumurta →
 S3-O: alıcı tarafını kıran 0-bit basamak (kanal kademeli: önce K-K
 300K ile kendi-ipucu tavanı, sonra kanal aç). N5✗ → paylaşım dozunu
 0.25'e çek.
+
+### S3-N basamak 1 — oracle (s=0.5, n=5, menzil 32, 48 epizot): **N0 ✓, N1 ✓**
+| kol | kişi-başı ömür (s=0.5) | s=0 (S3-C) | isabet |
+|---|---|---|---|
+| none | 210 | 210 | — |
+| deaf | **115** | 115 | 0.271 |
+| own | 142 | 142 | 0.474 |
+| told | **184** | 193 | 0.862 |
+| god | 210 | 225 | 1.0 |
+
+Değer 1.83, gereklilik 0.279, yeterlilik 0.726 (s=0: 1.96 / 0.241 /
+0.709). **Paylaşım basıncı korur, kanalın değerini korur** (told/own
+= 1.30 ≥ 1.15). Veri: `runs/s3n_event_oracle_share05.json`. Basamak
+2 (ekoloji, `runs/s3n/`) başlatıldı.
