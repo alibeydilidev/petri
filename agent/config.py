@@ -58,6 +58,13 @@ class AgentConfig:
     # KERNEL_BUDGET S3-D notu). Varsayılan T=0 / f=1 bit-eş.
     nest_turns: int = 0
     nest_factor: float = 1.0
+    # S3-O (PL-32 çözüm adayı): ortak planlamada sinyal TAŞIYABİLEN rastgele
+    # aday satırlarının payı. 1.0 = S3 geometrisi (bit-eş): her rastgele
+    # satır u{-1..15}'ten sinyal çeker → aday bütçesinin ~%94'ü sinyalli.
+    # <1.0: satırların (1-p) kısmı sinyalsiz → eylem araması korunur.
+    # İçerik vermez (hangi sembol/eylem iyi söylenmez); arama mekaniği
+    # (K-109/K-111 soyu). KERNEL_BUDGET S3-O notu.
+    mpc_signal_candidate_frac: float = 1.0
     # --- S1 öğrenme ---
     tbptt_window: int = 8       # truncated BPTT pencere uzunluğu
     energy_loss_weight: float = 10.0  # K-106: enerji boyutunun loss ağırlığı

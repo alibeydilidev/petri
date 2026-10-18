@@ -65,6 +65,10 @@ class SocialPlanner(MPCPlanner):
         C, D = cfg.mpc_candidates, cfg.mpc_horizon
         seqs = self.rng.integers(0, N_ACTIONS, size=(C, D))
         sigs = self.rng.integers(-1, N_SYMBOLS, size=(C, D))
+        frac = getattr(cfg, "mpc_signal_candidate_frac", 1.0)
+        if frac < 1.0:   # S3-O: satırların (1-frac) kısmı sinyalsiz
+            quiet = self.rng.random(C) >= frac
+            sigs[quiet, :] = NO_SIGNAL
         row = 0
         if cfg.mpc_constant_candidates:
             for a in range(N_ACTIONS):
@@ -90,6 +94,9 @@ class SocialPlanner(MPCPlanner):
             cs = np.where(mut, self.rng.integers(0, N_ACTIONS, cs.shape), cs)
             mutg = self.rng.random((n_child, D)) < 0.3
             cg = np.where(mutg, self.rng.integers(-1, N_SYMBOLS, cg.shape), cg)
+            if frac < 1.0:
+                quiet = self.rng.random(n_child) >= frac
+                cg[quiet, :] = NO_SIGNAL
             seqs = np.vstack([e_s, cs])
             sigs = np.vstack([e_g, cg])
             scores = self._score_joint(core, h, obs_vec, seqs, sigs)
@@ -259,20 +266,24 @@ class Citizen:
 def founding_population(turn: int = 0, founding: str = "roster",
                         nest: tuple[int, float] = (0, 1.0),
                         mute: bool = False,
-                        channel: str | None = None) -> list[Citizen]:
+                        channel: str | None = None,
+                        signal_candidate_frac: float | None = None
+                        ) -> list[Citizen]:
     cits = []
+    extra = ({} if signal_candidate_frac is None
+             else {"mpc_signal_candidate_frac": float(signal_candidate_frac)})
     for i, (slot, *_rest) in enumerate(ROSTER):
         if founding == "clone":
             # PL-22 (c): tüm slotlar seed-3 transplantı, A2 mimarisi,
             # kurucu mutasyon YOK (çeşitlilik halefiyetle, σ=0.01).
             cfg = dataclasses.replace(agent_cfg("A2"), nest_turns=nest[0],
-                                      nest_factor=nest[1])
+                                      nest_factor=nest[1], **extra)
             agent = transplant_seed3(SEED3, cfg, torch_seed=1000 + i,
                                      np_seed=2000 + i)
             parent = "seed3(S2.10)"
         else:
             cfg = dataclasses.replace(agent_cfg(slot), nest_turns=nest[0],
-                                      nest_factor=nest[1])
+                                      nest_factor=nest[1], **extra)
             if slot == "A2":  # DP-01 fiili: seed-3 miras + mutasyon
                 agent = transplant_seed3(SEED3, cfg, torch_seed=1000 + i,
                                          np_seed=2000 + i)
@@ -304,7 +315,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 save_weights: bool = True, event_every: int | None = None,
                 selection: str = "none",
                 event_lead: int | None = None,
-                event_share: float | None = None) -> None:
+                event_share: float | None = None,
+                signal_candidate_frac: float | None = None) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -326,7 +338,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     mute = channel == "mute"
     world = World(wcfg, n_entities=5, seed=world_seed)
     cits = founding_population(founding=founding, nest=nest, mute=mute,
-                               channel=channel)
+                               channel=channel,
+                               signal_candidate_frac=signal_candidate_frac)
     genealogy = [{"id": c.id, "slot": c.slot, "parent": c.parent,
                   "birth_turn": 0} for c in cits]
     succ_rng = np.random.default_rng(777_001)   # yalnız mutasyon gürültüsü
@@ -487,7 +500,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "event_every": wcfg.event_every,
                    "event_penalty": wcfg.event_penalty,
                    "event_lead": wcfg.event_lead,
-                   "event_share": wcfg.event_share},
+                   "event_share": wcfg.event_share,
+                   "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -545,13 +559,16 @@ def main() -> None:
                     help="öncü ile olay arası tur (varsayılan 8)")
     ap.add_argument("--event-share", type=float, default=None,
                     help="paylaşılan olay kaybı payı (varsayılan 0)")
+    ap.add_argument("--signal-frac", type=float, default=None,
+                    help="S3-O: sinyal taşıyabilen aday satırı payı (varsayılan 1)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
                 events=a.events, channel=a.channel, mutation_sigma=a.sigma,
                 event_penalty=a.event_penalty, event_every=a.event_every,
                 selection=a.selection, event_lead=a.event_lead,
-                event_share=a.event_share)
+                event_share=a.event_share,
+                signal_candidate_frac=a.signal_frac)
 
 
 if __name__ == "__main__":
