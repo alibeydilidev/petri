@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 .claude/settings.local.json
+runs/**/final_weights.pt   # 19 Ekim: ağırlık dosyaları artık git dışı (yerelde kalır; eskiler takipte)
