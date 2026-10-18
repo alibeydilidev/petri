@@ -258,7 +258,13 @@ class Citizen:
                 a = int(rng.integers(1, 5))
             else:
                 a = int(rng.integers(0, N_ACTIONS))
-            s = int(rng.integers(-1, N_SYMBOLS)) if self.can_send else NO_SIGNAL
+            if not self.can_send:
+                s = NO_SIGNAL
+            elif cfg.eps_signal_quiet_prob > 0.0 and \
+                    rng.random() < cfg.eps_signal_quiet_prob:
+                s = NO_SIGNAL                      # S3-P: dengeli susma
+            else:
+                s = int(rng.integers(-1, N_SYMBOLS))
             return a, s
         return self.planner.plan_joint(self.agent.core, self.agent.h, obs_vec)
 
@@ -267,11 +273,15 @@ def founding_population(turn: int = 0, founding: str = "roster",
                         nest: tuple[int, float] = (0, 1.0),
                         mute: bool = False,
                         channel: str | None = None,
-                        signal_candidate_frac: float | None = None
+                        signal_candidate_frac: float | None = None,
+                        eps_signal_quiet: float | None = None
                         ) -> list[Citizen]:
     cits = []
-    extra = ({} if signal_candidate_frac is None
-             else {"mpc_signal_candidate_frac": float(signal_candidate_frac)})
+    extra = {}
+    if signal_candidate_frac is not None:
+        extra["mpc_signal_candidate_frac"] = float(signal_candidate_frac)
+    if eps_signal_quiet is not None:
+        extra["eps_signal_quiet_prob"] = float(eps_signal_quiet)
     for i, (slot, *_rest) in enumerate(ROSTER):
         if founding == "clone":
             # PL-22 (c): tüm slotlar seed-3 transplantı, A2 mimarisi,
@@ -316,7 +326,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 selection: str = "none",
                 event_lead: int | None = None,
                 event_share: float | None = None,
-                signal_candidate_frac: float | None = None) -> None:
+                signal_candidate_frac: float | None = None,
+                eps_signal_quiet: float | None = None) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -339,7 +350,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     world = World(wcfg, n_entities=5, seed=world_seed)
     cits = founding_population(founding=founding, nest=nest, mute=mute,
                                channel=channel,
-                               signal_candidate_frac=signal_candidate_frac)
+                               signal_candidate_frac=signal_candidate_frac,
+                               eps_signal_quiet=eps_signal_quiet)
     genealogy = [{"id": c.id, "slot": c.slot, "parent": c.parent,
                   "birth_turn": 0} for c in cits]
     succ_rng = np.random.default_rng(777_001)   # yalnız mutasyon gürültüsü
@@ -501,7 +513,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "event_penalty": wcfg.event_penalty,
                    "event_lead": wcfg.event_lead,
                    "event_share": wcfg.event_share,
-                   "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac},
+                   "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac,
+                   "eps_signal_quiet": cits[0].agent.cfg.eps_signal_quiet_prob},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -561,6 +574,8 @@ def main() -> None:
                     help="paylaşılan olay kaybı payı (varsayılan 0)")
     ap.add_argument("--signal-frac", type=float, default=None,
                     help="S3-O: sinyal taşıyabilen aday satırı payı (varsayılan 1)")
+    ap.add_argument("--eps-quiet", type=float, default=None,
+                    help="S3-P: ε dalında sessiz çekme olasılığı (varsayılan 0)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
@@ -568,7 +583,8 @@ def main() -> None:
                 event_penalty=a.event_penalty, event_every=a.event_every,
                 selection=a.selection, event_lead=a.event_lead,
                 event_share=a.event_share,
-                signal_candidate_frac=a.signal_frac)
+                signal_candidate_frac=a.signal_frac,
+                eps_signal_quiet=a.eps_quiet)
 
 
 if __name__ == "__main__":

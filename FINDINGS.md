@@ -2598,3 +2598,69 @@ koşum; Ali'ye önerilir). O1✓ O3✓ → ADAY GÖZLEM (zamanlama/sembol
 olumsallığı), Beş Kapı. O1✗ → giriş ücreti planlayıcı değil enerji
 (sinyal maliyeti 0.5 anayasal; dokunulmaz) → kanal sorusu bu anayasa
 altında kapanır, S3 nihai hüküm negatif-mekanizmalı.
+
+### S3-O yan probu — planlayıcı sinyali neden seçiyor? **Kazananın laneti DEĞİL; öğrenilmiş sinyal primi (M-05)**
+`training/signal_curse_probe.py` (`runs/s3o/signal_curse_probe.json`):
+60 durum × 64 aday; satırlar ilk adımı sinyalli/sinyalsiz diye gruplandı.
+
+| çekirdek | frac | sinyalli pay | argmax→sinyalli | ort. skor sinyalli − sessiz | std sinyalli / sessiz |
+|---|---|---|---|---|---|
+| seed3 transplant (olay görmemiş) | 1.0 | 0.86 | 0.50 | +0.05 | 0.27 / 0.44 |
+| seed3 transplant | 0.05 | 0.04 | **0.00** | −0.01 | 0.11 / 0.29 |
+| NA_s3001 (S3-N, paylaşımlı) | 1.0 / 0.05 | 0.86 / 0.04 | 0.55-0.73 / 0.04-0.05 | ≈0 | düşük / yüksek |
+| **KA_s3001 (S3-K)** | 1.0 | 0.86 | **0.98** | **+0.33 … +0.55** | 0.35 / 0.69 |
+| **KA_s3001** | 0.05 | 0.04 | **0.40-0.68** | **+0.35 … +0.59** | 0.13 / 0.37 |
+
+- **Hipotez (varyans/kazananın laneti) DÜŞTÜ:** sinyalli satırların
+  skor std'si sessizlerden DÜŞÜK; max'ı kazandıran gürültü değil.
+- **Gerçek mekanizma:** K-A soyunun modeli **"kendi sinyalim ⇒ daha
+  yüksek enerji"** diye öğrenmiş (prim 0.3-0.6; sinyalin gerçek etkisi
+  −0.5 enerji/tur). Olay görmemiş transplantta prim yok, paylaşımlı
+  N-A soyunda yok, K-A'da var → öğrenilmiş ve soya bağlı. Kapalı-döngü
+  karıştırması (M-05, PL-12'nin sinyal enkarnasyonu): planlayıcı
+  tahmini enerjisi yüksek durumlarda sinyal seçer → veride sinyal,
+  yüksek enerjiyle birlikte görünür → model nedenselliği ters öğrenir →
+  planlayıcı daha çok sinyal seçer. Karşı-olgu ("sussaydım") verisi
+  neredeyse YOK: planlayıcı dalı %94 sinyalli, ε dalı 16/17 sinyalli
+  → ajan 1000 turda ~10 kez susuyor.
+- **Sonuç:** frac'ı düşürmek (S3-O) planlayıcıdaki payı kısar ama
+  öğrenilmiş prim varsa az sayıdaki sinyalli satır yine kazanır (O05'te
+  sinyal oranı 0.48, ε tabanı 0.09+0.04 olmalıydı — 56K ara okuma).
+  **0-bit çare adayı (S3-P): ε dalında sinyal/sessizlik DENGESİ**
+  (`eps_signal_quiet_prob`, K-108 revizyonu; eps_move_bias emsali:
+  içerik vermez, karşı-olgusal veri çeşitliliği verir).
+
+## S3-P — ÖN-KAYIT: karşı-olgusal susma verisi (ε sinyal dengesi) (koşumdan önce, M-08) (2026-10-19)
+
+**Gerekçe.** S3-O yan probu: model "kendi sinyalim ⇒ yüksek enerji"
+primini kapalı döngüde öğreniyor çünkü ajan neredeyse hiç SUSMUYOR
+(planlayıcı %94 sinyalli, ε dalı 16/17 sinyalli). M-05'in reçetesi:
+nadir eylemin karşı-olgusal verisini üret. `eps_signal_quiet_prob=0.5`:
+ε ateşlendiğinde yarı yarıya sessiz. İçerik vermez (hangi sembol iyi
+söylenmez); K-108'in sinyal boyutuna simetrik uygulanması
+(eps_move_bias emsali; KERNEL S3-P notu, ~1 bit üst sınır).
+
+**Kollar (S3-O sonucuna göre frac sabitlenir; O1 düşerse frac=0.05 ile
+birlikte):** P-A: kanal açık, eps_quiet=0.5 (+frac); P-K: kanal kapalı
+referansı N-K (0.28) / K-K (0.31). 3 seed, 100K, s=0.5, her 10 tur, lead 4.
+
+**Çıtalar (son 20K):**
+- **P1 (prim kırıldı mı):** sinyal oranı < 0.30 VE yan prob'da argmax→
+  sinyalli oranı ≤ sinyalli pay × 1.5 (prim yok).
+- **P2 (giriş ücreti düştü mü):** P-A isabeti ≥ N-K − 0.02 (0.26),
+  kendi-ipucu > 0.55.
+- **P3 (kanal fayda, H3/H4):** P-A isabeti > N-K + 0.05.
+- **P4 (konuşan):** MI ≥ 0.05 bit ya da pencere sinyal oranı ≥ 1.3×
+  pencere dışı.
+
+**Öngörüler (bağlayıcı):** P1 ✓ (0.7) — susma verisi primi söndürür,
+sinyal oranı ε tabanına (~0.05-0.15) iner. P2 ✓ (0.6). P3 ✗ (0.75),
+P4 ✗ (0.7): susan ajan kanalı doğru fiyatlar ama fayda zincirini
+100K'da kurmaz.
+
+**Sonuç matrisi:** P1✓ P2✓ P3✗ → "kanal artık doğru fiyatlanıyor, dil
+için süre/seçilim lazım" → S3-Q uzun koşum (300K) Ali'ye önerilir; S3
+nihai hükmü "negatif, mekanizmalı, rejim hazır". P1✗ → prim ε'ya
+dirençli (planlayıcı dalı baskın) → planlayıcı tarafında karşı-olgu
+(frac → 0: sinyal yalnız ε'dan) son 0-bit basamak. P3✓ → ADAY GÖZLEM,
+Beş Kapı.

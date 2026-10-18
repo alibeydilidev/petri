@@ -65,6 +65,11 @@ class AgentConfig:
     # İçerik vermez (hangi sembol/eylem iyi söylenmez); arama mekaniği
     # (K-109/K-111 soyu). KERNEL_BUDGET S3-O notu.
     mpc_signal_candidate_frac: float = 1.0
+    # S3-P (K-108 revizyon adayı): ε ateşlendiğinde bu olasılıkla sinyal
+    # SESSİZ (NO_SIGNAL) çekilir; kalan olasılıkta u{0..15}. 0.0 = eski
+    # davranış (u{-1..15}, 1/17 sessiz; bit-eş). Karşı-olgusal "susma"
+    # verisi (M-05); içerik vermez. KERNEL_BUDGET S3-P notu.
+    eps_signal_quiet_prob: float = 0.0
     # --- S1 öğrenme ---
     tbptt_window: int = 8       # truncated BPTT pencere uzunluğu
     energy_loss_weight: float = 10.0  # K-106: enerji boyutunun loss ağırlığı

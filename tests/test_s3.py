@@ -284,3 +284,21 @@ def test_s3o_signal_frac_default_bit_identical_and_quieter(tmp_path):
     run_ecology(80, str(tmp_path / "c"), signal_candidate_frac=0.25, **kw)
     jc = json.load(open(tmp_path / "c" / "breath.json"))
     assert jc["ledger"]["signal_rate"] < ja["ledger"]["signal_rate"]
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_s3p_eps_quiet_default_bit_identical(tmp_path):
+    import json
+
+    from training.ecology import run_ecology
+    kw = dict(world_seed=42, log_every=40, founding="clone", nest=(600, 0.5),
+              events=True)
+    run_ecology(80, str(tmp_path / "a"), **kw)
+    run_ecology(80, str(tmp_path / "b"), eps_signal_quiet=0.0, **kw)
+    ja = json.load(open(tmp_path / "a" / "breath.json"))
+    jb = json.load(open(tmp_path / "b" / "breath.json"))
+    for j in (ja, jb):
+        for v in j["vitals"]:
+            v.pop("ms_per_turn")
+    assert ja == jb, "eps_quiet=0 bit-eş değil"
