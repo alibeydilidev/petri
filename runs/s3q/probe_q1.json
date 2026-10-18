@@ -1,0 +1,60 @@
+{
+  "known_negative_seed3": {
+    "n_contexts": 48,
+    "spread_mean": 0.00346,
+    "spread_p90": 0.00467,
+    "own_align_rate": 0.458,
+    "safe_gap_mean": 0.00724,
+    "mean_dE": 0.00016
+  },
+  "runs/s3q/Q1_s3002/final_weights.pt:A0": {
+    "n_contexts": 48,
+    "spread_mean": 0.02603,
+    "spread_p90": 0.03014,
+    "own_align_rate": 0.479,
+    "safe_gap_mean": 0.00856,
+    "mean_dE": -0.02679,
+    "id": "A0.g6099",
+    "gen": 6099
+  },
+  "runs/s3q/Q1_s3002/final_weights.pt:A1": {
+    "n_contexts": 48,
+    "spread_mean": 0.06045,
+    "spread_p90": 0.07314,
+    "own_align_rate": 0.5,
+    "safe_gap_mean": 0.00311,
+    "mean_dE": -0.1006,
+    "id": "A1.g6238",
+    "gen": 6238
+  },
+  "runs/s3q/Q1_s3002/final_weights.pt:A2": {
+    "n_contexts": 48,
+    "spread_mean": 0.06295,
+    "spread_p90": 0.07426,
+    "own_align_rate": 0.438,
+    "safe_gap_mean": 0.01062,
+    "mean_dE": -0.07293,
+    "id": "A2.g6162",
+    "gen": 6162
+  },
+  "runs/s3q/Q1_s3002/final_weights.pt:A3": {
+    "n_contexts": 48,
+    "spread_mean": 0.03976,
+    "spread_p90": 0.0574,
+    "own_align_rate": 0.25,
+    "safe_gap_mean": 0.0041,
+    "mean_dE": -0.0227,
+    "id": "A3.g6107",
+    "gen": 6107
+  },
+  "runs/s3q/Q1_s3002/final_weights.pt:A4": {
+    "n_contexts": 48,
+    "spread_mean": 0.04319,
+    "spread_p90": 0.04993,
+    "own_align_rate": 0.375,
+    "safe_gap_mean": 0.00468,
+    "mean_dE": -0.0774,
+    "id": "A4.g6290",
+    "gen": 6290
+  }
+}

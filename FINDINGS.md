@@ -2812,3 +2812,20 @@ Kapı (Q2-K ablasyon hazır; ikiz; bit-eş tekrar; zaman çizgisi; 0 bit).
 **Beyan (M-09):** Q2 kurucu kadrosu öğrenmiş ağırlıklardır (nüfus-tarihi
 kararı, PL-06/klon emsali); yuva Q2'de de her nesilde. Bit: 0.
 Hesap: Q1 ~7 saat (3 paralel), Q2 ~2,5 saat.
+
+### S3-Q1 — SONUÇ: tavana yaklaşma (kanal kapalı, 300K) (2026-10-19 gece)
+| seed | medyan ömür | isabet 0-100K → 100-200K → 200-300K | son 20K isabet | kendi-ipucu son 20K | STAY | hasat/1K | ölüm |
+|---|---|---|---|---|---|---|---|
+| 3001 | 46 | 0.243 → 0.313 → 0.342 | **0.359** | **0.724** | 0.33 | 4.8 | 31.2K |
+| 3002 | 47 | 0.252 → 0.312 → 0.364 | **0.370** | **0.757** | 0.39 | 5.4 | 30.9K |
+| 3003 | 46 | 0.252 → 0.315 → 0.357 | **0.354** | **0.728** | 0.40 | 5.7 | 30.9K |
+
+- **Q1a harfen ✗** (isabet 0.35-0.37 < 0.40; kendi-ipucu 1/3 ≥ 0.75),
+  **Q1b ✓** (3/3 tekdüze ↑). Ekoloji 300K'da okulun 100K'daki 0.86/0.44
+  noktasının ~%85'ine geldi; eğim sürüyor (~+0.02/100K). Tavana
+  (0.50) ulaşmak için ~500K+ gerekir. Ömür 42 → 46 (öğrenme ömre
+  dönüyor, az). Q2 ön-kayıtta Q1a'ya koşullu değildi → başlatıldı
+  (Q1 final ağırlıklarından, aynı seed'ler).
+- Prob (lead-8 protokolü, Q1_s3002): hiza 0.25-0.50, güvenli-eylem
+  farkı 0.003-0.011 — ekoloji lead=4 öğrendi, prob lead=8 soruyor;
+  protokol uyumsuzluğu (önceki beyan), davranış ölçüsü esas.
