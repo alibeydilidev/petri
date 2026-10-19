@@ -256,8 +256,11 @@
   (0.30 vs 0.38), dil yok (MI 0.003). S3-R (200K devam): toparlanma
   yok (−0.07 sabit), kapalı kol 0.38/0.75 platosu. **PROGRAM B TAMAM,
   kanal kalıcı net yük.** Nihai hüküm FINDINGS "S3 NİHAİ HÜKÜM".
-  **BEKLEYEN (Ali):** A (mekanik) / A′ (evrimsel önyükleme, 0 bit,
-  tavsiye) / C (tuzak tasarımı).
+  **KARAR (Ali, 20 Ekim): A; C paralel.** A: topluluk ✗ (K-115 geri
+  alındı), PER mirası ✓ (PL-35 varsayılan). C: sığınak N=3 öğrenmeyi
+  bozdu (C1), N=2 + yetkin kadro ✓ yetkinlik (C2), + PER mirası → kanal
+  nötr ve doğru fiyatlı, isabet 0.46 (tavan 0.47), MI 0.004 ↑ ama
+  kullanım yok (C3). C4 (200K devam) koşuluyor; ✗ ise A′ önerisi.
 - **PL-32 (KAPALI, 2026-10-19):** kanal yavaşlatması = öğrenilmiş sahte
   sinyal primi (M-05) + maliyet; bütçe (S3-O) ve ε susma (S3-P) yarıya
   indirdi, silemedi. Özgün kayıt:

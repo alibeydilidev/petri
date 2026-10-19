@@ -3329,3 +3329,53 @@ varsayılanı.** 0 bit; DP-01 (b) tamamlanır: ölüm bedene ve hidden'a,
 yapı (ağırlık) ve yaşantı istatistiği (tampon, optimizer) soy hattına.
 Gerekçe: M-05 panzehiri (K-110 PER) ekolojide ancak böyle çalışıyor;
 sahte prim siliniyor; kapalı ve açık kol eşitleniyor.
+
+## C3 — SONUÇLAR: **kanal ilk kez nötr ve doğru fiyatlı; tavana dayanıldı; başkasının biti hâlâ kullanılmıyor** (2026-10-20, 16:40)
+
+Veri: `runs/c3/`, `runs/c3/summary.json`, prob `signal_curse_probe_c3.json`
+(N=2, s=0, Q1 kurucu, σ=0.002, inherit_per, 100K).
+
+| kol | medyan ömür | isabet 0-20K → 40-60K → **80-100K** | korunma | kendi-ipucu | sinyal son 20K | ilk 2K | hasat/1K | MI |
+|---|---|---|---|---|---|---|---|---|
+| **C3-K** | 50-52 | 0.41-0.43 → 0.44 → **0.43 / 0.45 / 0.45** | 0.42-0.44 | **0.88-0.89** | 0 | 0 | 2.0-2.5 | — |
+| **C3-A** | 49-50 | 0.31-0.35 → 0.43-0.45 → **0.44 / 0.45 / 0.46** | 0.43-0.45 | **0.87-0.88** | **0.33-0.37** | 0.89-0.97 | 1.9-2.0 | **0.0022-0.0040** |
+
+- **C3a ✓ (yarı):** son 20K açık ≥ kapalı − 0.03 ✓ (hatta +0.01); ilk 2K
+  sinyal 0.89-0.97 ✗ — açılış spam'i yine var ama tampon mirasıyla
+  40K içinde tamamen toparlanıyor (C2'de 100K'da toparlanmamıştı).
+- **C3b ✗:** +0.01; isabet 0.46 ≤ 0.50 (kendi-ipucu tavanı: 0.88 × 0.5 +
+  0.12 × 0.22 ≈ 0.47 — ajanlar tavana DAYANDI; üstü yalnız başkasının
+  bitiyle). **C3c ✗:** MI 0.002-0.004 bit (programların en yükseği; S3-K
+  0.0004 → A2′ 0.0006 → C2 0.001-0.0025 → C3 0.002-0.004: tekdüze ↑, ama
+  çıtanın 1/10'u); "duydu" < "duymadı" (duymadı kümesi ~%0.1). **C3d
+  sınırda:** 0.33 / 0.36 / 0.37 (çıta <0.35: 1/3).
+- **Prob:** prim −0.6 (sinyal doğru fiyatlı), argmax→sinyalli %0-20 @%86,
+  %0-2 @%4. Kalan sinyal oranı (0.35) ≈ ε 0.09 + CEM'in 16/17 sinyalli
+  aday geometrisi → planlayıcı "umursamıyor": sinyal ne kazandırıyor ne
+  (artık) kaybettiriyor kadar az maliyetli görünüyor (yuva maliyeti
+  yarılıyor).
+- **Öngörü karnesi:** C3a ✓ (0.55) doğru(yarı); C3d ✓ (0.5) sınırda;
+  C3b ✗ (0.75) doğru; C3c ✗ (0.7) doğru.
+
+**Durum (Program A + C birlikte):** üç mekanik engel kaldırıldı (drift,
+tampon sıfırlama → sahte prim, açılış şoku), görev doğrudan faydalı hâle
+getirildi (sığınak), ajanlar kendi-ipucu tavanında ve kanal bedava-
+yakın. Yine de kimse başkasının bitini kullanmıyor; MI tekdüze ama
+mikroskobik artıyor. Matris: C3a✓ C3b✗ → **son 0-bit basamak: C4 uzun
+devam.**
+
+## C4 — ÖN-KAYIT: C3 devamı, +200K (koşumdan önce, M-08) (2026-10-20, 16:45)
+
+C3-A ve C3-K kendi final ağırlıklarından (ve tamponlarından değil:
+tampon dosyaya yazılmıyor, yeni başlar — beyan) 200K daha; dünya seed
++400. Toplam: 300K kapalı (Q1) + 300K sığınak.
+- **C4a (dil):** C4-A son 20K isabet > C4-K + 0.05 VE > 0.50 (3/3'te > 0.50).
+- **C4b (konuşan/dinleyen):** MI ≥ 0.05 bit MM p<0.05; VEYA MI eğilimi
+  C3'ün ≥ 3 katı (≥ 0.01) VE "duydu" > "duymadı" + 0.05 (2/3).
+- **C4c (fiyatlama):** C4-A sinyal son 20K < 0.30.
+- **Öngörüler:** C4a ✗ (0.8), C4b ✗ (0.65; MI 0.005-0.01'e tırmanabilir
+  ama kullanım yok), C4c ✓ (0.55).
+- **Matris:** C4a✓ → ADAY GÖZLEM, Beş Kapı derhal (C4-K ablasyon, ikiz,
+  bit-eş tekrar, zaman çizgisi, 0 bit) ve Ali'ye bildirim. C4a✗ →
+  Program A+C kapanışı: "kanal nötr, fiyatlı, kullanılmıyor" nihai; Ali'ye
+  A′ (evrimsel önyükleme) ve tasarım alternatifleri; S3 nihai hükme ek.
