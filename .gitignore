@@ -6,3 +6,4 @@ __pycache__/
 runs/**/final_weights.pt   # 19 Ekim: ağırlık dosyaları artık git dışı (yerelde kalır; eskiler takipte)
 .venv/
 .claude/
+runs/ev/**/*.pt
