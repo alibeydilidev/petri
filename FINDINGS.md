@@ -3226,3 +3226,33 @@ kanal KAPALI, aynı seed'ler) başlatıldı.
 - **Öngörü:** A2d ✓ (0.8); A2c ✗ (0.7) — P-A ≈ P-K beklenir (kanal
   artık zarar vermiyor ama kazandırmıyor). P-A > P-K + 0.05 çıkarsa
   ADAY GÖZLEM, Beş Kapı derhal.
+
+## A2′ — SONUÇ (P-A; P-K kontrolü bekleniyor): **PER mirası primi kesiyor, kanal açıkken öğrenme ilk kez bozulmuyor** (2026-10-20, 14:05)
+
+Veri: `runs/a2/PA_s*`, `runs/a2/summary_pa.json`, prob `signal_curse_probe_pa.json`.
+
+| kol | medyan ömür | isabet 0-20K → 40-60K → **80-100K** | kendi-ipucu son 20K | sinyal son 20K | ilk 2K sinyal | hasat/1K | MI |
+|---|---|---|---|---|---|---|---|
+| N-A (σ=0.002, açık, tampon sıfırlanır) | 40 | 0.21 → 0.23 → 0.23-0.24 | 0.47 | 0.77 | ~0.8 | 3.9-4.3 | 0.0004 |
+| **P-A** (aynı + `inherit_per`) | **50** | 0.23-0.25 → 0.30-0.32 → **0.39 / 0.41 / 0.41** | **0.77-0.79** | **0.45-0.49** | 0.58-0.75 | **7.2-7.7** | 0.0006 |
+| N-K (kapalı referans) | 43 | → 0.28 | 0.55 | 0 | — | 6.4-7.6 | — |
+
+- **A2a ✓ (3/4 çekirdek):** prim −0.03 … −0.37 (doğru fiyat), argmax→
+  sinyalli @%4 pay: 0/0/0/16%. **A2b ✓:** isabet 0.39-0.41 ≥ 0.26,
+  kendi-ipucu 0.78 > 0.55, sinyal 0.45-0.49 < 0.5 (sınırda, ↓).
+- **Mekanizma doğrulandı (hipotez c):** ekolojide 40 turluk ömür, her
+  halefte PER'i sıfırlıyordu → karşı-olgusal tekrar yoktu → planlayıcı
+  seçimi veriye yansıyor, model sahte prim öğreniyordu. Tampon soy
+  hattında sürünce prim siliniyor, kanal açıkken kendi-ipucu öğrenimi
+  kapalı kolları (0.28-0.31) bile aşıyor. **İlk kez açık kanal, kapalı
+  kanaldan İYİ** — ama bunun kanaldan mı tampondan mı geldiği P-K
+  (inherit_per + kapalı) ile ayrılacak (A2c/A2d).
+- **Dil hâlâ yok:** MI 0.0006 bit, H 3.997, "duydu" isabeti < "duymadı"
+  (0.31-0.33 vs 0.36-0.54; duymadı kümesi küçük). İsabet 0.41 < tavan
+  0.50 → başkasının biti kullanılmıyor.
+- **Öngörü karnesi:** A2a ✓ (0.6) doğru; A2b ✓ (0.5) doğru.
+
+**Karar adayı (PL-35):** `inherit_per=True` ekoloji varsayılanı olur
+(P-K sonucuyla birlikte kesinleşir). İçerik 0 bit; M-09 kaydı; "ölüm
+gerçek" bedene uygulanır, yapı (ağırlık) ve yaşantı istatistiği (tampon)
+soy hattında sürer (DP-01 b'nin tamamlanmış hâli).

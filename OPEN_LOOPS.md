@@ -238,6 +238,13 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-35 — PER tamponu mirası (ADAY KARAR, 2026-10-20):** A2′: halef
+  PER + optimizer devralınca sahte sinyal primi siliniyor, kanal açıkken
+  isabet 0.23 → 0.41 (kendi-ipucu 0.78), ömür 40 → 50, hasat ×1.8.
+  P-K kontrolü (inherit_per + kapalı) bekleniyor; A2d ✓ ise ekoloji
+  varsayılanı. İçerik 0 bit; DP-01 (b) tamamlanır (yapı + yaşantı
+  istatistiği soy hattında, beden/hidden sıfır). M-09 kaydı; KERNEL
+  notu "A2′".
 - **PL-34 — Sonraki program kararı (AÇIK, Ali):** 0-bit merdiven bitti
   (S3-O/P). Seçenekler FINDINGS "S3 KAPANIŞ EKİ": A öğrenme mekaniği
   revizyonu (bit yazar), B kademeli kanal + 300K (0 bit), C tuzağı
