@@ -3293,3 +3293,17 @@ koşuyor; C3'ün kendi kapalı kolu kendi kontrolüdür.)
   zaman çizgisi, 0 bit). C3a✓ C3b✗ → "kanal nötr, kullanılmıyor" → son
   0-bit basamak: uzun koşum (300K) bu mekanikle; ✗ ise S3 nihai hükme
   Program A/C eki ve Ali'ye A′ (evrimsel önyükleme) önerisi.
+
+## A1-eko E3 — SONUÇ: **topluluk + uyuşmazlık cezası primi kesmedi; K-115 GERİ ALINDI** (2026-10-20, 14:50)
+
+`runs/a1/E3_s*` (K=3, β=1.0, σ=0.002, açık, 100K): isabet 80-100K
+0.23-0.25, kendi-ipucu 0.47-0.49, sinyal son 20K 0.49-0.63, ilk 2K
+0.62-0.72 (A1c ✗), hasat 3.4-3.6, ömür 40; maliyet 234 ms/tur (3×).
+Prob (`signal_curse_probe_e3.json`, topluluk planlayıcısıyla): prim
+**+0.29 … +0.31**, argmax→sinyalli %28-33 @ %4 pay → **A1a ✗, A1b ✗**.
+- Uyuşmazlık, eğitimsiz sinyal sütunlarından doğmadı: üyeler aynı
+  karıştırılmış veriyle aynı yöne öğrendi (prim kaynağı veri, model
+  belirsizliği değil). A2′ (PER mirası) aynı anda primi kesti → doğru
+  teşhis "tampon", yanlış teşhis "epistemik belirsizlik".
+- **K-115 aday satırı GERİ ALINDI** (bit yazılmadı; kod kalır, varsayılan
+  k=1 bit-eş). Öngörü karnesi: A1a ✓ (0.6) → YANLIŞ; A1c ✓ (0.7) → YANLIŞ.
