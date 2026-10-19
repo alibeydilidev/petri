@@ -205,7 +205,7 @@ class Ledger:
                "event_turns", "event_hits", "pending_turns",
                "pending_signals", "heard_in_window_turns",
                "event_turns_heard", "event_hits_heard",
-               "event_own_consistent", "event_stay")
+               "event_own_consistent", "event_stay", "event_protected")
 
     def __init__(self) -> None:
         self.agent_turns = 0
@@ -376,7 +376,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 event_share: float | None = None,
                 signal_candidate_frac: float | None = None,
                 eps_signal_quiet: float | None = None,
-                ensemble: tuple[int, float] | None = None) -> None:
+                ensemble: tuple[int, float] | None = None,
+                event_min_safe: int | None = None) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -391,6 +392,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
         wcfg = dataclasses.replace(wcfg, event_lead=int(event_lead))
     if events and event_share is not None:     # S3-N paylaşılan kayıp (PL-33)
         wcfg = dataclasses.replace(wcfg, event_share=float(event_share))
+    if events and event_min_safe is not None:  # Program C sığınak
+        wcfg = dataclasses.replace(wcfg, event_min_safe=int(event_min_safe))
     if selection not in ("none", "max_age"):
         raise ValueError(selection)
     if channel not in ("open", "mute", "hear", "speak"):
@@ -418,12 +421,14 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
         pending_now = ev.pending(world.turn)            # öncü gözlemde
         will_be_active = ev.active(world.turn + 1)      # eylem bu turda sınanır
         safe = ev.safe_action() if will_be_active else None
+        min_safe = int(getattr(wcfg, "event_min_safe", 0))
         acts, sigs = [], []
         for c in cits:
             a, s = c.act(c.last_obs)
             acts.append(a)
             sigs.append(s)
         ledger.agent_turns += len(cits)
+        n_safe = sum(1 for a in acts if a == safe) if will_be_active else 0
         deltas = world.step(np.array(acts), np.array(sigs))
         for i, c in enumerate(cits):
             sc = c.agent.cfg.signal_energy_cost if sigs[i] != NO_SIGNAL else 0.0
@@ -459,6 +464,9 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                     c.event_own_consistent += 1
                 if acts[i] == 0:
                     c.event_stay += 1
+                # Program C: korunma = doğru eylem VE sığınak açıldı (≥N)
+                if hit and (min_safe == 0 or n_safe >= min_safe):
+                    c.event_protected += 1
                 if c.heard_in_window:
                     c.event_turns_heard += 1
                     if hit:
@@ -537,6 +545,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                  "own_cue_rate_window": rate("event_own_consistent",
                                              "event_turns"),
                  "event_stay_share_window": rate("event_stay", "event_turns"),
+                 "event_protected_rate_window": rate("event_protected",
+                                                     "event_turns"),
                  "pending_signal_rate_window": rate("pending_signals",
                                                     "pending_turns"),
                  "median_lifespan": (float(np.median(ledger.lifespans))
@@ -563,6 +573,7 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "event_penalty": wcfg.event_penalty,
                    "event_lead": wcfg.event_lead,
                    "event_share": wcfg.event_share,
+                   "event_min_safe": wcfg.event_min_safe,
                    "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac,
                    "eps_signal_quiet": cits[0].agent.cfg.eps_signal_quiet_prob,
                    "ensemble_k": cits[0].agent.cfg.ensemble_k,
@@ -638,6 +649,8 @@ def main() -> None:
                     help="S3-P: ε dalında sessiz çekme olasılığı (varsayılan 0)")
     ap.add_argument("--ensemble", type=float, nargs=2, default=None,
                     metavar=("K", "BETA"), help="A1: topluluk K ve β")
+    ap.add_argument("--min-safe", type=int, default=None,
+                    help="Program C: sığınak için eşzamanlı doğru ajan sayısı")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
@@ -648,7 +661,8 @@ def main() -> None:
                 signal_candidate_frac=a.signal_frac,
                 eps_signal_quiet=a.eps_quiet,
                 ensemble=None if a.ensemble is None
-                else (int(a.ensemble[0]), float(a.ensemble[1])))
+                else (int(a.ensemble[0]), float(a.ensemble[1])),
+                event_min_safe=a.min_safe)
 
 
 if __name__ == "__main__":

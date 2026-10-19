@@ -390,3 +390,23 @@ def test_a1_ensemble_ecology_smoke_and_determinism(tmp_path):
     assert "ensemble_state_dict" in ck["A0"] and "state_dict" in ck["A0"]
     # halefiyet topluluk tipini korur (ölüm olduysa) — soy kütüğü > 5
     assert len(ja["genealogy"]) >= 5
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_c1_shelter_counters(tmp_path):
+    """Program C: korunma ≤ isabet; min_safe=0'da eşit; arm kaydı."""
+    import json
+
+    from training.ecology import run_ecology
+    run_ecology(130, str(tmp_path / "c"), world_seed=42, log_every=65,
+                founding="clone", nest=(600, 0.5), events=True,
+                event_min_safe=3, event_share=0.0)
+    j = json.load(open(tmp_path / "c" / "breath.json"))
+    L = j["ledger"]
+    assert j["arm"]["event_min_safe"] == 3 and j["world"]["event_min_safe"] == 3
+    assert 0 <= L["event_protected"] <= L["event_hits"] <= L["event_turns"]
+    run_ecology(130, str(tmp_path / "d"), world_seed=42, log_every=65,
+                founding="clone", nest=(600, 0.5), events=True)
+    jd = json.load(open(tmp_path / "d" / "breath.json"))
+    assert jd["ledger"]["event_protected"] == jd["ledger"]["event_hits"]

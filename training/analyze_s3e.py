@@ -79,6 +79,8 @@ def analyze_run(path: pathlib.Path) -> dict:
                                              / et, 4) if et else None),
            "event_stay_share": (round(L.get("event_stay", 0) / et, 4)
                                 if et else None),
+           "protected_rate": (round(L.get("event_protected", 0) / et, 4)
+                              if et else None),
            "deaths_in_nest": L["deaths_in_nest"],
            "deaths_nest_tail": L["deaths_nest_tail"],
            "b_openings": L["b_openings"],
@@ -127,6 +129,7 @@ def main() -> None:
             "a_harvest_per_1k": med("a_harvest_per_1k"),
             "own_cue_consistent_rate": med("own_cue_consistent_rate"),
             "event_stay_share": med("event_stay_share"),
+            "protected_rate": med("protected_rate"),
             "mi_cue_symbol_mm_bits": [r["mi_cue_symbol"]["mi_miller_madow_bits"]
                                       for r in rs if r["mi_cue_symbol"]],
             "mi_cue_symbol_p": [r["mi_cue_symbol"]["p_value_perm"]

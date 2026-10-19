@@ -3094,3 +3094,41 @@ doğrudan). N=2 zayıf, N=4 çok sert (bedavacı 1 kişi yetiyor).
   zayıf), N=3'te %50 (analitik). **Sapma beyanı:** kural harfiyen
   uygulanmadı, gerekçe basınç; s=0 seçildi (paylaşım bedavacılık ekler,
   sığınak zaten ortak fayda). Veri: `runs/c0_event_oracle_ms*_sh*.json`.
+
+## C1 — ÖN-KAYIT: sığınak ekolojisi, kanal açık vs kapalı (koşumdan önce, M-08) (2026-10-20, 09:15)
+
+Ayar: klon kadro, yuva (600, 0.5), σ=0.002, her 10 tur, lead 4, ceza 25,
+**event_min_safe=3, s=0**, K=1 (A1 sonucu gelmeden taban mekanik), 100K,
+3 seed. Kollar **C-A** (açık) / **C-K** (kapalı). Yeni sayaç:
+`event_protected` (doğru eylem VE sığınak açıldı).
+
+**Analitik tabanlar (5 ajan, bağımsız):** kendi-ipucu tavanında (her
+biri %50) korunma P(≥3)=0.50; şansta (%22) P(≥3)=0.09; mükemmel
+iletişimde ~0.97.
+
+**Çıtalar (son 20K, ≥2/3 seed):**
+- **C1a (öğrenme):** C-K isabet ≥ 0.30, kendi-ipucu ≥ 0.60 (S3-K ile aynı
+  rejimde öğrenme bozulmadı).
+- **C1b (koordinasyon basıncı görünür):** C-K korunma oranı < isabet
+  oranı × 0.8 (sığınak gerçekten "yalnız doğru" olanı cezalandırıyor).
+- **C1c (kanal fayda, H3/H4):** C-A korunma oranı > C-K korunma + 0.05
+  VE C-A isabet > C-K isabet + 0.03.
+- **C1d (konuşan/dinleyen):** MI ≥ 0.05 bit (MM, p<0.05) VEYA pencere
+  sinyal oranı ≥ 1.3× dışarı VEYA "duydu" isabeti > "duymadı" + 0.05.
+- **C1e (fiyatlama):** C-A sinyal oranı son 20K < 0.5 ve düşüş eğilimi.
+
+**Öngörüler (bağlayıcı):** C1a ✓ (0.7), C1b ✓ (0.8), C1c ✗ (0.7) — doğrudan
+fayda var ama ajanın "sinyalim → onların eylemi → aynı turda benim
+korunmam" zincirini 100K'da kurması için önce alıcının sembolü eyleme
+bağlaması gerekir; tavuk-yumurta fayda yolu kısalsa da sürer. C1d ✗
+(0.7). C1e ✓ (0.5).
+
+**Sonuç matrisi:** C1c✓ → ADAY GÖZLEM (H4 yönünde, ilk kez), Beş Kapı
+(C-K ablasyon hazır; ikiz; bit-eş; zaman çizgisi: hangi 10K'da doğdu;
+0 bit). C1c✗ C1b✓ → tuzak kurulu, zincir kurulmuyor → A1 mekaniğiyle
+C2 (topluluk) ve/veya uzun koşum (300K) ve/veya yetkin kadro (Q1
+ağırlıkları + min_safe). C1b✗ → sığınak basınç üretmiyor (N kalibrasyonu).
+
+**Beyan (M-09):** min_safe fizik değişikliğidir, görev "sürü alarmı"ndan
+"ortak sığınak"a döner; S3-C/S3-K sonuçlarıyla karşılaştırma
+"farklı görev" şerhiyle. Bit: 0 (KERNEL C notu).
