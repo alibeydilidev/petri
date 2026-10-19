@@ -156,7 +156,13 @@ class EventSystem:
         Konumun rolü yok — küresel olay."""
         if not self.active(turn):
             return
-        miss = (np.asarray(actions) != self.safe_action()).astype(np.float64)
+        correct = np.asarray(actions) == self.safe_action()
+        min_safe = int(getattr(self.cfg, "event_min_safe", 0))
+        if min_safe > 0:   # Program C: sığınak ancak yeterli sayıda açılır
+            protected = correct & (int(correct.sum()) >= min_safe)
+        else:
+            protected = correct
+        miss = (~protected).astype(np.float64)
         share = float(getattr(self.cfg, "event_share", 0.0))
         if share <= 0.0:                      # S3-C…L: tamamen kişisel
             deltas[miss > 0] -= self.cfg.event_penalty

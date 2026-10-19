@@ -182,12 +182,15 @@ def main() -> None:
                     help="S3-N: paylaşılan olay kaybı payı (0 = S3-C)")
     ap.add_argument("--only-n5", action="store_true",
                     help="yalnız n=5/menzil 32 merdiveni (S3-N hızlı)")
+    ap.add_argument("--min-safe", type=int, default=0,
+                    help="Program C: sığınak için gereken eşzamanlı doğru ajan sayısı")
     a = ap.parse_args()
 
     base = dataclasses.replace(WorldConfig(), resource_a_count=24,
                                event_every=30, event_lead=8,
                                event_duration=1, event_penalty=25.0,
-                               event_polarities=4, event_share=a.share)
+                               event_polarities=4, event_share=a.share,
+                               event_min_safe=a.min_safe)
     out = {"world": dataclasses.asdict(base),
            "config_hash": config_hash(base), "ladder": [], "range_sweep": []}
 

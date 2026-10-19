@@ -59,6 +59,12 @@ class WorldConfig:
     # azaltır; sinyal verenin faydası kendine döner (tuzağın eksik
     # dişlisi). Fizik değişikliğidir, ajana bit yazmaz (KERNEL S3-N notu).
     event_share: float = 0.0
+    # Program C (PL-34, 2026-10-20): "birlikte açılan sığınak". >0 ise
+    # güvenli eylem ancak AYNI turda en az bu kadar ajan onu yaparsa korur;
+    # yalnız başına doğru eylem korumaz. Sinyalin göndericiye faydası
+    # DOĞRUDAN ve aynı turda: ortaklarım doğru yaparsa ben de korunurum.
+    # 0 = kapalı (S3-C…A1 bit-eş). Fizik; ajana bit yazmaz (KERNEL C notu).
+    event_min_safe: int = 0
 
 
 def config_hash(cfg) -> str:

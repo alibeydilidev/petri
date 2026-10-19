@@ -3044,3 +3044,53 @@ sinyalli − sessiz **+0.03 … +0.51**, argmax→sinyalli %83-98 (%86 pay) ve
 **%14-33 (%4 pay)**. Alınan sinyal yokken de prim oluşuyor → aday (a)
 "duyma gürültüsü" prim kaynağı DEĞİL; aday (b) halef mutasyonu /
 nüfus dinamiği öne çıkıyor. Karar S0 kolunda (σ=0, açık).
+
+---
+
+# PROGRAM C — ön-tasarım: "birlikte açılan sığınak" (2026-10-20, 09:05)
+
+**Teşhis (S3 nihai):** tavuk-yumurta — sinyalin göndericiye faydası ancak
+alıcı sembolü kullanırsa doğuyor; S3-N paylaşımı bile dolaylı kaldı.
+**C fikri:** faydayı DOĞRUDAN ve AYNI turda göndericiye bağla: olayda
+güvenli eylem ancak aynı turda en az N ajan onu yaparsa korur
+(`event_min_safe=N`). Yalnız başına doğru olmak korumaz. Benim
+korunmam ortaklarımın da doğru yapmasına bağlı → onların bilmediği biti
+söylemek benim hayatta kalmamdır. Kanal yine kimliksiz, küresel,
+pahalı, anlamsız semboller; ajana bit yok (fizik). Ekolojik emsal: sürü
+hâlinde kaçış / birlikte kaldırılan sığınak kapağı.
+
+**Analitik (5 ajan, her biri kendi bitiyle %50 doğru, bağımsız):**
+P(≥2 doğru)=0.81, P(≥3)=0.50, P(≥4)=0.19. Mükemmel iletişimle herkes
+%86-100 doğru → P(≥3)≈0.97. N=3'te kanalın değeri 0.50 → 0.97 (büyük,
+doğrudan). N=2 zayıf, N=4 çok sert (bedavacı 1 kişi yetiyor).
+
+## C0 — oracle ön-kaydı (M-01, koşumdan önce)
+`event_oracle --min-safe {2,3} --share {0, 0.5}`, n=5, menzil 32, 48 epizot.
+- **C0a (değer):** told/own ≥ 1.3 VE told − own ≥ S3-C'dekinden büyük
+  (S3-C: 193 − 142 = 51 tur) — kanalın değeri sığınakta ARTMALI.
+- **C0b (basınç):** deaf ömrü 60-130 arası (yaşanabilir ama basınç var).
+- **C0c (kaçış, M-25):** own kolunda isabet oranı ile korunma oranı
+  ayrı raporlanır; N=3'te own korunması ≈0.5 olmalı (bedavacılık yok).
+- Seçim kuralı: C0a'yı en büyük farkla geçen (N, s) çifti ekolojiye
+  gider; eşitlikte s=0.5 (S3-N varsayılanı) ve N=3.
+
+### C0 — oracle SONUCU (2026-10-20, 09:10)
+| N | s | deaf | own (isabet) | told (isabet) | god | told/own | told − own |
+|---|---|---|---|---|---|---|---|
+| 2 | 0 | 115 | 133 (0.47) | 193 (0.86) | 224 | 1.45 | **60** |
+| 2 | 0.5 | 115 | 138 (0.48) | 184 (0.87) | 206 | 1.33 | 46 |
+| **3** | **0** | 115 | **128 (0.48)** | **186 (0.87)** | 214 | **1.45** | **58** |
+| 3 | 0.5 | 115 | 128 (0.49) | 181 (0.87) | 193 | 1.41 | 53 |
+(S3-C referans: own 142, told 193, fark 51.)
+
+- **C0a ✓** (N=2/s=0 ve N=3/s=0: oran 1.45, fark 58-60 > 51). **C0b ✓**
+  (deaf 115). Fark artışı mütevazı (+7-9 tur): oracle, "kendi ipucuyla
+  bağımsız %50" ajanlar arasında zaten %50-81 tesadüfi koordinasyon
+  buluyor; kanalın oracle'daki değeri C'de de S3-C'dekine yakın. C'nin
+  asıl farkı değerin BÜYÜKLÜĞÜ değil, YOLU: fayda aynı turda ve doğrudan.
+- **Seçim: N=3, s=0.** Ön-kayıt kuralı "en büyük fark" N=2'yi (60 vs 58)
+  gösteriyordu; 2 turluk fark 48 epizotluk gürültünün içinde ve N=2'de
+  kendi-ipucu ajanlar %81 oranında zaten korunuyor (koordinasyon basıncı
+  zayıf), N=3'te %50 (analitik). **Sapma beyanı:** kural harfiyen
+  uygulanmadı, gerekçe basınç; s=0 seçildi (paylaşım bedavacılık ekler,
+  sığınak zaten ortak fayda). Veri: `runs/c0_event_oracle_ms*_sh*.json`.

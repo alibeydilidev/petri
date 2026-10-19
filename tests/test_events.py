@@ -248,3 +248,31 @@ def test_event_share_default_bit_identical_and_math():
         assert np.allclose(d, expected), (share, d)
     # paylaşım hash'e girmez (deltas dışı) — state_dict değişmez
     assert "event_share" not in EventSystem(base, 1).state_dict()
+
+
+def test_event_min_safe_default_identical_and_shelter_rule():
+    """Program C: min_safe=0 bit-eş; min_safe=3 → doğru eylem ancak ≥3
+    ajan aynı turda yaparsa korur."""
+    import dataclasses
+
+    import numpy as np
+
+    from world.config import WorldConfig
+    from world.events import EventSystem
+    base = dataclasses.replace(WorldConfig(), event_every=30, event_lead=2,
+                               event_penalty=20.0)
+    def drain(cfg, acts):
+        ev = EventSystem(cfg, len(acts)); ev.polarity, ev.starts_at, ev.ends_at = 2, 5, 6
+        d = np.zeros(len(acts)); ev.apply_drain(5, np.array(acts), d); return d
+    # varsayılan: yalnız doğru olan korunur
+    assert np.allclose(drain(base, [2, 0, 1, 3, 2]), [0, -20, -20, -20, 0])
+    cfg3 = dataclasses.replace(base, event_min_safe=3)
+    # 2 doğru < 3 → kimse korunmaz
+    assert np.allclose(drain(cfg3, [2, 0, 1, 3, 2]), [-20] * 5)
+    # 3 doğru → doğrular korunur, yanlışlar cezalı
+    assert np.allclose(drain(cfg3, [2, 0, 2, 3, 2]), [0, -20, 0, -20, 0])
+    # paylaşımla birleşim: s=0.5, 3 doğru → grup ıska 2/5
+    cfg3s = dataclasses.replace(cfg3, event_share=0.5)
+    d = drain(cfg3s, [2, 0, 2, 3, 2])
+    assert np.allclose(d, [-20 * 0.5 * 0.4, -20 * (0.5 + 0.5 * 0.4),
+                           -20 * 0.5 * 0.4, -20 * (0.5 + 0.5 * 0.4), -20 * 0.5 * 0.4])
