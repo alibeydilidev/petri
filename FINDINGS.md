@@ -3256,3 +3256,40 @@ Veri: `runs/a2/PA_s*`, `runs/a2/summary_pa.json`, prob `signal_curse_probe_pa.js
 (P-K sonucuyla birlikte kesinleşir). İçerik 0 bit; M-09 kaydı; "ölüm
 gerçek" bedene uygulanır, yapı (ağırlık) ve yaşantı istatistiği (tampon)
 soy hattında sürer (DP-01 b'nin tamamlanmış hâli).
+
+## C2 — SONUÇLAR: **yetkin kadro + yumuşak sığınak: yetkinlik korunur, kanal yine kullanılmaz, açılış şoku sürer** (2026-10-20, 14:45)
+
+Veri: `runs/c2/`, `runs/c2/summary.json` (N=2, s=0, Q1 kurucu, 100K).
+
+| kol | medyan ömür | isabet 0-20K → 80-100K | korunma son 20K | kendi-ipucu | sinyal son 20K | ilk 2K sinyal | hasat/1K | MI |
+|---|---|---|---|---|---|---|---|---|
+| **C2-K** | 50 | 0.39-0.42 → **0.41-0.42** | **0.39-0.41** | 0.84-0.86 | 0 | 0 | 3.0-3.5 | — |
+| **C2-A** | 40 | 0.26-0.29 → **0.34-0.36** | 0.31-0.34 | 0.67-0.71 | 0.50 | **0.90-0.97** | 2.3-2.9 | 0.0007-0.0025 |
+
+- **C2a:** isabet ✓ (0.41 ≥ 0.33); korunma ✗ (0.40 < 0.55) — ama korunma
+  ≈ isabet: N=2, 5 ajanda neredeyse her zaman açılıyor (P(≥2) ≈ 0.95+),
+  yani N=2 basınç üretmiyor; N=3 öğrenmeyi bozuyordu (C1). İkisinin
+  arası yok (tam sayı). **C2b ✗, C2c ✗** (MI 0.0007-0.0025; duydu ≤
+  duymadı). **C2d ✗** (−0.06/−0.08; Q2 ile aynı açılış şoku: ilk 2K
+  sinyal 0.90-0.97).
+- **Okuma:** yetkin ajan (kendi-ipucu 0.85) kanalı 100K boyunca
+  kullanmıyor; kanal yine açılış şoku + maliyet. C tuzağı (doğrudan
+  fayda) tek başına tavuk-yumurtayı kırmadı. A2′ (PER mirası) açılış
+  şokunu ve primi kesiyordu → **C3 = C2 + inherit_per.**
+- **Öngörü karnesi:** C2a ✓ (0.7) yarı; C2d ✗ (0.6) doğru; C2b/C2c ✗ doğru.
+
+## C3 — ÖN-KAYIT: C2 + PER mirası (koşumdan önce, M-08) (2026-10-20, 14:50)
+
+C2 ayarı aynen (N=2, s=0, Q1 kurucu, σ=0.002) + `inherit_per`. Kollar
+**C3-A** (açık) / **C3-K** (kapalı), 3 seed, 100K. (P-K kontrolü ayrıca
+koşuyor; C3'ün kendi kapalı kolu kendi kontrolüdür.)
+- **C3a (açılış şoku kalktı mı):** C3-A ilk 2K sinyal < 0.6 VE son 20K
+  isabet ≥ C3-K − 0.03.
+- **C3b (kanal fayda, H3/H4):** C3-A isabet > C3-K + 0.05 VE > 0.50.
+- **C3c:** MI ≥ 0.05 ya da duydu > duymadı + 0.05 (3/3) ya da pencere ≥ 1.3×.
+- **C3d (fiyatlama):** C3-A sinyal son 20K < 0.35.
+- **Öngörüler:** C3a ✓ (0.55), C3d ✓ (0.5), C3b ✗ (0.75), C3c ✗ (0.7).
+- **Matris:** C3b✓ → ADAY GÖZLEM, Beş Kapı (C3-K ablasyon, ikiz, bit-eş,
+  zaman çizgisi, 0 bit). C3a✓ C3b✗ → "kanal nötr, kullanılmıyor" → son
+  0-bit basamak: uzun koşum (300K) bu mekanikle; ✗ ise S3 nihai hükme
+  Program A/C eki ve Ali'ye A′ (evrimsel önyükleme) önerisi.
