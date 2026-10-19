@@ -2982,3 +2982,58 @@ isabet 0.44). 3 seed.
   açık kendi-ipucu ≥ 0.80 ve isabet ≥ 0.40 (kapalıyla eşit). Ekoloji:
   açık kol ≥ kapalı − 0.02 (son 20K), açılış şoku yok (ilk 2K sinyal
   < 0.5).
+
+## A0 — SONUÇ: **tek ajanda sahte prim YOK; prim nüfusa özgü** (2026-10-20, 08:45)
+
+Veri: `runs/a0/open_s{0,1,2}`, prob `runs/a0/signal_curse_probe_a0.json`.
+
+| | kapalı (S3-J base) | **açık (A0)** |
+|---|---|---|
+| kendi-ipucu 100K | 0.83-0.87 | **0.82-0.83** |
+| isabet son 20K | 0.43-0.45 | **0.41-0.43** |
+| sinyal oranı | 0 | 0.26-0.28 (ε 0.09 + planlayıcı) |
+| prob: sinyalli − sessiz skor | — | **−0.14 … −0.30** (doğru fiyat) |
+| argmax→sinyalli (%86 pay / %4 pay) | — | 27-37% / **0%** |
+
+- **A0a ✗:** prim yok; tek ajan sinyalin bedelini öğreniyor (sinyalli
+  satırlar sistematik düşük). **A0b sınırda ✓/✗:** kendi-ipucu 0.82 ≥
+  0.80, isabet 0.41-0.43 ≥ 0.40 — kanal tek ajanda yalnız küçük bir yük.
+- **Öngörü karnesi:** A0a ✓ (0.7) → YANLIŞ. Mekanizma hipotezi
+  düzeltildi: M-05 karıştırması tek başına primi üretmiyor; prim
+  **nüfus rejiminde** doğuyor. İki aday: (a) duyulan sinyaller (16 boyut
+  anlamsız girdi; S3-L speak-only ağırlıklarında prob ile ayrışır),
+  (b) halef mutasyonu σ=0.002'nin eğitimsiz sinyal sütunlarında
+  birikmesi (ölüm her ~40 tur → 100K'da ~2500 mutasyon/slot → sinyal
+  sütunlarında rastgele yürüyüş σ≈0.1; Q1'in 300K sessiz koşumunda
+  +1…+3 prim buna uyar; M-26'nın yerel biçimi).
+
+## A1-eko — ÖN-KAYIT (koşumdan önce, M-08) (2026-10-20, 08:50)
+
+Matris gereği (A0a ✗) A1 doğrudan ekolojide; ayrıca mutasyon hipotezi
+(b) ayrı kolla. Taban: N-A (σ=0.002, açık, 100K: isabet 0.23-0.24,
+sinyal 0.77, prim ≈0/soyda değişken) ve N-K (kapalı 0.28).
+
+| kol | değişken | ayar |
+|---|---|---|
+| **S0** | mutasyon | açık kanal, **σ=0** (saf miras), K=1 |
+| **E3** | topluluk | açık kanal, σ=0.002, **K=3, β=1.0** (K-115 aday) |
+(3 seed, 100K, s=0.5, her 10 tur, lead 4; prob: `signal_curse_probe` final ağırlıklarda — speak-only probu da (a) için.)
+
+**Çıtalar (son 20K):**
+- **A1a (prim):** prob'da sinyalli − sessiz ≤ +0.1 VE argmax→sinyalli ≤
+  pay×1.5 (3/3 seed).
+- **A1b (giriş ücreti):** isabet ≥ N-K − 0.02 (0.26) VE kendi-ipucu > 0.55.
+- **A1c (açılış şoku):** ilk 2K sinyal oranı < 0.5 (E3'te uyuşmazlık
+  cezası eğitimsiz sütunları baştan cezalamalı).
+- **A1d (dil):** isabet > N-K + 0.05; MI ≥ 0.05.
+- **S0 yorumu:** S0 A1a ✓ ise prim mutasyon kaynaklı (b) → çare σ'yı
+  sinyal sütunlarında sıfırlamak değil (içerik), topluluk ya da
+  mutasyonu öğrenme hızına bağlamak; S0 A1a ✗ ise kaynak duyma (a).
+
+**Öngörüler (bağlayıcı):** S0: A1a ✓ (0.6) — mutasyon hipotezi. E3: A1a ✓
+(0.6), A1c ✓ (0.7), A1b ✓ (0.5), A1d ✗ (0.85).
+**Sonuç matrisi:** E3 A1a✓ A1b✓ → K-115 AKTİF; sonra Program C tuzağı bu
+mekanikle. E3 ✗ ve S0 ✓ → mekanik değil mutasyon → PL-31 revizyonu
+(σ öğrenme-ağırlıklı) ya da K-115 + σ=0 birleşimi. İkisi ✗ → prim
+kaynağı duyma → "duyma gürültüsü" kolu (speak-only prob) → topluluk
++ alınan-sinyal maskesi tartışması (anayasal).
