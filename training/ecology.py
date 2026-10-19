@@ -378,7 +378,10 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 eps_signal_quiet: float | None = None,
                 ensemble: tuple[int, float] | None = None,
                 event_min_safe: int | None = None,
-                inherit_per: bool = False) -> None:
+                inherit_per: bool = True) -> None:
+    """inherit_per: PL-35 KARAR (2026-10-20) — varsayılan True: halef PER
+    tamponu + optimizer durumunu devralır (A2′: sahte sinyal primi
+    silinir, kapalı/açık kol eşitlenir). False = S3-E…C2 davranışı."""
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -653,8 +656,10 @@ def main() -> None:
                     metavar=("K", "BETA"), help="A1: topluluk K ve β")
     ap.add_argument("--min-safe", type=int, default=None,
                     help="Program C: sığınak için eşzamanlı doğru ajan sayısı")
-    ap.add_argument("--inherit-per", action="store_true",
-                    help="A2′: halef PER tamponu + optimizer durumunu devralır")
+    ap.add_argument("--inherit-per", dest="inherit_per", action="store_true",
+                    default=True, help="A2′/PL-35: halef PER + optimizer devralır (VARSAYILAN)")
+    ap.add_argument("--no-inherit-per", dest="inherit_per", action="store_false",
+                    help="eski davranış: halef tamponsuz başlar (S3-E…C2)")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
