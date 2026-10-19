@@ -3506,3 +3506,15 @@ soyda), sembol-anlam tablosu (keyfi ama paylaşılan mı: farklı adalarda
 farklı sembol?), 0 bit. EV2✗ EV3 eğilim ✓ → seçilim çalışıyor ama
 ölçek yetmiyor → 60-100 dönem / daha çok ada (Ali kararı). İkisi ✗ →
 "grup seçilimi bu ölçekte de kırmadı"; Program A′ kapanışı.
+
+### A′ ara sonuç — EV1 ✗ ve ön-kayıtlı revizyon (2026-10-20, 21:45)
+İlk 7 dönem (10K): EV-A isabet ort 0.42-0.45, maks 0.45-0.48; EV-K 0.44-0.45;
+MI maks 0.007-0.012 (gürültü düzeyi). Kalıtım (korunan adalarda dönemler
+arası Spearman): −0.20, 0.20, 0.60, −0.60, 0.80, 0.20 → **ort 0.17 < 0.3
+→ EV1 ✗**. Adalar arası fark (~0.02) dönem içi örnekleme hatasıyla aynı
+büyüklükte; seçilim şansı seçiyor. Ön-kayıtlı revizyon uygulandı:
+**dönem 10K → 30K** (hata ~√3 azalır), adaların 7. dönem ağırlıklarından
+devam, 10 dönem (`runs/ev/open30`, `runs/ev/mute30`). Not: tüm adalar
+kendi-ipucu tavanında; seçilimin seçebileceği kalıtsal varyasyon,
+tavanı aşan bir kanal kullanımı doğana kadar fiilen yok — EV1'in
+düşmesi de bunun belirtisi.
