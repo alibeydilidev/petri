@@ -30,7 +30,7 @@ from agent.channel import NO_SIGNAL, own_signal_onehot, received_vector
 from agent.homeostasis import Homeostasis
 from population.lifecycle import transplant_seed3
 from population.roster import agent_cfg
-from training.ecology import EVENT_KW, SEED3, WCFG, MutePlanner
+from training.ecology import EVENT_KW, SEED3, WCFG, MutePlanner, SocialPlanner
 from training.loop import encode_obs
 from world.grid import N_ACTIONS, World
 
@@ -39,11 +39,15 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
                event_lead: int = 2, event_penalty: float = 25.0,
                energy_loss_weight: float | None = None,
                learning_rate: float | None = None,
-               window: int = 10_000) -> dict:
+               window: int = 10_000, channel: str = "mute",
+               event_share: float = 0.0) -> dict:
+    """channel="open": tek ajan kendi sinyalini gönderir (duyan yok,
+    maliyet var) — Program A0: sahte sinyal primi tek ajanda oluşuyor mu?"""
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
     wcfg = dataclasses.replace(WCFG, **{**EVENT_KW, "event_every": event_every,
                                         "event_lead": event_lead,
-                                        "event_penalty": event_penalty})
+                                        "event_penalty": event_penalty,
+                                        "event_share": event_share})
     cfg = agent_cfg("A2")
     over = {}
     if energy_loss_weight is not None:
@@ -52,7 +56,8 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
         over["learning_rate"] = float(learning_rate)
     cfg = dataclasses.replace(cfg, **over)
     agent = transplant_seed3(SEED3, cfg, torch_seed=1000 + seed, np_seed=2000 + seed)
-    planner = MutePlanner(cfg, agent.planner.rng)
+    planner = (SocialPlanner if channel == "open" else MutePlanner)(cfg, agent.planner.rng)
+    can_send = channel == "open"
     world = World(wcfg, n_entities=1, seed=7000 + seed)
     homeo = Homeostasis(cfg)
     rng = planner.rng
@@ -63,22 +68,30 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
 
     obs = observe()
     W = {"event_turns": 0, "hits": 0, "own": 0, "stay": 0, "deaths": 0,
-         "harvests": 0}
+         "harvests": 0, "signals": 0, "turns": 0}
     rows, t0 = [], time.perf_counter()
     for turn in range(1, turns + 1):
         ev = world.events
         will_active = ev.active(world.turn + 1)
         safe = ev.safe_action() if will_active else None
         cands = ev.candidates(0) if will_active else None
+        sig = NO_SIGNAL
         if rng.random() < cfg.mpc_epsilon:
             if cfg.eps_move_bias > 0 and rng.random() < cfg.eps_move_bias:
                 a = int(rng.integers(1, 5))
             else:
                 a = int(rng.integers(0, N_ACTIONS))
+            if can_send:
+                sig = int(rng.integers(-1, 16))
         else:
-            a, _ = planner.plan_joint(agent.core, agent.h, obs)
-        deltas = world.step(np.array([a]), np.array([NO_SIGNAL]))
-        homeo.apply_turn(a, float(deltas[0]))
+            a, sig = planner.plan_joint(agent.core, agent.h, obs)
+            if not can_send:
+                sig = NO_SIGNAL
+        deltas = world.step(np.array([a]), np.array([sig]))
+        homeo.apply_turn(a, float(deltas[0]),
+                         signal_cost=cfg.signal_energy_cost if sig != NO_SIGNAL else 0.0)
+        W["turns"] += 1
+        W["signals"] += int(sig != NO_SIGNAL)
         if deltas[0] > 0:
             W["harvests"] += 1
         if will_active:
@@ -88,7 +101,7 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
             W["stay"] += int(a == 0)
         nxt = observe()
         act_vec = torch.cat([torch.eye(N_ACTIONS)[a],
-                             torch.from_numpy(own_signal_onehot(NO_SIGNAL))])
+                             torch.from_numpy(own_signal_onehot(sig))])
         agent.learn_step_vec(obs, act_vec, nxt)
         obs = nxt
         if not homeo.alive:                      # beden sıfırlanır, ağırlık sürer
@@ -104,11 +117,13 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
                    "own_cue_rate": round(W["own"] / et, 4),
                    "stay_share": round(W["stay"] / et, 4),
                    "deaths": W["deaths"], "harvests": W["harvests"],
+                   "signal_rate": round(W["signals"] / max(W["turns"], 1), 4),
                    "ms_per_turn": round(1000 * (time.perf_counter() - t0) / turn, 1)}
             rows.append(row)
             print(f"[t={turn:>7}] isabet {row['hit_rate']} | kendi-ipucu "
                   f"{row['own_cue_rate']} | STAY {row['stay_share']} | ölüm "
-                  f"{row['deaths']} | hasat {row['harvests']} | "
+                  f"{row['deaths']} | hasat {row['harvests']} | sinyal "
+                  f"{row['signal_rate']} | "
                   f"{row['ms_per_turn']} ms/tur", flush=True)
             W = {k: 0 for k in W}
     out = {"turns": turns, "seed": seed, "world": dataclasses.asdict(wcfg),
@@ -131,9 +146,12 @@ def main() -> None:
     ap.add_argument("--event-every", type=int, default=10)
     ap.add_argument("--event-lead", type=int, default=2)
     ap.add_argument("--event-penalty", type=float, default=25.0)
+    ap.add_argument("--channel", choices=["mute", "open"], default="mute")
+    ap.add_argument("--event-share", type=float, default=0.0)
     a = ap.parse_args()
     run_school(a.turns, a.seed, a.out, a.event_every, a.event_lead,
-               a.event_penalty, a.energy_loss_weight, a.learning_rate)
+               a.event_penalty, a.energy_loss_weight, a.learning_rate,
+               channel=a.channel, event_share=a.event_share)
 
 
 if __name__ == "__main__":

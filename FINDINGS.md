@@ -2950,3 +2950,35 @@ kanal fiyatlamasının öğrenilebilirliği (Q2, soya bağlı).
   değiştirir ama tavuk-yumurtayı kırar.
 **Tavsiye:** A′ (0 bit, deneyin ruhuna en yakın) → sonra C. A tek başına
 dil getirmez.
+
+---
+
+# PROGRAM A — öğrenme mekaniği (Ali kararı, 2026-10-20 sabah)
+
+## A0 — ÖN-KAYIT: sahte sinyal primi tek ajanda oluşuyor mu? (koşumdan önce, M-08)
+
+Okul (tek ajan, yetiştirme kabı, her 10 tur, lead 2, ceza 25, 100K), **kanal
+açık**: ajan kendi sinyalini gönderir (ortak planlama, ε 16/17), duyan
+yok, maliyet 0.5. Referans: S3-J base (kanal kapalı: kendi-ipucu 0.86,
+isabet 0.44). 3 seed.
+- **A0a (prim):** final ağırlıkta `signal_curse_probe`: sinyalli −
+  sessiz ortalama skor > +0.1 VE argmax→sinyalli > pay × 1.5 → prim tek
+  ajanda da oluşuyor (öğrenme döngüsüne özgü, nüfusa değil).
+- **A0b (maliyet):** kanal-açık okul kendi-ipucu son 20K < 0.80 ya da
+  isabet < 0.40 → kanal tek ajanda da öğrenmeyi yavaşlatıyor.
+- **Öngörü:** A0a ✓ (0.7) — M-05 mekanizması tek ajanda yeterli (planlayıcı
+  seçimi → karıştırılmış veri); A0b ✓ (0.6).
+- **Matris:** A0a✓ → A1/A2 okulda test edilir (ucuz, 25 dk). A0a✗ →
+  prim çok-ajan etkileşiminden (duyulan sinyaller) → A1/A2 doğrudan
+  ekolojide, ve "duyma gürültüsü" ayrı değişken.
+
+## A1/A2 — planlanan basamaklar (ön-kayıt A0 sonucuyla netleşir)
+- **A1 Topluluk + uyuşmazlık cezası:** K=3 çekirdek (farklı init, aynı
+  veri), planlayıcı J = ortalama − β·std (β ∈ {0.5, 1.0}). İçerik
+  vermez; PL-12 (c). Bit: ~2 (K) + ~1 (β) → KERNEL satırı K-115 adayı.
+- **A2 Sinyal-dengeli tekrar:** PER örneklemesinde sessiz/sinyalli
+  pencereler dengelenir (K-110 tabakalama uzantısı). ~1 bit.
+- Çıtalar (okul): prob prim ≤ +0.1 ve argmax→sinyalli ≤ pay×1.5; kanal-
+  açık kendi-ipucu ≥ 0.80 ve isabet ≥ 0.40 (kapalıyla eşit). Ekoloji:
+  açık kol ≥ kapalı − 0.02 (son 20K), açılış şoku yok (ilk 2K sinyal
+  < 0.5).
