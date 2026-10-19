@@ -69,12 +69,42 @@ def transplant_seed3(ckpt_path: str, cfg: AgentConfig, torch_seed: int,
     return agent
 
 
+def transplant_seed3_ensemble(ckpt_path: str, cfg: AgentConfig,
+                              torch_seed: int, np_seed: int):
+    """A1: K üyeli topluluk; her üye seed-3 nötr transplantı. Üye 0 nötr
+    (sinyal sütunları sıfır); üye k>0'ın EĞİTİLMEMİŞ sinyal sütunları
+    N(0, ensemble_new_col_sigma) ile başlatılır → uyuşmazlık tam olarak
+    hiç denenmemiş sinyal boyutunda doğar (M-29). Determinizm: numpy rng."""
+    from training.ensemble_agent import EnsembleAgent
+    agent = EnsembleAgent(cfg, torch_seed=torch_seed, np_seed=np_seed)
+    rng = np.random.default_rng(np_seed + 909)
+    w = 2 * cfg.obs_radius + 1
+    g = 4 * w * w
+    for k, member in enumerate(agent.core.members):
+        tmp = transplant_seed3(ckpt_path, cfg, torch_seed=torch_seed, np_seed=np_seed)
+        member.load_state_dict(tmp.core.state_dict())
+        if k == 0:
+            continue
+        with torch.no_grad():
+            sd = member.state_dict()
+            sig = cfg.ensemble_new_col_sigma
+            W = sd["gru.weight_ih_l0"]
+            cols = list(range(g, g + 16)) + list(range(g + 23, g + 23 + 17))
+            W[:, cols] = torch.from_numpy(
+                rng.normal(0.0, sig, size=(W.shape[0], len(cols))).astype("float32"))
+            De = sd["dec_energy.weight"]
+            De[:-1] = torch.from_numpy(
+                rng.normal(0.0, sig, size=tuple(De[:-1].shape)).astype("float32"))
+            member.load_state_dict(sd)
+    return agent
+
+
 def successor(dead: OnlineAgent, cfg: AgentConfig, torch_seed: int,
               np_seed: int, rng: np.random.Generator,
               sigma: float = MUTATION_SIGMA) -> OnlineAgent:
     """Halef: ölenin ağırlıkları + mutasyon (DP-01b fiili). Optimizer,
     PER tamponu, hidden SIFIRDAN (yaşantı miras alınmaz, yapı alınır)."""
-    child = OnlineAgent(cfg, torch_seed=torch_seed, np_seed=np_seed)
+    child = type(dead)(cfg, torch_seed=torch_seed, np_seed=np_seed)
     with torch.no_grad():
         child.core.load_state_dict(copy.deepcopy(dead.core.state_dict()))
     mutate_(child, sigma, rng)

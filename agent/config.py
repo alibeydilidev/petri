@@ -70,6 +70,13 @@ class AgentConfig:
     # davranış (u{-1..15}, 1/17 sessiz; bit-eş). Karşı-olgusal "susma"
     # verisi (M-05); içerik vermez. KERNEL_BUDGET S3-P notu.
     eps_signal_quiet_prob: float = 0.0
+    # Program A1 (PL-12 c): model topluluğu. ensemble_k=1 → tek çekirdek
+    # (bit-eş). k>1: K üye, planlayıcı J = ortalama − mpc_ensemble_beta·std.
+    # ensemble_new_col_sigma: transplantta üye>0'ın EĞİTİLMEMİŞ (sinyal)
+    # sütunları bu σ ile rastgele başlatılır → uyuşmazlık tam orada doğar.
+    ensemble_k: int = 1
+    mpc_ensemble_beta: float = 0.0
+    ensemble_new_col_sigma: float = 0.05
     # --- S1 öğrenme ---
     tbptt_window: int = 8       # truncated BPTT pencere uzunluğu
     energy_loss_weight: float = 10.0  # K-106: enerji boyutunun loss ağırlığı

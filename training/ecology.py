@@ -120,6 +120,21 @@ class SocialPlanner(MPCPlanner):
         sig_idx = torch.as_tensor(np.where(sigs < 0, 0, sigs + 1))
         acts[torch.arange(C)[:, None], torch.arange(D)[None, :],
              N_ACTIONS + sig_idx] = 1.0
+        members = getattr(core, "members", None)
+        if members is None:   # tek çekirdek (S0…S3 yolu, bit-eş)
+            return self._rollout(core, h, obs_vec, acts, C, kmax).numpy()
+        # Program A1: üye başına rollout; J = ortalama − β·std (uyuşmazlık
+        # cezası). İçerik vermez: az görülmüş girdide kararsızlık puana
+        # yansır. β=0 → saf topluluk ortalaması.
+        E = torch.stack([self._rollout(m, None if h is None else h[k],
+                                       obs_vec, acts, C, kmax)
+                         for k, m in enumerate(members)])          # (K, C)
+        beta = float(getattr(self.cfg, "mpc_ensemble_beta", 0.0))
+        score = E.mean(0) - beta * E.std(0, unbiased=False)
+        return score.numpy()
+
+    @torch.no_grad()
+    def _rollout(self, core, h, obs_vec, acts, C, kmax):
         obs = obs_vec.expand(C, 1, -1)
         hh = None if h is None else h.expand(-1, C, -1).contiguous()
         mean_energy = torch.zeros(C)
@@ -127,7 +142,7 @@ class SocialPlanner(MPCPlanner):
             pred, hh = core(obs, acts[:, t:t + 1, :], hh)
             obs = pred.clamp(0.0, 1.0)
             mean_energy += pred[:, 0, -1]
-        return mean_energy.numpy()
+        return mean_energy
 
 
 class MutePlanner(SocialPlanner):
@@ -279,7 +294,8 @@ def founding_population(turn: int = 0, founding: str = "roster",
                         mute: bool = False,
                         channel: str | None = None,
                         signal_candidate_frac: float | None = None,
-                        eps_signal_quiet: float | None = None
+                        eps_signal_quiet: float | None = None,
+                        ensemble: tuple[int, float] | None = None
                         ) -> list[Citizen]:
     cits = []
     extra = {}
@@ -287,6 +303,9 @@ def founding_population(turn: int = 0, founding: str = "roster",
         extra["mpc_signal_candidate_frac"] = float(signal_candidate_frac)
     if eps_signal_quiet is not None:
         extra["eps_signal_quiet_prob"] = float(eps_signal_quiet)
+    if ensemble is not None:
+        extra["ensemble_k"] = int(ensemble[0])
+        extra["mpc_ensemble_beta"] = float(ensemble[1])
     if founding.startswith("weights:"):
         # S3-Q (Program B): kurucu kadro, önceki koşumun final_weights.pt
         # dosyasındaki 5 çekirdek (kademeli kanal: önce kanal-kapalı
@@ -312,8 +331,13 @@ def founding_population(turn: int = 0, founding: str = "roster",
             # kurucu mutasyon YOK (çeşitlilik halefiyetle, σ=0.01).
             cfg = dataclasses.replace(agent_cfg("A2"), nest_turns=nest[0],
                                       nest_factor=nest[1], **extra)
-            agent = transplant_seed3(SEED3, cfg, torch_seed=1000 + i,
-                                     np_seed=2000 + i)
+            if cfg.ensemble_k > 1:   # Program A1
+                from population.lifecycle import transplant_seed3_ensemble
+                agent = transplant_seed3_ensemble(SEED3, cfg, torch_seed=1000 + i,
+                                                  np_seed=2000 + i)
+            else:
+                agent = transplant_seed3(SEED3, cfg, torch_seed=1000 + i,
+                                         np_seed=2000 + i)
             parent = "seed3(S2.10)"
         else:
             cfg = dataclasses.replace(agent_cfg(slot), nest_turns=nest[0],
@@ -351,7 +375,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 event_lead: int | None = None,
                 event_share: float | None = None,
                 signal_candidate_frac: float | None = None,
-                eps_signal_quiet: float | None = None) -> None:
+                eps_signal_quiet: float | None = None,
+                ensemble: tuple[int, float] | None = None) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -375,7 +400,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     cits = founding_population(founding=founding, nest=nest, mute=mute,
                                channel=channel,
                                signal_candidate_frac=signal_candidate_frac,
-                               eps_signal_quiet=eps_signal_quiet)
+                               eps_signal_quiet=eps_signal_quiet,
+                               ensemble=ensemble)
     genealogy = [{"id": c.id, "slot": c.slot, "parent": c.parent,
                   "birth_turn": 0} for c in cits]
     succ_rng = np.random.default_rng(777_001)   # yalnız mutasyon gürültüsü
@@ -538,7 +564,9 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "event_lead": wcfg.event_lead,
                    "event_share": wcfg.event_share,
                    "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac,
-                   "eps_signal_quiet": cits[0].agent.cfg.eps_signal_quiet_prob},
+                   "eps_signal_quiet": cits[0].agent.cfg.eps_signal_quiet_prob,
+                   "ensemble_k": cits[0].agent.cfg.ensemble_k,
+                   "ensemble_beta": cits[0].agent.cfg.mpc_ensemble_beta},
            "world": dataclasses.asdict(wcfg),
            "world_config_hash": config_hash(wcfg),
            "genealogy": genealogy, "deaths": ledger.deaths,
@@ -562,10 +590,17 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
     with open(pathlib.Path(out_dir) / "breath.json", "w") as f:
         json.dump(out, f, indent=2)
     if save_weights:   # son sakinlerin çekirdekleri (sonraki problar için)
-        torch.save({c.slot: {"id": c.id, "gen": c.gen,
-                             "cfg": dataclasses.asdict(c.agent.cfg),
-                             "state_dict": c.agent.core.state_dict()}
-                    for c in cits}, pathlib.Path(out_dir) / "final_weights.pt")
+        def _entry(c):
+            e = {"id": c.id, "gen": c.gen, "cfg": dataclasses.asdict(c.agent.cfg)}
+            members = getattr(c.agent.core, "members", None)
+            if members is None:
+                e["state_dict"] = c.agent.core.state_dict()
+            else:   # A1: üye 0 tek-çekirdek problar için, tamamı ayrıca
+                e["state_dict"] = members[0].state_dict()
+                e["ensemble_state_dict"] = c.agent.core.state_dict()
+            return e
+        torch.save({c.slot: _entry(c) for c in cits},
+                   pathlib.Path(out_dir) / "final_weights.pt")
     print(f"\nyazıldı: {out_dir}/breath.json | toplam ölüm {ledger.deaths} | "
           f"soy kütüğü {len(genealogy)} kayıt | A-hasat {tot['harvests_a']} | "
           f"B-açılış {world.b_openings_total} | olay isabet "
@@ -601,6 +636,8 @@ def main() -> None:
                     help="S3-O: sinyal taşıyabilen aday satırı payı (varsayılan 1)")
     ap.add_argument("--eps-quiet", type=float, default=None,
                     help="S3-P: ε dalında sessiz çekme olasılığı (varsayılan 0)")
+    ap.add_argument("--ensemble", type=float, nargs=2, default=None,
+                    metavar=("K", "BETA"), help="A1: topluluk K ve β")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
@@ -609,7 +646,9 @@ def main() -> None:
                 selection=a.selection, event_lead=a.event_lead,
                 event_share=a.event_share,
                 signal_candidate_frac=a.signal_frac,
-                eps_signal_quiet=a.eps_quiet)
+                eps_signal_quiet=a.eps_quiet,
+                ensemble=None if a.ensemble is None
+                else (int(a.ensemble[0]), float(a.ensemble[1])))
 
 
 if __name__ == "__main__":

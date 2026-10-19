@@ -93,8 +93,14 @@ def main() -> None:
     for w in a.weights:
         ck = torch.load(w, weights_only=False)
         for slot, e in list(ck.items())[:2]:
-            cfg = AgentConfig(**e["cfg"]); core = PredictiveCore(cfg)
-            core.load_state_dict(e["state_dict"]); core.eval()
+            cfg = AgentConfig(**e["cfg"])
+            if "ensemble_state_dict" in e:      # A1: topluluk planlayıcısı
+                from agent.ensemble import EnsembleCore
+                core = EnsembleCore(cfg, cfg.ensemble_k, 0)
+                core.load_state_dict(e["ensemble_state_dict"])
+            else:
+                core = PredictiveCore(cfg); core.load_state_dict(e["state_dict"])
+            core.eval()
             for frac in (1.0, 0.05):
                 k = f"{w}:{slot}:frac{frac}"
                 res[k] = probe(core, cfg, frac=frac)

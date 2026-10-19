@@ -328,3 +328,65 @@ def test_s3q_founding_from_saved_weights(tmp_path):
     # ağırlıklar gerçekten yüklendi: q1 final == q2 kurucu (eğitim öncesi)
     ck1 = torch.load(w, weights_only=False)
     assert set(ck1) == {"A0", "A1", "A2", "A3", "A4"}
+
+
+# ----------------------------------------------------------------- Program A1
+
+def test_a1_disagreement_penalty_avoids_uncertain_rows():
+    """Sentetik: iki üye sessiz satırlarda uyuşur, sinyalli satırlarda
+    uyuşmaz (biri yüksek biri düşük). β=0 → ortalama; β büyük → sinyalli
+    satırlar cezalanır ve argmax sessize kayar."""
+    import numpy as np
+    import torch
+
+    from agent.config import a2_config
+    from training.ecology import SocialPlanner
+
+    class Fake(torch.nn.Module):
+        def __init__(self, bias):
+            super().__init__(); self.bias = bias
+        def forward(self, obs, acts, h=None):
+            # enerji tahmini = sinyal varsa bias, yoksa 0.5
+            sig_on = acts[:, 0, 6:].argmax(-1) > 0
+            e = torch.where(sig_on, torch.full_like(obs[:, 0, -1], self.bias),
+                            torch.full_like(obs[:, 0, -1], 0.5))
+            pred = obs.clone(); pred[:, 0, -1] = e
+            return pred, h
+
+    class Ens(torch.nn.Module):
+        def __init__(self):
+            super().__init__(); self.members = torch.nn.ModuleList([Fake(1.0), Fake(0.2)])
+
+    obs = torch.zeros(1 + 4 * 81 + 16)
+    seqs = np.zeros((4, 3), dtype=int); sigs = np.array([[-1, -1, -1], [3, 3, 3], [-1, -1, -1], [7, 7, 7]])
+    for beta, expect_quiet in ((0.0, False), (2.0, True)):
+        cfg = a2_config(channel_open=True, mpc_ensemble_beta=beta, ensemble_k=2)
+        pl = SocialPlanner(cfg, np.random.default_rng(0))
+        sc = pl._score_joint(Ens(), None, obs, seqs, sigs)
+        best_quiet = sigs[int(np.argmax(sc)), 0] < 0
+        assert best_quiet == expect_quiet, (beta, sc)
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_a1_ensemble_ecology_smoke_and_determinism(tmp_path):
+    import json
+
+    import torch
+
+    from training.ecology import run_ecology
+    kw = dict(world_seed=42, log_every=30, founding="clone", nest=(600, 0.5),
+              events=True, ensemble=(3, 1.0))
+    run_ecology(60, str(tmp_path / "a"), **kw)
+    run_ecology(60, str(tmp_path / "b"), **kw)
+    ja = json.load(open(tmp_path / "a" / "breath.json"))
+    jb = json.load(open(tmp_path / "b" / "breath.json"))
+    for j in (ja, jb):
+        for v in j["vitals"]:
+            v.pop("ms_per_turn")
+    assert ja == jb, "A1 topluluk kolu bit-eş değil"
+    assert ja["arm"]["ensemble_k"] == 3 and ja["arm"]["ensemble_beta"] == 1.0
+    ck = torch.load(tmp_path / "a" / "final_weights.pt", weights_only=False)
+    assert "ensemble_state_dict" in ck["A0"] and "state_dict" in ck["A0"]
+    # halefiyet topluluk tipini korur (ölüm olduysa) — soy kütüğü > 5
+    assert len(ja["genealogy"]) >= 5
