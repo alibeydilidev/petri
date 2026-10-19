@@ -3457,3 +3457,52 @@ kaynağıydı). METODOLOJI'ye işlendi.
 - **E Kimlikli/yerel kanal + tekrarlı eş** (PL-28 geri): karşılıklılık
   için gerekli yapı; deneyin "en temiz kanal" iddiasını zayıflatır.
 **Tavsiye:** D'nin M-25 analizi (0 bit mi?) + A′ paralel.
+
+---
+
+# PROGRAM A′ — evrimsel önyükleme, ada modeli (Ali kararı, 2026-10-20 akşam)
+
+## A′ — ÖN-KAYIT (koşumdan önce, M-08)
+
+**Gerekçe.** A+C kapanışı: tavuk-yumurta bireysel öğrenmeyle kırılmıyor.
+Bireysel seçilim (S3-H max_age) bedavacıyı ödüllendirir; alarm çağrıları
+doğada akrabalık/grup düzeyinde seçilimle evrilir. **Tasarım:** G ada
+(her biri 5 ajanlı bağımsız ekoloji), dönem = 10K tur; dönem sonunda
+adalar **olay isabetine** göre sıralanır, en kötü Q ada en iyi Q adanın
+mutasyonlu (σ_kopya=0.005, tüm ağırlıklar) kopyasıyla değiştirilir.
+`training/island_evolution.py`. Ajana bit gitmez: fitness ajanın
+girdisine/kaybına girmez, yalnız hangi ağırlıkların taşındığını seçer
+(nüfus kuralı, M-09). Her dönem yeni dünya seed'i. PER her dönem
+yeniden dolar (beyan).
+
+**Kollar:** **EV-A** kanal açık, G=6, Q=2, kurucular C4-A ağırlıkları
+(3 soy × 2); **EV-K** kanal kapalı, G=3, Q=1, kurucular C4-K. Ekoloji
+ayarı C4 ile aynı (sığınak N=2, s=0, σ=0.002, yuva, inherit_per,
+her 10 tur, lead 4). 30 dönem (300K tur/ada).
+
+**Neden kontrol kolu:** grup seçilimi kendi-ipucu öğrenimini de
+seçebilir; tavanı (≈0.45) aşmayı yalnız kanal açıklar.
+
+**Çıtalar:**
+- **EV1 (kalıtım, fizibilite):** ilk 5 dönemde, değiştirilmeyen adalar
+  için isabet(k) ile isabet(k+1) arası Spearman ort. > 0.3 — seçilim bir
+  şeyi taşıyor. ✗ ise seçilim gürültüyü seçiyor → dönem uzunluğu ×3 ya
+  da ada sayısı ×2 (beyanlı revizyon).
+- **EV2 (dil, H4):** son 3 dönemde EV-A en iyi ada isabeti > 0.50 VE EV-A
+  ortalaması > EV-K ortalaması + 0.05.
+- **EV3 (konuşan):** EV-A'da herhangi bir adada MI ≥ 0.05 bit (MM) son 3
+  dönemde; ya da MI maks dönemlere göre tekdüze ↑ ve ≥ 0.02.
+- **EV4 (soy süpürmesi):** EV-A'da son dönemde tek kurucu soy baskın
+  (grup seçilimi çalışıyor işareti; dil iddiası değil).
+
+**Öngörüler (bağlayıcı):** EV1 ✓ (0.6). EV4 ✓ (0.7). EV3 ✗ (0.7). EV2 ✗
+(0.8) — 30 dönem, 6 adalık nüfusta bir uzlaşının tesadüfen doğması için
+küçük olabilir; ama MI'nin seçilimle tırmanıp tırmanmadığı (EV3'ün
+eğilim kolu) asıl göstergedir.
+
+**Sonuç matrisi:** EV2✓ → ADAY GÖZLEM (H4), Beş Kapı: EV-K ablasyon,
+kazanan adanın bit-eş tekrarı, zaman çizgisi (hangi dönemde, hangi
+soyda), sembol-anlam tablosu (keyfi ama paylaşılan mı: farklı adalarda
+farklı sembol?), 0 bit. EV2✗ EV3 eğilim ✓ → seçilim çalışıyor ama
+ölçek yetmiyor → 60-100 dönem / daha çok ada (Ali kararı). İkisi ✗ →
+"grup seçilimi bu ölçekte de kırmadı"; Program A′ kapanışı.
