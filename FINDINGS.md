@@ -3162,3 +3162,54 @@ N-A (0.23-0.24, sinyal 0.77, prim soya bağlı) ve S0. 3 seed, 100K.
   → C2 bu mekanikle. ✗ → kalan fark rekabet/ortak dünya → A1 topluluk
   sonucu (E3) belirleyici; o da ✗ ise prim bu mimaride çok-ajan
   rejimine özgü ve mekanik çare yok → S3 nihai hükme ek.
+
+## C1 — SONUÇLAR: **sığınak basınç üretiyor ama bireysel öğrenmeyi bozuyor; dil yok** (2026-10-20, 12:00)
+
+Veri: `runs/c1/`, `runs/c1/summary.json` (N=3, s=0, klon kadro, 100K).
+
+| kol | medyan ömür | isabet 0-20K → 80-100K | korunma son 20K | kendi-ipucu son 20K | sinyal | hasat/1K | MI |
+|---|---|---|---|---|---|---|---|
+| **C-K** (kapalı) | 37-39 | 0.22 → **0.22-0.25** | **0.13-0.18** | 0.44-0.50 | 0 | 5.7-7.2 | — |
+| **C-A** (açık) | 30 | 0.21 → **0.18-0.21** | **0.03-0.05** | 0.35-0.43 | 0.70-0.79 | 4.0-4.3 | 0.0003-0.0006 |
+| S3-K K-K (referans, min_safe=0) | 42 | 0.22 → 0.31 | = isabet | ~0.60 | 0 | 5.7-6.2 | — |
+
+- **C1b ✓:** korunma ≪ isabet (sığınak gerçekten yalnız-doğruyu
+  cezalandırıyor). **C1a ✗:** kapalı kolda isabet 0.31 → 0.22-0.25'e,
+  kendi-ipucu 0.60 → 0.45-0.50'ye geriledi. **C1c/d/e ✗.**
+- **Mekanizma:** sığınak, kredi atamasını bozuyor: "doğru eylem" artık
+  tek başına "ceza yok" demek değil (5 ajanın ≥3'ü doğru olmalı; kendi-
+  ipucu rejiminde P≈0.5, şansta 0.09). Enerji kafası için eylem-koşullu
+  sinyal seyreliyor → kendi-ipucu öğrenimi duruyor → iletecek bilgi
+  doğmuyor. Doğrudan fayda, bireysel gradyanı öldürerek geldi. Açık kol
+  ayrıca açılış şoku + maliyet (ömür 30).
+- **Öngörü karnesi:** C1a ✓ (0.7) → YANLIŞ; C1b ✓ doğru; C1c/d ✗ doğru;
+  C1e ✓ (0.5) → ✗.
+
+**Yeni ders adayı (M-30 taslak): Ortak fayda, bireysel kredi atamasını
+koruyarak verilmeli.** Sinyalin faydasını "aynı turda, doğrudan" kılmak
+için bireysel korumayı gruba bağlayınca, ajanın kendi doğruluğunu
+öğrenme sinyali silinir (korelasyon: kendi eylemi → sonuç, 0.5'e
+düşer). Tuzak tasarımında "göndericiye fayda" ve "kendi eylemine kredi"
+ayrı ayrı korunmalı; biri diğerini yemez. (M-28'in tasarım yüzü.)
+
+## C2 — ÖN-KAYIT: yumuşak sığınak + yetkin kadro (koşumdan önce, M-08) (2026-10-20, 12:05)
+
+Kredi atamasını korumak için iki değişiklik (M-06 ihlali değil:
+C1'in başarısızlık nedeni iki ayağa birden bağlı, her biri beyanlı):
+- **N=2** (P(≥2 doğru | kendi-ipucu %50) = 0.81; yalnız-doğru olmak çoğu
+  zaman korur → bireysel gradyan büyük ölçüde geri; kanalın değeri
+  oracle'da N=3 ile aynı: told/own 1.45).
+- **Yetkin kurucu kadro:** Q1 final ağırlıkları (kendi-ipucu 0.75, isabet
+  0.36) — ajan zaten kendi bitini okuyor; sorulan şey yalnız kanal.
+Kollar **C2-A** (açık) / **C2-K** (kapalı); σ=0.002, s=0, K=1, 100K, 3 seed.
+Not: A2′ (PER mirası) sonucu gelmeden mekanik varsayılan; A2′ ✓ çıkarsa
+C3 onunla tekrarlanır.
+- **C2a (yetkinlik korunur):** C2-K isabet son 20K ≥ 0.33, korunma ≥ 0.55.
+- **C2b (kanal fayda, H3/H4):** C2-A korunma > C2-K korunma + 0.05 VE
+  isabet > C2-K + 0.03.
+- **C2c:** MI ≥ 0.05 ya da duydu > duymadı + 0.05 ya da pencere ≥ 1.3×.
+- **C2d (açılış şoku):** C2-A isabet son 20K ≥ C2-K − 0.05 (Q2'de −0.08 idi).
+- **Öngörüler:** C2a ✓ (0.7), C2d ✗ (0.6), C2b ✗ (0.75), C2c ✗ (0.7).
+- **Matris:** C2b✓ → ADAY GÖZLEM, Beş Kapı. C2a✓ C2b✗ → tuzak kurulu, yetkin
+  ajan bile kanalı kullanmıyor → mekanik (A2′/E3) sonucuna göre C3 ya da
+  S3 nihai hüküm "C tasarımı da tavuk-yumurtayı kırmadı".
