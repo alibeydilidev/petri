@@ -24,6 +24,35 @@ tasarım.
 
 ---
 
+## Bu çalışma nasıl yürütüldü (açık beyan)
+
+Hipotezler, anayasa ve mimari plan **Ali Beydili**'ye aittir. Kodun büyük
+bölümü, tüm koşumlar, ön-kayıtlar, analizler ve bulgu metinleri, Ali'nin
+verdiği karar yetkisiyle **Claude (Anthropic)** tarafından otonom olarak
+yürütülmüş ve yazılmıştır; Ali karar noktalarında yön vermiştir (bkz.
+`OPEN_LOOPS.md` "KARAR" satırları). Bu bilinçli bir seçimdir: deneyin
+iddiası "ajana hiçbir şey vermeden" ise, deneyi yürüten elin de şeffaf
+olması gerekir. Her koşum **koşumdan önce** yazılmış ön-kayıt ve çıtalarla
+(`FINDINGS.md`, "ÖN-KAYIT" başlıkları) gelir; git geçmişi zaman
+damgalıdır. Öngörü karneleri (tutmayanlar dahil) bulgu bölümlerinin
+içindedir. Yanılgılar silinmez, şerh düşülür (M-12).
+
+## Nereden başlanır (okuyucu rehberi)
+
+1. **5 dakika:** bu README'nin "Şu an nerede duruyoruz" ve "Bulgu tablosu"
+   bölümleri.
+2. **30 dakika:** `FINDINGS.md` sonundaki **"S3 NİHAİ HÜKÜM"** ve
+   **"S3 KAPANIŞ RAPORU"**; sonra `METODOLOJI.md` (29 ders: nasıl
+   kendimizi kandırmadık).
+3. **Doğrulamak isteyen:** `KERNEL_BUDGET.md` (ajana giden her bit),
+   `tests/` (determinizm + bilinen-pozitif enstrüman testleri),
+   `runs/*/breath.json` (ham sayılar; her tablo buradan türetilir).
+4. **Tekrar koşmak isteyen:** aşağıda "Çalıştırma". Tüm koşumlar
+   deterministiktir (dünya seed'i + ajan seed'i → bit-eş).
+
+Lisans: kod MIT (`LICENSE`), doküman ve veri CC BY 4.0
+(`LICENSE-DOCS-DATA.md`).
+
 ## İçindekiler
 1. [Hipotezler](#hipotezler)
 2. [Anayasa](#anayasa)
@@ -192,11 +221,19 @@ Açık döngüler ve bekleyen kararlar: [`OPEN_LOOPS.md`](OPEN_LOOPS.md).
 world/        dünya fiziği (grid, events, config — economy v1/v2/v3)
 agent/        tahmin çekirdeği, homeostaz, MPC, kanal
 population/   roster + yaşam döngüsü (ölüm, miras, mutasyon)
-training/     öğrenme döngüsü, PER, oracle'lar, sprint eval script'leri
+training/     öğrenme döngüsü (loop.py), PER, ekoloji koşturucu (ecology.py),
+              oracle'lar (oracle, b_oracle, event_oracle, pop_oracle),
+              olay okulu (event_school), topluluk ajanı (ensemble_agent),
+              gözlemci problar (analyze_s3e, precursor_probe,
+              signal_curse_probe), sprint eval script'leri
+agent/ensemble.py  Program A1 model topluluğu (K-115 aday)
 probes/       P1 öz-model probu (sosyal katman kapalı)
 replay/       .npz kayıt + izleyici
 tests/        determinizm, fizik, enstrüman (M-23 bilinen-pozitif) testleri
 runs/         TÜM ham sonuçlar, snapshot'lar, ağırlıklar
+              s3d (nüfus oracle) · s3e…s3r (S3 ekoloji merdiveni) · s3j
+              (olay okulu) · s3q (Program B) · a0/a1 (Program A) · c1
+              (Program C) — her klasörde breath.json/summary.json
 FINDINGS.md       sprint sonu bulgular (negatifler dahil) + Beş Kapı şablonu
 OPEN_LOOPS.md     PL-xx açık işler / bekleyen kararlar
 KERNEL_BUDGET.md  ajana verilen her prior, bit cinsinden
@@ -226,15 +263,26 @@ CLAUDE.md         oturum anayasası
 ## Çalıştırma
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-python3 -m pytest tests/ -q                 # determinizm + fizik + enstrüman testleri
-python3 -m replay.viewer record out.npz --turns 2000
-python3 -m replay.viewer play out.npz --fps 20
+uv venv --python 3.13 .venv            # ya da: python3.13 -m venv .venv
+uv pip install --python .venv/bin/python -r requirements.txt
+.venv/bin/python -m pytest tests/ -q   # ~90 sn; determinizm + fizik + enstrüman
+
+# Ekoloji (S3 varsayılanları: klon kadro, yuva, σ=0.002, olay her 10 tur):
+.venv/bin/python -m training.ecology --turns 20000 --out runs/deneme \
+  --founding clone --nest 600 0.5 --sigma 0.002 --events \
+  --event-every 10 --event-lead 4 --event-share 0.5 --channel open
+# Kollar: --channel mute|hear|speak, --selection max_age, --signal-frac,
+# --eps-quiet, --ensemble K BETA, --min-safe N, --founding weights:<pt>
+.venv/bin/python -m training.analyze_s3e --dir runs/deneme     # özet + MI
+.venv/bin/python -m training.event_school --turns 100000 --seed 0 --out runs/okul
+.venv/bin/python -m training.precursor_probe --weights runs/deneme/final_weights.pt
+.venv/bin/python -m replay.viewer record out.npz --turns 2000
 ```
 
-Ölçümler Python 3.13.2, NumPy 2.4.2, Apple Silicon üzerinde alındı. Torch
-tek thread'e sabit (bit-eş eğitim için).
+Ölçümler Python 3.13, NumPy 2.4.2, Torch 2.13 (tek thread, bit-eş eğitim),
+Apple Silicon üzerinde alındı. 5 ajanlı ekoloji ≈ 60-80 ms/tur; 100K tur
+≈ 2 saat. `runs/` 414 MB (S2 snapshot'ları ve eski ağırlık dosyaları
+dahil; yeni `final_weights.pt` dosyaları git dışıdır).
 
 ## Metodoloji dersleri
 

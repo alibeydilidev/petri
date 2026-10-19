@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Bu depoyu kullanırsanız lütfen şöyle atıf verin."
+title: "PETRI: Emergent zihin öncülleri deneyi — ön-kayıtlı koşum günlüğü ve bulgular"
+authors:
+  - family-names: Beydili
+    given-names: Ali
+type: software
+year: 2026
+repository-code: "https://github.com/alibeydilidev/petri"
+license: MIT
+notes: "Koşumlar ve bulgu metinleri Ali Beydili'nin anayasası altında Claude (Anthropic) tarafından otonom yürütülmüştür; dokümanlar ve veri CC BY 4.0 (LICENSE-DOCS-DATA.md)."
