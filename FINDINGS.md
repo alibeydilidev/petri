@@ -3213,3 +3213,16 @@ C3 onunla tekrarlanır.
 - **Matris:** C2b✓ → ADAY GÖZLEM, Beş Kapı. C2a✓ C2b✗ → tuzak kurulu, yetkin
   ajan bile kanalı kullanmıyor → mekanik (A2′/E3) sonucuna göre C3 ya da
   S3 nihai hüküm "C tasarımı da tavuk-yumurtayı kırmadı".
+
+### A2′ ek ön-kayıt — kontrol kolu P-K (PK başlamadan, 13:20)
+Ara okuma (94K): P-A isabet 0.37-0.49 (önceki açık kolların 2 katı; kendi-
+ipucu tavanı 0.50'ye değiyor). Bu kazanç tamponun kendi-ipucu
+öğrenimini hızlandırmasından mı, kanaldan mı? **P-K** (inherit_per,
+kanal KAPALI, aynı seed'ler) başlatıldı.
+- **A2c (kanal fayda):** P-A son 20K isabet > P-K + 0.05 VE P-A > 0.50
+  (tavan üstü yalnız başkasının bitiyle).
+- **A2d (tampon etkisi):** P-K > N-K (0.28) + 0.05 → PER mirası tek başına
+  öğrenmeyi hızlandırıyor (mekanik kazanç, kanaldan bağımsız).
+- **Öngörü:** A2d ✓ (0.8); A2c ✗ (0.7) — P-A ≈ P-K beklenir (kanal
+  artık zarar vermiyor ama kazandırmıyor). P-A > P-K + 0.05 çıkarsa
+  ADAY GÖZLEM, Beş Kapı derhal.
