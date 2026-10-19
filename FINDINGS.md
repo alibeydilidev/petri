@@ -3037,3 +3037,10 @@ mekanikle. E3 ✗ ve S0 ✓ → mekanik değil mutasyon → PL-31 revizyonu
 (σ öğrenme-ağırlıklı) ya da K-115 + σ=0 birleşimi. İkisi ✗ → prim
 kaynağı duyma → "duyma gürültüsü" kolu (speak-only prob) → topluluk
 + alınan-sinyal maskesi tartışması (anayasal).
+
+### A0 eki — speak-only (S3-L) ağırlıklarında prob: **duymadan da prim var**
+`runs/s3l/signal_curse_probe_speak.json`: speak_s3001/s3002 çekirdeklerinde
+sinyalli − sessiz **+0.03 … +0.51**, argmax→sinyalli %83-98 (%86 pay) ve
+**%14-33 (%4 pay)**. Alınan sinyal yokken de prim oluşuyor → aday (a)
+"duyma gürültüsü" prim kaynağı DEĞİL; aday (b) halef mutasyonu /
+nüfus dinamiği öne çıkıyor. Karar S0 kolunda (σ=0, açık).
