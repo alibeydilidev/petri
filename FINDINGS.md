@@ -2829,3 +2829,57 @@ Hesap: Q1 ~7 saat (3 paralel), Q2 ~2,5 saat.
 - Prob (lead-8 protokolü, Q1_s3002): hiza 0.25-0.50, güvenli-eylem
   farkı 0.003-0.011 — ekoloji lead=4 öğrendi, prob lead=8 soruyor;
   protokol uyumsuzluğu (önceki beyan), davranış ölçüsü esas.
+
+### S3-Q2 — SONUÇ: **yetkin ajan kanalı doğru fiyatlıyor; açılış şoku yetkinliği düşürüyor; dil yok** (2026-10-19 gece, 03:45)
+
+Veri: `runs/s3q/Q2{A,K}_s*`, `runs/s3q/summary_q2.json`, prob
+`runs/s3q/signal_curse_probe_q2.json`. Kurucu kadro: Q1 final ağırlıkları.
+
+| kol | medyan ömür | isabet 0-20K → 40-60K → 80-100K | kendi-ipucu son 20K | sinyal seyri (2K→100K) | hasat/1K | MI |
+|---|---|---|---|---|---|---|
+| **Q2-K** (kapalı devam) | **50** | 0.36-0.40 → 0.36-0.38 → **0.37-0.39** | **0.74-0.77** | 0 | 3.6-4.0 | — |
+| **Q2-A** (açık) | 40-43 | 0.26-0.28 → 0.27-0.32 → **0.30-0.31** | 0.60-0.62 | **0.97 → 0.46 → 0.41 → 0.35 → 0.26-0.48** | 2.2-2.7 | **0.0007-0.0028** (p=0) |
+
+- **Prob (prim):** Q1 (sessiz eğitilmiş) ağırlıklarında sinyalli satırlar
+  **+0.9 … +3.4** primli (sinyal sütunları 300K boyunca hiç eğitilmedi;
+  argmax→sinyal %93-100) → kanal açılınca ilk 2K turda sinyal oranı
+  0.97: **açılış şoku**. 100K sonra Q2-A ağırlıklarında prim **TERSİNE
+  DÖNDÜ: −0.8 … −1.9**, argmax→sinyal %0-30 (%86 payla). **İlk kez bir
+  ajan kanalı doğru fiyatladı** (sinyal = enerji kaybı). Kalan sinyal
+  oranı (0.26-0.52) ε (0.09) + CEM gürültüsü + hâlâ inen eğilim.
+- **Q2a:** prim ✓ (tersine döndü), oran ✗ (son 20K 0.26/0.44/0.52;
+  çıta <0.30 → 1/3). **Q2b ✗:** Q2-A, Q2-K'nın 0.08 altında; açılış şoku
+  (sinyal spam → enerji → ölüm 42→40, hasat −35%) yetkinliği 0.37'den
+  0.27'ye düşürdü, 100K'da 0.30'a toparladı (↑ sürüyor). **Q2c ✗.**
+  **Q2d ✗:** MI 0.0007-0.0028 bit (tüm koşumların en yükseği, çıtanın
+  20'de biri); "duydu/duymadı" tutarsız (+0.065 / −0.06 / +0.02;
+  duymadı kümesi %0.1-1).
+- **Öngörü karnesi:** Q1a ✓ (0.6) → harfen ✗; Q2a ✓ (0.55) → yarı (prim
+  ✓, oran ✗); Q2b ✓ (0.6) → ✗ (şok öngörülmedi); Q2c/Q2d ✗ → doğru.
+
+**Hüküm (Program B, ara):** "giriş ücreti" tezi kısmen doğrulandı:
+yetkin model sinyalin bedelini öğreniyor (prim tersine), yetkinsiz
+model öğrenemiyordu (S3-K…P). Ama açılış şoku (eğitilmemiş sinyal
+sütunlarının sahte primi) yetkinliği geriletiyor ve fayda zinciri 100K'da
+kurulmuyor. Matris "süre lazım" dalı → **S3-R**.
+
+## S3-R — ÖN-KAYIT: Q2 devamı, 200K (koşumdan önce, M-08) (2026-10-19, 03:50)
+
+Q2-A ve Q2-K kendi final ağırlıklarından 200K daha (toplam açık kanal
+300K, toplam öğrenme 600K); dünya seed'leri +100 (yeni yerleşim; ağırlık
+devam, beden/dünya yeni). Kollar **R-A** (açık) / **R-K** (kapalı).
+- **R1 (toparlanma):** R-A son 20K isabet ≥ R-K − 0.03 (şok geçti,
+  kanal artık doğru fiyatlı ve maliyetsiz-yakın).
+- **R2 (dil, H3/H4):** R-A isabet > R-K + 0.05 VE > 0.50.
+- **R3 (konuşan/dinleyen):** MI ≥ 0.05 bit MM p<0.05; VEYA "duydu"
+  isabeti > "duymadı" + 0.05 3/3 seed'de; VEYA pencere sinyal oranı ≥
+  1.3× pencere dışı.
+- **R4 (fiyatlama):** R-A sinyal oranı son 20K < 0.25 3/3.
+
+**Öngörüler (bağlayıcı):** R1 ✓ (0.5), R4 ✓ (0.6), R2 ✗ (0.85), R3 ✗ (0.7).
+**Sonuç matrisi:** R1✓ R2✗ → Program B tamam: "kanal doğru fiyatlanabilir
+ama bu anayasada kullanılmıyor" → Program A (öğrenme mekaniği) ya da
+C (tuzak tasarımı) kararı Ali'ye, nihai S3 hükmü güncellenir. R2✓ →
+ADAY GÖZLEM, Beş Kapı (R-K ablasyon hazır; ikiz; bit-eş; zaman çizgisi).
+R1✗ → kanal açık kaldıkça yetkinlik geri gelmiyor → kalıcı maliyet
+(sinyal 0.5 anayasal) → C.
