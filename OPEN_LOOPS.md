@@ -245,8 +245,11 @@
   **KARAR (Ali, 19 Ekim akşam): B.** S3-Q1 ✓ (300K kapalı: isabet 0.36,
   kendi-ipucu 0.75), S3-Q2 (açılış): yetkin ajan kanalı DOĞRU FİYATLADI
   (prim tersine döndü, ilk kez) ama açılış şoku yetkinliği düşürdü
-  (0.30 vs 0.38), dil yok (MI 0.003). S3-R (200K devam) koşuluyor;
-  sonra A/C kararı Ali'ye.
+  (0.30 vs 0.38), dil yok (MI 0.003). S3-R (200K devam): toparlanma
+  yok (−0.07 sabit), kapalı kol 0.38/0.75 platosu. **PROGRAM B TAMAM,
+  kanal kalıcı net yük.** Nihai hüküm FINDINGS "S3 NİHAİ HÜKÜM".
+  **BEKLEYEN (Ali):** A (mekanik) / A′ (evrimsel önyükleme, 0 bit,
+  tavsiye) / C (tuzak tasarımı).
 - **PL-32 (KAPALI, 2026-10-19):** kanal yavaşlatması = öğrenilmiş sahte
   sinyal primi (M-05) + maliyet; bütçe (S3-O) ve ε susma (S3-P) yarıya
   indirdi, silemedi. Özgün kayıt:

@@ -87,8 +87,13 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   sinyaline SAHTE prim öğreniyor (M-05); bütçe/ε susma yarıya indirdi,
   silemedi. **0-bit merdiven bitti. Nihai: H4 negatif, mekanizmalı.**
   M-26/27/28 işlendi. Yeni prior 0 bit.
-- **SIRADAKİ ADIM (PL-34, Ali kararı):** B kademeli kanal + 300K (0 bit)
-  → A öğrenme mekaniği revizyonu (bit yazar) → C tuzak yeniden tasarımı.
+- **Program B (S3-Q/R, 19-20 Ekim):** kapalı 300K → isabet 0.36, kendi-
+  ipucu 0.75; kanal açılınca yetkin ajan sinyali fiyatlamayı öğrendi
+  (prim tersine, ilk kez) ama açılış şoku −0.08 ve 300K'da geri gelmedi;
+  dil yok. **S3 NİHAİ: H4 negatif, mekanizması tam; kanal kalıcı yük.**
+  M-29 işlendi. 93 koşum, 0 bit.
+- **SIRADAKİ ADIM (PL-34, Ali kararı):** A′ evrimsel önyükleme (0 bit,
+  tavsiye) / A öğrenme mekaniği (bit) / C tuzak yeniden tasarımı.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

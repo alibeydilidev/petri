@@ -2883,3 +2883,70 @@ C (tuzak tasarımı) kararı Ali'ye, nihai S3 hükmü güncellenir. R2✓ →
 ADAY GÖZLEM, Beş Kapı (R-K ablasyon hazır; ikiz; bit-eş; zaman çizgisi).
 R1✗ → kanal açık kaldıkça yetkinlik geri gelmiyor → kalıcı maliyet
 (sinyal 0.5 anayasal) → C.
+
+## S3-R — SONUÇLAR: **toparlanma yok; Program B tamam** (2026-10-19, 07:10)
+
+Veri: `runs/s3r/`, `runs/s3r/summary.json`, prob `runs/s3r/signal_curse_probe_r.json`.
+Toplam: kanal-kapalı 300K + açık 300K (R-A) / kapalı 600K (R-K).
+
+| kol | medyan ömür | isabet 0-50K → 100-150K → 180-200K | kendi-ipucu son 20K | sinyal son 20K | hasat/1K | MI |
+|---|---|---|---|---|---|---|
+| **R-K** (kapalı, 600K toplam) | **50** | 0.37-0.39 → 0.36-0.38 → **0.37-0.38** | **0.74-0.75** | 0 | 2.6-3.2 | — |
+| **R-A** (açık, 300K açık) | 42-47 | 0.29-0.32 → 0.29-0.32 → **0.30-0.32** | 0.60-0.64 | 0.26-0.46 | 1.8-2.3 | 0.001-0.0027 |
+
+- **R1 ✗:** fark −0.07 sabit (300K açık kanal boyunca kapanmadı).
+  **R2 ✗, R3 ✗** (MI 0.001-0.003; "duydu/duymadı" tutarsız: −0.02/+0.04/
+  −0.03), **R4 ✗** (sinyal 0.26-0.46; ε tabanı 0.09).
+- Prob (R-A s3002): bir soy sinyali doğru fiyatlıyor (−1.6, argmax→
+  sinyal %5), diğeri nötr (−0.05, %95 — geometri payı). Fiyatlama
+  soydan soya değişken; kanal maliyeti (enerji + sinyal gürültüsü +
+  planlayıcı seyrelmesi) kalıcı.
+- **Kapalı kol platoda:** 600K'da isabet 0.37-0.38, kendi-ipucu 0.74
+  — tavan (0.50/1.0) yerine ~0.38/0.75'te doyuyor: ölüm sıfırlaması +
+  5 ajan rejiminin öğrenme tavanı okulun (0.44/0.86) altında.
+- **Öngörü karnesi:** R1 ✓ (0.5) → ✗; R4 ✓ (0.6) → ✗; R2/R3 ✗ → doğru.
+
+**PROGRAM B HÜKMÜ:** "giriş ücreti" tezi yarı doğru: yetkin ajan sinyalin
+bedelini öğrenebiliyor (Q2'de prim tersine döndü; S3-K…P'de hiç
+öğrenemiyordu) ama (i) açılış şoku (eğitilmemiş sinyal sütunlarının
+sahte primi, sinyal 0.97) yetkinliği −0.08 düşürüyor ve 300K'da geri
+gelmiyor, (ii) fayda zinciri (benim sinyalim → onun eylemi → benim
+paylaşılan enerjim) hiçbir soyda keşfedilmiyor — tavuk-yumurta: alıcı
+sembolü kullanmadan göndericiye fayda yok, gönderici tutarlı sembol
+üretmeden alıcıya öğrenecek şey yok. Kanal bu anayasada **kalıcı net
+yük**. Matris: R1✗ → kalıcı maliyet → C (ya da öğrenme mekaniği A).
+
+---
+
+# S3 NİHAİ HÜKÜM (2026-10-19, 07:15) — Program B sonrası
+
+**H4 NEGATİF (bu anayasa altında; 600K tura kadar; 0 yeni bit; 93
+koşum), mekanizması tamamlanmış:**
+1. Ekoloji öğreniyor (σ=0.002): kendi-ipucu 0.75, isabet 0.38 (plato).
+2. Kanal hiçbir koşulda bilgi taşımadı (MI ≤ 0.003 bit; 36 açık-kanal
+   koşumu); entropi tavanda.
+3. Kanal açık olmak her koşulda yetkinliği düşürdü (−0.04 … −0.08
+   isabet, −30% hasat): maliyet + sahte prim + açılış şoku.
+4. Fayda fiziğe eklendi (paylaşılan kayıp): oracle değer buldu, öğrenen
+   ajan keşfetmedi (tavuk-yumurta).
+**H3 ön koşul negatif. H2 test edilmedi. H1 karışık (S2). H0 ayakta.**
+
+**Pozitif iç-temsil bulguları (etiket: aday gözlem / mekanizma):**
+öncü algısı (30/30), kendi-ipucu öğrenimi (okul 6/6, ekoloji 3/3),
+kanal fiyatlamasının öğrenilebilirliği (Q2, soya bağlı).
+
+**Sonraki program (Ali kararı, PL-34 güncel):**
+- **A. Öğrenme mekaniği** (bit yazar): sahte primi kaynağında kesen
+  karşı-olgusal düzeltme / topluluk belirsizliği. Açılış şokunu ve
+  fiyatlama değişkenliğini çözer; tavuk-yumurtayı çözmez.
+- **A′. Evrimsel önyükleme (0 bit, uzun):** yetkin nüfusta (Q1
+  ağırlıkları) soy-düzeyi seçilim + σ ile "ipucu görünce sembol" gibi
+  tutarlı gönderici varyantlarının rastgele doğup alıcı öğrenmesiyle
+  seçilmesi; tavuk-yumurtanın biyolojideki çözümü (ritüelleşme).
+  ≥1M tur ölçeğinde; birkaç gün hesaplama.
+- **C. Tuzağı yeniden tasarla** (anayasal): sembolün alıcıdaki değerini
+  göndericiye DOĞRUDAN gözlemlenebilir kılan görev (ör. birlikte açılan
+  sığınak; kimlikli/yerel kanal, tekrarlı eş). Deneyin sorusunu
+  değiştirir ama tavuk-yumurtayı kırar.
+**Tavsiye:** A′ (0 bit, deneyin ruhuna en yakın) → sonra C. A tek başına
+dil getirmez.

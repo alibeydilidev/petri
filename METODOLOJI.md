@@ -71,6 +71,15 @@
   keşif) bu sayıya göre seçilir. (PER'den önce hasat olayını
   saysaydık — 45K turda 10 — tamponun tekrarlatacak şey bulamayacağı
   baştan görülürdü; bir koşum tasarruf edilirdi.)
+- **M-29 — Yeni eylem boyutu kademeli açılır, aksi hâlde eğitilmemiş
+  sütun sahte prim üretir** *(S3-Q2, 2026-10-19)*: Bir ajanın hiç
+  kullanmadığı eylem boyutu (sinyal) açıldığında, o boyutun modeldeki
+  sütunları eğitimsizdir ve karşılaştırma dışı kaldıkları için argmax'a
+  sahte bir prim olarak görünür (Q1→Q2: +1…+3 skor, ilk 2K turda sinyal
+  oranı 0.97, yetkinlik −0.08 ve 300K'da geri gelmedi). Kural: yeni
+  boyut ya baştan ε ile beslenir ya da açılış öncesi karşı-olgusal
+  veriyle ısıtılır; "açılış şoku" ayrı bir ölçüm kalemidir. M-05 ve
+  M-28'in geçiş-anı yüzü.
 - **M-28 — Tuzağın geri dönüş yolunu kur, ama önce giriş ücretini
   ölç** *(S3-N…P, 2026-10-19)*: Bir davranışın (sinyal) kendiliğinden
   belirmesi için iki hesap gerekir: göndericiye dönen BEKLENEN DEĞER

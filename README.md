@@ -15,9 +15,12 @@ tuzağı öğrenen ajanlarla 15 koşumda sınandı: ajanlar kendi ipuçlarını
 → H4 bu koşullarda **negatif**, mekanizmasıyla: sinyalin göndericiye
 faydası yoktu (fiziğe eklendi, yetmedi) ve planlayıcı kendi sinyaline
 sahte bir enerji primi öğreniyor (kapalı-döngü karıştırma); 0-bitlik
-çareler primi yarıya indirdi, silemedi (toplam 69 koşum). Ekoloji ilk
-kez kararlı (σ=0.002). Yeni prior 0 bit. Sıradaki program kararı
-PL-34 (Ali).
+çareler primi yarıya indirdi, silemedi. Program B (kademeli kanal,
+600K tur): yetkin ajan sinyali fiyatlamayı öğrenebiliyor ama kanal
+kalıcı net yük, kullanılmıyor (93 koşum). Ekoloji kararlı (σ=0.002),
+ajanlar kendi ipuçlarını öğreniyor. Yeni prior 0 bit. Sonraki program
+kararı PL-34 (Ali): evrimsel önyükleme / öğrenme mekaniği / yeniden
+tasarım.
 
 ---
 
