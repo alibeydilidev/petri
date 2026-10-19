@@ -410,3 +410,31 @@ def test_c1_shelter_counters(tmp_path):
                 founding="clone", nest=(600, 0.5), events=True)
     jd = json.load(open(tmp_path / "d" / "breath.json"))
     assert jd["ledger"]["event_protected"] == jd["ledger"]["event_hits"]
+
+
+@pytest.mark.skipif(not pathlib.Path("runs/s210_weights/seed3.pt").exists(),
+                    reason="seed3.pt yok")
+def test_a2_inherit_per_keeps_buffer_and_is_deterministic(tmp_path):
+    import json
+
+    import numpy as np
+
+    from agent.config import a2_config
+    from population.lifecycle import successor
+    from training.ecology import run_ecology
+    from training.loop import OnlineAgent
+    cfg = a2_config(per_enabled=True, channel_open=True, decoder_type="conv")
+    a = OnlineAgent(cfg, torch_seed=1, np_seed=2)
+    a.per.push(("x",), priority=1.0, actions_present=np.ones(6, bool), grid_change=0.1)
+    c0 = successor(a, cfg, 3, 4, np.random.default_rng(0))
+    c1 = successor(a, cfg, 3, 4, np.random.default_rng(0), inherit_per=True)
+    assert len(c0.per) == 0 and len(c1.per) == 1 and c1.per is a.per
+    kw = dict(world_seed=42, log_every=40, founding="clone", nest=(600, 0.5),
+              events=True, inherit_per=True)
+    run_ecology(80, str(tmp_path / "a"), **kw)
+    run_ecology(80, str(tmp_path / "b"), **kw)
+    ja = json.load(open(tmp_path / "a" / "breath.json")); jb = json.load(open(tmp_path / "b" / "breath.json"))
+    for j in (ja, jb):
+        for v in j["vitals"]:
+            v.pop("ms_per_turn")
+    assert ja == jb and ja["arm"]["inherit_per"] is True

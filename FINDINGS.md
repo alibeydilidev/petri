@@ -3132,3 +3132,33 @@ ağırlıkları + min_safe). C1b✗ → sığınak basınç üretmiyor (N kalibr
 **Beyan (M-09):** min_safe fizik değişikliğidir, görev "sürü alarmı"ndan
 "ortak sığınak"a döner; S3-C/S3-K sonuçlarıyla karşılaştırma
 "farklı görev" şerhiyle. Bit: 0 (KERNEL C notu).
+
+### A1-eko S0 — SONUÇ: **mutasyon hipotezi de düştü** (2026-10-20, 11:05)
+`runs/a1/S0_s*` (σ=0, açık, 100K): isabet 80-100K 0.24-0.26, kendi-ipucu
+0.49-0.53, sinyal 0.78-0.88, ilk 2K sinyal 0.79-0.91 (açılış şoku var).
+Prob (`signal_curse_probe_s0.json`): 4 çekirdeğin 2'sinde prim +0.27/+0.38
+(argmax→sinyalli %60-68 @ %4 pay), 2'sinde nötr. **S0 A1a ✗** → prim
+mutasyonsuz da oluşuyor. Duyma (speak-only probu) ve mutasyon (S0)
+elendi. Okul (prim yok) ile ekoloji (prim var) arasında kalan farklar:
+5 ajan/rekabet, olay cezasının ortak dünyası, ve **ömür**: okulda ~500
+tur (PER tamponu 2000 pencereye kadar birikir, karşı-olgusal tekrar
+çalışır), ekolojide ~40 tur (halef yeni OnlineAgent → PER ve optimizer
+SIFIR; yaşam başına ~5 pencere → tekrar fiilen yok). M-05'in panzehiri
+(K-110 PER) ekolojide hiç devreye girmiyor olabilir. Hipotez (c):
+**prim = tekrar tamponsuz on-policy öğrenme.**
+
+## A2′ — ÖN-KAYIT: deneyim tamponu mirası (koşumdan önce, M-08) (2026-10-20, 11:10)
+
+`successor(..., inherit_per=True)`: halef, ölenin PER tamponunu ve
+optimizer durumunu devralır (ağırlık mirası zaten vardı; bu, yaşantının
+İSTATİSTİĞİNİN soy hattında sürmesi — DP-01 (b) "çekirdek+miras"ın
+tampon ayağı). İçerik 0 bit (hangi deneyimin değerli olduğu söylenmez);
+deneyci kararı (M-09). Kol **P-A**: σ=0.002, açık, inherit_per; taban
+N-A (0.23-0.24, sinyal 0.77, prim soya bağlı) ve S0. 3 seed, 100K.
+- **A2a (prim):** prob prim ≤ +0.1, argmax ≤ pay×1.5 (3/3).
+- **A2b:** isabet ≥ 0.26, kendi-ipucu > 0.55; sinyal son 20K < 0.5.
+- **Öngörü:** A2a ✓ (0.6), A2b ✓ (0.5).
+- **Matris:** ✓ → PER mirası ekoloji varsayılanı (PL-35), topluluk gereksiz
+  → C2 bu mekanikle. ✗ → kalan fark rekabet/ortak dünya → A1 topluluk
+  sonucu (E3) belirleyici; o da ✗ ise prim bu mimaride çok-ajan
+  rejimine özgü ve mekanik çare yok → S3 nihai hükme ek.

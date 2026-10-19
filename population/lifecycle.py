@@ -101,11 +101,22 @@ def transplant_seed3_ensemble(ckpt_path: str, cfg: AgentConfig,
 
 def successor(dead: OnlineAgent, cfg: AgentConfig, torch_seed: int,
               np_seed: int, rng: np.random.Generator,
-              sigma: float = MUTATION_SIGMA) -> OnlineAgent:
+              sigma: float = MUTATION_SIGMA,
+              inherit_per: bool = False) -> OnlineAgent:
     """Halef: ölenin ağırlıkları + mutasyon (DP-01b fiili). Optimizer,
-    PER tamponu, hidden SIFIRDAN (yaşantı miras alınmaz, yapı alınır)."""
+    PER tamponu, hidden SIFIRDAN (yaşantı miras alınmaz, yapı alınır).
+
+    inherit_per=True (A2′, 2026-10-20): PER tamponu ve optimizer durumu da
+    devralınır — ekolojide ömür ~40 tur olduğundan tampon her ölümde
+    sıfırlanıyor ve karşı-olgusal tekrar (M-05 panzehiri) hiç
+    çalışmıyordu. İçerik 0 bit; deneyci kararı (M-09). Hidden yine sıfır."""
     child = type(dead)(cfg, torch_seed=torch_seed, np_seed=np_seed)
     with torch.no_grad():
         child.core.load_state_dict(copy.deepcopy(dead.core.state_dict()))
+    if inherit_per:
+        if dead.per is not None:
+            child.per = dead.per            # aynı tampon nesnesi, soy hattında sürer
+        if dead.opt is not None and child.opt is not None:
+            child.opt.load_state_dict(dead.opt.state_dict())
     mutate_(child, sigma, rng)
     return child

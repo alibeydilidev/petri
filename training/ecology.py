@@ -377,7 +377,8 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 signal_candidate_frac: float | None = None,
                 eps_signal_quiet: float | None = None,
                 ensemble: tuple[int, float] | None = None,
-                event_min_safe: int | None = None) -> None:
+                event_min_safe: int | None = None,
+                inherit_per: bool = False) -> None:
     """mutation_sigma: halef mutasyonu σ (None → lifecycle.MUTATION_SIGMA
     =0.01). S3-F drift merdiveni için parametrik; 0.0 = saf miras."""
     from population.lifecycle import MUTATION_SIGMA
@@ -499,7 +500,7 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                 child_agent = successor(
                     parent_c.agent, c.agent.cfg,
                     torch_seed=10_000 + deaths, np_seed=20_000 + deaths,
-                    rng=succ_rng, sigma=sigma)
+                    rng=succ_rng, sigma=sigma, inherit_per=inherit_per)
                 child = Citizen(c.slot, child_agent, gen=c.gen + 1,
                                 parent=parent_c.id, birth_turn=turn, mute=mute,
                                 channel=channel)
@@ -574,6 +575,7 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                    "event_lead": wcfg.event_lead,
                    "event_share": wcfg.event_share,
                    "event_min_safe": wcfg.event_min_safe,
+                   "inherit_per": inherit_per,
                    "signal_candidate_frac": cits[0].agent.cfg.mpc_signal_candidate_frac,
                    "eps_signal_quiet": cits[0].agent.cfg.eps_signal_quiet_prob,
                    "ensemble_k": cits[0].agent.cfg.ensemble_k,
@@ -651,6 +653,8 @@ def main() -> None:
                     metavar=("K", "BETA"), help="A1: topluluk K ve β")
     ap.add_argument("--min-safe", type=int, default=None,
                     help="Program C: sığınak için eşzamanlı doğru ajan sayısı")
+    ap.add_argument("--inherit-per", action="store_true",
+                    help="A2′: halef PER tamponu + optimizer durumunu devralır")
     a = ap.parse_args()
     run_ecology(a.turns, a.out, world_seed=a.world_seed, log_every=a.log_every,
                 founding=a.founding, nest=(int(a.nest[0]), float(a.nest[1])),
@@ -662,7 +666,7 @@ def main() -> None:
                 eps_signal_quiet=a.eps_quiet,
                 ensemble=None if a.ensemble is None
                 else (int(a.ensemble[0]), float(a.ensemble[1])),
-                event_min_safe=a.min_safe)
+                event_min_safe=a.min_safe, inherit_per=a.inherit_per)
 
 
 if __name__ == "__main__":
