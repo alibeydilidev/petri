@@ -241,8 +241,9 @@
 - **PL-35 — PER tamponu mirası (ADAY KARAR, 2026-10-20):** A2′: halef
   PER + optimizer devralınca sahte sinyal primi siliniyor, kanal açıkken
   isabet 0.23 → 0.41 (kendi-ipucu 0.78), ömür 40 → 50, hasat ×1.8.
-  P-K kontrolü (inherit_per + kapalı) bekleniyor; A2d ✓ ise ekoloji
-  varsayılanı. İçerik 0 bit; DP-01 (b) tamamlanır (yapı + yaşantı
+  **KARAR (2026-10-20 16:05): P-K 0.39 (A2d ✓), P-A 0.41 (A2c ✗) →
+  inherit_per ekoloji VARSAYILANI.** Kanal isabette nötr, hasatta
+  maliyetli (7.5 vs 11.3). İçerik 0 bit; DP-01 (b) tamamlanır (yapı + yaşantı
   istatistiği soy hattında, beden/hidden sıfır). M-09 kaydı; KERNEL
   notu "A2′".
 - **PL-34 — Sonraki program kararı (AÇIK, Ali):** 0-bit merdiven bitti

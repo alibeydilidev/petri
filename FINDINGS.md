@@ -3307,3 +3307,25 @@ Prob (`signal_curse_probe_e3.json`, topluluk planlayıcısıyla): prim
   teşhis "tampon", yanlış teşhis "epistemik belirsizlik".
 - **K-115 aday satırı GERİ ALINDI** (bit yazılmadı; kod kalır, varsayılan
   k=1 bit-eş). Öngörü karnesi: A1a ✓ (0.6) → YANLIŞ; A1c ✓ (0.7) → YANLIŞ.
+
+### A2′ — NİHAİ (P-K kontrolü geldi, 16:05): **tampon etkisi ✓, kanal isabette nötr, hasatta maliyetli**
+| kol | medyan ömür | isabet 80-100K | kendi-ipucu | hasat/1K | ölüm/100K |
+|---|---|---|---|---|---|
+| **P-K** (inherit_per, kapalı) | 50 | **0.39 / 0.39 / 0.39** | 0.78 | **11.1-11.8** | 8.6-8.8K |
+| **P-A** (inherit_per, açık) | 50 | **0.41 / 0.41 / 0.39** | 0.77-0.79 | 7.2-7.7 | 9.8-10.0K |
+| N-K / N-A (tamponsuz) | 43 / 40 | 0.28 / 0.23 | 0.55 / 0.47 | 6.4-7.6 / 3.9-4.3 | — |
+
+- **A2d ✓:** PER mirası tek başına kapalı kolu +0.11 taşıyor (0.28 → 0.39),
+  kendi-ipucu 0.55 → 0.78, hasat ×1.6, ömür 43 → 50. **Mekanik kazanç
+  büyük ve kanaldan bağımsız.**
+- **A2c ✗:** P-A − P-K = +0.01 (çıta +0.05), tavan 0.50 aşılmadı. Kanal
+  isabette ilk kez NÖTR (önceki tüm koşumlarda −0.04 … −0.08), ama
+  hasat −35%, ölüm +13%: sinyal maliyeti (0.47 × 0.5 enerji/tur) hâlâ
+  ödeniyor, karşılığı yok.
+- **Öngörü karnesi:** A2d ✓ (0.8) doğru; A2c ✗ (0.7) doğru.
+
+**KARAR (PL-35, Claude — Ali yetki devri): `inherit_per=True` ekoloji
+varsayılanı.** 0 bit; DP-01 (b) tamamlanır: ölüm bedene ve hidden'a,
+yapı (ağırlık) ve yaşantı istatistiği (tampon, optimizer) soy hattına.
+Gerekçe: M-05 panzehiri (K-110 PER) ekolojide ancak böyle çalışıyor;
+sahte prim siliniyor; kapalı ve açık kol eşitleniyor.
