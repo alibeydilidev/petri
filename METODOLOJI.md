@@ -71,6 +71,23 @@
   keşif) bu sayıya göre seçilir. (PER'den önce hasat olayını
   saysaydık — 45K turda 10 — tamponun tekrarlatacak şey bulamayacağı
   baştan görülürdü; bir koşum tasarruf edilirdi.)
+- **M-31 — Halefiyet, öğrenme mekaniğinin her parçası için ayrı
+  karardır** *(A2′, 2026-10-20)*: "Ölüm gerçek" cümlesi ağırlık, tekrar
+  tamponu, optimizer durumu ve hidden için ayrı ayrı ne olduğunu
+  söylemek zorundadır. S3'te ağırlık miras alınıyor, tampon ve
+  optimizer sıfırlanıyordu; 40 turluk ömürde tampon hiç dolmadığı için
+  karşı-olgusal tekrar (M-05 panzehiri) ekolojide HİÇ çalışmadı ve
+  sahte sinyal primi üç programı yuttu. Tampon soy hattında sürünce
+  prim silindi (0.28 → 0.39). Kural: nüfus deneyinde her öğrenme
+  bileşeninin ölüm-sonrası kaderi tasarım tablosuna yazılır ve tek
+  ajan ile ekoloji arasındaki fark o tablodan okunur (M-27'nin kardeşi).
+- **M-30 — Ortak fayda, bireysel kredi atamasını koruyarak verilir**
+  *(C1, 2026-10-20)*: Sinyalin faydasını göndericiye doğrudan bağlamak
+  için bireysel korumayı grup başarısına bağlayınca ("sığınak ≥3"),
+  ajanın kendi eylemi ile sonucu arasındaki korelasyon 0.5'e düştü ve
+  kendi-ipucu öğrenimi çöktü. Tuzak tasarımında "göndericiye fayda" ve
+  "kendi eylemine kredi" ayrı ayrı korunmalı; biri diğerini yerse
+  iletecek bilgi hiç doğmaz. (M-28'in tasarım yüzü.)
 - **M-29 — Yeni eylem boyutu kademeli açılır, aksi hâlde eğitilmemiş
   sütun sahte prim üretir** *(S3-Q2, 2026-10-19)*: Bir ajanın hiç
   kullanmadığı eylem boyutu (sinyal) açıldığında, o boyutun modeldeki

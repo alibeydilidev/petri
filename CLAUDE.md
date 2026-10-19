@@ -92,8 +92,14 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   (prim tersine, ilk kez) ama açılış şoku −0.08 ve 300K'da geri gelmedi;
   dil yok. **S3 NİHAİ: H4 negatif, mekanizması tam; kanal kalıcı yük.**
   M-29 işlendi. 93 koşum, 0 bit.
-- **SIRADAKİ ADIM (PL-34, Ali kararı):** A′ evrimsel önyükleme (0 bit,
-  tavsiye) / A öğrenme mekaniği (bit) / C tuzak yeniden tasarımı.
+- **Program A + C (20 Ekim):** sahte sinyal priminin kaynağı = halefte
+  PER sıfırlaması (ömür 40 → tampon boş); `inherit_per` varsayılan
+  (PL-35): prim silindi, açık=kapalı. Topluluk ✗ (K-115 geri). Sığınak
+  tuzağı: N=3 kredi atamasını bozdu, N=2 + yetkin kadro + tampon →
+  kanal nötr ve fiyatlı, isabet 0.45 (tavan), MI 0.004 platosu, kanal
+  KULLANILMIYOR (600K). M-30/M-31. Toplam 113 koşum, 0 bit.
+- **SIRADAKİ ADIM (PL-36, Ali kararı):** A′ evrimsel önyükleme / D
+  "alıcı önce" (M-25 analizi şart) / E kimlikli-yerel kanal.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

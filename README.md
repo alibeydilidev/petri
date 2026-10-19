@@ -17,10 +17,11 @@ faydası yoktu (fiziğe eklendi, yetmedi) ve planlayıcı kendi sinyaline
 sahte bir enerji primi öğreniyor (kapalı-döngü karıştırma); 0-bitlik
 çareler primi yarıya indirdi, silemedi. Program B (kademeli kanal,
 600K tur): yetkin ajan sinyali fiyatlamayı öğrenebiliyor ama kanal
-kalıcı net yük, kullanılmıyor (93 koşum). Ekoloji kararlı (σ=0.002),
-ajanlar kendi ipuçlarını öğreniyor. Yeni prior 0 bit. Sonraki program
-kararı PL-34 (Ali): evrimsel önyükleme / öğrenme mekaniği / yeniden
-tasarım.
+kalıcı net yük, kullanılmıyor. Program A+C (20 Ekim): sahte primin
+kaynağı (halefte tekrar tamponu sıfırlanması) bulunup kesildi, kanal
+artık **nötr ve doğru fiyatlı**; ajanlar kendi-ipucu tavanında (0.45);
+"birlikte açılan sığınak" tuzağıyla bile kimse başkasının bitini
+kullanmıyor (113 koşum, 0 bit). Sonraki program kararı PL-36 (Ali).
 
 ---
 

@@ -3379,3 +3379,81 @@ tampon dosyaya yazılmıyor, yeni başlar — beyan) 200K daha; dünya seed
   bit-eş tekrar, zaman çizgisi, 0 bit) ve Ali'ye bildirim. C4a✗ →
   Program A+C kapanışı: "kanal nötr, fiyatlı, kullanılmıyor" nihai; Ali'ye
   A′ (evrimsel önyükleme) ve tasarım alternatifleri; S3 nihai hükme ek.
+
+## C4 — SONUÇLAR: **plato; kanal nötr, fiyatlı, kullanılmıyor** (2026-10-20, 19:45)
+
+Veri: `runs/c4/`, `runs/c4/summary.json`, prob `signal_curse_probe_c4.json`
+(C3 devamı, +200K; toplam 300K kapalı + 300K sığınak).
+
+| kol | medyan ömür | isabet 0-50K → 100-150K → **180-200K** | kendi-ipucu | sinyal son 20K | hasat/1K | MI |
+|---|---|---|---|---|---|---|
+| **C4-K** | 54-55 | 0.44 → 0.44-0.46 → **0.44 / 0.45 / 0.45** | **0.89-0.90** | 0 | 1.6-2.1 | — |
+| **C4-A** | 50-51 | 0.44-0.45 → 0.45 → **0.46 / 0.44 / 0.45** | 0.87 | **0.29-0.35** | 1.3-1.6 | **0.0014-0.0034** |
+
+- **C4a ✗:** fark ≤ +0.01, 0.50 aşılmadı; iki kol 200K boyunca 0.44-0.46'da
+  DÜZ (kendi-ipucu tavanı: 0.89 × 0.5 ≈ 0.45 — tam oradalar).
+- **C4b ✗:** MI 0.0014-0.0034 (C3 ile aynı; artış durdu); "duydu" 0.44 <
+  "duymadı" 0.60-0.63 (duymadı kümesi ~%0.5; "kimsenin konuşmadığı"
+  olaylar ya da olaysız pencereler — yorumlanamaz, M-03).
+- **C4c:** 0.29 / 0.31 / 0.35 → 1/3 (sınırda). Prob: prim −0.35/−0.5,
+  argmax→sinyalli %27-38 @ %86 pay, %5 @ %4 pay (doğru fiyat; CEM
+  geometrisi kalan sinyali açıklıyor).
+- **Öngörü karnesi:** C4a ✗ (0.8) doğru; C4b ✗ (0.65) doğru; C4c ✓ (0.55)
+  → sınırda.
+
+---
+
+# PROGRAM A + C KAPANIŞI (2026-10-20, 20:00)
+
+**Yapılan (bugün, 20 koşum + 3 okul + 3 oracle):** A0 (okul, kanal açık),
+A1-eko S0/E3, A2′ P-A/P-K, C0 oracle, C1, C2, C3, C4.
+
+**Kazanımlar (mekanizma, hepsi 0 bit):**
+1. **Sahte sinyal priminin kaynağı bulundu ve kesildi:** halef her
+   ölümde PER tamponunu sıfırlıyordu (ömür ~40 → tampon ~5 pencere →
+   karşı-olgusal tekrar yok). `inherit_per` ile prim silindi; kapalı kol
+   0.28 → 0.39, açık kol 0.23 → 0.41, ömür +25%, hasat ×1.6. **PL-35
+   KARAR: varsayılan.** Yanlış adaylar sırayla elendi: duyma gürültüsü
+   (speak-only prob), mutasyon (S0), epistemik belirsizlik (E3 topluluk
+   ✗, K-115 geri alındı).
+2. **Açılış şoku** PER mirasıyla 40K içinde toparlanıyor (C3; C2'de
+   100K'da toparlanmıyordu).
+3. **Sığınak görevi:** N=3 bireysel kredi atamasını öldürdü (C1, M-30);
+   N=2 basınç üretmedi ama yetkinliği korudu (C2-C4).
+4. **Ajanlar tavanda:** kendi-ipucu 0.87-0.90, isabet 0.44-0.46 ≈ kendi-
+   ipucu tavanı. **Kanal ilk kez nötr** (açık = kapalı), doğru fiyatlı
+   (prob), planlayıcı sinyali "umursamıyor" (CEM geometrisi + yuva
+   indirimi → kalan 0.3 sinyal/tur).
+
+**Sonuç:** Mekanik engellerin tamamı kaldırıldıktan sonra da hiçbir
+soy başkasının bitini kullanmıyor. I(ipucu;sembol) dört programda
+0.0004 → 0.004'e çıkıp platoya oturdu (çıta 0.05). Tavuk-yumurta, A
+(mekanik) ve C (doğrudan fayda) ile kırılmadı.
+
+**Nihai hüküm güncellemesi (S3 NİHAİ HÜKÜM'e ek):** H4 NEGATİF hükmü
+güçlendi: olumsuzluk artık mekanik artefaktlarla (drift, prim, şok)
+açıklanamıyor; kanal kullanılabilir, fiyatlı ve nötrken bile kullanılmıyor.
+Kalan açıklama tasarımsal ve teorik: **sembol-dünya olumsallığını kurmak
+için ilk konuşanın, alıcının öğrenmesini beklerken bedel ödemesi
+gerekir; öğrenen bireysel sistemde bu yatırımı yapan seçilmez.** (M-28)
+
+**Yeni dersler:** M-30 (ortak fayda / kredi ataması), M-31 (halefiyet,
+öğrenme mekaniğinin her parçası için ayrı karardır: ağırlık, tampon,
+optimizer, hidden — "ölüm gerçek" cümlesi bunların hangisine dediğini
+söylemek zorunda; tampon sıfırlaması üç programlık sahte primin
+kaynağıydı). METODOLOJI'ye işlendi.
+
+**Sonraki program (PL-36, Ali kararı):**
+- **A′ Evrimsel önyükleme (0 bit, uzun):** yetkin, tamponlu nüfusta
+  (C4 ağırlıkları) soy-düzeyi varyasyon + seçilim; "ipucu görünce
+  sembol" varyantının rastgele doğup alıcının öğrenmesiyle çoğalması.
+  Biyolojideki çözüm; ≥1M tur, günler.
+- **D Tasarım: alıcı önce** (0 bit, dünya-tarafı): alıcının sembolü
+  eyleme bağlamasını, gönderici olmadan öğrenilebilir kılmak — ör.
+  dünyanın kendisi öncüyü bazen bir sembol olarak "yayınlasın"
+  (sensory bias / ritüelleşme emsali). Dil VERMEZ (sembol-anlam
+  eşlemesi yine öğrenilir) ama tavuk-yumurtanın alıcı ayağını kırar.
+  Anayasal tartışma: dünya "konuşuyor" mu olur? (M-25 ile sayılmalı.)
+- **E Kimlikli/yerel kanal + tekrarlı eş** (PL-28 geri): karşılıklılık
+  için gerekli yapı; deneyin "en temiz kanal" iddiasını zayıflatır.
+**Tavsiye:** D'nin M-25 analizi (0 bit mi?) + A′ paralel.

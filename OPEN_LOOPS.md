@@ -238,6 +238,14 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-36 — Sonraki program (AÇIK, Ali):** A+C kapandı (FINDINGS
+  "PROGRAM A + C KAPANIŞI"): kanal nötr, fiyatlı, kullanılmıyor; MI
+  0.004 platosu. Seçenekler: A′ evrimsel önyükleme (0 bit, ≥1M tur),
+  D "alıcı önce" (dünya öncüyü bazen sembol olarak yayınlar; M-25
+  analizi şart), E kimlikli/yerel kanal (PL-28 geri). Tavsiye: D'nin
+  bit analizi + A′ paralel.
+- **PL-34 — (KAPALI, 2026-10-20 20:00):** A ✓ (PER mirası, PL-35) /
+  topluluk ✗; C ✓ tuzak kuruldu, ✗ dil; PL-36'ya devredildi.
 - **PL-35 — PER tamponu mirası (ADAY KARAR, 2026-10-20):** A2′: halef
   PER + optimizer devralınca sahte sinyal primi siliniyor, kanal açıkken
   isabet 0.23 → 0.41 (kendi-ipucu 0.78), ömür 40 → 50, hasat ×1.8.

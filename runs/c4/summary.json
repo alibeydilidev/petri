@@ -1,0 +1,2096 @@
+{
+  "runs": [
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3A_s3001/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3401,
+      "deaths": 17786,
+      "median_lifespan": 50.0,
+      "mean_lifespan": 56.2,
+      "a_harvest_per_1k": 1.45,
+      "signal_rate": 0.3323,
+      "pending_signal_rate": 0.3998,
+      "event_hit_rate": 0.4475,
+      "hit_rate_heard": 0.4467,
+      "hit_rate_not_heard": 0.6265,
+      "heard_share_of_events": 0.9958,
+      "own_cue_consistent_rate": 0.8676,
+      "event_stay_share": 0.4918,
+      "protected_rate": 0.4367,
+      "deaths_in_nest": 17786,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9993,
+      "mi_cue_symbol": {
+        "n": 159922,
+        "mi_raw_bits": 0.0016,
+        "mi_miller_madow_bits": 0.0014,
+        "perm_mean_bits": 0.0002,
+        "perm_p95_bits": 0.0003,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          22243,
+          58969,
+          22081,
+          56629
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 159922,
+        "mi_raw_bits": 0.0011,
+        "mi_miller_madow_bits": 0.001,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          44324,
+          115598
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.4429,
+          "sig": 0.3064,
+          "life": 50.0,
+          "deaths": 450
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4376,
+          "sig": 0.3453,
+          "life": 50.0,
+          "deaths": 905
+        },
+        {
+          "turn": 15000,
+          "hit": 0.4528,
+          "sig": 0.3477,
+          "life": 50.0,
+          "deaths": 1348
+        },
+        {
+          "turn": 20000,
+          "hit": 0.444,
+          "sig": 0.3446,
+          "life": 50.0,
+          "deaths": 1799
+        },
+        {
+          "turn": 25000,
+          "hit": 0.4888,
+          "sig": 0.3639,
+          "life": 50.0,
+          "deaths": 2226
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4628,
+          "sig": 0.3226,
+          "life": 50.0,
+          "deaths": 2661
+        },
+        {
+          "turn": 35000,
+          "hit": 0.446,
+          "sig": 0.3297,
+          "life": 50.0,
+          "deaths": 3109
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4404,
+          "sig": 0.3118,
+          "life": 50.0,
+          "deaths": 3551
+        },
+        {
+          "turn": 45000,
+          "hit": 0.4448,
+          "sig": 0.3441,
+          "life": 50.0,
+          "deaths": 4002
+        },
+        {
+          "turn": 50000,
+          "hit": 0.446,
+          "sig": 0.3432,
+          "life": 50.0,
+          "deaths": 4448
+        },
+        {
+          "turn": 55000,
+          "hit": 0.4452,
+          "sig": 0.3371,
+          "life": 50.0,
+          "deaths": 4888
+        },
+        {
+          "turn": 60000,
+          "hit": 0.4528,
+          "sig": 0.3429,
+          "life": 50.0,
+          "deaths": 5330
+        },
+        {
+          "turn": 65000,
+          "hit": 0.428,
+          "sig": 0.361,
+          "life": 50.0,
+          "deaths": 5787
+        },
+        {
+          "turn": 70000,
+          "hit": 0.446,
+          "sig": 0.349,
+          "life": 50.0,
+          "deaths": 6232
+        },
+        {
+          "turn": 75000,
+          "hit": 0.4736,
+          "sig": 0.3428,
+          "life": 50.0,
+          "deaths": 6671
+        },
+        {
+          "turn": 80000,
+          "hit": 0.432,
+          "sig": 0.3352,
+          "life": 50.0,
+          "deaths": 7131
+        },
+        {
+          "turn": 85000,
+          "hit": 0.4512,
+          "sig": 0.3289,
+          "life": 50.0,
+          "deaths": 7568
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4116,
+          "sig": 0.3105,
+          "life": 50.0,
+          "deaths": 8024
+        },
+        {
+          "turn": 95000,
+          "hit": 0.4276,
+          "sig": 0.3254,
+          "life": 50.0,
+          "deaths": 8480
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4532,
+          "sig": 0.2996,
+          "life": 50.0,
+          "deaths": 8918
+        },
+        {
+          "turn": 105000,
+          "hit": 0.4592,
+          "sig": 0.31,
+          "life": 50.0,
+          "deaths": 9356
+        },
+        {
+          "turn": 110000,
+          "hit": 0.442,
+          "sig": 0.3325,
+          "life": 50.0,
+          "deaths": 9805
+        },
+        {
+          "turn": 115000,
+          "hit": 0.4508,
+          "sig": 0.3363,
+          "life": 50.0,
+          "deaths": 10241
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4224,
+          "sig": 0.3637,
+          "life": 50.0,
+          "deaths": 10705
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4452,
+          "sig": 0.3159,
+          "life": 50.0,
+          "deaths": 11147
+        },
+        {
+          "turn": 130000,
+          "hit": 0.4436,
+          "sig": 0.3421,
+          "life": 50.0,
+          "deaths": 11592
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4648,
+          "sig": 0.3413,
+          "life": 50.0,
+          "deaths": 12028
+        },
+        {
+          "turn": 140000,
+          "hit": 0.4436,
+          "sig": 0.3412,
+          "life": 50.0,
+          "deaths": 12473
+        },
+        {
+          "turn": 145000,
+          "hit": 0.4332,
+          "sig": 0.368,
+          "life": 50.0,
+          "deaths": 12932
+        },
+        {
+          "turn": 150000,
+          "hit": 0.4996,
+          "sig": 0.3358,
+          "life": 50.0,
+          "deaths": 13345
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4456,
+          "sig": 0.3353,
+          "life": 50.0,
+          "deaths": 13794
+        },
+        {
+          "turn": 160000,
+          "hit": 0.4244,
+          "sig": 0.3229,
+          "life": 50.0,
+          "deaths": 14253
+        },
+        {
+          "turn": 165000,
+          "hit": 0.4396,
+          "sig": 0.319,
+          "life": 50.0,
+          "deaths": 14703
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4584,
+          "sig": 0.3126,
+          "life": 50.0,
+          "deaths": 15134
+        },
+        {
+          "turn": 175000,
+          "hit": 0.4232,
+          "sig": 0.3537,
+          "life": 50.0,
+          "deaths": 15596
+        },
+        {
+          "turn": 180000,
+          "hit": 0.45,
+          "sig": 0.3145,
+          "life": 50.0,
+          "deaths": 16046
+        },
+        {
+          "turn": 185000,
+          "hit": 0.482,
+          "sig": 0.3228,
+          "life": 50.0,
+          "deaths": 16466
+        },
+        {
+          "turn": 190000,
+          "hit": 0.472,
+          "sig": 0.3072,
+          "life": 50.0,
+          "deaths": 16892
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4436,
+          "sig": 0.3284,
+          "life": 50.0,
+          "deaths": 17332
+        },
+        {
+          "turn": 200000,
+          "hit": 0.428,
+          "sig": 0.2982,
+          "life": 50.0,
+          "deaths": 17786
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3A_s3002/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3402,
+      "deaths": 18076,
+      "median_lifespan": 50.0,
+      "mean_lifespan": 55.3,
+      "a_harvest_per_1k": 1.55,
+      "signal_rate": 0.3601,
+      "pending_signal_rate": 0.435,
+      "event_hit_rate": 0.444,
+      "hit_rate_heard": 0.4433,
+      "hit_rate_not_heard": 0.602,
+      "heard_share_of_events": 0.9959,
+      "own_cue_consistent_rate": 0.8657,
+      "event_stay_share": 0.4803,
+      "protected_rate": 0.4329,
+      "deaths_in_nest": 18076,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9984,
+      "mi_cue_symbol": {
+        "n": 173986,
+        "mi_raw_bits": 0.0036,
+        "mi_miller_madow_bits": 0.0034,
+        "perm_mean_bits": 0.0002,
+        "perm_p95_bits": 0.0003,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          25476,
+          62013,
+          24142,
+          62355
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 173986,
+        "mi_raw_bits": 0.0031,
+        "mi_miller_madow_bits": 0.003,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          49618,
+          124368
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.4353,
+          "sig": 0.3982,
+          "life": 50.0,
+          "deaths": 455
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4388,
+          "sig": 0.3799,
+          "life": 50.0,
+          "deaths": 908
+        },
+        {
+          "turn": 15000,
+          "hit": 0.4392,
+          "sig": 0.364,
+          "life": 50.0,
+          "deaths": 1367
+        },
+        {
+          "turn": 20000,
+          "hit": 0.4604,
+          "sig": 0.346,
+          "life": 50.0,
+          "deaths": 1807
+        },
+        {
+          "turn": 25000,
+          "hit": 0.4404,
+          "sig": 0.3684,
+          "life": 50.0,
+          "deaths": 2262
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4588,
+          "sig": 0.3678,
+          "life": 50.0,
+          "deaths": 2699
+        },
+        {
+          "turn": 35000,
+          "hit": 0.4392,
+          "sig": 0.3729,
+          "life": 50.0,
+          "deaths": 3157
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4352,
+          "sig": 0.3856,
+          "life": 50.0,
+          "deaths": 3617
+        },
+        {
+          "turn": 45000,
+          "hit": 0.406,
+          "sig": 0.3598,
+          "life": 50.0,
+          "deaths": 4085
+        },
+        {
+          "turn": 50000,
+          "hit": 0.4472,
+          "sig": 0.363,
+          "life": 50.0,
+          "deaths": 4535
+        },
+        {
+          "turn": 55000,
+          "hit": 0.4472,
+          "sig": 0.3594,
+          "life": 50.0,
+          "deaths": 4980
+        },
+        {
+          "turn": 60000,
+          "hit": 0.422,
+          "sig": 0.3509,
+          "life": 50.0,
+          "deaths": 5442
+        },
+        {
+          "turn": 65000,
+          "hit": 0.4512,
+          "sig": 0.3679,
+          "life": 50.0,
+          "deaths": 5900
+        },
+        {
+          "turn": 70000,
+          "hit": 0.4496,
+          "sig": 0.3636,
+          "life": 50.0,
+          "deaths": 6353
+        },
+        {
+          "turn": 75000,
+          "hit": 0.4352,
+          "sig": 0.3576,
+          "life": 50.0,
+          "deaths": 6807
+        },
+        {
+          "turn": 80000,
+          "hit": 0.4556,
+          "sig": 0.3572,
+          "life": 50.0,
+          "deaths": 7260
+        },
+        {
+          "turn": 85000,
+          "hit": 0.436,
+          "sig": 0.363,
+          "life": 50.0,
+          "deaths": 7716
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4256,
+          "sig": 0.3508,
+          "life": 50.0,
+          "deaths": 8182
+        },
+        {
+          "turn": 95000,
+          "hit": 0.486,
+          "sig": 0.3345,
+          "life": 50.0,
+          "deaths": 8608
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4244,
+          "sig": 0.3389,
+          "life": 50.0,
+          "deaths": 9069
+        },
+        {
+          "turn": 105000,
+          "hit": 0.4176,
+          "sig": 0.3267,
+          "life": 50.0,
+          "deaths": 9532
+        },
+        {
+          "turn": 110000,
+          "hit": 0.4632,
+          "sig": 0.33,
+          "life": 50.0,
+          "deaths": 9971
+        },
+        {
+          "turn": 115000,
+          "hit": 0.4408,
+          "sig": 0.3329,
+          "life": 50.0,
+          "deaths": 10425
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4428,
+          "sig": 0.3352,
+          "life": 50.0,
+          "deaths": 10873
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4256,
+          "sig": 0.3385,
+          "life": 50.0,
+          "deaths": 11340
+        },
+        {
+          "turn": 130000,
+          "hit": 0.448,
+          "sig": 0.3317,
+          "life": 50.0,
+          "deaths": 11788
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4344,
+          "sig": 0.3805,
+          "life": 50.0,
+          "deaths": 12253
+        },
+        {
+          "turn": 140000,
+          "hit": 0.4976,
+          "sig": 0.3726,
+          "life": 50.0,
+          "deaths": 12680
+        },
+        {
+          "turn": 145000,
+          "hit": 0.496,
+          "sig": 0.3592,
+          "life": 50.0,
+          "deaths": 13107
+        },
+        {
+          "turn": 150000,
+          "hit": 0.4324,
+          "sig": 0.3569,
+          "life": 50.0,
+          "deaths": 13562
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4256,
+          "sig": 0.3568,
+          "life": 50.0,
+          "deaths": 14023
+        },
+        {
+          "turn": 160000,
+          "hit": 0.422,
+          "sig": 0.386,
+          "life": 50.0,
+          "deaths": 14482
+        },
+        {
+          "turn": 165000,
+          "hit": 0.452,
+          "sig": 0.3918,
+          "life": 50.0,
+          "deaths": 14928
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4772,
+          "sig": 0.3986,
+          "life": 50.0,
+          "deaths": 15361
+        },
+        {
+          "turn": 175000,
+          "hit": 0.448,
+          "sig": 0.3696,
+          "life": 50.0,
+          "deaths": 15806
+        },
+        {
+          "turn": 180000,
+          "hit": 0.438,
+          "sig": 0.373,
+          "life": 50.0,
+          "deaths": 16267
+        },
+        {
+          "turn": 185000,
+          "hit": 0.4324,
+          "sig": 0.3291,
+          "life": 50.0,
+          "deaths": 16723
+        },
+        {
+          "turn": 190000,
+          "hit": 0.4708,
+          "sig": 0.3665,
+          "life": 50.0,
+          "deaths": 17163
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4136,
+          "sig": 0.3397,
+          "life": 50.0,
+          "deaths": 17631
+        },
+        {
+          "turn": 200000,
+          "hit": 0.4468,
+          "sig": 0.3785,
+          "life": 50.0,
+          "deaths": 18076
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3A_s3003/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "open",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3403,
+      "deaths": 17581,
+      "median_lifespan": 51.0,
+      "mean_lifespan": 56.9,
+      "a_harvest_per_1k": 1.27,
+      "signal_rate": 0.2928,
+      "pending_signal_rate": 0.3516,
+      "event_hit_rate": 0.4454,
+      "hit_rate_heard": 0.4441,
+      "hit_rate_not_heard": 0.6115,
+      "heard_share_of_events": 0.992,
+      "own_cue_consistent_rate": 0.8629,
+      "event_stay_share": 0.5032,
+      "protected_rate": 0.4342,
+      "deaths_in_nest": 17581,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": 3.9989,
+      "mi_cue_symbol": {
+        "n": 140625,
+        "mi_raw_bits": 0.0031,
+        "mi_miller_madow_bits": 0.0028,
+        "perm_mean_bits": 0.0002,
+        "perm_p95_bits": 0.0003,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          20092,
+          49688,
+          19927,
+          50918
+        ]
+      },
+      "mi_cuevalue_symbol": {
+        "n": 140625,
+        "mi_raw_bits": 0.0025,
+        "mi_miller_madow_bits": 0.0024,
+        "perm_mean_bits": 0.0001,
+        "perm_p95_bits": 0.0001,
+        "p_value_perm": 0.0,
+        "row_counts": [
+          40019,
+          100606
+        ]
+      },
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.3912,
+          "sig": 0.3602,
+          "life": 50.0,
+          "deaths": 480
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4868,
+          "sig": 0.3466,
+          "life": 50.0,
+          "deaths": 903
+        },
+        {
+          "turn": 15000,
+          "hit": 0.4412,
+          "sig": 0.3629,
+          "life": 50.0,
+          "deaths": 1355
+        },
+        {
+          "turn": 20000,
+          "hit": 0.4344,
+          "sig": 0.3152,
+          "life": 50.0,
+          "deaths": 1805
+        },
+        {
+          "turn": 25000,
+          "hit": 0.462,
+          "sig": 0.3038,
+          "life": 50.0,
+          "deaths": 2243
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4452,
+          "sig": 0.2932,
+          "life": 50.0,
+          "deaths": 2679
+        },
+        {
+          "turn": 35000,
+          "hit": 0.4404,
+          "sig": 0.2884,
+          "life": 50.0,
+          "deaths": 3121
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4456,
+          "sig": 0.2686,
+          "life": 50.0,
+          "deaths": 3558
+        },
+        {
+          "turn": 45000,
+          "hit": 0.436,
+          "sig": 0.2733,
+          "life": 50.0,
+          "deaths": 3997
+        },
+        {
+          "turn": 50000,
+          "hit": 0.4352,
+          "sig": 0.2354,
+          "life": 51.0,
+          "deaths": 4438
+        },
+        {
+          "turn": 55000,
+          "hit": 0.432,
+          "sig": 0.2686,
+          "life": 51.0,
+          "deaths": 4885
+        },
+        {
+          "turn": 60000,
+          "hit": 0.4096,
+          "sig": 0.2556,
+          "life": 51.0,
+          "deaths": 5339
+        },
+        {
+          "turn": 65000,
+          "hit": 0.4264,
+          "sig": 0.285,
+          "life": 51.0,
+          "deaths": 5791
+        },
+        {
+          "turn": 70000,
+          "hit": 0.4616,
+          "sig": 0.2652,
+          "life": 51.0,
+          "deaths": 6219
+        },
+        {
+          "turn": 75000,
+          "hit": 0.47,
+          "sig": 0.2789,
+          "life": 51.0,
+          "deaths": 6644
+        },
+        {
+          "turn": 80000,
+          "hit": 0.4336,
+          "sig": 0.2864,
+          "life": 51.0,
+          "deaths": 7089
+        },
+        {
+          "turn": 85000,
+          "hit": 0.4296,
+          "sig": 0.2976,
+          "life": 51.0,
+          "deaths": 7539
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4712,
+          "sig": 0.2714,
+          "life": 51.0,
+          "deaths": 7965
+        },
+        {
+          "turn": 95000,
+          "hit": 0.4068,
+          "sig": 0.2808,
+          "life": 51.0,
+          "deaths": 8419
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4428,
+          "sig": 0.3159,
+          "life": 51.0,
+          "deaths": 8863
+        },
+        {
+          "turn": 105000,
+          "hit": 0.4616,
+          "sig": 0.2902,
+          "life": 51.0,
+          "deaths": 9297
+        },
+        {
+          "turn": 110000,
+          "hit": 0.4372,
+          "sig": 0.2742,
+          "life": 51.0,
+          "deaths": 9735
+        },
+        {
+          "turn": 115000,
+          "hit": 0.4104,
+          "sig": 0.2649,
+          "life": 51.0,
+          "deaths": 10187
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4668,
+          "sig": 0.2619,
+          "life": 51.0,
+          "deaths": 10612
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4404,
+          "sig": 0.2768,
+          "life": 51.0,
+          "deaths": 11048
+        },
+        {
+          "turn": 130000,
+          "hit": 0.4236,
+          "sig": 0.2642,
+          "life": 51.0,
+          "deaths": 11490
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4564,
+          "sig": 0.3106,
+          "life": 51.0,
+          "deaths": 11923
+        },
+        {
+          "turn": 140000,
+          "hit": 0.4548,
+          "sig": 0.3231,
+          "life": 51.0,
+          "deaths": 12363
+        },
+        {
+          "turn": 145000,
+          "hit": 0.4496,
+          "sig": 0.2786,
+          "life": 51.0,
+          "deaths": 12801
+        },
+        {
+          "turn": 150000,
+          "hit": 0.4456,
+          "sig": 0.3339,
+          "life": 51.0,
+          "deaths": 13245
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4576,
+          "sig": 0.3226,
+          "life": 51.0,
+          "deaths": 13678
+        },
+        {
+          "turn": 160000,
+          "hit": 0.4488,
+          "sig": 0.2924,
+          "life": 51.0,
+          "deaths": 14119
+        },
+        {
+          "turn": 165000,
+          "hit": 0.502,
+          "sig": 0.3044,
+          "life": 51.0,
+          "deaths": 14527
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4708,
+          "sig": 0.3056,
+          "life": 51.0,
+          "deaths": 14954
+        },
+        {
+          "turn": 175000,
+          "hit": 0.4636,
+          "sig": 0.3168,
+          "life": 51.0,
+          "deaths": 15386
+        },
+        {
+          "turn": 180000,
+          "hit": 0.4376,
+          "sig": 0.2908,
+          "life": 51.0,
+          "deaths": 15831
+        },
+        {
+          "turn": 185000,
+          "hit": 0.4656,
+          "sig": 0.294,
+          "life": 51.0,
+          "deaths": 16264
+        },
+        {
+          "turn": 190000,
+          "hit": 0.4504,
+          "sig": 0.2977,
+          "life": 51.0,
+          "deaths": 16696
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4372,
+          "sig": 0.281,
+          "life": 51.0,
+          "deaths": 17138
+        },
+        {
+          "turn": 200000,
+          "hit": 0.4344,
+          "sig": 0.2755,
+          "life": 51.0,
+          "deaths": 17581
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3K_s3001/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "mute",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3401,
+      "deaths": 17187,
+      "median_lifespan": 54.0,
+      "mean_lifespan": 58.2,
+      "a_harvest_per_1k": 1.61,
+      "signal_rate": 0.0,
+      "pending_signal_rate": 0.0,
+      "event_hit_rate": 0.4474,
+      "hit_rate_heard": null,
+      "hit_rate_not_heard": 0.4474,
+      "heard_share_of_events": 0.0,
+      "own_cue_consistent_rate": 0.8942,
+      "event_stay_share": 0.4741,
+      "protected_rate": 0.4368,
+      "deaths_in_nest": 17187,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": null,
+      "mi_cue_symbol": null,
+      "mi_cuevalue_symbol": null,
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.412,
+          "sig": 0.0,
+          "life": 51.0,
+          "deaths": 449
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4336,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 892
+        },
+        {
+          "turn": 15000,
+          "hit": 0.4348,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 1332
+        },
+        {
+          "turn": 20000,
+          "hit": 0.4504,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 1757
+        },
+        {
+          "turn": 25000,
+          "hit": 0.4888,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 2162
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4396,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 2597
+        },
+        {
+          "turn": 35000,
+          "hit": 0.4344,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 3036
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4464,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 3463
+        },
+        {
+          "turn": 45000,
+          "hit": 0.4288,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 3904
+        },
+        {
+          "turn": 50000,
+          "hit": 0.4756,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 4323
+        },
+        {
+          "turn": 55000,
+          "hit": 0.4568,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 4750
+        },
+        {
+          "turn": 60000,
+          "hit": 0.4508,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 5177
+        },
+        {
+          "turn": 65000,
+          "hit": 0.4636,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 5598
+        },
+        {
+          "turn": 70000,
+          "hit": 0.4772,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 6010
+        },
+        {
+          "turn": 75000,
+          "hit": 0.454,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 6435
+        },
+        {
+          "turn": 80000,
+          "hit": 0.5072,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 6830
+        },
+        {
+          "turn": 85000,
+          "hit": 0.4484,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 7260
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4244,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 7697
+        },
+        {
+          "turn": 95000,
+          "hit": 0.4496,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8126
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4536,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8556
+        },
+        {
+          "turn": 105000,
+          "hit": 0.482,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8970
+        },
+        {
+          "turn": 110000,
+          "hit": 0.4192,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 9413
+        },
+        {
+          "turn": 115000,
+          "hit": 0.3932,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 9873
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4304,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 10308
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4204,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 10751
+        },
+        {
+          "turn": 130000,
+          "hit": 0.4488,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 11170
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4392,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 11604
+        },
+        {
+          "turn": 140000,
+          "hit": 0.4544,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12022
+        },
+        {
+          "turn": 145000,
+          "hit": 0.4416,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12450
+        },
+        {
+          "turn": 150000,
+          "hit": 0.4816,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12857
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4504,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 13286
+        },
+        {
+          "turn": 160000,
+          "hit": 0.4656,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 13718
+        },
+        {
+          "turn": 165000,
+          "hit": 0.4116,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14176
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4528,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14605
+        },
+        {
+          "turn": 175000,
+          "hit": 0.4288,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 15043
+        },
+        {
+          "turn": 180000,
+          "hit": 0.4468,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 15471
+        },
+        {
+          "turn": 185000,
+          "hit": 0.4224,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 15913
+        },
+        {
+          "turn": 190000,
+          "hit": 0.486,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 16318
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4444,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 16751
+        },
+        {
+          "turn": 200000,
+          "hit": 0.4452,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 17187
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3K_s3002/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "mute",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3402,
+      "deaths": 16985,
+      "median_lifespan": 55.0,
+      "mean_lifespan": 58.9,
+      "a_harvest_per_1k": 2.05,
+      "signal_rate": 0.0,
+      "pending_signal_rate": 0.0,
+      "event_hit_rate": 0.4544,
+      "hit_rate_heard": null,
+      "hit_rate_not_heard": 0.4544,
+      "heard_share_of_events": 0.0,
+      "own_cue_consistent_rate": 0.8998,
+      "event_stay_share": 0.4706,
+      "protected_rate": 0.4439,
+      "deaths_in_nest": 16985,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": null,
+      "mi_cue_symbol": null,
+      "mi_cuevalue_symbol": null,
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.4553,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 418
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4508,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 852
+        },
+        {
+          "turn": 15000,
+          "hit": 0.402,
+          "sig": 0.0,
+          "life": 51.0,
+          "deaths": 1305
+        },
+        {
+          "turn": 20000,
+          "hit": 0.4604,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 1725
+        },
+        {
+          "turn": 25000,
+          "hit": 0.4568,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 2144
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4376,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 2578
+        },
+        {
+          "turn": 35000,
+          "hit": 0.4448,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 3008
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4196,
+          "sig": 0.0,
+          "life": 52.0,
+          "deaths": 3455
+        },
+        {
+          "turn": 45000,
+          "hit": 0.4688,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 3871
+        },
+        {
+          "turn": 50000,
+          "hit": 0.4436,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 4301
+        },
+        {
+          "turn": 55000,
+          "hit": 0.4164,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 4745
+        },
+        {
+          "turn": 60000,
+          "hit": 0.4552,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 5164
+        },
+        {
+          "turn": 65000,
+          "hit": 0.4428,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 5596
+        },
+        {
+          "turn": 70000,
+          "hit": 0.464,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 6011
+        },
+        {
+          "turn": 75000,
+          "hit": 0.426,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 6453
+        },
+        {
+          "turn": 80000,
+          "hit": 0.4944,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 6860
+        },
+        {
+          "turn": 85000,
+          "hit": 0.4812,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 7269
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4436,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 7700
+        },
+        {
+          "turn": 95000,
+          "hit": 0.4612,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8126
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4608,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8545
+        },
+        {
+          "turn": 105000,
+          "hit": 0.4868,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8950
+        },
+        {
+          "turn": 110000,
+          "hit": 0.4816,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 9360
+        },
+        {
+          "turn": 115000,
+          "hit": 0.4364,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 9804
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4532,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 10224
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4328,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 10663
+        },
+        {
+          "turn": 130000,
+          "hit": 0.4948,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 11076
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4624,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 11501
+        },
+        {
+          "turn": 140000,
+          "hit": 0.4532,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 11928
+        },
+        {
+          "turn": 145000,
+          "hit": 0.4672,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12343
+        },
+        {
+          "turn": 150000,
+          "hit": 0.464,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12763
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4484,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 13200
+        },
+        {
+          "turn": 160000,
+          "hit": 0.4512,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 13626
+        },
+        {
+          "turn": 165000,
+          "hit": 0.4532,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14044
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4688,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 14459
+        },
+        {
+          "turn": 175000,
+          "hit": 0.486,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 14855
+        },
+        {
+          "turn": 180000,
+          "hit": 0.4548,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 15276
+        },
+        {
+          "turn": 185000,
+          "hit": 0.434,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 15709
+        },
+        {
+          "turn": 190000,
+          "hit": 0.464,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 16132
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4432,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 16563
+        },
+        {
+          "turn": 200000,
+          "hit": 0.4564,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 16985
+        }
+      ]
+    },
+    {
+      "arm": {
+        "founding": "weights:runs/c3/C3K_s3003/final_weights.pt",
+        "nest": [
+          600,
+          0.5
+        ],
+        "events": true,
+        "channel": "mute",
+        "mutation_sigma": 0.002,
+        "selection": "none",
+        "event_every": 10,
+        "event_penalty": 25.0,
+        "event_lead": 4,
+        "event_share": 0.0,
+        "event_min_safe": 2,
+        "inherit_per": true,
+        "signal_candidate_frac": 1.0,
+        "eps_signal_quiet": 0.0,
+        "ensemble_k": 1,
+        "ensemble_beta": 0.0
+      },
+      "seed": 3403,
+      "deaths": 17087,
+      "median_lifespan": 54.0,
+      "mean_lifespan": 58.5,
+      "a_harvest_per_1k": 1.61,
+      "signal_rate": 0.0,
+      "pending_signal_rate": 0.0,
+      "event_hit_rate": 0.4447,
+      "hit_rate_heard": null,
+      "hit_rate_not_heard": 0.4447,
+      "heard_share_of_events": 0.0,
+      "own_cue_consistent_rate": 0.8887,
+      "event_stay_share": 0.48,
+      "protected_rate": 0.4341,
+      "deaths_in_nest": 17087,
+      "deaths_nest_tail": 0,
+      "b_openings": 0,
+      "symbol_entropy_bits": null,
+      "mi_cue_symbol": null,
+      "mi_cuevalue_symbol": null,
+      "timeline": [
+        {
+          "turn": 5000,
+          "hit": 0.4192,
+          "sig": 0.0,
+          "life": 53.0,
+          "deaths": 443
+        },
+        {
+          "turn": 10000,
+          "hit": 0.4592,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 862
+        },
+        {
+          "turn": 15000,
+          "hit": 0.4704,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 1274
+        },
+        {
+          "turn": 20000,
+          "hit": 0.442,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 1703
+        },
+        {
+          "turn": 25000,
+          "hit": 0.4544,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 2120
+        },
+        {
+          "turn": 30000,
+          "hit": 0.4448,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 2540
+        },
+        {
+          "turn": 35000,
+          "hit": 0.4396,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 2973
+        },
+        {
+          "turn": 40000,
+          "hit": 0.4348,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 3410
+        },
+        {
+          "turn": 45000,
+          "hit": 0.4236,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 3849
+        },
+        {
+          "turn": 50000,
+          "hit": 0.4404,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 4276
+        },
+        {
+          "turn": 55000,
+          "hit": 0.4324,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 4704
+        },
+        {
+          "turn": 60000,
+          "hit": 0.422,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 5142
+        },
+        {
+          "turn": 65000,
+          "hit": 0.456,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 5559
+        },
+        {
+          "turn": 70000,
+          "hit": 0.4736,
+          "sig": 0.0,
+          "life": 56.0,
+          "deaths": 5969
+        },
+        {
+          "turn": 75000,
+          "hit": 0.428,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 6406
+        },
+        {
+          "turn": 80000,
+          "hit": 0.4644,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 6828
+        },
+        {
+          "turn": 85000,
+          "hit": 0.4856,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 7242
+        },
+        {
+          "turn": 90000,
+          "hit": 0.4508,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 7668
+        },
+        {
+          "turn": 95000,
+          "hit": 0.3916,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8128
+        },
+        {
+          "turn": 100000,
+          "hit": 0.4376,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8557
+        },
+        {
+          "turn": 105000,
+          "hit": 0.4344,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 8982
+        },
+        {
+          "turn": 110000,
+          "hit": 0.4668,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 9392
+        },
+        {
+          "turn": 115000,
+          "hit": 0.4388,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 9819
+        },
+        {
+          "turn": 120000,
+          "hit": 0.4248,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 10258
+        },
+        {
+          "turn": 125000,
+          "hit": 0.4688,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 10668
+        },
+        {
+          "turn": 130000,
+          "hit": 0.4492,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 11094
+        },
+        {
+          "turn": 135000,
+          "hit": 0.4928,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 11490
+        },
+        {
+          "turn": 140000,
+          "hit": 0.42,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 11947
+        },
+        {
+          "turn": 145000,
+          "hit": 0.4508,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 12376
+        },
+        {
+          "turn": 150000,
+          "hit": 0.4704,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 12786
+        },
+        {
+          "turn": 155000,
+          "hit": 0.4632,
+          "sig": 0.0,
+          "life": 55.0,
+          "deaths": 13213
+        },
+        {
+          "turn": 160000,
+          "hit": 0.4224,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 13652
+        },
+        {
+          "turn": 165000,
+          "hit": 0.4516,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14085
+        },
+        {
+          "turn": 170000,
+          "hit": 0.4064,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14527
+        },
+        {
+          "turn": 175000,
+          "hit": 0.434,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 14952
+        },
+        {
+          "turn": 180000,
+          "hit": 0.4556,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 15375
+        },
+        {
+          "turn": 185000,
+          "hit": 0.46,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 15795
+        },
+        {
+          "turn": 190000,
+          "hit": 0.4312,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 16230
+        },
+        {
+          "turn": 195000,
+          "hit": 0.4552,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 16650
+        },
+        {
+          "turn": 200000,
+          "hit": 0.4224,
+          "sig": 0.0,
+          "life": 54.0,
+          "deaths": 17087
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "C4A": {
+      "n_runs": 3,
+      "median_lifespan": 50.0,
+      "event_hit_rate": 0.4454,
+      "hit_rate_heard": 0.4441,
+      "hit_rate_not_heard": 0.6115,
+      "signal_rate": 0.3323,
+      "pending_signal_rate": 0.3998,
+      "a_harvest_per_1k": 1.45,
+      "own_cue_consistent_rate": 0.8657,
+      "event_stay_share": 0.4918,
+      "protected_rate": 0.4342,
+      "mi_cue_symbol_mm_bits": [
+        0.0014,
+        0.0034,
+        0.0028
+      ],
+      "mi_cue_symbol_p": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "deaths": [
+        17786,
+        18076,
+        17581
+      ],
+      "deaths_in_nest": [
+        17786,
+        18076,
+        17581
+      ],
+      "deaths_nest_tail": [
+        0,
+        0,
+        0
+      ]
+    },
+    "C4K": {
+      "n_runs": 3,
+      "median_lifespan": 54.0,
+      "event_hit_rate": 0.4474,
+      "hit_rate_heard": null,
+      "hit_rate_not_heard": 0.4474,
+      "signal_rate": 0.0,
+      "pending_signal_rate": 0.0,
+      "a_harvest_per_1k": 1.61,
+      "own_cue_consistent_rate": 0.8942,
+      "event_stay_share": 0.4741,
+      "protected_rate": 0.4368,
+      "mi_cue_symbol_mm_bits": [],
+      "mi_cue_symbol_p": [],
+      "deaths": [
+        17187,
+        16985,
+        17087
+      ],
+      "deaths_in_nest": [
+        17187,
+        16985,
+        17087
+      ],
+      "deaths_nest_tail": [
+        0,
+        0,
+        0
+      ]
+    }
+  }
+}
