@@ -3793,3 +3793,19 @@ değil, refleksin büyümesidir. Dinleyici bu refleksten bilgi çekerse bu
 yine gerçek bilgi akışıdır (alarm çağrılarının doğadaki başlangıç
 modeli: önce refleks, sonra seçilim) — ama "konuşan" iddiası ancak
 speak-ablasyonla (A″ protokolü) ayrıştırılır.
+
+### PL-38 kol (a) — SONUÇ: **uzun ekolojide gönderici netliği platoda; eşiğe tırmanmıyor** (2026-10-21, 20:00)
+`runs/pl38/{LA,LK}_s*` (C4 devamı, +500K; kümülatif C-rejiminde 800K), `sender_clarity.py`.
+| kol | seed | gönderici bilgisi son 50K | P(s|0) / P(s|1) | eğilim ρ | isabet son 50K | kendi-ipucu tavanı | fark |
+|---|---|---|---|---|---|---|---|
+| LA | 3001 | 0.091 | 0.24 / 0.58 | +0.07 | 0.448 | 0.464 | −0.016 |
+| LA | 3002 | 0.051 | 0.22 / 0.47 | **−0.67** | 0.444 | 0.463 | −0.019 |
+| LA | 3003 | 0.068 | 0.22 / 0.52 | −0.22 | 0.439 | 0.459 | −0.020 |
+| LK | 3001-3003 | — | — | — | 0.435-0.458 | 0.47 | −0.01 … −0.04 |
+- **a1 ✗** (0.05-0.09 < 0.18), **a2 ✗** (isabet tavanın altında; LA ≈ LK),
+  **a3 ✗** (eğilim yok ya da AZALAN). Gönderici netliği 500K boyunca
+  0.05-0.10 bandında dalgalanıyor; kendiliğinden eşiğe tırmanma YOK.
+- Okuma: refleks kökenli asimetri, dinleyici olmadığı için hiçbir
+  seçilim/öğrenme baskısı almıyor (göndericiye fayda yok → netleşme
+  için gradyan yok); tavuk-yumurta "durağan denge"de.
+- **Öngörü karnesi:** a3 ✓ (0.5) → yanlış; a1 ✗ (0.7) doğru; a2 ✗ (0.8) doğru.
