@@ -105,8 +105,10 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
 - **PL-37 (21 Ekim):** kanal tavan değil (CH0); okulda dinleyici öğrenebiliyor
   (RS: 0.62, tavan 0.50 aşıldı — ilk); eşik ≈0.18 bit gönderici netliği
   (RS-dose); ekoloji 0.08 bit.
-- **SIRADAKİ ADIM (PL-38, Ali kararı):** gönderici netliğini eşiğe taşımak:
-  (b) öncü algısı kalibrasyonu (dünya-tarafı) hızlı test + (a) uzun ekoloji.
+- **PL-38 (21 Ekim):** uzun ekoloji 500K ve lead 6/8: gönderici netliği
+  0.05-0.10 bitte kilitli; dinleyici yok. Sessiz denge.
+- **SIRADAKİ ADIM (PL-39, Ali kararı):** kültürel tohumlama ile "konuşan+
+  dinleyen" dengenin kararlılığı (köken değil); KERNEL ~1 bit beyanı.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

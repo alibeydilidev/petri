@@ -238,7 +238,13 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
-- **PL-38 — Gönderici netliği eşiği (AÇIK, Ali):** RS-dose: dinleyici
+- **PL-39 — Bariyerin öbür tarafı kararlı mı? (AÇIK, Ali):** PL-38 ✗:
+  gönderici netliği 0.05-0.10'da kilitli (500K / lead 6-8). Öneri:
+  "kültürel tohumlama" — RS-1 dinleyicileri ekolojiye bir kez katılır,
+  halefler tohumsuz; konuşan+dinleyen döngüsü tohumdan sonra sürüyor mu?
+  Köken değil kararlılık sorusu; KERNEL ~1 bit tohum satırı (beyan).
+- **PL-38 KAPALI (21 Ekim 22:05):** (a) uzun ekoloji ✗, (b) lead 6/8 ✗.
+- **PL-38-eski — Gönderici netliği eşiği:** RS-dose: dinleyici
   öğrenmesi ≈0.18 bit gönderici bilgisinde başlıyor; ekoloji göndericileri
   0.08 bit (yarısı). Seçenekler: (a) uzun ekoloji/ada evrimi ile
   netliğin kendiliğinden büyümesini izle (0 bit), (b) öncü algısı

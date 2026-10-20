@@ -3809,3 +3809,35 @@ speak-ablasyonla (A″ protokolü) ayrıştırılır.
   seçilim/öğrenme baskısı almıyor (göndericiye fayda yok → netleşme
   için gradyan yok); tavuk-yumurta "durağan denge"de.
 - **Öngörü karnesi:** a3 ✓ (0.5) → yanlış; a1 ✗ (0.7) doğru; a2 ✗ (0.8) doğru.
+
+### PL-38 kol (b) — SONUÇ: **öncü uyarı süresini uzatmak netliği artırmadı** (2026-10-21, 22:00)
+`runs/pl38/{B6,B8}_s*` (C4-A kurucu, 100K):
+| lead | gönderici bilgisi son 50K | P(s|0)/P(s|1) | isabet | kendi-ipucu | fark (tavan) |
+|---|---|---|---|---|---|
+| 4 (LA/C4-A ref.) | 0.05-0.10 | 0.22 / 0.47-0.58 | 0.44-0.45 | 0.85-0.87 | −0.02 |
+| **6** | 0.070-0.084 | 0.22-0.25 / 0.54-0.55 | 0.43-0.45 | 0.85-0.87 | −0.01 … −0.03 |
+| **8** | 0.061-0.075 | 0.21-0.24 / 0.48-0.55 | 0.42-0.43 | 0.82-0.83 | −0.03 |
+- **b1 ✗** (≤ 0.084 < 0.14), **b2 ✗**. Uzun pencere refleksi
+  büyütmüyor; lead 8'de kendi-ipucu ve isabet hafif düşüyor (zamanlama
+  yükü). Öngörü karnesi: b1 ✓ (0.5) → yanlış; b2 ✗ doğru.
+
+## PL-38 KAPANIŞ — tavuk-yumurta durağan dengede (2026-10-21, 22:05)
+- Gönderici netliği refleks düzeyinde (0.05-0.10 bit) kilitli: ne zaman
+  (500K), ne grup seçilimi (A′), ne öncü kalibrasyonu (lead 6/8) onu
+  dinleyici eşiğine (≈0.18) taşıyor.
+- Dinleyici öğrenmesi MÜMKÜN (RS) ama eşik altı sinyalde başlamıyor;
+  dinleyici olmadan göndericiye fayda yok, netleşme için gradyan yok.
+- **Sistem çift-kararlı görünüyor:** "sessiz denge" (bugün) ve —
+  RS'nin gösterdiği gibi — "konuşan+dinleyen denge" mümkün; arada bir
+  bariyer var. Sıfır-bit kendiliğinden geçiş bu ölçekte gözlenmedi.
+**PL-39 önerisi (Ali):** bariyerin öbür tarafı KARARLI mı? —
+"kültürel tohumlama" testi: ekolojiye bir kez, sınırlı süre için
+okulda dinlemeyi öğrenmiş (RS-1) ajanlar katılır; onların öğrendiği
+eşleme ("konuşma ⇒ bit 1") ekoloji göndericilerinin KENDİ refleksiyle
+aynı yöndedir (yabancı bir konvansiyon değil). Soru: tohum kalktıktan
+sonra (halefler tohumsuz doğar) konuşan+dinleyen döngüsü sürüyor mu?
+Bu "dil nasıl BAŞLAR" değil "başlarsa TUTUNUR mu" sorusudur; kökeni
+değil kararlılığı ölçer. Anayasal beyan şart: tohum dinleyiciler dış
+bir öğretmenden (sanal varlık-kodlu komşular) öğrendi → KERNEL'e
+~1 bit (eşleme yönü) "kültürel tohum" satırı; ana iddia tohumdan
+SONRAKİ nesillerde ölçülür.

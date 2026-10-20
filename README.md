@@ -28,7 +28,10 @@ dinleyen yok. **21 Ekim:** kanal tavan değil; olay okulunda bir ajan,
 net konuşan sanal komşuları **dinlemeyi öğrendi** ve kendi-ipucu
 tavanını ilk kez aştı (0.42 → 0.62). Dinleyici öğrenmesinin eşiği
 ≈0.18 bit gönderici netliği; ekoloji göndericileri bunun yarısında.
-Tavuk-yumurta artık sayısal (PL-38).
+Tavuk-yumurta artık sayısal. PL-38 (500K uzun ekoloji, uyarı süresi
+kalibrasyonu): gönderici netliği 0.05-0.10 bitte kilitli kaldı; sistem
+"sessiz dengede" duruyor. Sıradaki soru (PL-39): konuşan+dinleyen
+denge bir kez kurulursa kendini sürdürür mü?
 
 ---
 
