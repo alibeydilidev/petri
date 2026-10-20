@@ -238,6 +238,14 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-38 — Gönderici netliği eşiği (AÇIK, Ali):** RS-dose: dinleyici
+  öğrenmesi ≈0.18 bit gönderici bilgisinde başlıyor; ekoloji göndericileri
+  0.08 bit (yarısı). Seçenekler: (a) uzun ekoloji/ada evrimi ile
+  netliğin kendiliğinden büyümesini izle (0 bit), (b) öncü algısı
+  kalibrasyonu ile refleksi büyüt (dünya-tarafı, M-25), (c) sinyal
+  maliyeti (anayasal, yapılmaz). Tavsiye (b) hızlı test + (a) paralel.
+- **PL-37 KAPALI (21 Ekim 10:00):** kanal tavan değil; dinleyici
+  öğrenebiliyor (RS); eşik ölçüldü (RS-dose) → PL-38.
 - **PL-37 GÜNCEL (21 Ekim 09:00):** CH0: kanal tavan değil (optimal alıcı
   bugünkü göndericilerle +0.14). RS: tek ajan mükemmel varlık kodlu
   komşuları dinlemeyi ÖĞRENDİ (0.42 → 0.62, tavan 0.50 aşıldı — ilk kez);

@@ -102,8 +102,11 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   tur/ada) sembol anlamı doğurmadı. Post-hoc: konuşma KARARI ipucu
   değerini taşıyor (0.10 bit), A″ ablasyonunda ~%75 refleks; dinleyen yok.
   Toplam ~150 koşum, 0 bit.
-- **SIRADAKİ ADIM (PL-37, Ali kararı):** dinleyici halkası — varlık-kodlu
-  oracle (0 bit) → gerekirse kimlikli/yerel kanal (anayasal).
+- **PL-37 (21 Ekim):** kanal tavan değil (CH0); okulda dinleyici öğrenebiliyor
+  (RS: 0.62, tavan 0.50 aşıldı — ilk); eşik ≈0.18 bit gönderici netliği
+  (RS-dose); ekoloji 0.08 bit.
+- **SIRADAKİ ADIM (PL-38, Ali kararı):** gönderici netliğini eşiğe taşımak:
+  (b) öncü algısı kalibrasyonu (dünya-tarafı) hızlı test + (a) uzun ekoloji.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

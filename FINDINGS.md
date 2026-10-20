@@ -3729,3 +3729,35 @@ Aynı okul ayarı, sanal komşular P(s|1)/P(s|0) ∈ {0.9/0.1, 0.8/0.2,
 - **Çıta:** her doz için son 20K isabet > RS-0 (0.42) + 0.05 → o doz
   "dinleyici öğrenmesini tetikler". Eşik = çıtayı geçen en gürültülü doz.
 - **Öngörü:** 0.9/0.1 ✓, 0.8/0.2 ✓, 0.7/0.2 ✗ (0.5).
+
+### RS-dose — SONUÇ: **dinleyici öğrenmesi için gönderici netliği eşiği ≈ 0.18 bit** (2026-10-21, 10:00)
+`runs/rs/dose*_s*/school.json` (100K, 2 seed; optimal tavanlar `channel_oracle`):
+| gönderici P(s|1)/P(s|0) | gönderici bilgisi (bit) | optimal alıcı | öğrenen alıcı son 20K | RS-0 + 0.05 çıtası |
+|---|---|---|---|---|
+| 0.55 / 0.22 (ekolojide gözlenen) | 0.08 | 0.64 | 0.43 / 0.43 | ✗ |
+| 0.7 / 0.2 | 0.18 | 0.71 | 0.47 / 0.50 | ✓ sınırda (1/2 harfen, 2/2 ≥ 0.47) |
+| 0.8 / 0.2 | 0.25 | 0.75 | 0.53 / 0.53 | ✓ |
+| 0.9 / 0.1 | 0.45 | 0.82 | 0.59 / 0.60 | ✓ |
+| 1.0 / 0.0 | 0.83 | 0.97 | 0.62 / 0.62 | ✓ |
+- **Temiz doz-cevap eğrisi.** Dinleyici öğrenmesi gönderici netliğiyle
+  tekdüze artıyor; eşik ≈ 0.7/0.2 (≈0.18 bit). Öğrenen alıcı optimalin
+  ~%40-60'ını 100K'da alıyor, hâlâ ↑. Öngörü karnesi: 0.9 ✓, 0.8 ✓
+  doğru; 0.7 ✗ (0.5) → sınırda geçti.
+- **Ekolojiye çeviri:** bugünkü ekoloji göndericileri 0.08 bit (A″; ~%75
+  refleks) — eşiğin **yarısı**. Tavuk-yumurta artık bir sayı: gönderici
+  netliği ~2× artarsa dinleyici öğrenmesi başlar; dinleyici başlarsa
+  göndericiye fayda (sığınak) doğar ve netlik seçilebilir/öğrenilebilir
+  hâle gelir (geri besleme döngüsü).
+
+**PL-37 → PL-38 önerisi (Ali kararı):**
+- **(a) 0 bit, uzun ekoloji:** C4 rejiminde gönderici asimetrisi
+  programlar boyunca büyüdü (0.002 → 0.04 → 0.10); 500K+ tur ve/veya ada
+  evrimiyle 0.18'e ulaşıp ulaşmadığını izle; ulaşırsa dinleyici
+  öğrenmesinin kendiliğinden başlayıp başlamadığı ölçülür. Sabır işi.
+- **(b) 0 bit, refleksi büyütmek:** asimetri büyük ölçüde öncü
+  hücresine refleks. Öncü algısını güçlendirmek (ör. lead 4 → 6, öncünün
+  pencere boyunca kalıcı oluşu) refleksi ve dolayısıyla gönderici
+  netliğini artırabilir — dünya-tarafı kalibrasyon, M-25 analizi şart
+  (refleksin "konuşma" sayılmayacağı beyanıyla).
+- **(c) Sinyal maliyetini düşürmek:** anayasal (0.5 sabit); yapılmaz.
+Tavsiye: (b)'nin hızlı okul+ekoloji testi, paralelde (a).

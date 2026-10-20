@@ -24,7 +24,11 @@ artık **nötr ve doğru fiyatlı**; ajanlar kendi-ipucu tavanında (0.45);
 kullanmıyor (113 koşum, 0 bit). Program A′ (ada modeli grup seçilimi)
 sembol anlamı doğurmadı; ama ajanlar ilk kez ipucuna **bağlı bir konuşma
 kararı** geliştirdi (0.10 bit) — ablasyonda büyük kısmı refleks çıktı ve
-dinleyen yok. Kalan eksik halka: dinleyici (PL-37).
+dinleyen yok. **21 Ekim:** kanal tavan değil; olay okulunda bir ajan,
+net konuşan sanal komşuları **dinlemeyi öğrendi** ve kendi-ipucu
+tavanını ilk kez aştı (0.42 → 0.62). Dinleyici öğrenmesinin eşiği
+≈0.18 bit gönderici netliği; ekoloji göndericileri bunun yarısında.
+Tavuk-yumurta artık sayısal (PL-38).
 
 ---
 
