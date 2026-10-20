@@ -3859,3 +3859,45 @@ hesap" statüsündedir. Ondan türeyen RS/RS-dose kayıtları ayrı commit'lerde
 ve sonuçtan sonradır. Bekçi: `tests/test_doc_dates.py` belgelerde bugünden
 ileri tarih olmasını engeller (M-32 adayı değil; mevcut Kural 1 kapsıyor,
 eksik olan otomasyondu).
+
+---
+
+# PL-39 — kültürel tohumlama: kurulmuş dinleme kendini sürdürür mü? (Ali kararı, 2026-10-20 akşam)
+
+## PL-39 — ÖN-KAYIT (koşumdan önce, M-08)
+**Soru:** PL-38 sistemi "sessiz denge"de buldu (gönderici 0.05-0.10 bit,
+dinleyici yok). RS okulu, dinleyicinin öğrenebildiğini gösterdi. Bariyerin
+öbür tarafı ("dinleyen var") kararlı mı, yoksa sistem sessizliğe mi döner?
+Köken değil KARARLILIK sorusu (K-116 ADAY, ~1 bit, beyanlı).
+
+**Kollar** (`runs/pl39/`, 200K tur, 3 dünya seed'i 3001-3003, ≤6 süreç, nice +15):
+- **T (tohum):** `--founding school:runs/rs/rs1_s0/final_weights.pt,runs/rs/rs1_s1/final_weights.pt`
+  (slot 0,2,4 ← rs1_s0; 1,3 ← rs1_s1).
+- **K (kontrol):** aynı, `rs0_s0`/`rs0_s1` (aynı okul, aynı tur sayısı,
+  komşusuz). İki kol da kanal kapalı okulda eğitildi, açılış şoku (M-29)
+  iki kolda eşit.
+- Ortak ekoloji (PL-38 LA / C4 rejimi): `--events --event-every 10
+  --event-lead 4 --event-penalty 25 --event-share 0 --min-safe 2 --nest 600
+  0.5 --sigma 0.002 --channel open` (inherit_per varsayılan).
+
+**Ölçüler** (10K pencereler; `sender_clarity`): isabet, kendi-ipucu tavanı
+= own×0.5 + (1−own)×0.22, isabet − tavan, gönderici bilgisi
+I(değer; sinyal var/yok).
+
+**Çıtalar:**
+- **t1 (dinleme kalıcı):** T son 50K isabet − tavan ≥ +0.03 VE T − K
+  (isabet − tavan farkı) ≥ +0.03 (≥2/3 seed).
+- **t2 (gönderici geri beslemesi):** T son 50K gönderici bilgisi ≥ 0.14
+  bit VE K'dan ≥ 0.05 fazla (≥2/3).
+- **t3 (erken iz):** T ilk 20K isabet − tavan, K'dan ≥ 0.02 yüksek (≥2/3).
+
+**Öngörü:** t3 ✓ (0.4), t1 ✗ (0.75), t2 ✗ (0.8). Gerekçe: tohum
+dinleyicileri net göndericiye alıştı; ekolojide göndericiler (aynı ajanlar)
+kanal kapalı eğitildiği için başlangıçta gürültülü yayar; dinleme alışkanlığı
+ödülsüz kalıp sönebilir.
+
+**Matris:** t1 ✓ t2 ✓ → konuşan+dinleyen denge kararlı: Beş Kapı planı
+(duyma ablasyonu `--channel speak` son ağırlıklarla, isabet düşüşü; sembol
+karıştırma; K-116 beyanıyla). t1 ✓ t2 ✗ → dinleme sürüyor ama gönderici
+netleşmiyor (tek taraflı). t1 ✗ → tohum söndü: sessiz denge çekici, bu
+ölçekte iki-kararlılık yok.

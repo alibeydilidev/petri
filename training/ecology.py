@@ -306,6 +306,25 @@ def founding_population(turn: int = 0, founding: str = "roster",
     if ensemble is not None:
         extra["ensemble_k"] = int(ensemble[0])
         extra["mpc_ensemble_beta"] = float(ensemble[1])
+    if founding.startswith("school:"):
+        # PL-39 (kültürel tohumlama): kurucu slotlar okul koşumlarının
+        # tek-ajan final_weights.pt dosyalarından ({"A2": entry}); slot i,
+        # listedeki (virgülle ayrılmış) i mod n'inci dosyayı alır. Tohum
+        # YALNIZ kuruluşta; halefler ekolojinin olağan mirasıyla doğar.
+        paths = founding.split(":", 1)[1].split(",")
+        cks = [torch.load(pp, weights_only=False)["A2"] for pp in paths]
+        cits = []
+        for i, (slot, *_rest) in enumerate(ROSTER):
+            entry = cks[i % len(cks)]
+            cfg = dataclasses.replace(AgentConfigFromDict(entry["cfg"]),
+                                      nest_turns=nest[0], nest_factor=nest[1],
+                                      **extra)
+            agent = OnlineAgent(cfg, torch_seed=1000 + i, np_seed=2000 + i)
+            agent.core.load_state_dict(entry["state_dict"])
+            cits.append(Citizen(slot, agent, gen=0,
+                                parent=f"{entry['id']}@{paths[i % len(paths)]}",
+                                birth_turn=turn, mute=mute, channel=channel))
+        return cits
     if founding.startswith("weights:"):
         # S3-Q (Program B): kurucu kadro, önceki koşumun final_weights.pt
         # dosyasındaki 5 çekirdek (kademeli kanal: önce kanal-kapalı
@@ -636,7 +655,7 @@ def main() -> None:
     ap.add_argument("--world-seed", type=int, default=3001)
     ap.add_argument("--log-every", type=int, default=1000)
     ap.add_argument("--founding", default="roster",
-                    help="roster | clone | weights:<final_weights.pt>")
+                    help="roster | clone | weights:<final_weights.pt> | school:<pt>[,<pt>...]")
     ap.add_argument("--nest", type=float, nargs=2, default=(0, 1.0),
                     metavar=("T", "F"))
     ap.add_argument("--events", action="store_true")
