@@ -3761,3 +3761,35 @@ Aynı okul ayarı, sanal komşular P(s|1)/P(s|0) ∈ {0.9/0.1, 0.8/0.2,
   (refleksin "konuşma" sayılmayacağı beyanıyla).
 - **(c) Sinyal maliyetini düşürmek:** anayasal (0.5 sabit); yapılmaz.
 Tavsiye: (b)'nin hızlı okul+ekoloji testi, paralelde (a).
+
+---
+
+# PL-38 — gönderici netliğini eşiğe taşımak (Ali kararı: iki kol paralel, 2026-10-21)
+
+## PL-38 — ÖN-KAYIT (koşumdan önce, M-08)
+Gönderici netliği ölçüsü: uyarı penceresinde I(değer; sinyal var/yok) ve
+P(sinyal|değer), 10K'lık pencerelerle (`training/sender_clarity.py`;
+vitals'a kümülatif `cue_rows` + `pending_turns` eklendi, ajana gitmez).
+Eşik (RS-dose): ≈0.18 bit. Kendi-ipucu tavanı: own×0.5 + (1−own)×0.22.
+
+**Kol (a) — uzun ekoloji, 0 bit:** C4 rejimi aynen (sığınak N=2, s=0,
+σ=0.002, yuva, inherit_per, her 10 tur, lead 4); kurucular C4 final
+ağırlıkları; **LA** açık / **LK** kapalı; 500K, 3 seed, dünya seed +600.
+- **a1:** LA'da son 50K gönderici bilgisi ≥ 0.18 bit (≥2/3).
+- **a2 (dinleyici kendiliğinden):** LA son 50K isabet > kendi-ipucu tavanı
+  + 0.03 VE > LK + 0.03.
+- **a3 (eğilim):** gönderici bilgisi zamanla ↑ (Spearman(pencere, I) > 0.3).
+- **Öngörü:** a3 ✓ (0.5), a1 ✗ (0.7), a2 ✗ (0.8).
+
+**Kol (b) — öncü kalibrasyonu (dünya-tarafı, 0 bit; beyan aşağıda):**
+`event_lead` 4 → **6** ve **8** (uyarı penceresi uzar; öncü hücreleri
+pencere boyunca yanar). Kurucular C4-A, kanal açık, 100K, 3 seed.
+- **b1:** son 50K gönderici bilgisi ≥ lead-4 (C4-A ≈ 0.09) + 0.05.
+- **b2:** isabet > kendi-ipucu tavanı + 0.03 (dinleyici).
+- **Öngörü:** b1 ✓ en az bir lead'de (0.5); b2 ✗ (0.75).
+**Beyan (M-25/M-09):** lead uzatmak gönderici refleksini (öncüye bağlı
+sinyal) güçlendirebilir; bu durumda artan "netlik" iletişim niyeti
+değil, refleksin büyümesidir. Dinleyici bu refleksten bilgi çekerse bu
+yine gerçek bilgi akışıdır (alarm çağrılarının doğadaki başlangıç
+modeli: önce refleks, sonra seçilim) — ama "konuşan" iddiası ancak
+speak-ablasyonla (A″ protokolü) ayrıştırılır.

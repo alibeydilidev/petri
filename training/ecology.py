@@ -551,6 +551,11 @@ def run_ecology(turns: int, out_dir: str, world_seed: int = 3001,
                  "event_stay_share_window": rate("event_stay", "event_turns"),
                  "event_protected_rate_window": rate("event_protected",
                                                      "event_turns"),
+                 # PL-38: gönderici netliği zaman çizgisi için kümülatif
+                 # ipucu-satırı sinyal sayıları (00,01,10,11) + bekleme turu
+                 "cue_rows": (ledger.cue_symbol + sum(c.cue_symbol for c in cits)
+                              ).sum(1).tolist(),
+                 "pending_turns": tot["pending_turns"],
                  "pending_signal_rate_window": rate("pending_signals",
                                                     "pending_turns"),
                  "median_lifespan": (float(np.median(ledger.lifespans))
