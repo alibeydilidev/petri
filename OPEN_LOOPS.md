@@ -243,7 +243,7 @@
   "kültürel tohumlama" — RS-1 dinleyicileri ekolojiye bir kez katılır,
   halefler tohumsuz; konuşan+dinleyen döngüsü tohumdan sonra sürüyor mu?
   Köken değil kararlılık sorusu; KERNEL ~1 bit tohum satırı (beyan).
-- **PL-38 KAPALI (21 Ekim 22:05):** (a) uzun ekoloji ✗, (b) lead 6/8 ✗.
+- **PL-38 KAPALI (20 Ekim 21:50):** (a) uzun ekoloji ✗, (b) lead 6/8 ✗.
 - **PL-38-eski — Gönderici netliği eşiği:** RS-dose: dinleyici
   öğrenmesi ≈0.18 bit gönderici bilgisinde başlıyor; ekoloji göndericileri
   0.08 bit (yarısı). Seçenekler: (a) uzun ekoloji/ada evrimi ile

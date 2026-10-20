@@ -3810,7 +3810,7 @@ speak-ablasyonla (A″ protokolü) ayrıştırılır.
   için gradyan yok); tavuk-yumurta "durağan denge"de.
 - **Öngörü karnesi:** a3 ✓ (0.5) → yanlış; a1 ✗ (0.7) doğru; a2 ✗ (0.8) doğru.
 
-### PL-38 kol (b) — SONUÇ: **öncü uyarı süresini uzatmak netliği artırmadı** (2026-10-21, 22:00)
+### PL-38 kol (b) — SONUÇ: **öncü uyarı süresini uzatmak netliği artırmadı** (2026-10-20, 21:50)
 `runs/pl38/{B6,B8}_s*` (C4-A kurucu, 100K):
 | lead | gönderici bilgisi son 50K | P(s|0)/P(s|1) | isabet | kendi-ipucu | fark (tavan) |
 |---|---|---|---|---|---|
@@ -3821,7 +3821,7 @@ speak-ablasyonla (A″ protokolü) ayrıştırılır.
   büyütmüyor; lead 8'de kendi-ipucu ve isabet hafif düşüyor (zamanlama
   yükü). Öngörü karnesi: b1 ✓ (0.5) → yanlış; b2 ✗ doğru.
 
-## PL-38 KAPANIŞ — tavuk-yumurta durağan dengede (2026-10-21, 22:05)
+## PL-38 KAPANIŞ — tavuk-yumurta durağan dengede (2026-10-20, 21:50)
 - Gönderici netliği refleks düzeyinde (0.05-0.10 bit) kilitli: ne zaman
   (500K), ne grup seçilimi (A′), ne öncü kalibrasyonu (lead 6/8) onu
   dinleyici eşiğine (≈0.18) taşıyor.
