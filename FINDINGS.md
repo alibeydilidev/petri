@@ -3689,3 +3689,43 @@ koşulunu okula yaklaştır (uzun ömür / tampon / sıklık). RS-1 ✓ RS-obs �
 göndericinin netleşmesi gerek (tavuk-yumurta sürer ama sayısal). RS-1 ✗ →
 mimari: sayma/birleştirme öğrenilemiyor (doygun girdi + GRU) — anayasal
 tartışma (sayı kodlu alım; K-114 revizyonu).
+
+### RS — SONUÇ: **dinleyici öğrenebiliyor — ilk kez kendi-ipucu tavanı aşıldı (okulda, mükemmel varlık kodlu komşularla)** (2026-10-21, 09:00)
+`runs/rs/*/school.json` (100K, lead 4, 2 seed):
+| kol | isabet 10K → 50K → 100K | son 20K | kendi-ipucu | STAY |
+|---|---|---|---|---|
+| RS-0 (komşu yok) | 0.25 → 0.39-0.41 → 0.42 | **0.42** | 0.82-0.84 | 0.46-0.50 |
+| RS-obs (0.55/0.22) | 0.20-0.23 → 0.38-0.43 → 0.43 | **0.43** | 0.82-0.83 | 0.44 |
+| **RS-1 (1.0/0.0)** | 0.26 → 0.51-0.54 → 0.62 | **0.62** | 0.74-0.77 | 0.28-0.30 |
+- **RS-1 ✓** (+0.20 > +0.15; 2/2): tek ajan, rastgele sembollerle yayın
+  yapan komşuların SAYISINI kendi bitiyle birleştirip kutbu çözmeyi
+  ÖĞRENDİ; isabet 0.50 tavanının açık üstünde (0.62) ve hâlâ ↑. Kendi-
+  ipucu tutarlılığı düştü (0.75): ajan artık kendi bitine karşı da
+  hareket ediyor, çünkü duyduğu bilgiyi tercih ediyor — tam olması
+  gereken davranış.
+- **RS-obs ✗** (+0.01): gözlenen gürültülü göndericiyle (optimal alıcıya
+  +0.14 bilgi var) öğrenme görünmüyor.
+- **Öngörü karnesi:** RS-1 ✓ (0.6) doğru; RS-obs ✗ (0.6) doğru.
+- **Bu, PETRI'de bir öğrenen ajanın başkalarının sinyalinden bilgi
+  çıkarıp eyleme çevirdiği İLK ölçümdür.** Etiket: ADAY GÖZLEM (okul;
+  sanal göndericiler dünya-tarafı ölçüm aleti, gönderici kuralı
+  hediye — `told` emsali: alıcı TAVANINI ölçer). Mimari sorunu YOK
+  (matrisin "RS-1 ✗" dalı kapandı: doygun girdi + GRU sayabiliyor).
+
+**Matris hücresi: RS-1 ✓ RS-obs ✗ → tavuk-yumurta SAYISAL:** alıcı,
+gönderici ne kadar netse o kadar öğreniyor; bugünkü göndericiler
+(I≈0.08-0.10 bit, büyük kısmı refleks) dinleyici öğrenmesini
+tetiklemek için çok gürültülü. Sıradaki soru: dinleyici öğrenmesini
+tetikleyen gönderici netliği eşiği nedir (doz-cevap: P(s|1)/P(s|0) =
+0.9/0.1, 0.8/0.2, 0.7/0.2)? Eşik bulunursa ekolojide "gönderici
+netleşmesi" ile "dinleyici öğrenmesi" arasındaki geri besleme döngüsü
+(eşik üstü → alıcı dinler → gönderici için fayda doğar → netleşir)
+tasarlanabilir; eşik bugünkü 0.55/0.22'ye yakınsa uzun ekoloji yeter.
+
+## RS-dose — ÖN-KAYIT: dinleyici öğrenmesi için gönderici netliği eşiği (koşumdan önce, M-08)
+Aynı okul ayarı, sanal komşular P(s|1)/P(s|0) ∈ {0.9/0.1, 0.8/0.2,
+0.7/0.2}, pencere dışı 0.3, 100K, 2 seed. Optimal alıcı tavanları
+`channel_oracle` ile aynı koşulda hesaplanır (rapora eklenecek).
+- **Çıta:** her doz için son 20K isabet > RS-0 (0.42) + 0.05 → o doz
+  "dinleyici öğrenmesini tetikler". Eşik = çıtayı geçen en gürültülü doz.
+- **Öngörü:** 0.9/0.1 ✓, 0.8/0.2 ✓, 0.7/0.2 ✗ (0.5).

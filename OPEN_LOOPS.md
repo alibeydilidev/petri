@@ -238,6 +238,11 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-37 GÜNCEL (21 Ekim 09:00):** CH0: kanal tavan değil (optimal alıcı
+  bugünkü göndericilerle +0.14). RS: tek ajan mükemmel varlık kodlu
+  komşuları dinlemeyi ÖĞRENDİ (0.42 → 0.62, tavan 0.50 aşıldı — ilk kez);
+  gözlenen gürültülü göndericiyle öğrenmedi. Sıradaki: gönderici netliği
+  doz-cevap eşiği (RS-dose), sonra ekolojide geri besleme döngüsü.
 - **PL-37 — Dinleyici halkası / kanal tavanı (AÇIK, Ali):** A″: ajanlar
   ipucu değerine bağlı konuşma kararı üretiyor (0.08-0.10 bit; ~%75
   refleks), dinleyen yok. Hipotez: kimliksiz küresel kanalda "sinyal var"
