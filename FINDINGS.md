@@ -3518,3 +3518,71 @@ devam, 10 dönem (`runs/ev/open30`, `runs/ev/mute30`). Not: tüm adalar
 kendi-ipucu tavanında; seçilimin seçebileceği kalıtsal varyasyon,
 tavanı aşan bir kanal kullanımı doğana kadar fiilen yok — EV1'in
 düşmesi de bunun belirtisi.
+
+## A′ — SONUÇLAR (2026-10-21, 04:40)
+
+Veri: `runs/ev/{open,mute}` (7×10K) + `runs/ev/{open30,mute30}` (10×30K),
+`state.json` dosyaları.
+
+| | EV-A (açık, 6 ada) | EV-K (kapalı, 3 ada) |
+|---|---|---|
+| isabet son 3 dönem ort | 0.431 / 0.434 / 0.438 | 0.452 / 0.448 / 0.446 |
+| en iyi ada son 3 | 0.440 / 0.449 / 0.447 | 0.455 / 0.452 / 0.450 |
+| kendi-ipucu son dönem | 0.85 | 0.89 |
+| hasat/1K son dönem | 1.45 | 1.67 |
+| sembol MI maks (17 dönem) | 0.012 → 0.006 (Spearman −0.73, AZALIYOR) | — |
+| soy | tek kurucu soy (src0) süpürdü | tek soy |
+
+- **EV1 ✓ (revizyon sonrası):** 30K dönemde Spearman ort 0.47 (10K'da 0.17 ✗).
+- **EV2 ✗:** en iyi ada 0.45 < 0.50; açık kol kapalının 0.01-0.02 ALTINDA.
+- **EV3 ✗:** sembol MI 0.004-0.012, eğilim azalan.
+- **EV4 ✓:** açıkta tek soy baskın.
+- **Öngörü karnesi:** EV1 ✓ (0.6) → revizyonla doğru; EV4 ✓ doğru; EV2/EV3 ✗ doğru.
+
+**Hüküm (ön-kayıtlı çıtalarla):** grup seçilimi bu ölçekte (17 dönem,
+360K tur/ada) tavuk-yumurtayı kırmadı; sembol kimliği hiçbir bilgi
+taşımıyor; seçilim, kanalın yükünü azaltacak yönde değil, en yetkin
+soyu çoğaltacak yönde çalıştı.
+
+### POST-HOC ADAY GÖZLEM — "konuşma kararı" ipucu değerini taşıyor (ön-kayıtsız; doğrulama ön-kaydı aşağıda)
+
+Sembol kimliği değil, **sinyal verip vermeme** ajanın kendi ipucu
+DEĞERİNE bağlı. Uyarı penceresinde P(sinyal | değer) ve I(değer; sinyal
+var/yok) (değer 0/1 eşit olası varsayımıyla; ipucu×sembol tablosu satır
+toplamları + bekleme turu sayısı):
+
+| koşum | P(sinyal|0) | P(sinyal|1) | I (bit) |
+|---|---|---|---|
+| S3-K K-A (tampon sıfırlanır) | 0.80 | 0.84 | 0.002 |
+| A2′ P-A (tampon mirası) | 0.41 | 0.64 | 0.041 |
+| C3-A | 0.46 | 0.65 | 0.027 |
+| **C4-A (3 seed)** | **0.20-0.25** | **0.50-0.62** | **0.074-0.105** |
+| EV open30 son dönem | 0.22-0.24 | 0.49-0.54 | 0.050-0.083 |
+
+- Tampon mirasıyla (PL-35) DOĞUYOR ve süreyle büyüyor (0.002 → 0.04 →
+  0.10). Bit İNDEKSİNDEN bağımsız (01 ve 11 satırları birlikte yüksek):
+  taşınan şey "benim bitim 1" bilgisi.
+- **Etiket: ADAY GÖZLEM, post-hoc.** (i) Ölçü ön-kayıtsız (ön-kayıt
+  sembol kimliğine bakıyordu). (ii) Dinleyen yok: isabet tavanı
+  aşılmadı, "duydu/duymadı" ayrımı ölçülemiyor. (iii) **H0 açık:**
+  değer=1 iken gözlemde (1,0) öncü hücresi yanar; model bu ek "tehlike
+  benzeri" girdiye sinyal artışıyla tepki veriyor olabilir — başkası
+  için değil, refleks. Bunu ayıran test: **kimse duyamazken** (speak
+  modu) asimetri sürüyor mu?
+
+## A″ — ÖN-KAYIT: konuşma-kararı asimetrisinin doğrulaması (koşumdan önce, M-08) (2026-10-21, 04:45)
+
+Kurucular C3-A final ağırlıkları (asimetri 1.4-1.9 iken), dünya seed
++500, C4 ayarı (sığınak N=2, s=0, inherit_per), 100K, 3 seed:
+- **R-open:** kanal açık (tekrar; yeni seed'ler).
+- **R-speak:** gönderir ama KİMSE DUYMAZ (alınan vektör sıfır) — dinleyici
+  faydası imkânsız.
+**Ölçüler:** I(değer; sinyal var/yok) son 50K, P(sinyal|değer).
+- **D1 (tekrar):** R-open'da I ≥ 0.05 bit (≥2/3) — bulgu tekrarlanıyor.
+- **D2 (dinleyiciye yönelik mi):** R-open I − R-speak I ≥ 0.03 bit (≥2/3).
+  D2 ✗ (R-speak'te de aynı) → **refleks/girdi etkisi**; "konuşan var"
+  iddiası düşer, yalnız "girdiye bağlı sinyal üretimi" kalır.
+- **D3 (dinleyen):** R-open isabet > kendi-ipucu tavanı (≈ own_cue×0.5 +
+  (1−own_cue)×0.22) + 0.03.
+**Öngörüler (bağlayıcı):** D1 ✓ (0.75); D2 ✗ (0.65) — en sade açıklama
+girdi refleksi; D3 ✗ (0.85).

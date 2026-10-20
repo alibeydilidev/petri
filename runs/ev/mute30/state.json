@@ -1,0 +1,499 @@
+{
+  "arm": "mute",
+  "islands": 3,
+  "epoch_turns": 30000,
+  "replace": 1,
+  "copy_sigma": 0.005,
+  "current": [
+    "runs/ev/mute30/e009_i0/final_weights.pt",
+    "runs/ev/mute30/e009_i1/final_weights.pt",
+    "runs/ev/mute30/e009_copy_1_to_2.pt"
+  ],
+  "lineage": [
+    "src2>5>7",
+    "src2>5",
+    "src2>5>9"
+  ],
+  "epochs": [
+    {
+      "epoch": 0,
+      "fitness": [
+        {
+          "hit": 0.43667889296432144,
+          "protected": 0.42407469156385463,
+          "own_cue": 0.8827609203067689,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.7733333333333334
+        },
+        {
+          "hit": 0.44081360453484497,
+          "protected": 0.42814271423807937,
+          "own_cue": 0.8913637879293098,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.74
+        },
+        {
+          "hit": 0.4440146715571857,
+          "protected": 0.431677225741914,
+          "own_cue": 0.896698899633211,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.66
+        }
+      ],
+      "order": [
+        2,
+        1,
+        0
+      ],
+      "replaced": [
+        [
+          0,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>0",
+        "src1",
+        "src2"
+      ],
+      "mean_hit": 0.44050238968545075,
+      "max_hit": 0.4440146715571857,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 1,
+      "fitness": [
+        {
+          "hit": 0.4432810936978993,
+          "protected": 0.4320106702234078,
+          "own_cue": 0.8874958319439813,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.38
+        },
+        {
+          "hit": 0.44688229409803265,
+          "protected": 0.4356118706235412,
+          "own_cue": 0.8962320773591197,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.5066666666666666
+        },
+        {
+          "hit": 0.44734911637212404,
+          "protected": 0.4356118706235412,
+          "own_cue": 0.8988996332110704,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.76
+        }
+      ],
+      "order": [
+        2,
+        1,
+        0
+      ],
+      "replaced": [
+        [
+          0,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>1",
+        "src1",
+        "src2"
+      ],
+      "mean_hit": 0.445837501389352,
+      "max_hit": 0.44734911637212404,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 2,
+      "fitness": [
+        {
+          "hit": 0.4551517172390797,
+          "protected": 0.4434811603867956,
+          "own_cue": 0.893297765921974,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.4533333333333334
+        },
+        {
+          "hit": 0.4338112704234745,
+          "protected": 0.4223407802600867,
+          "own_cue": 0.8842947649216405,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.4266666666666667
+        },
+        {
+          "hit": 0.4558852950983661,
+          "protected": 0.4464821607202401,
+          "own_cue": 0.8972324108036012,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.22
+        }
+      ],
+      "order": [
+        2,
+        0,
+        1
+      ],
+      "replaced": [
+        [
+          1,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>1",
+        "src2>2",
+        "src2"
+      ],
+      "mean_hit": 0.4482827609203068,
+      "max_hit": 0.4558852950983661,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 3,
+      "fitness": [
+        {
+          "hit": 0.4427475825275092,
+          "protected": 0.43121040346782263,
+          "own_cue": 0.8982327442480827,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.76
+        },
+        {
+          "hit": 0.43907969323107704,
+          "protected": 0.4278092697565855,
+          "own_cue": 0.8954318106035345,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.8333333333333333
+        },
+        {
+          "hit": 0.45088362787595865,
+          "protected": 0.439946648882961,
+          "own_cue": 0.8951650550183394,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.3
+        }
+      ],
+      "order": [
+        2,
+        0,
+        1
+      ],
+      "replaced": [
+        [
+          1,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>1",
+        "src2>3",
+        "src2"
+      ],
+      "mean_hit": 0.4442369678781816,
+      "max_hit": 0.45088362787595865,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 4,
+      "fitness": [
+        {
+          "hit": 0.4346115371790597,
+          "protected": 0.42380793597865957,
+          "own_cue": 0.8956318772924308,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.4866666666666666
+        },
+        {
+          "hit": 0.4479493164388129,
+          "protected": 0.43647882627542517,
+          "own_cue": 0.8957652550850284,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.6133333333333333
+        },
+        {
+          "hit": 0.4413471157052351,
+          "protected": 0.42994331443814604,
+          "own_cue": 0.8960986995665222,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.74
+        }
+      ],
+      "order": [
+        1,
+        2,
+        0
+      ],
+      "replaced": [
+        [
+          0,
+          1
+        ]
+      ],
+      "lineage_after": [
+        "src2>3>4",
+        "src2>3",
+        "src2"
+      ],
+      "mean_hit": 0.4413026564410359,
+      "max_hit": 0.4479493164388129,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 5,
+      "fitness": [
+        {
+          "hit": 0.44221407135711904,
+          "protected": 0.4330110036678893,
+          "own_cue": 0.8906968989663221,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.4466666666666668
+        },
+        {
+          "hit": 0.42654218072690897,
+          "protected": 0.4163387795931977,
+          "own_cue": 0.8871623874624875,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.36
+        },
+        {
+          "hit": 0.44894964988329444,
+          "protected": 0.43821273757919305,
+          "own_cue": 0.8859619873291097,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.56
+        }
+      ],
+      "order": [
+        2,
+        0,
+        1
+      ],
+      "replaced": [
+        [
+          1,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>3>4",
+        "src2>5",
+        "src2"
+      ],
+      "mean_hit": 0.4392353006557741,
+      "max_hit": 0.44894964988329444,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 6,
+      "fitness": [
+        {
+          "hit": 0.43547849283094364,
+          "protected": 0.42500833611203737,
+          "own_cue": 0.8927642547515838,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.46
+        },
+        {
+          "hit": 0.4358119373124375,
+          "protected": 0.4242747582527509,
+          "own_cue": 0.8900966988996332,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.3533333333333333
+        },
+        {
+          "hit": 0.43781260420140045,
+          "protected": 0.42574191397132377,
+          "own_cue": 0.8844281427142381,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.26
+        }
+      ],
+      "order": [
+        2,
+        1,
+        0
+      ],
+      "replaced": [
+        [
+          0,
+          2
+        ]
+      ],
+      "lineage_after": [
+        "src2>6",
+        "src2>5",
+        "src2"
+      ],
+      "mean_hit": 0.4363676781149272,
+      "max_hit": 0.43781260420140045,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 7,
+      "fitness": [
+        {
+          "hit": 0.4486162054018006,
+          "protected": 0.43787929309769924,
+          "own_cue": 0.8926975658552851,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.3733333333333333
+        },
+        {
+          "hit": 0.4546848949649883,
+          "protected": 0.44534844948316105,
+          "own_cue": 0.8965655218406136,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.5133333333333334
+        },
+        {
+          "hit": 0.4538846282094031,
+          "protected": 0.443947982660887,
+          "own_cue": 0.8846282094031344,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.3066666666666666
+        }
+      ],
+      "order": [
+        1,
+        2,
+        0
+      ],
+      "replaced": [
+        [
+          0,
+          1
+        ]
+      ],
+      "lineage_after": [
+        "src2>5>7",
+        "src2>5",
+        "src2"
+      ],
+      "mean_hit": 0.45239524285873073,
+      "max_hit": 0.4546848949649883,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 8,
+      "fitness": [
+        {
+          "hit": 0.4522840946982327,
+          "protected": 0.44261420473491164,
+          "own_cue": 0.8902967655885295,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.7266666666666666
+        },
+        {
+          "hit": 0.4488162720906969,
+          "protected": 0.4375458486162054,
+          "own_cue": 0.8865621873957986,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.58
+        },
+        {
+          "hit": 0.4415471823941314,
+          "protected": 0.43081027009003003,
+          "own_cue": 0.8857619206402134,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.46
+        }
+      ],
+      "order": [
+        0,
+        1,
+        2
+      ],
+      "replaced": [
+        [
+          2,
+          0
+        ]
+      ],
+      "lineage_after": [
+        "src2>5>7",
+        "src2>5",
+        "src2>5>7>8"
+      ],
+      "mean_hit": 0.4475491830610204,
+      "max_hit": 0.4522840946982327,
+      "max_mi": 0.0
+    },
+    {
+      "epoch": 9,
+      "fitness": [
+        {
+          "hit": 0.44381460486828944,
+          "protected": 0.43114371457152384,
+          "own_cue": 0.8948316105368456,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.7333333333333334
+        },
+        {
+          "hit": 0.4503501167055685,
+          "protected": 0.43781260420140045,
+          "own_cue": 0.8926975658552851,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.5733333333333333
+        },
+        {
+          "hit": 0.44294764921640545,
+          "protected": 0.4302100700233411,
+          "own_cue": 0.8874291430476826,
+          "signal_rate": 0.0,
+          "mi_bits": 0.0,
+          "harvest_per_1k": 1.7066666666666668
+        }
+      ],
+      "order": [
+        1,
+        0,
+        2
+      ],
+      "replaced": [
+        [
+          2,
+          1
+        ]
+      ],
+      "lineage_after": [
+        "src2>5>7",
+        "src2>5",
+        "src2>5>9"
+      ],
+      "mean_hit": 0.4457041235967545,
+      "max_hit": 0.4503501167055685,
+      "max_mi": 0.0
+    }
+  ]
+}
