@@ -21,7 +21,10 @@ kalıcı net yük, kullanılmıyor. Program A+C (20 Ekim): sahte primin
 kaynağı (halefte tekrar tamponu sıfırlanması) bulunup kesildi, kanal
 artık **nötr ve doğru fiyatlı**; ajanlar kendi-ipucu tavanında (0.45);
 "birlikte açılan sığınak" tuzağıyla bile kimse başkasının bitini
-kullanmıyor (113 koşum, 0 bit). Sonraki program kararı PL-36 (Ali).
+kullanmıyor (113 koşum, 0 bit). Program A′ (ada modeli grup seçilimi)
+sembol anlamı doğurmadı; ama ajanlar ilk kez ipucuna **bağlı bir konuşma
+kararı** geliştirdi (0.10 bit) — ablasyonda büyük kısmı refleks çıktı ve
+dinleyen yok. Kalan eksik halka: dinleyici (PL-37).
 
 ---
 

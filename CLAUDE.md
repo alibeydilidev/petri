@@ -98,8 +98,12 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   tuzağı: N=3 kredi atamasını bozdu, N=2 + yetkin kadro + tampon →
   kanal nötr ve fiyatlı, isabet 0.45 (tavan), MI 0.004 platosu, kanal
   KULLANILMIYOR (600K). M-30/M-31. Toplam 113 koşum, 0 bit.
-- **SIRADAKİ ADIM (PL-36, Ali kararı):** A′ evrimsel önyükleme / D
-  "alıcı önce" (M-25 analizi şart) / E kimlikli-yerel kanal.
+- **Program A′/A″ (20-21 Ekim):** ada modeli grup seçilimi (6+3 ada, 360K
+  tur/ada) sembol anlamı doğurmadı. Post-hoc: konuşma KARARI ipucu
+  değerini taşıyor (0.10 bit), A″ ablasyonunda ~%75 refleks; dinleyen yok.
+  Toplam ~150 koşum, 0 bit.
+- **SIRADAKİ ADIM (PL-37, Ali kararı):** dinleyici halkası — varlık-kodlu
+  oracle (0 bit) → gerekirse kimlikli/yerel kanal (anayasal).
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

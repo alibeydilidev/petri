@@ -3586,3 +3586,55 @@ Kurucular C3-A final ağırlıkları (asimetri 1.4-1.9 iken), dünya seed
   (1−own_cue)×0.22) + 0.03.
 **Öngörüler (bağlayıcı):** D1 ✓ (0.75); D2 ✗ (0.65) — en sade açıklama
 girdi refleksi; D3 ✗ (0.85).
+
+## A″ — SONUÇLAR: **konuşma kararı ipucu değerini taşıyor, ama büyük ölçüde refleks** (2026-10-21, 06:00)
+
+Veri: `runs/a3/{Ropen,Rspeak}_s*` (C3-A kurucu, yeni dünyalar, 100K).
+
+| kol | seed | I(değer; sinyal var/yok) | P(sinyal|0) | P(sinyal|1) | isabet son 20K | kendi-ipucu tavanı | fark |
+|---|---|---|---|---|---|---|---|
+| Ropen | 3001 | **0.091** | 0.24 | 0.58 | 0.462 | 0.464 | −0.002 |
+| Ropen | 3002 | **0.098** | 0.22 | 0.58 | 0.468 | 0.462 | +0.006 |
+| Ropen | 3003 | **0.078** | 0.21 | 0.52 | 0.444 | 0.458 | −0.014 |
+| Rspeak | 3001 | 0.069 | 0.24 | 0.54 | 0.437 | 0.465 | −0.028 |
+| Rspeak | 3002 | 0.068 | 0.21 | 0.51 | 0.447 | 0.468 | −0.021 |
+| Rspeak | 3003 | 0.069 | 0.20 | 0.49 | 0.451 | 0.464 | −0.013 |
+
+- **D1 ✓** (3/3 ≥ 0.05): bulgu bağımsız dünyalarda tekrarlandı.
+- **D2 ✗ (sınırda):** Ropen − Rspeak = +0.022 / +0.030 / +0.009 (çıta ≥0.03,
+  2/3 → 1/3). Asimetrinin ~%75'i kimse duymazken de var → **girdi
+  refleksi**: değer=1 iken yanan öncü hücresi sinyal üretimini artırıyor.
+  Kalan ~%25 (+0.02 bit) duyma koşuluna bağlı, işaret 3/3 aynı yönde ama
+  çıtanın altında.
+- **D3 ✗:** isabet kendi-ipucu tavanında (fark −0.014…+0.006); dinleyen yok.
+  (Not: Rspeak tavanın 0.01-0.03 altında, Ropen tavanda; fark küçük,
+  ön-kayıtsız — kayıt olarak.)
+- **Öngörü karnesi:** D1 ✓ (0.75) doğru; D2 ✗ (0.65) doğru; D3 ✗ doğru.
+
+**Hüküm:** post-hoc aday gözlem **kısmen düştü**: "konuşan var" iddiası
+yerine "**girdiye bağlı sinyal üretimi** (refleks), üstünde küçük ve
+tutarlı ama çıta altı bir dinleyici-koşullu bileşen". Beş Kapı: tekrar ✓,
+ablasyon (speak) ✗, dinleyen ✗ → İDDİA yok. Değeri: dil tuzağında
+göndericinin ilk kez ipucuyla OLUMSAL bir sinyal ürettiği gözlendi;
+bu, tavuk-yumurtanın "gönderici" yumurtası — dinleyici öğrenmesi için
+gereken ham malzeme artık ortamda var (0.07-0.10 bit/olay/ajan).
+
+---
+
+# PROGRAM A′/A″ KAPANIŞI ve DURUM (2026-10-21, 06:05)
+
+1. Grup seçilimi (ada modeli, 360K tur/ada) sembol anlamı doğurmadı.
+2. Ama tampon mirası rejiminde ajanlar **ipucuna bağlı konuşma
+   kararı** geliştirdi (0.10 bit) — büyük kısmı refleks; dinleyici yok.
+3. **Kalan tek eksik halka: dinleyici.** Ortamda "konuşan değer=1"
+   bilgisi dolaşıyor; hiçbir ajan bunu eyleme çevirmiyor (alınan sinyal
+   ⇒ kutup çıkarımı). Neden: küresel kanalda 4 göndericiden hangisinin
+   hangi BİT İNDEKSİNİ taşıdığı bilinmiyor; "biri konuştu" 2 bitlik
+   kutbu çözmeye yetmiyor (yalnız sinyal VARLIĞI, indeks/değer ayrımı
+   yok → alıcı için bilgi ≪ 0.10 bit). Bu bir **kanal-tasarım tavanı**:
+   varlık-kodlu sinyal, kimliksiz küresel kanalda kutup bilgisini
+   alıcıya ulaştıramıyor.
+**Sonraki adım adayı (PL-37, Ali):** (i) alıcının erişebildiği bilgiyi
+ölçmek (oracle: "varlık kodlu" mükemmel gönderici + optimal alıcı bu
+kanalda ne kazanır? — 0 bit, 1 saat); kazanç küçükse kanal tasarımı
+(kimlik ya da yerellik, PL-28 geri) anayasal karar olarak Ali'ye.

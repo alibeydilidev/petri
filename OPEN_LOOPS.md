@@ -238,7 +238,15 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
-- **PL-36 — Sonraki program (AÇIK, Ali):** A+C kapandı (FINDINGS
+- **PL-37 — Dinleyici halkası / kanal tavanı (AÇIK, Ali):** A″: ajanlar
+  ipucu değerine bağlı konuşma kararı üretiyor (0.08-0.10 bit; ~%75
+  refleks), dinleyen yok. Hipotez: kimliksiz küresel kanalda "sinyal var"
+  bilgisi alıcıya kutbu çözdürmüyor. Önerilen ilk adım: varlık-kodlu
+  mükemmel gönderici + optimal alıcı oracle'ı (0 bit); düşükse kanal
+  tasarımı (kimlik/yerellik) anayasal karar.
+- **PL-36 — (KAPALI, 21 Ekim):** A′ seçildi ve koşuldu (grup seçilimi ✗;
+  post-hoc konuşma-kararı gözlemi, A″'de çoğunlukla refleks). PL-37'ye.
+- **PL-36-eski — Sonraki program (Ali):** A+C kapandı (FINDINGS
   "PROGRAM A + C KAPANIŞI"): kanal nötr, fiyatlı, kullanılmıyor; MI
   0.004 platosu. Seçenekler: A′ evrimsel önyükleme (0 bit, ≥1M tur),
   D "alıcı önce" (dünya öncüyü bazen sembol olarak yayınlar; M-25
