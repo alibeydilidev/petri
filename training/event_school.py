@@ -41,7 +41,14 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
                learning_rate: float | None = None,
                window: int = 10_000, channel: str = "mute",
                event_share: float = 0.0,
-               ensemble: tuple[int, float] | None = None) -> dict:
+               ensemble: tuple[int, float] | None = None,
+               virtual_senders: tuple[float, float, float] | None = None) -> dict:
+    """virtual_senders=(p1, p0, base) (PL-37 alıcı okulu): 4 sanal komşu.
+    Uyarı penceresinde her biri rastgele bir bit indeksi görür ve o bit 1
+    ise p1, 0 ise p0 olasılıkla rastgele bir sembol yayınlar; pencere
+    dışında base olasılıkla. Ajan bunları alınan-sinyal vektöründe duyar.
+    Dünya-tarafı ölçüm aleti; ajana hiçbir konvansiyon verilmez (semboller
+    rastgele; yalnız VARLIK ipucuyla olumsal — ekolojide gözlenen kural)."""
     """channel="open": tek ajan kendi sinyalini gönderir (duyan yok,
     maliyet var) — Program A0: sahte sinyal primi tek ajanda oluşuyor mu?"""
     pathlib.Path(out_dir).mkdir(parents=True, exist_ok=True)
@@ -69,9 +76,28 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
     homeo = Homeostasis(cfg)
     rng = planner.rng
 
+    vs_rng = np.random.default_rng(9000 + seed)
+    heard_now = []
+
+    def virtual_heard():
+        if virtual_senders is None:
+            return []
+        p1, p0, base = virtual_senders
+        ev = world.events
+        out = []
+        for j in range(1, 5):
+            if ev.pending(world.turn):
+                b = int(vs_rng.integers(0, 2)); v = (int(ev.polarity) >> b) & 1
+                pr = p1 if v else p0
+            else:
+                pr = base
+            if vs_rng.random() < pr:
+                out.append((j, int(vs_rng.integers(0, 16))))
+        return out
+
     def observe():
         return encode_obs(world.observe(0, cfg.obs_radius),
-                          max(homeo.energy, 0.0), cfg, received_vector([]))
+                          max(homeo.energy, 0.0), cfg, received_vector(heard_now))
 
     obs = observe()
     W = {"event_turns": 0, "hits": 0, "own": 0, "stay": 0, "deaths": 0,
@@ -95,6 +121,7 @@ def run_school(turns: int, seed: int, out_dir: str, event_every: int = 10,
             if not can_send:
                 sig = NO_SIGNAL
         deltas = world.step(np.array([a]), np.array([sig]))
+        heard_now = virtual_heard()
         homeo.apply_turn(a, float(deltas[0]),
                          signal_cost=cfg.signal_energy_cost if sig != NO_SIGNAL else 0.0)
         W["turns"] += 1
@@ -160,11 +187,14 @@ def main() -> None:
     ap.add_argument("--channel", choices=["mute", "open"], default="mute")
     ap.add_argument("--event-share", type=float, default=0.0)
     ap.add_argument("--ensemble", type=float, nargs=2, default=None, metavar=("K", "BETA"))
+    ap.add_argument("--virtual-senders", type=float, nargs=3, default=None,
+                    metavar=("P1", "P0", "BASE"), help="PL-37 alıcı okulu")
     a = ap.parse_args()
     run_school(a.turns, a.seed, a.out, a.event_every, a.event_lead,
                a.event_penalty, a.energy_loss_weight, a.learning_rate,
                channel=a.channel, event_share=a.event_share,
-               ensemble=None if a.ensemble is None else (int(a.ensemble[0]), float(a.ensemble[1])))
+               ensemble=None if a.ensemble is None else (int(a.ensemble[0]), float(a.ensemble[1])),
+               virtual_senders=None if a.virtual_senders is None else tuple(a.virtual_senders))
 
 
 if __name__ == "__main__":

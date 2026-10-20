@@ -1,0 +1,24 @@
+[
+  {
+    "arm": "own",
+    "hit": 0.4995,
+    "protected_N2": 0.4681
+  },
+  {
+    "arm": "presence",
+    "hit": 0.9687,
+    "protected_N2": 0.9687,
+    "info_bits": 0.8285
+  },
+  {
+    "arm": "presence_obs",
+    "hit": 0.6372,
+    "protected_N2": 0.6198,
+    "info_bits": 0.0829
+  },
+  {
+    "arm": "told",
+    "hit": 0.9692,
+    "protected_N2": 0.9674
+  }
+]

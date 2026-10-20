@@ -3638,3 +3638,54 @@ gereken ham malzeme artık ortamda var (0.07-0.10 bit/olay/ajan).
 ölçmek (oracle: "varlık kodlu" mükemmel gönderici + optimal alıcı bu
 kanalda ne kazanır? — 0 bit, 1 saat); kazanç küçükse kanal tasarımı
 (kimlik ya da yerellik, PL-28 geri) anayasal karar olarak Ali'ye.
+
+## PL-37 / CH0 — ÖN-KAYIT: varlık-kodlu kanal oracle'ı (koşumdan önce, M-08) (2026-10-21)
+
+**Soru:** kimliksiz küresel kanalda "bitim 1 ise konuşurum" (varlık kodu)
+göndericileri, OPTİMAL bir alıcıya kutbu ne kadar çözdürür? Saf Monte
+Carlo (`training/channel_oracle.py`, 0 bit, ölçüm aleti): kutup K=4
+tekdüze, 5 ajan, her ajan olay başına rastgele bir bit indeksi görür;
+alıcı kendi (indeks, değer) + diğer 4'ten duyulan sinyal SAYISI ile
+Bayes-optimal kutup seçer. Kollar: `own` (yalnız kendi bit), `presence`
+(mükemmel varlık kodu P(s|1)=1, P(s|0)=0), `presence_obs` (gözlenen:
+0.55 / 0.22), `told` (sembol indeks+değer taşır, mükemmel konvansiyon).
+Ölçüler: isabet, sığınak (N=2) korunması, I(kutup; duyulan | kendi bit).
+- **CH-a (kanal yeterli mi):** presence_obs isabet − own ≥ 0.10 → kanalda
+  bilgi var, eksik olan ALICI öğrenmesi (ajan sorunu) → sıradaki adım
+  alıcı tarafı. < 0.05 → **kanal tavanı** (tasarım sorunu) → kimlik/
+  yerellik kararı Ali'ye.
+- **Öngörü:** presence (mükemmel) own'dan +0.15-0.25; presence_obs
+  +0.03-0.08 (CH-a ✗ bölgesi) (0.6).
+
+### CH0 — SONUÇ: **kanal tavan DEĞİL; masada bilgi var, dinleyen yok** (2026-10-21)
+`runs/ch0_channel_oracle.json` (100K olay):
+| kol | isabet | korunma (N=2) | I(kutup; duyulan sayı | kendi bit) |
+|---|---|---|---|
+| own | 0.500 | 0.468 | — |
+| **presence_obs** (0.55/0.22) | **0.637** | 0.620 | 0.083 bit |
+| presence (1.0/0.0) | 0.969 | 0.969 | 0.829 bit |
+| told | 0.969 | 0.967 | — |
+- **CH-a ✓** (+0.137 ≥ 0.10). Öngörüm ("kanal tavanı", +0.03-0.08) YANLIŞ:
+  konuşan SAYISI kutbun bit sayısını (popcount) verir; kendi bitle
+  birleşince kutup çözülür. Bugünkü gürültülü göndericiler bile optimal
+  alıcıya +0.14 isabet sunuyor; ekolojide alınan: ~0. **Eksik halka
+  alıcı öğrenmesi.** (Not: alınan vektör doygun one-hot; rastgele
+  sembollerde farklı sembol sayısı ≈ konuşan sayısı, çakışma nadir.)
+
+## RS — ÖN-KAYIT: alıcı okulu (koşumdan önce, M-08)
+Olay okulu (tek ajan, yetiştirme kabı, inherit yok — tek beden ölünce
+ağırlık sürer), her 10 tur, lead 4, ceza 25, kanal kapalı (ajan
+yayınlamaz), 100K, 2 seed. Sanal 4 komşu (dünya-tarafı ölçüm aleti):
+- **RS-0:** komşu yok (taban; kendi-ipucu tavanı ~0.47).
+- **RS-obs:** komşular gözlenen kuralla (P(s|1)=0.55, P(s|0)=0.22, pencere
+  dışı 0.3) rastgele sembol yayınlar.
+- **RS-1:** mükemmel varlık kodu (1.0/0.0, dışarı 0.3).
+**Çıtalar (son 20K):** RS-1 isabet > RS-0 + 0.15 (alıcı öğrenmesi MÜMKÜN);
+RS-obs > RS-0 + 0.05 (gürültülü göndericiyle de mümkün).
+**Öngörü:** RS-1 ✓ (0.6), RS-obs ✗ (0.6) — sayma (kaç sembol yandı) ×
+kendi bit × eylem etkileşimini öğrenmek okul ölçeğinde bile zor olabilir.
+**Matris:** RS-1 ✓ RS-obs ✓ → ekolojide alıcı deneyimi yetmiyor → ekoloji
+koşulunu okula yaklaştır (uzun ömür / tampon / sıklık). RS-1 ✓ RS-obs ✗ →
+göndericinin netleşmesi gerek (tavuk-yumurta sürer ama sayısal). RS-1 ✗ →
+mimari: sayma/birleştirme öğrenilemiyor (doygun girdi + GRU) — anayasal
+tartışma (sayı kodlu alım; K-114 revizyonu).
