@@ -72,7 +72,7 @@
   saysaydık — 45K turda 10 — tamponun tekrarlatacak şey bulamayacağı
   baştan görülürdü; bir koşum tasarruf edilirdi.)
 - **M-31 — Halefiyet, öğrenme mekaniğinin her parçası için ayrı
-  karardır** *(A2′, 2026-10-20)*: "Ölüm gerçek" cümlesi ağırlık, tekrar
+  karardır** *(A2′, 2026-10-19)*: "Ölüm gerçek" cümlesi ağırlık, tekrar
   tamponu, optimizer durumu ve hidden için ayrı ayrı ne olduğunu
   söylemek zorundadır. S3'te ağırlık miras alınıyor, tampon ve
   optimizer sıfırlanıyordu; 40 turluk ömürde tampon hiç dolmadığı için
@@ -82,7 +82,7 @@
   bileşeninin ölüm-sonrası kaderi tasarım tablosuna yazılır ve tek
   ajan ile ekoloji arasındaki fark o tablodan okunur (M-27'nin kardeşi).
 - **M-30 — Ortak fayda, bireysel kredi atamasını koruyarak verilir**
-  *(C1, 2026-10-20)*: Sinyalin faydasını göndericiye doğrudan bağlamak
+  *(C1, 2026-10-19)*: Sinyalin faydasını göndericiye doğrudan bağlamak
   için bireysel korumayı grup başarısına bağlayınca ("sığınak ≥3"),
   ajanın kendi eylemi ile sonucu arasındaki korelasyon 0.5'e düştü ve
   kendi-ipucu öğrenimi çöktü. Tuzak tasarımında "göndericiye fayda" ve
@@ -98,7 +98,7 @@
   veriyle ısıtılır; "açılış şoku" ayrı bir ölçüm kalemidir. M-05 ve
   M-28'in geçiş-anı yüzü.
 - **M-28 — Tuzağın geri dönüş yolunu kur, ama önce giriş ücretini
-  ölç** *(S3-N…P, 2026-10-19)*: Bir davranışın (sinyal) kendiliğinden
+  ölç** *(S3-N…P, 2026-10-18)*: Bir davranışın (sinyal) kendiliğinden
   belirmesi için iki hesap gerekir: göndericiye dönen BEKLENEN DEĞER
   (M-25'in gelir tarafı) ve davranışı DENEMENİN öğrenme maliyeti (enerji
   + kapalı-döngü karıştırması). İkincisi birincisinden büyükse fayda
@@ -108,7 +108,7 @@
   mümkün olmadı. Kural: kanal basıncı tasarlanırken "ilk sinyalin
   bedeli" ve "ilk faydanın gecikmesi" birlikte, oracle ile ölçülür.
 - **M-27 — Ekolojiyi yargılamadan önce tek-ajan tavanını ölç** *(S3-J,
-  2026-10-19)*: "Nüfus X'i öğrenemiyor" teşhisi, aynı görevi TEK ajanın
+  2026-10-18)*: "Nüfus X'i öğrenemiyor" teşhisi, aynı görevi TEK ajanın
   sınırsız deneyimle öğrenip öğrenemediği ölçülmeden eksiktir. Tavan
   şans düzeyindeyse sorun mimari/öğrenme sinyalidir (anayasal adım
   gerekebilir); tavan yüksekse sorun ekolojik parametredir (deneyim

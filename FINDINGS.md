@@ -2206,7 +2206,7 @@ basamak 2 (öncü kanalı / enerji kafası), Ali'ye sabah raporunda açık.
 **Beyan:** okul kanal-kapalıdır (kendi-ipucu sorusu); "ölüm gerçek"
 askıda (S1 emsali, ekoloji iddiası değil tavan ölçümü).
 
-## S3-J — SONUÇLAR: **TEK AJAN KENDİ İPUCUNU ÖĞRENİYOR (6/6 seed)** (2026-10-19, gece)
+## S3-J — SONUÇLAR: **TEK AJAN KENDİ İPUCUNU ÖĞRENİYOR (6/6 seed)** (2026-10-18 04:03 commit)
 
 Veri: `runs/s3j/*/school.json`, prob `runs/s3j/probe_school.json`.
 
@@ -2241,7 +2241,7 @@ eksiktir; tavan şans düzeyindeyse mimari, değilse ekolojik parametre
 sorunudur. (S3-G/H/I üç basamak bu ölçüm olmadan harcandı; okul 25
 dakikada ayırdı. M-01/M-02/M-21'in nüfus-öncesi özel hâli.)
 
-## S3-K — ÖN-KAYIT: DİL TUZAĞI, kurulu hâliyle (koşumdan önce, M-08) (2026-10-19, gece)
+## S3-K — ÖN-KAYIT: DİL TUZAĞI, kurulu hâliyle (koşumdan önce, M-08) (2026-10-18 04:03 commit)
 
 **Mantık.** Tek ajan kendi bitini öğreniyor (S3-J) → isabet tavanı 0.50.
 Tavanı aşmanın TEK yolu başkasının biti = kanal. Ekoloji okulun
@@ -2289,7 +2289,7 @@ alıcının duyduğu sembolü kendi enerji tahminine bağlaması gerekir —
 "öl ve yuvaya dön" (PL-29: ölüm sayısı raporlanır); sinyalin
 maliyetsizleşmesi yok (0.5, yuva yarıya indirir, beyanlı).
 
-## S3-K — SONUÇLAR: **kanal-kapalı ekoloji kendi ipucunu öğreniyor; kanal öğrenmeyi yavaşlatıyor; dil doğmadı** (2026-10-19, sabah)
+## S3-K — SONUÇLAR: **kanal-kapalı ekoloji kendi ipucunu öğreniyor; kanal öğrenmeyi yavaşlatıyor; dil doğmadı** (2026-10-18 05:58 commit)
 
 Veri: `runs/s3k/{KA,KK}_s300{1,2,3}/breath.json` (100K tur), özet
 `runs/s3k/summary.json`, prob `runs/s3k/probe_k.json`.
@@ -2338,7 +2338,7 @@ doğru (ve ters yön sürpriz); K3 0.01-0.03 bit → gerçek 0.0003
 
 ---
 
-# S3 KAPANIŞ RAPORU (2026-10-19)
+# S3 KAPANIŞ RAPORU (2026-10-18 05:58 commit)
 
 ## Hükümler (H1-H4) — kanıtla
 
@@ -2380,7 +2380,7 @@ seçilimi/karşılıklılıkla çalışır; burada ikisi de yok. Bu, anayasal
 bir tasarım sorusudur (seçilim (a) soy düzeyinde bunu sağlayabilir:
 paylaşan soylar daha çok çoğalır).
 
-## Ali adına verilen kararlar (18-19 Ekim gecesi; her biri defterde)
+## Ali adına verilen kararlar (17-18 Ekim gecesi; her biri defterde)
 | karar | nerede | bit |
 |---|---|---|
 | Yuva (600, 0.5), kanal açık | PL-22, KERNEL S3-D | 0 |
@@ -2413,7 +2413,7 @@ M-26, M-27 işlendi. Ek aday: **"Tuzağın geri dönüş yolunu kur"** —
 sinyalin göndericiye beklenen değeri hesaplanmadan (M-25'in gelir
 tarafı) kanal basıncı doğmaz. S3-N kararıyla birlikte M-28 olur.
 
-## S3-L — ÖN-KAYIT: kanal neden öğrenmeyi yavaşlatıyor? (koşumdan önce, M-08) (2026-10-19, sabah)
+## S3-L — ÖN-KAYIT: kanal neden öğrenmeyi yavaşlatıyor? (koşumdan önce, M-08) (2026-10-18 05:59 commit)
 
 **Soru (PL-32).** S3-K'da kanal açıkken kendi-ipucu öğrenmesi başlamadı.
 Üç aday mekanizma, iki ablasyonla ayrılır (0 bit; M-06):
@@ -2444,7 +2444,7 @@ gerekir (sonraki basamak, gerekirse). Bu turda L-speak asıl kol.
 **Öngörüler (bağlayıcı):** L1 ✓ (0.85). L2: L-speak < K-K (0.7) —
 seyrelme + maliyet birlikte.
 
-## S3-N — ÖN-KAYIT: tuzağın eksik dişlisi — paylaşılan olay kaybı (koşumdan önce, M-08) (2026-10-19, sabah)
+## S3-N — ÖN-KAYIT: tuzağın eksik dişlisi — paylaşılan olay kaybı (koşumdan önce, M-08) (2026-10-18 06:02 commit)
 
 **Karar (PL-33; Claude, Ali yetki devri).** S3 kapanış teşhisi: sinyal
 vermenin göndericiye dönen faydası yok → öğrenen sistem seçmez.
@@ -2502,7 +2502,7 @@ Değer 1.83, gereklilik 0.279, yeterlilik 0.726 (s=0: 1.96 / 0.241 /
 = 1.30 ≥ 1.15). Veri: `runs/s3n_event_oracle_share05.json`. Basamak
 2 (ekoloji, `runs/s3n/`) başlatıldı.
 
-## S3-L — SONUÇLAR: **yavaşlatan taraf GÖNDERME** (2026-10-19, sabah)
+## S3-L — SONUÇLAR: **yavaşlatan taraf GÖNDERME** (2026-10-18 08:22 commit)
 
 Veri: `runs/s3l/`, `runs/s3l/summary.json`.
 
@@ -2534,7 +2534,7 @@ araması zayıflar. Çözüm adayı (0 bit, S3-O): planlayıcı aday bütçesini
 eylem ve sinyal için AYIRMAK (K-111 emsali: eylem adayları sinyalsiz
 garantili + ayrı sinyal adayları) — içerik vermez, arama mekaniğidir.
 
-## S3-N — SONUÇLAR: **paylaşılan kayıp kanalı kurtarmadı** (2026-10-19, sabah)
+## S3-N — SONUÇLAR: **paylaşılan kayıp kanalı kurtarmadı** (2026-10-18 08:26 commit)
 
 Veri: `runs/s3n/`, `runs/s3n/summary.json` (s=0.5, her 10 tur, lead 4, 100K).
 
@@ -2564,7 +2564,7 @@ hesaplanır; ikincisi birincisinden büyükse fayda hiç keşfedilmez.
 (S3-N: fayda fizikte vardı, giriş ücreti — planlayıcı seyrelmesi +
 enerji — öğrenmeyi 0'da tuttu.) S3-O sonucuyla METODOLOJI'ye.
 
-## S3-O — ÖN-KAYIT: giriş ücretini düşür — planlayıcı aday bütçesi (koşumdan önce, M-08) (2026-10-19, sabah)
+## S3-O — ÖN-KAYIT: giriş ücretini düşür — planlayıcı aday bütçesi (koşumdan önce, M-08) (2026-10-18 08:26 commit)
 
 **Tek değişken:** `mpc_signal_candidate_frac` (sinyal taşıyabilen
 rastgele aday satırı payı): 1.0 (S3 geometrisi, ~%94 sinyalli) →
@@ -2630,7 +2630,7 @@ altında kapanır, S3 nihai hüküm negatif-mekanizmalı.
   (`eps_signal_quiet_prob`, K-108 revizyonu; eps_move_bias emsali:
   içerik vermez, karşı-olgusal veri çeşitliliği verir).
 
-## S3-P — ÖN-KAYIT: karşı-olgusal susma verisi (ε sinyal dengesi) (koşumdan önce, M-08) (2026-10-19)
+## S3-P — ÖN-KAYIT: karşı-olgusal susma verisi (ε sinyal dengesi) (koşumdan önce, M-08) (2026-10-18 09:31 commit)
 
 **Gerekçe.** S3-O yan probu: model "kendi sinyalim ⇒ yüksek enerji"
 primini kapalı döngüde öğreniyor çünkü ajan neredeyse hiç SUSMUYOR
@@ -2665,7 +2665,7 @@ dirençli (planlayıcı dalı baskın) → planlayıcı tarafında karşı-olgu
 (frac → 0: sinyal yalnız ε'dan) son 0-bit basamak. P3✓ → ADAY GÖZLEM,
 Beş Kapı.
 
-## S3-O — SONUÇLAR: **aday bütçesini kısmak yetmedi; öğrenilmiş sinyal primi baskın** (2026-10-19)
+## S3-O — SONUÇLAR: **aday bütçesini kısmak yetmedi; öğrenilmiş sinyal primi baskın** (2026-10-18 10:15 commit)
 
 Veri: `runs/s3o/`, `runs/s3o/summary.json`, prob `runs/s3o/signal_curse_probe_o.json`.
 
@@ -2695,7 +2695,7 @@ VERİ dengesi sorunu. Son 0-bit basamak: S3-P (ε dalında susma verisi).
 Kollar netleşti: **P-A** eps_quiet=0.5 + frac=0.05; **P-B** eps_quiet=0.5,
 frac=1.0 (M-06 ayrımı: susma verisi tek başına yeter mi).
 
-## S3-P — SONUÇLAR: **susma verisi primi yarılıyor ama kırmıyor; 0-bit merdiven bitti** (2026-10-19, öğle)
+## S3-P — SONUÇLAR: **susma verisi primi yarılıyor ama kırmıyor; 0-bit merdiven bitti** (2026-10-18 12:09 commit)
 
 Veri: `runs/s3p/`, `runs/s3p/summary.json`, prob `runs/s3p/signal_curse_probe_p.json`.
 
@@ -2730,7 +2730,7 @@ KERNEL_BUDGET satırı açar; karar Ali ile (sabah raporu).
 
 ---
 
-# S3 KAPANIŞ EKİ (2026-10-19, öğle) — S3-L…P sonrası nihai hüküm
+# S3 KAPANIŞ EKİ (2026-10-18 12:09 commit) — S3-L…P sonrası nihai hüküm
 
 **Hükümler değişmedi; mekanizma zinciri tamamlandı.**
 1. Ekoloji kararlı (σ=0.002) ve ajanlar KENDİ ipuçlarını öğreniyor
@@ -2762,16 +2762,16 @@ bütçe ister):**
 Tavsiye: **B önce** (ucuz, 0 bit; "giriş ücreti" tezini test eder),
 sonra A.
 
-**Ali adına verilen ek kararlar (19 Ekim, hepsi defterde):** event_share
+**Ali adına verilen ek kararlar (18 Ekim, hepsi defterde):** event_share
 0.5 (fizik), mpc_signal_candidate_frac ve eps_signal_quiet_prob
 (arama/keşif mekaniği, varsayılan bit-eş, üst sınır ~1 bit her biri,
 kalıcı yapılmadı). Anayasal basamak atılmadı. **Toplam yeni prior: 0.**
 
 **Yeni ders:** M-28 işlendi (aşağıda METODOLOJI).
 
-## S3-Q — ÖN-KAYIT: Program B, kademeli kanal (koşumdan önce, M-08) (2026-10-19, öğleden sonra)
+## S3-Q — ÖN-KAYIT: Program B, kademeli kanal (koşumdan önce, M-08) (2026-10-18 20:18 commit)
 
-**Karar (Ali, 19 Ekim: "B ile devam").** Tez: kanal, yetkinsiz ajana
+**Karar (Ali, 18 Ekim: "B ile devam").** Tez: kanal, yetkinsiz ajana
 açılınca giriş ücreti öğrenmeyi boğuyor (S3-K…P). Yetkin ajana
 (kendi-ipucu tavanında) açılırsa sinyal doğru fiyatlanır mı ve
 başkasının biti için kullanılır mı?
@@ -2813,7 +2813,7 @@ Kapı (Q2-K ablasyon hazır; ikiz; bit-eş tekrar; zaman çizgisi; 0 bit).
 kararı, PL-06/klon emsali); yuva Q2'de de her nesilde. Bit: 0.
 Hesap: Q1 ~7 saat (3 paralel), Q2 ~2,5 saat.
 
-### S3-Q1 — SONUÇ: tavana yaklaşma (kanal kapalı, 300K) (2026-10-19 gece)
+### S3-Q1 — SONUÇ: tavana yaklaşma (kanal kapalı, 300K) (2026-10-19 01:20 commit)
 | seed | medyan ömür | isabet 0-100K → 100-200K → 200-300K | son 20K isabet | kendi-ipucu son 20K | STAY | hasat/1K | ölüm |
 |---|---|---|---|---|---|---|---|
 | 3001 | 46 | 0.243 → 0.313 → 0.342 | **0.359** | **0.724** | 0.33 | 4.8 | 31.2K |
@@ -2830,7 +2830,7 @@ Hesap: Q1 ~7 saat (3 paralel), Q2 ~2,5 saat.
   farkı 0.003-0.011 — ekoloji lead=4 öğrendi, prob lead=8 soruyor;
   protokol uyumsuzluğu (önceki beyan), davranış ölçüsü esas.
 
-### S3-Q2 — SONUÇ: **yetkin ajan kanalı doğru fiyatlıyor; açılış şoku yetkinliği düşürüyor; dil yok** (2026-10-19 gece, 03:45)
+### S3-Q2 — SONUÇ: **yetkin ajan kanalı doğru fiyatlıyor; açılış şoku yetkinliği düşürüyor; dil yok** (2026-10-19 03:13 commit)
 
 Veri: `runs/s3q/Q2{A,K}_s*`, `runs/s3q/summary_q2.json`, prob
 `runs/s3q/signal_curse_probe_q2.json`. Kurucu kadro: Q1 final ağırlıkları.
@@ -2863,7 +2863,7 @@ model öğrenemiyordu (S3-K…P). Ama açılış şoku (eğitilmemiş sinyal
 sütunlarının sahte primi) yetkinliği geriletiyor ve fayda zinciri 100K'da
 kurulmuyor. Matris "süre lazım" dalı → **S3-R**.
 
-## S3-R — ÖN-KAYIT: Q2 devamı, 200K (koşumdan önce, M-08) (2026-10-19, 03:50)
+## S3-R — ÖN-KAYIT: Q2 devamı, 200K (koşumdan önce, M-08) (2026-10-19 03:13 commit)
 
 Q2-A ve Q2-K kendi final ağırlıklarından 200K daha (toplam açık kanal
 300K, toplam öğrenme 600K); dünya seed'leri +100 (yeni yerleşim; ağırlık
@@ -2884,7 +2884,7 @@ ADAY GÖZLEM, Beş Kapı (R-K ablasyon hazır; ikiz; bit-eş; zaman çizgisi).
 R1✗ → kanal açık kaldıkça yetkinlik geri gelmiyor → kalıcı maliyet
 (sinyal 0.5 anayasal) → C.
 
-## S3-R — SONUÇLAR: **toparlanma yok; Program B tamam** (2026-10-19, 07:10)
+## S3-R — SONUÇLAR: **toparlanma yok; Program B tamam** (2026-10-19 06:57 commit)
 
 Veri: `runs/s3r/`, `runs/s3r/summary.json`, prob `runs/s3r/signal_curse_probe_r.json`.
 Toplam: kanal-kapalı 300K + açık 300K (R-A) / kapalı 600K (R-K).
@@ -2918,7 +2918,7 @@ yük**. Matris: R1✗ → kalıcı maliyet → C (ya da öğrenme mekaniği A).
 
 ---
 
-# S3 NİHAİ HÜKÜM (2026-10-19, 07:15) — Program B sonrası
+# S3 NİHAİ HÜKÜM (2026-10-19 06:57 commit) — Program B sonrası
 
 **H4 NEGATİF (bu anayasa altında; 600K tura kadar; 0 yeni bit; 93
 koşum), mekanizması tamamlanmış:**
@@ -2953,7 +2953,7 @@ dil getirmez.
 
 ---
 
-# PROGRAM A — öğrenme mekaniği (Ali kararı, 2026-10-20 sabah)
+# PROGRAM A — öğrenme mekaniği (Ali kararı, 2026-10-19 08:09 commit)
 
 ## A0 — ÖN-KAYIT: sahte sinyal primi tek ajanda oluşuyor mu? (koşumdan önce, M-08)
 
@@ -2983,7 +2983,7 @@ isabet 0.44). 3 seed.
   açık kol ≥ kapalı − 0.02 (son 20K), açılış şoku yok (ilk 2K sinyal
   < 0.5).
 
-## A0 — SONUÇ: **tek ajanda sahte prim YOK; prim nüfusa özgü** (2026-10-20, 08:45)
+## A0 — SONUÇ: **tek ajanda sahte prim YOK; prim nüfusa özgü** (2026-10-19 08:31 commit)
 
 Veri: `runs/a0/open_s{0,1,2}`, prob `runs/a0/signal_curse_probe_a0.json`.
 
@@ -3007,7 +3007,7 @@ Veri: `runs/a0/open_s{0,1,2}`, prob `runs/a0/signal_curse_probe_a0.json`.
   sütunlarında rastgele yürüyüş σ≈0.1; Q1'in 300K sessiz koşumunda
   +1…+3 prim buna uyar; M-26'nın yerel biçimi).
 
-## A1-eko — ÖN-KAYIT (koşumdan önce, M-08) (2026-10-20, 08:50)
+## A1-eko — ÖN-KAYIT (koşumdan önce, M-08) (2026-10-19 08:31 commit)
 
 Matris gereği (A0a ✗) A1 doğrudan ekolojide; ayrıca mutasyon hipotezi
 (b) ayrı kolla. Taban: N-A (σ=0.002, açık, 100K: isabet 0.23-0.24,
@@ -3047,7 +3047,7 @@ nüfus dinamiği öne çıkıyor. Karar S0 kolunda (σ=0, açık).
 
 ---
 
-# PROGRAM C — ön-tasarım: "birlikte açılan sığınak" (2026-10-20, 09:05)
+# PROGRAM C — ön-tasarım: "birlikte açılan sığınak" (2026-10-19 09:00 commit)
 
 **Teşhis (S3 nihai):** tavuk-yumurta — sinyalin göndericiye faydası ancak
 alıcı sembolü kullanırsa doğuyor; S3-N paylaşımı bile dolaylı kaldı.
@@ -3074,7 +3074,7 @@ doğrudan). N=2 zayıf, N=4 çok sert (bedavacı 1 kişi yetiyor).
 - Seçim kuralı: C0a'yı en büyük farkla geçen (N, s) çifti ekolojiye
   gider; eşitlikte s=0.5 (S3-N varsayılanı) ve N=3.
 
-### C0 — oracle SONUCU (2026-10-20, 09:10)
+### C0 — oracle SONUCU (2026-10-19 09:00 commit)
 | N | s | deaf | own (isabet) | told (isabet) | god | told/own | told − own |
 |---|---|---|---|---|---|---|---|
 | 2 | 0 | 115 | 133 (0.47) | 193 (0.86) | 224 | 1.45 | **60** |
@@ -3095,7 +3095,7 @@ doğrudan). N=2 zayıf, N=4 çok sert (bedavacı 1 kişi yetiyor).
   uygulanmadı, gerekçe basınç; s=0 seçildi (paylaşım bedavacılık ekler,
   sığınak zaten ortak fayda). Veri: `runs/c0_event_oracle_ms*_sh*.json`.
 
-## C1 — ÖN-KAYIT: sığınak ekolojisi, kanal açık vs kapalı (koşumdan önce, M-08) (2026-10-20, 09:15)
+## C1 — ÖN-KAYIT: sığınak ekolojisi, kanal açık vs kapalı (koşumdan önce, M-08) (2026-10-19 09:01 commit)
 
 Ayar: klon kadro, yuva (600, 0.5), σ=0.002, her 10 tur, lead 4, ceza 25,
 **event_min_safe=3, s=0**, K=1 (A1 sonucu gelmeden taban mekanik), 100K,
@@ -3133,7 +3133,7 @@ ağırlıkları + min_safe). C1b✗ → sığınak basınç üretmiyor (N kalibr
 "ortak sığınak"a döner; S3-C/S3-K sonuçlarıyla karşılaştırma
 "farklı görev" şerhiyle. Bit: 0 (KERNEL C notu).
 
-### A1-eko S0 — SONUÇ: **mutasyon hipotezi de düştü** (2026-10-20, 11:05)
+### A1-eko S0 — SONUÇ: **mutasyon hipotezi de düştü** (2026-10-19 11:05 commit)
 `runs/a1/S0_s*` (σ=0, açık, 100K): isabet 80-100K 0.24-0.26, kendi-ipucu
 0.49-0.53, sinyal 0.78-0.88, ilk 2K sinyal 0.79-0.91 (açılış şoku var).
 Prob (`signal_curse_probe_s0.json`): 4 çekirdeğin 2'sinde prim +0.27/+0.38
@@ -3147,7 +3147,7 @@ SIFIR; yaşam başına ~5 pencere → tekrar fiilen yok). M-05'in panzehiri
 (K-110 PER) ekolojide hiç devreye girmiyor olabilir. Hipotez (c):
 **prim = tekrar tamponsuz on-policy öğrenme.**
 
-## A2′ — ÖN-KAYIT: deneyim tamponu mirası (koşumdan önce, M-08) (2026-10-20, 11:10)
+## A2′ — ÖN-KAYIT: deneyim tamponu mirası (koşumdan önce, M-08) (2026-10-19 11:05 commit)
 
 `successor(..., inherit_per=True)`: halef, ölenin PER tamponunu ve
 optimizer durumunu devralır (ağırlık mirası zaten vardı; bu, yaşantının
@@ -3163,7 +3163,7 @@ N-A (0.23-0.24, sinyal 0.77, prim soya bağlı) ve S0. 3 seed, 100K.
   sonucu (E3) belirleyici; o da ✗ ise prim bu mimaride çok-ajan
   rejimine özgü ve mekanik çare yok → S3 nihai hükme ek.
 
-## C1 — SONUÇLAR: **sığınak basınç üretiyor ama bireysel öğrenmeyi bozuyor; dil yok** (2026-10-20, 12:00)
+## C1 — SONUÇLAR: **sığınak basınç üretiyor ama bireysel öğrenmeyi bozuyor; dil yok** (2026-10-19 11:13 commit)
 
 Veri: `runs/c1/`, `runs/c1/summary.json` (N=3, s=0, klon kadro, 100K).
 
@@ -3192,7 +3192,7 @@ için bireysel korumayı gruba bağlayınca, ajanın kendi doğruluğunu
 düşer). Tuzak tasarımında "göndericiye fayda" ve "kendi eylemine kredi"
 ayrı ayrı korunmalı; biri diğerini yemez. (M-28'in tasarım yüzü.)
 
-## C2 — ÖN-KAYIT: yumuşak sığınak + yetkin kadro (koşumdan önce, M-08) (2026-10-20, 12:05)
+## C2 — ÖN-KAYIT: yumuşak sığınak + yetkin kadro (koşumdan önce, M-08) (2026-10-19 11:13 commit)
 
 Kredi atamasını korumak için iki değişiklik (M-06 ihlali değil:
 C1'in başarısızlık nedeni iki ayağa birden bağlı, her biri beyanlı):
@@ -3227,7 +3227,7 @@ kanal KAPALI, aynı seed'ler) başlatıldı.
   artık zarar vermiyor ama kazandırmıyor). P-A > P-K + 0.05 çıkarsa
   ADAY GÖZLEM, Beş Kapı derhal.
 
-## A2′ — SONUÇ (P-A; P-K kontrolü bekleniyor): **PER mirası primi kesiyor, kanal açıkken öğrenme ilk kez bozulmuyor** (2026-10-20, 14:05)
+## A2′ — SONUÇ (P-A; P-K kontrolü bekleniyor): **PER mirası primi kesiyor, kanal açıkken öğrenme ilk kez bozulmuyor** (2026-10-19 13:24 commit)
 
 Veri: `runs/a2/PA_s*`, `runs/a2/summary_pa.json`, prob `signal_curse_probe_pa.json`.
 
@@ -3257,7 +3257,7 @@ Veri: `runs/a2/PA_s*`, `runs/a2/summary_pa.json`, prob `signal_curse_probe_pa.js
 gerçek" bedene uygulanır, yapı (ağırlık) ve yaşantı istatistiği (tampon)
 soy hattında sürer (DP-01 b'nin tamamlanmış hâli).
 
-## C2 — SONUÇLAR: **yetkin kadro + yumuşak sığınak: yetkinlik korunur, kanal yine kullanılmaz, açılış şoku sürer** (2026-10-20, 14:45)
+## C2 — SONUÇLAR: **yetkin kadro + yumuşak sığınak: yetkinlik korunur, kanal yine kullanılmaz, açılış şoku sürer** (2026-10-19 13:31 commit)
 
 Veri: `runs/c2/`, `runs/c2/summary.json` (N=2, s=0, Q1 kurucu, 100K).
 
@@ -3278,7 +3278,7 @@ Veri: `runs/c2/`, `runs/c2/summary.json` (N=2, s=0, Q1 kurucu, 100K).
   şokunu ve primi kesiyordu → **C3 = C2 + inherit_per.**
 - **Öngörü karnesi:** C2a ✓ (0.7) yarı; C2d ✗ (0.6) doğru; C2b/C2c ✗ doğru.
 
-## C3 — ÖN-KAYIT: C2 + PER mirası (koşumdan önce, M-08) (2026-10-20, 14:50)
+## C3 — ÖN-KAYIT: C2 + PER mirası (koşumdan önce, M-08) (2026-10-19 13:31 commit)
 
 C2 ayarı aynen (N=2, s=0, Q1 kurucu, σ=0.002) + `inherit_per`. Kollar
 **C3-A** (açık) / **C3-K** (kapalı), 3 seed, 100K. (P-K kontrolü ayrıca
@@ -3294,7 +3294,7 @@ koşuyor; C3'ün kendi kapalı kolu kendi kontrolüdür.)
   0-bit basamak: uzun koşum (300K) bu mekanikle; ✗ ise S3 nihai hükme
   Program A/C eki ve Ali'ye A′ (evrimsel önyükleme) önerisi.
 
-## A1-eko E3 — SONUÇ: **topluluk + uyuşmazlık cezası primi kesmedi; K-115 GERİ ALINDI** (2026-10-20, 14:50)
+## A1-eko E3 — SONUÇ: **topluluk + uyuşmazlık cezası primi kesmedi; K-115 GERİ ALINDI** (2026-10-19 15:02 commit)
 
 `runs/a1/E3_s*` (K=3, β=1.0, σ=0.002, açık, 100K): isabet 80-100K
 0.23-0.25, kendi-ipucu 0.47-0.49, sinyal son 20K 0.49-0.63, ilk 2K
@@ -3330,7 +3330,7 @@ yapı (ağırlık) ve yaşantı istatistiği (tampon, optimizer) soy hattına.
 Gerekçe: M-05 panzehiri (K-110 PER) ekolojide ancak böyle çalışıyor;
 sahte prim siliniyor; kapalı ve açık kol eşitleniyor.
 
-## C3 — SONUÇLAR: **kanal ilk kez nötr ve doğru fiyatlı; tavana dayanıldı; başkasının biti hâlâ kullanılmıyor** (2026-10-20, 16:40)
+## C3 — SONUÇLAR: **kanal ilk kez nötr ve doğru fiyatlı; tavana dayanıldı; başkasının biti hâlâ kullanılmıyor** (2026-10-19 15:45 commit)
 
 Veri: `runs/c3/`, `runs/c3/summary.json`, prob `signal_curse_probe_c3.json`
 (N=2, s=0, Q1 kurucu, σ=0.002, inherit_per, 100K).
@@ -3364,7 +3364,7 @@ yakın. Yine de kimse başkasının bitini kullanmıyor; MI tekdüze ama
 mikroskobik artıyor. Matris: C3a✓ C3b✗ → **son 0-bit basamak: C4 uzun
 devam.**
 
-## C4 — ÖN-KAYIT: C3 devamı, +200K (koşumdan önce, M-08) (2026-10-20, 16:45)
+## C4 — ÖN-KAYIT: C3 devamı, +200K (koşumdan önce, M-08) (2026-10-19 15:45 commit)
 
 C3-A ve C3-K kendi final ağırlıklarından (ve tamponlarından değil:
 tampon dosyaya yazılmıyor, yeni başlar — beyan) 200K daha; dünya seed
@@ -3380,7 +3380,7 @@ tampon dosyaya yazılmıyor, yeni başlar — beyan) 200K daha; dünya seed
   Program A+C kapanışı: "kanal nötr, fiyatlı, kullanılmıyor" nihai; Ali'ye
   A′ (evrimsel önyükleme) ve tasarım alternatifleri; S3 nihai hükme ek.
 
-## C4 — SONUÇLAR: **plato; kanal nötr, fiyatlı, kullanılmıyor** (2026-10-20, 19:45)
+## C4 — SONUÇLAR: **plato; kanal nötr, fiyatlı, kullanılmıyor** (2026-10-19 19:38 commit)
 
 Veri: `runs/c4/`, `runs/c4/summary.json`, prob `signal_curse_probe_c4.json`
 (C3 devamı, +200K; toplam 300K kapalı + 300K sığınak).
@@ -3403,7 +3403,7 @@ Veri: `runs/c4/`, `runs/c4/summary.json`, prob `signal_curse_probe_c4.json`
 
 ---
 
-# PROGRAM A + C KAPANIŞI (2026-10-20, 20:00)
+# PROGRAM A + C KAPANIŞI (2026-10-19 19:38 commit)
 
 **Yapılan (bugün, 20 koşum + 3 okul + 3 oracle):** A0 (okul, kanal açık),
 A1-eko S0/E3, A2′ P-A/P-K, C0 oracle, C1, C2, C3, C4.
@@ -3460,7 +3460,7 @@ kaynağıydı). METODOLOJI'ye işlendi.
 
 ---
 
-# PROGRAM A′ — evrimsel önyükleme, ada modeli (Ali kararı, 2026-10-20 akşam)
+# PROGRAM A′ — evrimsel önyükleme, ada modeli (Ali kararı, 2026-10-19 20:08 commit)
 
 ## A′ — ÖN-KAYIT (koşumdan önce, M-08)
 
@@ -3507,7 +3507,7 @@ farklı sembol?), 0 bit. EV2✗ EV3 eğilim ✓ → seçilim çalışıyor ama
 ölçek yetmiyor → 60-100 dönem / daha çok ada (Ali kararı). İkisi ✗ →
 "grup seçilimi bu ölçekte de kırmadı"; Program A′ kapanışı.
 
-### A′ ara sonuç — EV1 ✗ ve ön-kayıtlı revizyon (2026-10-20, 21:45)
+### A′ ara sonuç — EV1 ✗ ve ön-kayıtlı revizyon (2026-10-19 21:41 commit)
 İlk 7 dönem (10K): EV-A isabet ort 0.42-0.45, maks 0.45-0.48; EV-K 0.44-0.45;
 MI maks 0.007-0.012 (gürültü düzeyi). Kalıtım (korunan adalarda dönemler
 arası Spearman): −0.20, 0.20, 0.60, −0.60, 0.80, 0.20 → **ort 0.17 < 0.3
@@ -3519,7 +3519,7 @@ kendi-ipucu tavanında; seçilimin seçebileceği kalıtsal varyasyon,
 tavanı aşan bir kanal kullanımı doğana kadar fiilen yok — EV1'in
 düşmesi de bunun belirtisi.
 
-## A′ — SONUÇLAR (2026-10-21, 04:40)
+## A′ — SONUÇLAR (2026-10-20 03:52 commit)
 
 Veri: `runs/ev/{open,mute}` (7×10K) + `runs/ev/{open30,mute30}` (10×30K),
 `state.json` dosyaları.
@@ -3570,7 +3570,7 @@ toplamları + bekleme turu sayısı):
   için değil, refleks. Bunu ayıran test: **kimse duyamazken** (speak
   modu) asimetri sürüyor mu?
 
-## A″ — ÖN-KAYIT: konuşma-kararı asimetrisinin doğrulaması (koşumdan önce, M-08) (2026-10-21, 04:45)
+## A″ — ÖN-KAYIT: konuşma-kararı asimetrisinin doğrulaması (koşumdan önce, M-08) (2026-10-20 03:52 commit)
 
 Kurucular C3-A final ağırlıkları (asimetri 1.4-1.9 iken), dünya seed
 +500, C4 ayarı (sığınak N=2, s=0, inherit_per), 100K, 3 seed:
@@ -3587,7 +3587,7 @@ Kurucular C3-A final ağırlıkları (asimetri 1.4-1.9 iken), dünya seed
 **Öngörüler (bağlayıcı):** D1 ✓ (0.75); D2 ✗ (0.65) — en sade açıklama
 girdi refleksi; D3 ✗ (0.85).
 
-## A″ — SONUÇLAR: **konuşma kararı ipucu değerini taşıyor, ama büyük ölçüde refleks** (2026-10-21, 06:00)
+## A″ — SONUÇLAR: **konuşma kararı ipucu değerini taşıyor, ama büyük ölçüde refleks** (2026-10-20 05:47 commit)
 
 Veri: `runs/a3/{Ropen,Rspeak}_s*` (C3-A kurucu, yeni dünyalar, 100K).
 
@@ -3621,7 +3621,7 @@ gereken ham malzeme artık ortamda var (0.07-0.10 bit/olay/ajan).
 
 ---
 
-# PROGRAM A′/A″ KAPANIŞI ve DURUM (2026-10-21, 06:05)
+# PROGRAM A′/A″ KAPANIŞI ve DURUM (2026-10-20 05:47 commit)
 
 1. Grup seçilimi (ada modeli, 360K tur/ada) sembol anlamı doğurmadı.
 2. Ama tampon mirası rejiminde ajanlar **ipucuna bağlı konuşma
@@ -3639,7 +3639,7 @@ gereken ham malzeme artık ortamda var (0.07-0.10 bit/olay/ajan).
 kanalda ne kazanır? — 0 bit, 1 saat); kazanç küçükse kanal tasarımı
 (kimlik ya da yerellik, PL-28 geri) anayasal karar olarak Ali'ye.
 
-## PL-37 / CH0 — ÖN-KAYIT: varlık-kodlu kanal oracle'ı (koşumdan önce, M-08) (2026-10-21)
+## PL-37 / CH0 — ÖN-KAYIT: varlık-kodlu kanal oracle'ı (koşumdan önce, M-08) (2026-10-20 08:34 commit)
 
 **Soru:** kimliksiz küresel kanalda "bitim 1 ise konuşurum" (varlık kodu)
 göndericileri, OPTİMAL bir alıcıya kutbu ne kadar çözdürür? Saf Monte
@@ -3657,7 +3657,7 @@ Bayes-optimal kutup seçer. Kollar: `own` (yalnız kendi bit), `presence`
 - **Öngörü:** presence (mükemmel) own'dan +0.15-0.25; presence_obs
   +0.03-0.08 (CH-a ✗ bölgesi) (0.6).
 
-### CH0 — SONUÇ: **kanal tavan DEĞİL; masada bilgi var, dinleyen yok** (2026-10-21)
+### CH0 — SONUÇ: **kanal tavan DEĞİL; masada bilgi var, dinleyen yok** (2026-10-20 08:34 commit)
 `runs/ch0_channel_oracle.json` (100K olay):
 | kol | isabet | korunma (N=2) | I(kutup; duyulan sayı | kendi bit) |
 |---|---|---|---|
@@ -3690,7 +3690,7 @@ göndericinin netleşmesi gerek (tavuk-yumurta sürer ama sayısal). RS-1 ✗ �
 mimari: sayma/birleştirme öğrenilemiyor (doygun girdi + GRU) — anayasal
 tartışma (sayı kodlu alım; K-114 revizyonu).
 
-### RS — SONUÇ: **dinleyici öğrenebiliyor — ilk kez kendi-ipucu tavanı aşıldı (okulda, mükemmel varlık kodlu komşularla)** (2026-10-21, 09:00)
+### RS — SONUÇ: **dinleyici öğrenebiliyor — ilk kez kendi-ipucu tavanı aşıldı (okulda, mükemmel varlık kodlu komşularla)** (2026-10-20 09:00 commit)
 `runs/rs/*/school.json` (100K, lead 4, 2 seed):
 | kol | isabet 10K → 50K → 100K | son 20K | kendi-ipucu | STAY |
 |---|---|---|---|---|
@@ -3730,7 +3730,7 @@ Aynı okul ayarı, sanal komşular P(s|1)/P(s|0) ∈ {0.9/0.1, 0.8/0.2,
   "dinleyici öğrenmesini tetikler". Eşik = çıtayı geçen en gürültülü doz.
 - **Öngörü:** 0.9/0.1 ✓, 0.8/0.2 ✓, 0.7/0.2 ✗ (0.5).
 
-### RS-dose — SONUÇ: **dinleyici öğrenmesi için gönderici netliği eşiği ≈ 0.18 bit** (2026-10-21, 10:00)
+### RS-dose — SONUÇ: **dinleyici öğrenmesi için gönderici netliği eşiği ≈ 0.18 bit** (2026-10-20 09:50 commit)
 `runs/rs/dose*_s*/school.json` (100K, 2 seed; optimal tavanlar `channel_oracle`):
 | gönderici P(s|1)/P(s|0) | gönderici bilgisi (bit) | optimal alıcı | öğrenen alıcı son 20K | RS-0 + 0.05 çıtası |
 |---|---|---|---|---|
@@ -3764,7 +3764,7 @@ Tavsiye: (b)'nin hızlı okul+ekoloji testi, paralelde (a).
 
 ---
 
-# PL-38 — gönderici netliğini eşiğe taşımak (Ali kararı: iki kol paralel, 2026-10-21)
+# PL-38 — gönderici netliğini eşiğe taşımak (Ali kararı: iki kol paralel, 2026-10-20 10:42 commit)
 
 ## PL-38 — ÖN-KAYIT (koşumdan önce, M-08)
 Gönderici netliği ölçüsü: uyarı penceresinde I(değer; sinyal var/yok) ve
@@ -3794,7 +3794,7 @@ yine gerçek bilgi akışıdır (alarm çağrılarının doğadaki başlangıç
 modeli: önce refleks, sonra seçilim) — ama "konuşan" iddiası ancak
 speak-ablasyonla (A″ protokolü) ayrıştırılır.
 
-### PL-38 kol (a) — SONUÇ: **uzun ekolojide gönderici netliği platoda; eşiğe tırmanmıyor** (2026-10-21, 20:00)
+### PL-38 kol (a) — SONUÇ: **uzun ekolojide gönderici netliği platoda; eşiğe tırmanmıyor** (2026-10-20 19:57 commit)
 `runs/pl38/{LA,LK}_s*` (C4 devamı, +500K; kümülatif C-rejiminde 800K), `sender_clarity.py`.
 | kol | seed | gönderici bilgisi son 50K | P(s|0) / P(s|1) | eğilim ρ | isabet son 50K | kendi-ipucu tavanı | fark |
 |---|---|---|---|---|---|---|---|
@@ -3841,3 +3841,21 @@ değil kararlılığı ölçer. Anayasal beyan şart: tohum dinleyiciler dış
 bir öğretmenden (sanal varlık-kodlu komşular) öğrendi → KERNEL'e
 ~1 bit (eşleme yönü) "kültürel tohum" satırı; ana iddia tohumdan
 SONRAKİ nesillerde ölçülür.
+
+## DÜZELTME NOTU — tarih kayması (2026-10-20, 22:10)
+18 Ekim 04:03 ile 20 Ekim 21:50 arasında yazılan kayıtlarda tarih bir gün
+ileri kaymıştı (ör. 18 Ekim'de yazılan kayıt "19 Ekim" diye damgalandı) ve
+başlık saatleri tahmindi; bazıları commit'ten SONRAKİ bir saati gösteriyordu.
+Kaynak: Claude saati sistemden okumadan yazdı. Düzeltme: bu aralıktaki tüm
+tarihli başlıklar, onları ekleyen commit'in gerçek zamanıyla değiştirildi
+("… commit"); metin içi tarihler git'e bakılarak tek tek düzeltildi.
+**Yetkili zaman damgası git commit zamanıdır.**
+**M-08 denetimi (git ile):** her ön-kayıt kendi sonucundan önceki bir
+commit'te; **tek istisna CH0** (PL-37 kanal oracle'ı): ön-kayıt ve sonuç aynı
+commit'te (20 Ekim 08:34). CH0 öğrenmesiz, belirlenimci bir Monte Carlo
+hesabıdır (ajan yok, ayar yok), yine de ön-kaydının sonuçtan önce yazıldığı
+git ile KANITLANAMAZ; bu yüzden CH0 bulgusu "ön-kayıtlı" değil "açıklayıcı
+hesap" statüsündedir. Ondan türeyen RS/RS-dose kayıtları ayrı commit'lerde
+ve sonuçtan sonradır. Bekçi: `tests/test_doc_dates.py` belgelerde bugünden
+ileri tarih olmasını engeller (M-32 adayı değil; mevcut Kural 1 kapsıyor,
+eksik olan otomasyondu).

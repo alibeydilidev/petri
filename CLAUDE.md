@@ -82,27 +82,27 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   **H4 NEGATİF (bu koşullarda), H3 ön koşul negatif, H2 test edilmedi,
   H1 karışık.** Yeni prior: 0 bit. Teşhis: göndericiye dönen fayda yok
   (PL-33). Ali: tüm kararlar Claude'da (18 Ekim), defterli.
-- **S3-L…P (19 Ekim):** yavaşlatan taraf gönderme; paylaşılan kayıp
+- **S3-L…P (18 Ekim):** yavaşlatan taraf gönderme; paylaşılan kayıp
   (event_share 0.5) faydayı fiziğe ekledi ama yetmedi; planlayıcı kendi
   sinyaline SAHTE prim öğreniyor (M-05); bütçe/ε susma yarıya indirdi,
   silemedi. **0-bit merdiven bitti. Nihai: H4 negatif, mekanizmalı.**
   M-26/27/28 işlendi. Yeni prior 0 bit.
-- **Program B (S3-Q/R, 19-20 Ekim):** kapalı 300K → isabet 0.36, kendi-
+- **Program B (S3-Q/R, 18-19 Ekim):** kapalı 300K → isabet 0.36, kendi-
   ipucu 0.75; kanal açılınca yetkin ajan sinyali fiyatlamayı öğrendi
   (prim tersine, ilk kez) ama açılış şoku −0.08 ve 300K'da geri gelmedi;
   dil yok. **S3 NİHAİ: H4 negatif, mekanizması tam; kanal kalıcı yük.**
   M-29 işlendi. 93 koşum, 0 bit.
-- **Program A + C (20 Ekim):** sahte sinyal priminin kaynağı = halefte
+- **Program A + C (19 Ekim):** sahte sinyal priminin kaynağı = halefte
   PER sıfırlaması (ömür 40 → tampon boş); `inherit_per` varsayılan
   (PL-35): prim silindi, açık=kapalı. Topluluk ✗ (K-115 geri). Sığınak
   tuzağı: N=3 kredi atamasını bozdu, N=2 + yetkin kadro + tampon →
   kanal nötr ve fiyatlı, isabet 0.45 (tavan), MI 0.004 platosu, kanal
   KULLANILMIYOR (600K). M-30/M-31. Toplam 113 koşum, 0 bit.
-- **Program A′/A″ (20-21 Ekim):** ada modeli grup seçilimi (6+3 ada, 360K
+- **Program A′/A″ (19-20 Ekim):** ada modeli grup seçilimi (6+3 ada, 360K
   tur/ada) sembol anlamı doğurmadı. Post-hoc: konuşma KARARI ipucu
   değerini taşıyor (0.10 bit), A″ ablasyonunda ~%75 refleks; dinleyen yok.
   Toplam ~150 koşum, 0 bit.
-- **PL-37 (21 Ekim):** kanal tavan değil (CH0); okulda dinleyici öğrenebiliyor
+- **PL-37 (20 Ekim):** kanal tavan değil (CH0); okulda dinleyici öğrenebiliyor
   (RS: 0.62, tavan 0.50 aşıldı — ilk); eşik ≈0.18 bit gönderici netliği
   (RS-dose); ekoloji 0.08 bit.
 - **PL-38 (20 Ekim):** uzun ekoloji 500K ve lead 6/8: gönderici netliği

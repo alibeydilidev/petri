@@ -250,9 +250,9 @@
   netliğin kendiliğinden büyümesini izle (0 bit), (b) öncü algısı
   kalibrasyonu ile refleksi büyüt (dünya-tarafı, M-25), (c) sinyal
   maliyeti (anayasal, yapılmaz). Tavsiye (b) hızlı test + (a) paralel.
-- **PL-37 KAPALI (21 Ekim 10:00):** kanal tavan değil; dinleyici
+- **PL-37 KAPALI (20 Ekim 09:50):** kanal tavan değil; dinleyici
   öğrenebiliyor (RS); eşik ölçüldü (RS-dose) → PL-38.
-- **PL-37 GÜNCEL (21 Ekim 09:00):** CH0: kanal tavan değil (optimal alıcı
+- **PL-37 GÜNCEL (20 Ekim 09:00):** CH0: kanal tavan değil (optimal alıcı
   bugünkü göndericilerle +0.14). RS: tek ajan mükemmel varlık kodlu
   komşuları dinlemeyi ÖĞRENDİ (0.42 → 0.62, tavan 0.50 aşıldı — ilk kez);
   gözlenen gürültülü göndericiyle öğrenmedi. Sıradaki: gönderici netliği
@@ -263,7 +263,7 @@
   bilgisi alıcıya kutbu çözdürmüyor. Önerilen ilk adım: varlık-kodlu
   mükemmel gönderici + optimal alıcı oracle'ı (0 bit); düşükse kanal
   tasarımı (kimlik/yerellik) anayasal karar.
-- **PL-36 — (KAPALI, 21 Ekim):** A′ seçildi ve koşuldu (grup seçilimi ✗;
+- **PL-36 — (KAPALI, 20 Ekim):** A′ seçildi ve koşuldu (grup seçilimi ✗;
   post-hoc konuşma-kararı gözlemi, A″'de çoğunlukla refleks). PL-37'ye.
 - **PL-36-eski — Sonraki program (Ali):** A+C kapandı (FINDINGS
   "PROGRAM A + C KAPANIŞI"): kanal nötr, fiyatlı, kullanılmıyor; MI
@@ -271,12 +271,12 @@
   D "alıcı önce" (dünya öncüyü bazen sembol olarak yayınlar; M-25
   analizi şart), E kimlikli/yerel kanal (PL-28 geri). Tavsiye: D'nin
   bit analizi + A′ paralel.
-- **PL-34 — (KAPALI, 2026-10-20 20:00):** A ✓ (PER mirası, PL-35) /
+- **PL-34 — (KAPALI, 2026-10-19 19:38):** A ✓ (PER mirası, PL-35) /
   topluluk ✗; C ✓ tuzak kuruldu, ✗ dil; PL-36'ya devredildi.
-- **PL-35 — PER tamponu mirası (ADAY KARAR, 2026-10-20):** A2′: halef
+- **PL-35 — PER tamponu mirası (ADAY KARAR, 2026-10-19):** A2′: halef
   PER + optimizer devralınca sahte sinyal primi siliniyor, kanal açıkken
   isabet 0.23 → 0.41 (kendi-ipucu 0.78), ömür 40 → 50, hasat ×1.8.
-  **KARAR (2026-10-20 16:05): P-K 0.39 (A2d ✓), P-A 0.41 (A2c ✗) →
+  **KARAR (2026-10-19 15:34): P-K 0.39 (A2d ✓), P-A 0.41 (A2c ✗) →
   inherit_per ekoloji VARSAYILANI.** Kanal isabette nötr, hasatta
   maliyetli (7.5 vs 11.3). İçerik 0 bit; DP-01 (b) tamamlanır (yapı + yaşantı
   istatistiği soy hattında, beden/hidden sıfır). M-09 kaydı; KERNEL
@@ -285,21 +285,21 @@
   (S3-O/P). Seçenekler FINDINGS "S3 KAPANIŞ EKİ": A öğrenme mekaniği
   revizyonu (bit yazar), B kademeli kanal + 300K (0 bit), C tuzağı
   yeniden tasarla (anayasal). Tavsiye B → A.
-  **KARAR (Ali, 19 Ekim akşam): B.** S3-Q1 ✓ (300K kapalı: isabet 0.36,
+  **KARAR (Ali, 18 Ekim akşam): B.** S3-Q1 ✓ (300K kapalı: isabet 0.36,
   kendi-ipucu 0.75), S3-Q2 (açılış): yetkin ajan kanalı DOĞRU FİYATLADI
   (prim tersine döndü, ilk kez) ama açılış şoku yetkinliği düşürdü
   (0.30 vs 0.38), dil yok (MI 0.003). S3-R (200K devam): toparlanma
   yok (−0.07 sabit), kapalı kol 0.38/0.75 platosu. **PROGRAM B TAMAM,
   kanal kalıcı net yük.** Nihai hüküm FINDINGS "S3 NİHAİ HÜKÜM".
-  **KARAR (Ali, 20 Ekim): A; C paralel.** A: topluluk ✗ (K-115 geri
+  **KARAR (Ali, 19 Ekim): A; C paralel.** A: topluluk ✗ (K-115 geri
   alındı), PER mirası ✓ (PL-35 varsayılan). C: sığınak N=3 öğrenmeyi
   bozdu (C1), N=2 + yetkin kadro ✓ yetkinlik (C2), + PER mirası → kanal
   nötr ve doğru fiyatlı, isabet 0.46 (tavan 0.47), MI 0.004 ↑ ama
   kullanım yok (C3). C4 (200K devam) koşuluyor; ✗ ise A′ önerisi.
-- **PL-32 (KAPALI, 2026-10-19):** kanal yavaşlatması = öğrenilmiş sahte
+- **PL-32 (KAPALI, 2026-10-18):** kanal yavaşlatması = öğrenilmiş sahte
   sinyal primi (M-05) + maliyet; bütçe (S3-O) ve ε susma (S3-P) yarıya
   indirdi, silemedi. Özgün kayıt:
-- **PL-32 SONUÇ (S3-L, 2026-10-19):** yavaşlatan taraf GÖNDERME
+- **PL-32 SONUÇ (S3-L, 2026-10-18):** yavaşlatan taraf GÖNDERME
   (speak < K-K; hear ≡ K-K bit-eş). Çözüm adayı S3-O:
   `mpc_signal_candidate_frac` (0 bit, arama mekaniği) koşuluyor.
 - **PL-33 — Tuzağın eksik dişlisi: göndericiye dönen fayda (AÇIK,
@@ -311,7 +311,7 @@
   demografi, ama tasarım kararı), (b) olay cezasının kısmen paylaşılması
   (görev değişir), (c) tekrarlanan eş / yerel kanal (PL-28'i geri alır).
   M-28 ders adayı (FINDINGS S3 kapanış).
-  **KARAR (Claude, 2026-10-19 sabah): (b) `event_share=0.5`** — fizik
+  **KARAR (Claude, 2026-10-18 sabah): (b) `event_share=0.5`** — fizik
   değişikliği, 0 bit, s=0 bit-eş testli; (a) nüfus-düzeyi ödül
   şekillendirmeye kaydığı için reddedildi; (c) PL-28'i geri alır.
   Oracle (M-01) ✓ (told 184 vs own 142); ekoloji S3-N: kanal yine
@@ -320,7 +320,7 @@
   varsayılanı olarak KALIR (beyan: "sürü alarmı").
 - **PL-30 — (KAPALI, S3-E…K koşuldu):** olay görevi klon+yuva
   ekolojisiyle 15 koşum; hükümler FINDINGS S3 KAPANIŞ.
-- **PL-22 — (KAPALI, 2026-10-19):** çerçeve (c)+(b)+σ=0.002 ekoloji
+- **PL-22 — (KAPALI, 2026-10-18):** çerçeve (c)+(b)+σ=0.002 ekoloji
   kararlı (266 tur, olaysız); seçilim (a) 20K'da etkisiz (S3-H);
   soy-düzeyi seçilim PL-33'e devredildi.
 - **PL-31 — Halef mutasyonu σ (DP-01b dozu) (AÇIK, S3-F koşuluyor):**
