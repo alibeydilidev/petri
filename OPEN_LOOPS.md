@@ -238,7 +238,12 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
-- **PL-39 — Bariyerin öbür tarafı kararlı mı? (AÇIK, Ali):** PL-38 ✗:
+- **PL-40 — Programın yönü (AÇIK, Ali):** PL-39 ✗ (tek taraflı tohum
+  söndü). Seçenekler: (a) S3 dil kolunu nihai negatifle kapat, bütüncül
+  rapor; (b) iki taraflı tohum: dinleyici + net gönderici birlikte (gönderici
+  kuralı hediye, ~2 bit; "verilmiş bir dil yaşar mı" sorusu, köken değil).
+- **PL-39 KAPALI (21 Ekim 03:50):** t1/t2/t3 ✗; tohum ~20K turda söndü.
+- **PL-39-eski — Bariyerin öbür tarafı kararlı mı?** PL-38 ✗:
   gönderici netliği 0.05-0.10'da kilitli (500K / lead 6-8). Öneri:
   "kültürel tohumlama" — RS-1 dinleyicileri ekolojiye bir kez katılır,
   halefler tohumsuz; konuşan+dinleyen döngüsü tohumdan sonra sürüyor mu?

@@ -107,8 +107,10 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   (RS-dose); ekoloji 0.08 bit.
 - **PL-38 (20 Ekim):** uzun ekoloji 500K ve lead 6/8: gönderici netliği
   0.05-0.10 bitte kilitli; dinleyici yok. Sessiz denge.
-- **SIRADAKİ ADIM (PL-39, Ali kararı):** kültürel tohumlama ile "konuşan+
-  dinleyen" dengenin kararlılığı (köken değil); KERNEL ~1 bit beyanı.
+- **PL-39 (21 Ekim):** kültürel tohum (RS-1 dinleyici kurucular) ~20K turda
+  söndü; t1/t2/t3 ✗; K-116 geri alındı. Kalıcı bit 0.
+- **SIRADAKİ ADIM (PL-40, Ali kararı):** dil kolunu kapat ya da iki taraflı
+  tohum (~2 bit, beyanlı).
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

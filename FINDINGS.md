@@ -3901,3 +3901,35 @@ kanal kapalı eğitildiği için başlangıçta gürültülü yayar; dinleme al�
 karıştırma; K-116 beyanıyla). t1 ✓ t2 ✗ → dinleme sürüyor ama gönderici
 netleşmiyor (tek taraflı). t1 ✗ → tohum söndü: sessiz denge çekici, bu
 ölçekte iki-kararlılık yok.
+
+### PL-39 — SONUÇ: **tohum söndü; dinleme alışkanlığı ~20K turda kayboldu** (2026-10-21, 03:50)
+`runs/pl39/{T,K}_s300{1,2,3}` (200K). Ölçüler birikimli sayaçlardan, segment
+toplamıyla (kendi-ipucu, olay turuyla ağırlıklı 1K pencere oranı):
+| kol | seed | ilk 20K isabet / kendi-ipucu / fark | son 50K isabet / kendi-ipucu / fark | son 50K gönderici bilgisi (10K ort.) | P(s|0)/P(s|1) |
+|---|---|---|---|---|---|
+| T | 3001 | 0.415 / 0.77 / −0.019 | 0.435 / 0.86 / −0.025 | 0.043 | 0.42 / 0.66 |
+| T | 3002 | 0.394 / 0.74 / −0.033 | 0.425 / 0.86 / −0.035 | 0.037 | 0.38 / 0.61 |
+| T | 3003 | 0.398 / 0.73 / −0.027 | 0.446 / 0.86 / −0.015 | 0.061 | 0.38 / 0.67 |
+| K | 3001 | 0.425 / 0.85 / −0.033 | 0.443 / 0.88 / −0.022 | 0.035 | 0.42 / 0.63 |
+| K | 3002 | 0.426 / 0.85 / −0.031 | 0.442 / 0.87 / −0.022 | 0.025 | 0.40 / 0.57 |
+| K | 3003 | 0.417 / 0.85 / −0.042 | 0.443 / 0.87 / −0.020 | 0.048 | 0.42 / 0.67 |
+- **t1 ✗:** T son 50K fark −0.015…−0.035 (tavanın altında); T − K =
+  −0.004 / −0.013 / +0.006.
+- **t2 ✗:** gönderici bilgisi 0.04-0.06 bit (≪ 0.14); T − K = +0.01.
+- **t3 ✗:** ilk 20K T − K = +0.014 / −0.002 / +0.015 (çıta 0.02; 0/3).
+- **Mekanizma (kendi-ipucu çizgisi):** tohumlu ajanlar ilk 10K'da kendi
+  bitine karşı hareket ediyor (kendi-ipucu 0.67-0.70; okuldaki RS-1
+  davranışı: duyduğuna güven), ama duydukları gürültü: kanalı kapalı okulda
+  eğitildikleri için ekolojide kanal açılınca her şeyi yayınlıyorlar
+  (P(s|0) ≈ 0.4, okuldaki öğretmenin 0.0'ı yerine). Dinlemek isabet
+  getirmiyor; 20-30K turda kendi-ipucu 0.84'e çıkıyor (K düzeyi) ve iki kol
+  ayırt edilemez hâle geliyor. Tohumun dinleyicisi var, göndericisi yok.
+- **Öngörü karnesi:** t1 ✗ (0.75) doğru, t2 ✗ (0.8) doğru, t3 ✓ (0.4) yanlış.
+- **Okuma:** tek taraflı tohum (yalnız dinleyici) sessiz dengeden
+  çıkarmıyor; sistem sessizliğe çekiliyor. Bu, "iki-kararlılık" iddiasını
+  bu ölçekte DESTEKLEMİYOR: konuşan+dinleyen tarafın kararlı olduğu
+  gösterilemedi, çünkü o taraf hiç kurulamadı (göndericisiz dinleme ölür).
+  K-116 GERİ ALINDI (kalıcı bit 0).
+- **Yeni ders var mı?** Hayır yeni M yok; M-29 (açılış şoku) ve RS-dose
+  eşiği bu sonucu öngörüyordu: tohum, eşik altındaki (≈0.18 bit) gerçek
+  göndericiyle karşılaşınca okulun RS-obs koluna düşüyor.
