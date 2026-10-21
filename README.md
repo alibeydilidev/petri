@@ -48,16 +48,20 @@ kararlı kaldı.
 Kıt kaynaklı, deterministik fizikli 64×64 bir torus dünyada 5 ajan yaşar.
 Her ajan yalnızca üç şeyden oluşur:
 
-```mermaid
-flowchart LR
-    W[("🌍 Dünya<br/>kaynak, tehlike,<br/>küresel olaylar")] -- gözlem --> C
-    subgraph Ajan
-        C["🧠 Tahmin makinesi<br/>GRU + evrişimli decoder"] --> P["🎯 Planlayıcı<br/>model tabanlı MPC"]
-        H["❤️ Homeostaz<br/>enerji, ölüm"] --> P
-    end
-    P -- eylem --> W
-    P -- "sinyal (16 sembol,<br/>enerji maliyetli)" --> K(("📡 Kanal"))
-    K -- duyulan semboller --> C
+```
+                 ┌──────────────────────────── AJAN ────────────────────────────┐
+                 │                                                              │
+ ┌──────────┐    │  ┌────────────────────┐        ┌──────────────────────────┐  │
+ │  DÜNYA   │ ───┼─▶│  Tahmin makinesi   │ ─────▶ │  Planlayıcı (MPC)        │ ─┼──▶ eylem
+ │ kaynak,  │    │  │  GRU + decoder     │        │  "hangi eylem beni       │  │
+ │ tehlike, │    │  └────────────────────┘        │   hayatta tutar?"        │ ─┼──▶ sinyal
+ │ olaylar  │    │            ▲                    └──────────────────────────┘  │   (16 sembol,
+ └──────────┘    │            │                               ▲                 │    enerji bedeli)
+                 │   duyulan semboller             ┌──────────┴───────────┐     │
+                 │   (kimliksiz kanal)             │ Homeostaz: enerji,   │     │
+                 │                                 │ ölüm gerçek          │     │
+                 │                                 └──────────────────────┘     │
+                 └──────────────────────────────────────────────────────────────┘
 ```
 
 **Verilmeyenler:** dil, konvansiyon, duygu, ödül. Tek içsel sinyal tahmin
