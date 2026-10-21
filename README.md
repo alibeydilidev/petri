@@ -49,19 +49,19 @@ Kıt kaynaklı, deterministik fizikli 64×64 bir torus dünyada 5 ajan yaşar.
 Her ajan yalnızca üç şeyden oluşur:
 
 ```
-                 ┌──────────────────────────── AJAN ────────────────────────────┐
-                 │                                                              │
- ┌──────────┐    │  ┌────────────────────┐        ┌──────────────────────────┐  │
- │  DÜNYA   │ ───┼─▶│  Tahmin makinesi   │ ─────▶ │  Planlayıcı (MPC)        │ ─┼──▶ eylem
- │ kaynak,  │    │  │  GRU + decoder     │        │  "hangi eylem beni       │  │
- │ tehlike, │    │  └────────────────────┘        │   hayatta tutar?"        │ ─┼──▶ sinyal
- │ olaylar  │    │            ▲                    └──────────────────────────┘  │   (16 sembol,
- └──────────┘    │            │                               ▲                 │    enerji bedeli)
-                 │   duyulan semboller             ┌──────────┴───────────┐     │
-                 │   (kimliksiz kanal)             │ Homeostaz: enerji,   │     │
-                 │                                 │ ölüm gerçek          │     │
-                 │                                 └──────────────────────┘     │
-                 └──────────────────────────────────────────────────────────────┘
+  DÜNYA (kaynak, tehlike, küresel olaylar)
+    │ gözlem                         ▲ eylem
+    ▼                                │
+  ┌──────────────── AJAN ──────────────────┐
+  │  Tahmin makinesi ──▶ Planlayıcı (MPC)  │
+  │  (GRU + decoder)       ▲     │         │
+  │        ▲               │     │ sinyal  │
+  │        │      Homeostaz│     │ (bedeli │
+  │        │    (enerji,   │     │  var)   │
+  │        │     ölüm)─────┘     ▼         │
+  └────────┼─────────────────────┼─────────┘
+           └──── KANAL ◀─────────┘
+        (16 sembol, kimliksiz, küresel)
 ```
 
 **Verilmeyenler:** dil, konvansiyon, duygu, ödül. Tek içsel sinyal tahmin
