@@ -9,30 +9,15 @@ Her ajan yalnızca üç şeyden oluşur: **tahmin makinesi + homeostaz (ölüml�
 + kısıtlı sinyal kanalı.** Dil, duygu ve ödül şekillendirme verilmez. Davranış
 değil, iç temsiller ölçülür. Negatif sonuç da sonuçtur.
 
-**Durum (2026-10-19):** S3 kapandı (FINDINGS "S3 KAPANIŞ RAPORU"). Dil
-tuzağı öğrenen ajanlarla 15 koşumda sınandı: ajanlar kendi ipuçlarını
-öğreniyor, **kanal hiçbir bilgi taşımıyor ve öğrenmeyi yavaşlatıyor**
-→ H4 bu koşullarda **negatif**, mekanizmasıyla: sinyalin göndericiye
-faydası yoktu (fiziğe eklendi, yetmedi) ve planlayıcı kendi sinyaline
-sahte bir enerji primi öğreniyor (kapalı-döngü karıştırma); 0-bitlik
-çareler primi yarıya indirdi, silemedi. Program B (kademeli kanal,
-600K tur): yetkin ajan sinyali fiyatlamayı öğrenebiliyor ama kanal
-kalıcı net yük, kullanılmıyor. Program A+C (19 Ekim): sahte primin
-kaynağı (halefte tekrar tamponu sıfırlanması) bulunup kesildi, kanal
-artık **nötr ve doğru fiyatlı**; ajanlar kendi-ipucu tavanında (0.45);
-"birlikte açılan sığınak" tuzağıyla bile kimse başkasının bitini
-kullanmıyor (113 koşum, 0 bit). Program A′ (ada modeli grup seçilimi)
-sembol anlamı doğurmadı; ama ajanlar ilk kez ipucuna **bağlı bir konuşma
-kararı** geliştirdi (0.10 bit) — ablasyonda büyük kısmı refleks çıktı ve
-dinleyen yok. **20 Ekim:** kanal tavan değil; olay okulunda bir ajan,
-net konuşan sanal komşuları **dinlemeyi öğrendi** ve kendi-ipucu
-tavanını ilk kez aştı (0.42 → 0.62). Dinleyici öğrenmesinin eşiği
-≈0.18 bit gönderici netliği; ekoloji göndericileri bunun yarısında.
-Tavuk-yumurta artık sayısal. PL-38 (500K uzun ekoloji, uyarı süresi
-kalibrasyonu): gönderici netliği 0.05-0.10 bitte kilitli kaldı; sistem
-"sessiz dengede" duruyor. PL-39: okulda dinlemeyi
-öğrenmiş ajanlarla kurulan ekolojide dinleme ~20 bin turda söndü;
-göndericisiz dinleme yaşamıyor.
+**Durum (2026-10-21): S3 dil kolu kapandı, H4 negatif.** Dil tuzağı
+(alarm çağrısı görevi) öğrenen ajanlarla yaklaşık 320 koşumda sınandı;
+anlam taşıyan bir iletişim kendiliğinden doğmadı. Olumsuzluğun nedeni
+ölçüldü: dinleyici öğrenmesi için gönderici netliğinin ≈0.18 bit olması
+gerekiyor, ekoloji göndericileri 0.05-0.10 bitte kilitli ve dinleyen
+olmadığı için netleşmenin faydası yok. Bu "sessiz denge" uzun zaman,
+grup seçilimi, uyarı kalibrasyonu ve dışarıdan eğitilmiş dinleyicilerle
+tohumlama karşısında kararlı kaldı. Ajana kalıcı yeni bit verilmedi.
+**Tam hikâye: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).**
 
 ---
 
@@ -51,11 +36,10 @@ içindedir. Yanılgılar silinmez, şerh düşülür (M-12).
 
 ## Nereden başlanır (okuyucu rehberi)
 
-1. **5 dakika:** bu README'nin "Şu an nerede duruyoruz" ve "Bulgu tablosu"
-   bölümleri.
-2. **30 dakika:** `FINDINGS.md` sonundaki **"S3 NİHAİ HÜKÜM"** ve
-   **"S3 KAPANIŞ RAPORU"**; sonra `METODOLOJI.md` (29 ders: nasıl
-   kendimizi kandırmadık).
+1. **15 dakika:** [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md), dil kolunun
+   bütüncül kapanış raporu.
+2. **1 saat:** `FINDINGS.md` (her koşumun ön-kaydı ve sonucu); sonra
+   `METODOLOJI.md` (31 ders: nasıl kendimizi kandırmadık).
 3. **Doğrulamak isteyen:** `KERNEL_BUDGET.md` (ajana giden her bit),
    `tests/` (determinizm + bilinen-pozitif enstrüman testleri),
    `runs/*/breath.json` (ham sayılar; her tablo buradan türetilir).
@@ -84,9 +68,9 @@ Lisans: kod MIT (`LICENSE`), doküman ve veri CC BY 4.0
 | ID | Hipotez | Test aracı | Durum |
 |----|---------|-----------|-------|
 | H1 | Ölümlü ve eyleyen her tahmin makinesi iç temsilinde öz-model geliştirir | P1 lineer prob | Uzamsal yarı **negatif** (kümülatif yol entegrasyonu yok). Tek-adım öz-hareket iskeleyle **kazanıldı**. İnteroseptif yarı **düştü** (genel girdi iyileştirmesi). |
-| H2 | Opaklık ve koordinasyon zorunluluğu, karşılıklı modellemeyi doğurur | P2 prob | Test edilmedi, sosyal katman kapalı |
-| H3 | Kısıtlı kanal sinyalin içselleştirilmesini zorlar (Vygotsky) | P3 dedektör | Test edilmedi |
-| H4 | Asimetrik bilgi ve kanal kıtlığı proto-gramer doğurur | Topografik benzerlik, Zipf | Test edilmedi. Tuzak S3-C'de kuruldu. |
+| H2 | Opaklık ve koordinasyon zorunluluğu, karşılıklı modellemeyi doğurur | P2 prob | Test edilmedi: ön koşul olan iletişim doğmadı |
+| H3 | Kısıtlı kanal sinyalin içselleştirilmesini zorlar (Vygotsky) | P3 dedektör | Ön koşul negatif: içselleştirilecek sinyal kullanımı yok |
+| H4 | Asimetrik bilgi ve kanal kıtlığı proto-gramer doğurur | Topografik benzerlik, Zipf, I(ipucu; sembol) | **Negatif** (bu anayasa altında); bkz. `RAPOR_S3_DIL.md` |
 
 **H0:** Gözlenen her şey reaktif hesaplamayla açıklanabilir. Her pozitif
 bulgu önce H0'a karşı savunulur ve [`FINDINGS.md`](FINDINGS.md)'deki
@@ -198,21 +182,17 @@ Her katman kazıldı ve darboğaz her seferinde bir alt katmana kaydı:
   (PL-28). İpucu tehlike kanalına özel algı olarak yazıldı ve çekirdeğe
   **0 bit** eklendi (PL-27).
 
+### S3-D sonrası: öğrenen ajanlarla dil tuzağı → **H4 negatif**
+Nüfus oracle'ından PL-39'a kadar tüm programlar (S3 merdiveni, Program
+A, B, C, A′/A″, PL-37, PL-38, PL-39) tablolarıyla
+[`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md)'dedir.
+
 ## Şu an nerede duruyoruz
 
-**Sıradaki adım:** S3-C'yi öğrenen ajanlarla koşmak. Bunun için önce bir
-blokajın kalkması gerekiyor:
-
-> **PL-22, ekoloji çerçeve kararı (Ali'de).** Ömür 52 turken hiçbir şey
-> öğrenilemez. Seçenekler:
-> - (a) seçilimli halefiyet (gerçek evrim)
-> - (b) gelişim koruması veya yuva dönemi
-> - (c) 5× seed-3 klon tabanı
->
-> Tavsiye: önce (c) ve (b), sonra (a). Her biri nüfus için ayrı bir
-> fizibilite oracle'ı ister (M-21).
-
-Açık döngüler ve bekleyen kararlar: [`OPEN_LOOPS.md`](OPEN_LOOPS.md).
+S3 dil kolu 21 Ekim 2026'da kapandı (H4 negatif). Neyin denendiği,
+neden olmadığı ve açık kalan yollar: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).
+Sıradaki program henüz seçilmedi. Açık döngüler ve kararlar:
+[`OPEN_LOOPS.md`](OPEN_LOOPS.md).
 
 ## Bulgu tablosu
 
@@ -226,6 +206,9 @@ Açık döngüler ve bekleyen kararlar: [`OPEN_LOOPS.md`](OPEN_LOOPS.md).
 | "Sinyal maliyet baskısıyla söner" | **Çürütüldü**, enstrüman artefaktı |
 | B koordinasyonu keşfedilebilir mi | **Hayır** (Çatal C) |
 | Alarm çağrısı görevi geçerli bir dil tuzağı mı | **Evet** (Çatal A, oracle düzeyinde) |
+| Öğrenen ajanlarla dil doğar mı (H4) | **Hayır**, sessiz denge (≈320 koşum) |
+| Okulda ajan net komşuları dinlemeyi öğrenir mi | **Evet**, eşik ≈0.18 bit (aday gözlem) |
+| Dinleme bir kez kurulursa ekolojide yaşar mı | **Hayır**, ~20 bin turda söner |
 
 ## Repo haritası
 
@@ -246,6 +229,7 @@ runs/         TÜM ham sonuçlar, snapshot'lar, ağırlıklar
               s3d (nüfus oracle) · s3e…s3r (S3 ekoloji merdiveni) · s3j
               (olay okulu) · s3q (Program B) · a0/a1 (Program A) · c1
               (Program C) — her klasörde breath.json/summary.json
+RAPOR_S3_DIL.md   S3 dil kolu bütüncül kapanış raporu
 FINDINGS.md       sprint sonu bulgular (negatifler dahil) + Beş Kapı şablonu
 OPEN_LOOPS.md     PL-xx açık işler / bekleyen kararlar
 KERNEL_BUDGET.md  ajana verilen her prior, bit cinsinden

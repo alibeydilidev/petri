@@ -26,7 +26,7 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
 
 ## Sprint disiplini
 - Durum: **S0-S2.10 ✓/✗ yayı kapandı; S2.10-ek ✓ (PL-13 iki-katmanlı
-  verdikt, PL-15 kapandı-aday düştü); S3 AÇIK (economy v3, kanal açık,
+  verdikt, PL-15 kapandı-aday düştü); S3 DİL KOLU KAPANDI 2026-10-21, H4 negatif, `RAPOR_S3_DIL.md`; S3 (economy v3, kanal açık,
   nüfus + DP-01b fiili, ölüm gerçek). İlk nefes koşumu: drift-baskın
   çöküş — rapor FINDINGS'te.**
 - S2.10-ek özeti: üretici katmanda öz-hareket ↑ → hasat doğdu (Ali
@@ -109,8 +109,8 @@ geçmeden rapora giremez. Şablon oradadır; boş kapı = iddia yok.
   0.05-0.10 bitte kilitli; dinleyici yok. Sessiz denge.
 - **PL-39 (21 Ekim):** kültürel tohum (RS-1 dinleyici kurucular) ~20K turda
   söndü; t1/t2/t3 ✗; K-116 geri alındı. Kalıcı bit 0.
-- **SIRADAKİ ADIM (PL-40, Ali kararı):** dil kolunu kapat ya da iki taraflı
-  tohum (~2 bit, beyanlı).
+- **S3 DİL KOLU KAPANDI (21 Ekim, Ali: PL-40 (a)):** H4 nihai negatif;
+  bütüncül rapor `RAPOR_S3_DIL.md`. Sıradaki program Ali'nin kararı.
 - Enstrüman rafı + ağırlık kayıtları: runs/. `probes/` sosyal katman
   KAPALI.
 

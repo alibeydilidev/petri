@@ -3933,3 +3933,19 @@ toplamıyla (kendi-ipucu, olay turuyla ağırlıklı 1K pencere oranı):
 - **Yeni ders var mı?** Hayır yeni M yok; M-29 (açılış şoku) ve RS-dose
   eşiği bu sonucu öngörüyordu: tohum, eşik altındaki (≈0.18 bit) gerçek
   göndericiyle karşılaşınca okulun RS-obs koluna düşüyor.
+
+---
+
+# S3 DİL KOLU KAPANIŞI: H4 NİHAİ NEGATİF (Ali kararı PL-40 (a), 2026-10-21)
+Bütüncül rapor: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).
+- **H4 negatif** (bu anayasa altında; ~320 koşum, 600K tura kadar
+  ekolojiler; kalıcı yeni bit 0; K-115 ve K-116 adayları geri alındı).
+- Mekanik engeller (drift, tampon sıfırlaması kaynaklı sahte prim, açılış
+  şoku) kaldırıldı; kanal nötr ve fiyatlı. Kalan açıklama ölçülmüş bir
+  tavuk-yumurta: dinleyici öğrenmesi ≈0.18 bit gönderici netliği ister,
+  ekoloji göndericileri 0.05-0.10 bitte kilitli; sessiz denge zaman,
+  grup seçilimi, uyarı kalibrasyonu ve tek taraflı tohuma karşı kararlı.
+- Denenmeyen ve açık bırakılan: iki taraflı tohum (~2 bit), kimlikli ya
+  da yerel kanal, akrabalık, daha büyük ölçek (raporun 9. bölümü).
+- **Yeni ders var mı?** Hayır; M-28 (giriş ücreti) bu kolun genel dersi
+  olarak kalır, PL-37/39 onu sayısallaştırdı.

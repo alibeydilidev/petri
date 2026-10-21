@@ -238,7 +238,10 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
-- **PL-40 — Programın yönü (AÇIK, Ali):** PL-39 ✗ (tek taraflı tohum
+- **PL-40 KAPALI. KARAR (Ali, 21 Ekim): (a) dil kolunu nihai negatifle kapat.**
+  Bütüncül rapor: `RAPOR_S3_DIL.md`. (b) iki taraflı tohum açık davet olarak
+  raporun 9. bölümünde.
+- **PL-40-eski — Programın yönü:** PL-39 ✗ (tek taraflı tohum
   söndü). Seçenekler: (a) S3 dil kolunu nihai negatifle kapat, bütüncül
   rapor; (b) iki taraflı tohum: dinleyici + net gönderici birlikte (gönderici
   kuralı hediye, ~2 bit; "verilmiş bir dil yaşar mı" sorusu, köken değil).
