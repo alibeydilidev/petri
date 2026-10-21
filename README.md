@@ -1,296 +1,309 @@
-# PETRI — Emergent Zihin Öncülleri Deneyi
+<div align="center">
 
-> **Bilinç üretmiyoruz.** Bilincin öncüllerinin (öz-model, yüksek mertebe
-> modelleme, birleşimsel iletişim) hangi ekolojik basınç altında
-> **kendiliğinden** belirdiğini yakalayan bir tuzak kuruyoruz.
+# 🧫 PETRI
 
-Kıt kaynaklı, deterministik fizikli bir grid dünyada yaşayan 5 heterojen ajan.
-Her ajan yalnızca üç şeyden oluşur: **tahmin makinesi + homeostaz (ölümlülük)
-+ kısıtlı sinyal kanalı.** Dil, duygu ve ödül şekillendirme verilmez. Davranış
-değil, iç temsiller ölçülür. Negatif sonuç da sonuçtur.
+**Emergent zihin öncülleri deneyi**
 
-**Durum (2026-10-21): S3 dil kolu kapandı, H4 negatif.** Dil tuzağı
-(alarm çağrısı görevi) öğrenen ajanlarla yaklaşık 320 koşumda sınandı;
-anlam taşıyan bir iletişim kendiliğinden doğmadı. Olumsuzluğun nedeni
-ölçüldü: dinleyici öğrenmesi için gönderici netliğinin ≈0.18 bit olması
-gerekiyor, ekoloji göndericileri 0.05-0.10 bitte kilitli ve dinleyen
-olmadığı için netleşmenin faydası yok. Bu "sessiz denge" uzun zaman,
-grup seçilimi, uyarı kalibrasyonu ve dışarıdan eğitilmiş dinleyicilerle
-tohumlama karşısında kararlı kaldı. Ajana kalıcı yeni bit verilmedi.
-**Tam hikâye: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).**
+*Bilinç üretmiyoruz. Bilincin öncüllerinin hangi ekolojik basınç altında
+kendiliğinden belirdiğini yakalayan bir tuzak kuruyoruz.*
+
+[![Kod lisansı: MIT](https://img.shields.io/badge/kod-MIT-blue.svg)](LICENSE)
+[![Doküman ve veri: CC BY 4.0](https://img.shields.io/badge/dok%C3%BCman%20%2B%20veri-CC%20BY%204.0-lightgrey.svg)](LICENSE-DOCS-DATA.md)
+[![Python 3.13](https://img.shields.io/badge/python-3.13-informational.svg)](requirements.txt)
+[![Ön-kayıtlı](https://img.shields.io/badge/her%20ko%C5%9Fum-%C3%B6n--kay%C4%B1tl%C4%B1-success.svg)](FINDINGS.md)
+
+[Sonuç](#-sonuç) · [Nasıl çalışır](#-nasıl-çalışır) · [Okuma rehberi](#-okuma-rehberi) · [Çalıştırma](#-çalıştırma) · [English summary](#-english-summary)
+
+</div>
 
 ---
 
-## Bu çalışma nasıl yürütüldü (açık beyan)
+## 📌 Sonuç
+
+> **H4 negatif.** Beş ölümlü, öngörücü ajanın yaşadığı bir dünyada, 4 bitlik
+> maliyetli ve kimliksiz bir kanaldan anlam taşıyan bir iletişim
+> **kendiliğinden doğmadı.** Yaklaşık 320 koşum, 600 bin tura kadar süren
+> ekolojiler, ajana verilen **0 kalıcı yeni bit.**
+
+Asıl katkı, olumsuzluğun **nedenini ölçmek** oldu:
+
+| Soru | Cevap |
+|---|---|
+| Ajanlar görevi öğrenebiliyor mu? | ✅ Evet, kendi ipuçlarını öğrenip tavana ulaşıyorlar. |
+| Kanal kullanılabilir durumda mı? | ✅ Evet, mekanik engeller kaldırıldı, kanal nötr ve doğru fiyatlı. |
+| Kanalda alıcıya ulaşabilecek bilgi var mı? | ✅ Evet, optimal bir alıcı kazanç sağlardı. |
+| Bir ajan başkasını dinlemeyi öğrenebilir mi? | ✅ Evet, net konuşan komşularla okulda öğreniyor. |
+| Peki ekolojide neden dil yok? | ❌ Dinleyici için gönderici netliği **≈0.18 bit** olmalı. Göndericiler **0.05 ile 0.10 bitte** kilitli. Dinleyen yok, netleşmenin faydası yok. |
+
+Bu **"sessiz denge"** uzun zamana, grup seçilimine, uyarı süresi
+kalibrasyonuna ve dışarıdan eğitilmiş dinleyicilerle tohumlamaya karşı
+kararlı kaldı.
+
+📄 **Tam hikâye:** [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md), 15 dakikalık okuma.
+
+---
+
+## 🧪 Nasıl çalışır
+
+Kıt kaynaklı, deterministik fizikli 64×64 bir torus dünyada 5 ajan yaşar.
+Her ajan yalnızca üç şeyden oluşur:
+
+```mermaid
+flowchart LR
+    W[("🌍 Dünya<br/>kaynak, tehlike,<br/>küresel olaylar")] -- gözlem --> C
+    subgraph Ajan
+        C["🧠 Tahmin makinesi<br/>GRU + evrişimli decoder"] --> P["🎯 Planlayıcı<br/>model tabanlı MPC"]
+        H["❤️ Homeostaz<br/>enerji, ölüm"] --> P
+    end
+    P -- eylem --> W
+    P -- "sinyal (16 sembol,<br/>enerji maliyetli)" --> K(("📡 Kanal"))
+    K -- duyulan semboller --> C
+```
+
+**Verilmeyenler:** dil, konvansiyon, duygu, ödül. Tek içsel sinyal tahmin
+hatası ve hayatta kalmaktır.
+
+**Dil tuzağı (alarm çağrısı):** Her 10 turda bir küresel tehlike gelir.
+Güvenli tek eylem 4 kutuptan biridir. Tehlikeden önce her ajan kutup
+kodunun **yalnız 1 bitini** görür. Bilgi tek bir ajanda tamamlanmaz;
+kanal onu tamamlamanın tek yoludur. Doğadaki emsali alarm çağrılarıdır.
+
+### Anayasa
+
+1. **Çekirdek minimalizmi.** Ajana giren her ön bilgi bit cinsinden
+   [`KERNEL_BUDGET.md`](KERNEL_BUDGET.md)'ye gerekçesiyle yazılır.
+2. **Fizik hakemdir.** Ödül şekillendirme yasak.
+3. **Dil verilmez, basınç verilir.** Kanalın yalnız genişliği ve maliyeti tanımlı.
+4. **Duygu verilmez.** Duyguya benzer durumlar problarla aranır.
+5. **Davranış yalan söyler.** İddialar iç temsil problarıyla desteklenir.
+6. **Dil modeli deneyin içinde yer alamaz.** Yalnız gözlemci olabilir.
+7. **Negatif sonuç sonuçtur.**
+
+Tam metin: [`PETRI_TALIMAT.md`](PETRI_TALIMAT.md).
+
+---
+
+## 🎯 Hipotezler
+
+| | Hipotez | Hüküm |
+|---|---|---|
+| **H1** | Ölümlü ve eyleyen tahmin makinesi öz-model geliştirir | 🟡 Karışık. Kümülatif yol entegrasyonu yok. Tek-adım öz-hareket yerellik iskelesiyle öğreniliyor. |
+| **H2** | Opaklık ve koordinasyon karşılıklı modellemeyi doğurur | ⚪ Test edilmedi. Ön koşulu olan iletişim doğmadı. |
+| **H3** | Kısıtlı kanal sinyalin içselleştirilmesini zorlar | ⚪ Ön koşul negatif. İçselleştirilecek sinyal kullanımı yok. |
+| **H4** | Asimetrik bilgi ve kanal kıtlığı proto-gramer doğurur | 🔴 **Negatif** (bu anayasa altında) |
+| **H0** | Her şey reaktif hesaplamayla açıklanır | Çürütülmedi |
+
+Her pozitif iddia önce H0'a karşı savunulur ve [`FINDINGS.md`](FINDINGS.md)'deki
+**Beş Kapı**'dan geçer: ablasyon, prob sızıntısı, zaman çizgisi, çekirdek
+bütçesi, bit-eş tekrar. Bir kapı boşsa bulgu yalnız "aday gözlem"dir.
+
+---
+
+## 🗺️ Yolculuk
+
+<details>
+<summary><b>S0 ile S2.10: dünya, tek ajan, öz-model probu</b> (açmak için tıkla)</summary>
+
+| Sprint | Soru | Sonuç |
+|---|---|---|
+| S0 | Dünya deterministik mi? | ✅ Bit-eş tekrar, ~36 bin tur/sn |
+| S1 | Ajan rastgeleden uzun yaşar mı? | ✅ 5/5 seed, ama mekanizma hasat değil enerji tasarrufu |
+| S2 | İç temsilde öz-konum var mı? | 🔴 Kümülatif yer değiştirme okunamıyor |
+| S2.5 ile S2.9 | Ajan neden hasat etmiyor? | Darboğaz katman katman indi: ekonomi, keşif, planlayıcı, egosantrik kayma |
+| S2.10 | Yerellik iskelesi işe yarar mı? | ✅ Kayma 5/5 seed'de çözüldü, ilk hasat doğdu |
+| S2.10-ek | Öz-konum hasatla birlikte mi yükselir? | Üretici katmanda evet (n=1), korelasyonel katmanda hayır |
+
+</details>
+
+<details>
+<summary><b>S3: nüfus, açık kanal, gerçek ölüm, dil tuzağı</b> (açmak için tıkla)</summary>
+
+| Aşama | Soru | Sonuç |
+|---|---|---|
+| S3-B | Kanal "nerede" bilgisi taşır mı? | 🔴 Yönsüz 4 bit taşıyamıyor, görev değiştirildi |
+| S3-C | Alarm çağrısı geçerli bir tuzak mı? | ✅ Ön-kayıtlı üç fizibilite çıtası geçti |
+| S3-D ile S3-K | Öğrenen ekolojide dil doğar mı? | 🔴 Ajanlar ipucunu öğreniyor, kanal 0 bilgi taşıyor |
+| S3-L ile S3-P | Kanal neden öğrenmeyi yavaşlatıyor? | Planlayıcı kendi sinyaline sahte prim öğreniyor |
+| Program B | Önce yetkinlik, sonra kanal? | Yetkin ajan sinyali fiyatlıyor, dil yok |
+| Program A | Sahte primin kaynağı ne? | Halefte deneyim tamponu sıfırlanıyordu. Düzeldi, kanal nötr |
+| Program C | Göndericiye doğrudan fayda? | "Birlikte açılan sığınak" basınç üretmedi |
+| Program A′/A″ | Grup seçilimi kırar mı? | 🔴 Konuşma kararı ipucuna bağlandı (0.10 bit) ama çoğu refleks, dinleyen yok |
+| PL-37 | Dinleyici öğrenebilir mi? | ✅ Okulda evet. Eşik ≈0.18 bit |
+| PL-38 | Zaman göndericiyi eşiğe taşır mı? | 🔴 500 bin turda kilitli |
+| PL-39 | Dinleme bir kez kurulursa yaşar mı? | 🔴 ~20 bin turda söndü |
+
+Ayrıntı: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).
+
+</details>
+
+---
+
+## 📚 Okuma rehberi
+
+| Süre | Ne okunur |
+|---|---|
+| ⏱️ 5 dk | Bu sayfa |
+| ⏱️ 15 dk | [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md): dil kolunun bütüncül raporu |
+| ⏱️ 30 dk | [`METODOLOJI.md`](METODOLOJI.md): kendimizi kandırmamak için 31 ders |
+| 🔬 Derin | [`FINDINGS.md`](FINDINGS.md): her koşumun ön-kaydı, sonucu ve öngörü karnesi |
+| 🧾 Denetim | [`KERNEL_BUDGET.md`](KERNEL_BUDGET.md): ajana giden her bit · [`OPEN_LOOPS.md`](OPEN_LOOPS.md): her karar |
+
+---
+
+## 🚀 Çalıştırma
+
+```bash
+git clone https://github.com/alibeydilidev/petri.git && cd petri
+python3.13 -m venv .venv
+.venv/bin/pip install -r requirements.txt
+.venv/bin/python -m pytest tests/ -q
+```
+
+Testler yaklaşık 2 dakika sürer. Determinizm, fizik ve ölçüm aletlerini
+doğrular.
+
+**Bir ekoloji koşmak:**
+
+```bash
+.venv/bin/python -m training.ecology --turns 20000 --out runs/deneme --founding clone --nest 600 0.5 --sigma 0.002 --events --event-every 10 --event-lead 4 --min-safe 2 --channel open
+```
+
+**Gönderici netliğini ölçmek:**
+
+```bash
+.venv/bin/python -m training.sender_clarity runs/deneme
+```
+
+**Diğer araçlar:**
+
+| Komut | Ne yapar |
+|---|---|
+| `training.event_school` | Tek ajanlık olay okulu (sanal komşularla dinleyici eğitimi dahil) |
+| `training.island_evolution` | Ada modeli grup seçilimi |
+| `training.channel_oracle` | Kanalın optimal alıcı tavanı |
+| `training.analyze_s3e` | Ekoloji özeti ve karşılıklı bilgi |
+| `replay.viewer` | Koşum kaydı ve izleme |
+
+Tüm koşumlar deterministiktir: aynı dünya ve ajan seed'i bit-eş sonuç verir.
+5 ajanlı ekoloji Apple Silicon'da tur başına 60 ile 80 ms sürer, 100 bin
+tur yaklaşık 2 saattir.
+
+---
+
+## 🗂️ Repo haritası
+
+```
+world/        dünya fiziği: grid, küresel olaylar, ekonomi sürümleri
+agent/        tahmin çekirdeği, homeostaz, planlayıcı, kanal
+population/   kurucu kadro, yaşam döngüsü, ölüm, miras, mutasyon
+training/     ekoloji koşturucu, okul, oracle'lar, ada evrimi, problar
+probes/       öz-model probu
+replay/       kayıt ve izleyici
+tests/        determinizm, fizik ve ölçüm aleti testleri
+runs/         tüm ham sonuçlar (breath.json, school.json, loglar)
+```
+
+| Doküman | İçerik |
+|---|---|
+| [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md) | Dil kolunun kapanış raporu |
+| [`FINDINGS.md`](FINDINGS.md) | Sprint günlüğü: ön-kayıtlar, sonuçlar, Beş Kapı şablonu |
+| [`METODOLOJI.md`](METODOLOJI.md) | M-01 ile M-31 arası dersler |
+| [`KERNEL_BUDGET.md`](KERNEL_BUDGET.md) | Ajana verilen her ön bilgi, bit cinsinden |
+| [`OPEN_LOOPS.md`](OPEN_LOOPS.md) | Açık işler ve kararlar |
+| [`PETRI_TALIMAT.md`](PETRI_TALIMAT.md) | Kaynak doküman, çelişkide bu kazanır |
+| [`CLAUDE.md`](CLAUDE.md) | Yürütücü yapay zekâ için oturum anayasası |
+| [`K104_DOSYA.md`](K104_DOSYA.md) | Merak terimi kararı (arşiv) |
+
+**Veri:** her tablo `runs/` altındaki ham dosyalardan türetilir. Klasör
+adları programları izler: `s3e` ile `s3r` S3 merdiveni, `a0` ile `a3`
+Program A, `c1` ile `c4` Program C, `ev` ada evrimi, `rs` dinleyici okulu,
+`pl38` ve `pl39` son programlar. Ağırlık dosyalarının bir kısmı repoda,
+yenileri yerelde tutuldu.
+
+---
+
+## 💡 Öne çıkan dersler
+
+Her sprint "Yeni ders var mı?" sorusuyla kapandı. Seçmeler:
+
+- **M-07** Pozitif kontrol olmadan negatif yorumlanamaz.
+- **M-08** Öngörüler önceden kayda girer.
+- **M-15** Sonda da bir cihazdır.
+- **M-23** Sayaç da bir cihazdır.
+- **M-26** Sürüklenme cihaz hatası gibi davranır.
+- **M-27** Ekolojiyi yargılamadan önce tek-ajan tavanını ölç.
+- **M-28** Tuzağın geri dönüş yolunu kur, ama önce giriş ücretini ölç.
+- **M-31** Halefiyet, öğrenme mekaniğinin her parçası için ayrı bir karardır.
+
+---
+
+## 🔭 Buradan devam etmek isteyenlere
+
+Bu sonuç "dil imkânsız" demiyor. Bu anayasa ve bu ölçekte sıfır bitten
+kendiliğinden dil doğmadığını ve nedenini söylüyor. Umutlu yollar:
+
+- **İki taraflı tohum:** dinleyici ve net gönderici birlikte verilirse iletişim yaşar mı? (~2 bit)
+- **Kimlikli ya da yerel kanal:** alıcı kimin konuştuğunu bilirse ne olur?
+- **Akrabalık ya da tekrarlanan eşler:** göndericinin faydası soy üzerinden döner.
+- **Daha büyük ölçek:** daha çok ajan, daha çok ada, milyonlarca tur.
+- **Farklı öğrenici:** model-free ya da keşif terimli ajanlar.
+
+Ayrıntı ve maliyetler raporun 9. bölümünde.
+
+---
+
+## 🤝 Bu çalışma nasıl yürütüldü
 
 Hipotezler, anayasa ve mimari plan **Ali Beydili**'ye aittir. Kodun büyük
 bölümü, tüm koşumlar, ön-kayıtlar, analizler ve bulgu metinleri, Ali'nin
-verdiği karar yetkisiyle **Claude (Anthropic)** tarafından otonom olarak
-yürütülmüş ve yazılmıştır; Ali karar noktalarında yön vermiştir (bkz.
-`OPEN_LOOPS.md` "KARAR" satırları). Bu bilinçli bir seçimdir: deneyin
-iddiası "ajana hiçbir şey vermeden" ise, deneyi yürüten elin de şeffaf
-olması gerekir. Her koşum **koşumdan önce** yazılmış ön-kayıt ve çıtalarla
-(`FINDINGS.md`, "ÖN-KAYIT" başlıkları) gelir; git geçmişi zaman
-damgalıdır. Öngörü karneleri (tutmayanlar dahil) bulgu bölümlerinin
-içindedir. Yanılgılar silinmez, şerh düşülür (M-12).
+verdiği karar yetkisiyle **Claude (Anthropic)** tarafından yürütüldü ve
+yazıldı. Ali karar noktalarında yön verdi (`OPEN_LOOPS.md` "KARAR"
+satırları).
 
-## Nereden başlanır (okuyucu rehberi)
-
-1. **15 dakika:** [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md), dil kolunun
-   bütüncül kapanış raporu.
-2. **1 saat:** `FINDINGS.md` (her koşumun ön-kaydı ve sonucu); sonra
-   `METODOLOJI.md` (31 ders: nasıl kendimizi kandırmadık).
-3. **Doğrulamak isteyen:** `KERNEL_BUDGET.md` (ajana giden her bit),
-   `tests/` (determinizm + bilinen-pozitif enstrüman testleri),
-   `runs/*/breath.json` (ham sayılar; her tablo buradan türetilir).
-4. **Tekrar koşmak isteyen:** aşağıda "Çalıştırma". Tüm koşumlar
-   deterministiktir (dünya seed'i + ajan seed'i → bit-eş).
-
-Lisans: kod MIT (`LICENSE`), doküman ve veri CC BY 4.0
-(`LICENSE-DOCS-DATA.md`).
-
-## İçindekiler
-1. [Hipotezler](#hipotezler)
-2. [Anayasa](#anayasa)
-3. [Mimari](#mimari)
-4. [Sprint yolculuğu: ne yapıldı, ne çıktı, neden](#sprint-yolculuğu)
-5. [Şu an nerede duruyoruz](#şu-an-nerede-duruyoruz)
-6. [Bulgu tablosu](#bulgu-tablosu)
-7. [Repo haritası](#repo-haritası)
-8. [Veriler (`runs/`)](#veriler-runs)
-9. [Çalıştırma](#çalıştırma)
-10. [Metodoloji dersleri](#metodoloji-dersleri)
+Bu bilinçli bir seçimdir: deneyin iddiası "ajana hiçbir şey vermeden"
+ise, deneyi yürüten elin de şeffaf olması gerekir. Her koşum, koşumdan
+önce yazılmış ön-kayıt ve çıtalarla gelir. Git commit zamanı yetkili zaman
+damgasıdır. Tutmayan öngörüler dahil her şey kayıttadır. Yanılgılar
+silinmez, şerh düşülür.
 
 ---
 
-## Hipotezler
+## 🌐 English summary
 
-| ID | Hipotez | Test aracı | Durum |
-|----|---------|-----------|-------|
-| H1 | Ölümlü ve eyleyen her tahmin makinesi iç temsilinde öz-model geliştirir | P1 lineer prob | Uzamsal yarı **negatif** (kümülatif yol entegrasyonu yok). Tek-adım öz-hareket iskeleyle **kazanıldı**. İnteroseptif yarı **düştü** (genel girdi iyileştirmesi). |
-| H2 | Opaklık ve koordinasyon zorunluluğu, karşılıklı modellemeyi doğurur | P2 prob | Test edilmedi: ön koşul olan iletişim doğmadı |
-| H3 | Kısıtlı kanal sinyalin içselleştirilmesini zorlar (Vygotsky) | P3 dedektör | Ön koşul negatif: içselleştirilecek sinyal kullanımı yok |
-| H4 | Asimetrik bilgi ve kanal kıtlığı proto-gramer doğurur | Topografik benzerlik, Zipf, I(ipucu; sembol) | **Negatif** (bu anayasa altında); bkz. `RAPOR_S3_DIL.md` |
+**PETRI** is a pre-registered artificial-life experiment asking whether
+precursors of consciousness (self-model, mutual modelling, compositional
+communication) emerge spontaneously in mortal predictive agents. Nothing
+is given to the agents: no reward shaping, no language, no emotions.
+Every prior is counted in bits.
 
-**H0:** Gözlenen her şey reaktif hesaplamayla açıklanabilir. Her pozitif
-bulgu önce H0'a karşı savunulur ve [`FINDINGS.md`](FINDINGS.md)'deki
-**Beş Kapı**'dan geçmek zorundadır (ablasyon, prob sızıntısı, zaman çizgisi,
-çekirdek bütçesi, bit-eş tekrar). Kapılardan biri boş kalırsa bulgu iddia
-sayılmaz, **aday gözlem** olarak kalır.
+**Main result (S3, hypothesis H4): negative.** Five mortal agents with a
+GRU world model and a model-based planner share a costly 16-symbol,
+identity-free broadcast channel. An "alarm call" task splits a 2-bit
+safe-pole code so that each agent sees only 1 bit. Across ~320 runs and
+ecologies of up to 600K turns, no meaningful communication emerged, with
+zero permanent bits added.
 
-## Anayasa
+We measured why. Agents learn their own cue. The channel is neutral and
+correctly priced. Information is available to an optimal receiver. A single
+agent *can* learn to listen to clear senders. But listener learning
+requires ≈0.18 bits of sender clarity, while ecological senders stay locked
+at 0.05 to 0.10 bits. Without listeners, sharper signalling pays nothing.
+This "silent equilibrium" proved stable against long runs, island-model
+group selection, warning-lead calibration, and seeding with pre-trained
+listeners.
 
-1. **Çekirdek minimalizmi.** Her prior bit cinsinden [`KERNEL_BUDGET.md`](KERNEL_BUDGET.md)'ye gerekçesiyle yazılır.
-2. **Fizik hakemdir.** Ödül şekillendirme yasak. Tek içsel sinyal tahmin hatası ve homeostazdır.
-3. **Dil verilmez, basınç verilir.** Kanalın yalnızca genişliği ve enerji maliyeti tanımlıdır.
-4. **Duygu verilmez.** Duyguya benzer durumlar gömülmez, problarla aranır.
-5. **Davranış yalan söyler.** İddialar yalnızca iç temsil problarıyla desteklenir.
-6. **LLM deneyin içinde yer alamaz.** Yalnızca gözlemci ve log analisti olabilir.
-7. **Negatif sonuç sonuçtur.**
+Documentation is in Turkish. Start with
+[`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md) (closure report) and
+[`METODOLOJI.md`](METODOLOJI.md) (31 methodological lessons). Code: MIT.
+Docs and data: CC BY 4.0. The experiment was designed by Ali Beydili and
+executed autonomously by Claude (Anthropic) under his decision authority.
 
-Tam metin: [`PETRI_TALIMAT.md`](PETRI_TALIMAT.md) (kaynak doküman) ve [`CLAUDE.md`](CLAUDE.md) (oturum anayasası).
+---
 
-## Mimari
+<div align="center">
 
-- **Dünya** (`world/`): 64×64 torus, NumPy vektörize. A kaynağı tek ajanla
-  hasat edilir. B kaynağı iki ajanın eşzamanlı etkileşimini ister. Tehlike
-  bölgeleri vardır. Küresel olaylar `world/events.py`'dedir. **Determinizm
-  anayasaldır:** tüm rastgelelik tek bir `numpy.random.Generator`'dan
-  (PCG64) gelir ve `World.state_hash()` ile bit-eş doğrulanır.
-- **Ajan** (`agent/`): GRU tabanlı tahmin çekirdeği (`predictive_core.py`),
-  homeostaz (`homeostasis.py`), MPC planlayıcı (`mpc.py`; CEM ve makro
-  adaylar) ve 4 bit/16 sembollük sinyal kanalı (`channel.py`).
-- **Nüfus** (`population/`): roster (heterojen kurucular), yaşam döngüsü,
-  gerçek ölüm, ağırlık mirası ve mutasyonla halefiyet.
-- **Eğitim ve enstrümanlar** (`training/`): online öğrenme döngüsü, PER,
-  snapshot (detach ve sızıntısızlık testli), fizibilite oracle'ları
-  (`oracle.py`, `b_oracle.py`, `event_oracle.py`), nakit testi, sprint
-  eval script'leri.
-- **Problar** (`probes/`): P1 öz-model probu. Sosyal katman **kapalı**.
-- **Replay** (`replay/`): `.npz` kayıt ve ayrı süreçte izleme.
+**Atıf:** [`CITATION.cff`](CITATION.cff) · **Lisans:** kod [MIT](LICENSE), doküman ve veri [CC BY 4.0](LICENSE-DOCS-DATA.md)
 
-## Sprint yolculuğu
+*Negatif sonuç da sonuçtur.*
 
-Ayrıntılar ve tüm tablolar: **[`FINDINGS.md`](FINDINGS.md)**. Aşağıda kısa
-anlatı var.
-
-### S0: Dünya, determinizm, replay ✓
-3.000 turda her 250 turda bir hash karşılaştırması yapıldı, hepsi bit-eş
-çıktı. İki ayrı süreçte koşulan 10.000 turluk kayıtlar aynı final hash'i
-verdi. Hız yaklaşık 36.400 tur/sn.
-
-### S1: Tek ajan, kanal kapalı ✓
-5/5 seed'de ajan rastgele politikadan uzun yaşadı (p<2e-4, Cliff's δ
-0.87–1.0). **Ama üstünlüğün kaynağı hasat değil, enerji tasarrufuydu.** v1
-koşumu başarısızdı: MPC kendi eğitim verisini yanlılaştırıyordu. Başarısız
-koşumun verisi silinmedi.
-
-### S2: P1 öz-model probu → **NEGATİF**
-Kümülatif yer değiştirme gizli durumdan okunamıyor. Eğitilmiş ağın rastgele
-ikizden farkı tutarsız. Öz-enerji probu yüksek R² verdi ama ikiz de 0.96
-civarındaydı. Bu yüzden **aday gözlem** olarak etiketlendi.
-
-### S2.5 – S2.9: "Neden hasat etmiyor?" teşhis zinciri
-Her katman kazıldı ve darboğaz her seferinde bir alt katmana kaydı:
-
-| Sprint | Hipotez | Sonuç |
-|---|---|---|
-| S2.5 | Ufuk, metabolizma, müfredat, planlayıcı | Dört müdahalenin hepsinde hasat 0. **Kök neden:** on-policy veri ve MPC döngüsü, eylem-koşullu karşı-olgusal kalibrasyonu sürdüremiyor. |
-| S2.6 | Ekonomi | Oracle gösterdi ki **hasat her koşulda net zararmış.** Ekonomi v2'ye geçildi (m=0.6, 24 kaynak, A=45). PER seed çöküşünü bitirdi. Asıl darboğaz **keşifti**: 45K turda yalnızca 10 hasat olayı. |
-| S2.7 | Yuva müfredatı | Model olumsallığı 50 deneyimle öğreniyor (N*=50), ama davranış hasada dönmüyor. **Çatal B2: bilgi var, kullanım yok.** |
-| S2.8 | Planlayıcı (CEM, makrolar) | Nakit testi %25/%13 ile geçemedi. **Asıl neden:** model hareket altında egosantrik kaymayı öğrenmemiş, "grid kalıcıdır" diye tahmin ediyor. |
-| S2.9 | Hareketten zengin veri | Kayma oranı 0.09'dan yalnızca 0.16'ya çıktı. Sorun verinin miktarı değil, **örneklem karmaşıklığı**. |
-| S2.10 | Yerellik iskelesi (evrişimli decoder, K-113; M-19 doğum günü testinden geçti) | **Kayma 5/5 seed'de çözüldü.** Nakit d1 %74 ✓, d2 %57 ✗. Seed 3 tarihte ilk kez hasat etti (medyan 4.0). |
-
-### S2.10-ek: PL-13, Ali'nin öngörüsü (n=1, seed 3)
-*"Öz-konum eğrisi hasatla birlikte yükselir."*
-- **Üretici katmanda desteklendi:** kayma yetisi monoton yükseldi, hasat
-  ancak bu yeti yaklaşık 0.75'i geçtikten **sonra** doğdu.
-- **Korelasyonel katmanda desteklenmedi:** kümülatif yer değiştirme probu
-  yükselmedi. Tek adımlık öz-hareket, kümülatif yol entegrasyonu demek değil.
-- **Öz-enerji adayı düştü:** varyans-eşleşmiş kontrolde, kendilikle ilgisi
-  olmayan bir girdi de en az aynı ölçüde iyileşti. Bu, genel bir girdi
-  iyileştirmesi.
-
-### S3: Nüfus, kanal açık, ölüm gerçek
-- **İlk nefes koşumu (20K tur):** drift-baskın çöküş. Medyan ömür 52 tur,
-  bu da "her tur hareket" tavanına denk geliyor. Öğrenme ufkuyla arada
-  yaklaşık **865× açık** var. Seçilimsiz mutasyon mirası 65. nesilde
-  gürültüye gömüyor.
-- **Enstrüman hatası yakalandı (PL-23):** "Sinyaller söndü" iddiası
-  **çürütüldü.** Sayaçlar ölümde sıfırlanıyordu. Gerçek sinyal oranı 0.68
-  ve yükseliyor. Bu oran bir iletişim basıncını değil, **planlayıcı
-  tutarlılığının kaybını** ölçüyor. Sembol entropisi 3.99/4.00 bit, yani
-  kanal yapı taşımıyor. Sosyal katman için gürültü tabanı **0.0103 bit**
-  olarak ön-kayda geçti.
-- **S3-B, B koordinasyonu: ÇATAL C.** Mükemmel konvansiyon hediye
-  edildiğinde bile kanal **zarar veriyor**: kanalsız `vision` 0.652 açılış
-  verirken `signal` 0.0 verdi. Yönsüz 4 bit "nerede" bilgisini taşıyamıyor.
-  Sorun doz değil, görev ile kanalın uyumsuzluğu.
-- **S3-C, alarm çağrısı görevi: ÇATAL A ✓.** Ali kararıyla görev uzamsal
-  olmaktan çıkarıldı. Küresel bir olay sırasında güvenli olan tek bir eylem
-  (kutup) var. Kutup 2 bitlik bir kod, her ajan olay başına yalnızca
-  **1 bit** görüyor. Ön-kayıtlı üç çıtanın üçü de geçti:
-
-  | çıta | değer | eşik |
-  |---|---|---|
-  | Değer (`god`/`deaf`) | **1.96** | ≥ 1.5 |
-  | Kanal gerekli | **0.241** | ≤ 0.6 |
-  | Kanal yeterli | **0.709** | ≥ 0.5 |
-
-  Kanal yardımcı bir yol değil, **bilginin tek yolu.** Menzil küresel
-  (PL-28). İpucu tehlike kanalına özel algı olarak yazıldı ve çekirdeğe
-  **0 bit** eklendi (PL-27).
-
-### S3-D sonrası: öğrenen ajanlarla dil tuzağı → **H4 negatif**
-Nüfus oracle'ından PL-39'a kadar tüm programlar (S3 merdiveni, Program
-A, B, C, A′/A″, PL-37, PL-38, PL-39) tablolarıyla
-[`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md)'dedir.
-
-## Şu an nerede duruyoruz
-
-S3 dil kolu 21 Ekim 2026'da kapandı (H4 negatif). Neyin denendiği,
-neden olmadığı ve açık kalan yollar: [`RAPOR_S3_DIL.md`](RAPOR_S3_DIL.md).
-Sıradaki program henüz seçilmedi. Açık döngüler ve kararlar:
-[`OPEN_LOOPS.md`](OPEN_LOOPS.md).
-
-## Bulgu tablosu
-
-| Bulgu | Etiket |
-|---|---|
-| Ajan rastgele politikadan uzun yaşar (S1) | Sağlam, ama mekanizma tasarruf |
-| Kümülatif yol entegrasyonu (P1 disp) | **Negatif**, spawn ve λ ablasyonlarına dayanıklı |
-| Tek-adım öz-hareket (kayma) yerellik iskelesiyle öğrenilir | Üretici enstrümanda 5/5 seed |
-| Hasat, kayma yetisinden sonra doğar | **Aday gözlem** (n=1) |
-| Öz-enerji temsili | **Düştü**, genel girdi iyileştirmesi |
-| "Sinyal maliyet baskısıyla söner" | **Çürütüldü**, enstrüman artefaktı |
-| B koordinasyonu keşfedilebilir mi | **Hayır** (Çatal C) |
-| Alarm çağrısı görevi geçerli bir dil tuzağı mı | **Evet** (Çatal A, oracle düzeyinde) |
-| Öğrenen ajanlarla dil doğar mı (H4) | **Hayır**, sessiz denge (≈320 koşum) |
-| Okulda ajan net komşuları dinlemeyi öğrenir mi | **Evet**, eşik ≈0.18 bit (aday gözlem) |
-| Dinleme bir kez kurulursa ekolojide yaşar mı | **Hayır**, ~20 bin turda söner |
-
-## Repo haritası
-
-```
-world/        dünya fiziği (grid, events, config — economy v1/v2/v3)
-agent/        tahmin çekirdeği, homeostaz, MPC, kanal
-population/   roster + yaşam döngüsü (ölüm, miras, mutasyon)
-training/     öğrenme döngüsü (loop.py), PER, ekoloji koşturucu (ecology.py),
-              oracle'lar (oracle, b_oracle, event_oracle, pop_oracle),
-              olay okulu (event_school), topluluk ajanı (ensemble_agent),
-              gözlemci problar (analyze_s3e, precursor_probe,
-              signal_curse_probe), sprint eval script'leri
-agent/ensemble.py  Program A1 model topluluğu (K-115 aday)
-probes/       P1 öz-model probu (sosyal katman kapalı)
-replay/       .npz kayıt + izleyici
-tests/        determinizm, fizik, enstrüman (M-23 bilinen-pozitif) testleri
-runs/         TÜM ham sonuçlar, snapshot'lar, ağırlıklar
-              s3d (nüfus oracle) · s3e…s3r (S3 ekoloji merdiveni) · s3j
-              (olay okulu) · s3q (Program B) · a0/a1 (Program A) · c1
-              (Program C) — her klasörde breath.json/summary.json
-RAPOR_S3_DIL.md   S3 dil kolu bütüncül kapanış raporu
-FINDINGS.md       sprint sonu bulgular (negatifler dahil) + Beş Kapı şablonu
-OPEN_LOOPS.md     PL-xx açık işler / bekleyen kararlar
-KERNEL_BUDGET.md  ajana verilen her prior, bit cinsinden
-METODOLOJI.md     M-xx dersleri
-K104_DOSYA.md     merak terimi (K-104) karar dosyası
-PETRI_TALIMAT.md  kaynak doküman (çelişkide bu kazanır)
-CLAUDE.md         oturum anayasası
-```
-
-## Veriler (`runs/`)
-
-| Dosya / klasör | İçerik |
-|---|---|
-| `s1_results.json`, `s1_results_v1_failed.json` | S1 hayatta kalma (başarılı v2 + başarısız v1) |
-| `s2_*_p1_results.json`, `s2*_snapshots/` | S2 P1 probu ve varyantları (λ=1, spawn-rand, PL-15 kör/normal), dondurulmuş temsiller (.npz) |
-| `s25_step{1..4}.json` | S2.5 merdiven adımları |
-| `s26_*.json` | ekonomi oracle'ı, A-enerji süpürmesi, PER koşumu |
-| `s27_*.json` | görünür-A oracle'ı, calibN, yuva müfredatı |
-| `s28_*.json` | rollout çürüme eğrisi, CEM sonuçları |
-| `s29_*.json` | taban oranlar, K-110rev sonuçları |
-| `s210_*.json`, `s210_weights/` | M-19 doğum günü testi, kayma zinciri, karşı-olgusal çürüme; seed 1-3 ağırlıkları (`.pt`) |
-| `s210ek_*`, `s210ek_snapshots/` | PL-13 ortak zaman ekseni (seed 3) |
-| `s3_breath/`, `s3_breath_v2/` | ekoloji koşumları (v1 bozuk enstrüman, v2 düzeltilmiş) |
-| `s3_b_*.json` | B koordinasyon oracle'ı, keşfedilebilirlik, kalibrasyon |
-| `s3c_event_oracle.json` | S3-C alarm çağrısı oracle'ı |
-
-## Çalıştırma
-
-```bash
-uv venv --python 3.13 .venv            # ya da: python3.13 -m venv .venv
-uv pip install --python .venv/bin/python -r requirements.txt
-.venv/bin/python -m pytest tests/ -q   # ~90 sn; determinizm + fizik + enstrüman
-
-# Ekoloji (S3 varsayılanları: klon kadro, yuva, σ=0.002, olay her 10 tur):
-.venv/bin/python -m training.ecology --turns 20000 --out runs/deneme \
-  --founding clone --nest 600 0.5 --sigma 0.002 --events \
-  --event-every 10 --event-lead 4 --event-share 0.5 --channel open
-# Kollar: --channel mute|hear|speak, --selection max_age, --signal-frac,
-# --eps-quiet, --ensemble K BETA, --min-safe N, --founding weights:<pt>
-.venv/bin/python -m training.analyze_s3e --dir runs/deneme     # özet + MI
-.venv/bin/python -m training.event_school --turns 100000 --seed 0 --out runs/okul
-.venv/bin/python -m training.precursor_probe --weights runs/deneme/final_weights.pt
-.venv/bin/python -m replay.viewer record out.npz --turns 2000
-```
-
-Ölçümler Python 3.13, NumPy 2.4.2, Torch 2.13 (tek thread, bit-eş eğitim),
-Apple Silicon üzerinde alındı. 5 ajanlı ekoloji ≈ 60-80 ms/tur; 100K tur
-≈ 2 saat. `runs/` 414 MB (S2 snapshot'ları ve eski ağırlık dosyaları
-dahil; yeni `final_weights.pt` dosyaları git dışıdır).
-
-## Metodoloji dersleri
-
-Her sprint "Yeni ders var mı?" sorusuyla kapanır. Tam liste:
-[`METODOLOJI.md`](METODOLOJI.md). Öne çıkanlar:
-
-- **M-14:** Müdahale seçmeden önce, hedef deneyimin taban oranını say.
-- **M-15:** Sonda da bir cihazdır. Bilinen bir pozitifte doğrulanmadan ön-kayıt kriteri yapılmaz.
-- **M-17:** Cihaz, kullanıldığı dağılımda koşmalı.
-- **M-20:** Taban çizgisi de cihazın parçasıdır.
-- **M-21:** Rejim transferi ölçülür, varsayılmaz.
-- **M-22:** Fizibilite iki ayrı sorudur: değerli mi, ve bulunabilir mi.
-- **M-23:** Sayaç da bir cihazdır.
-- **M-24:** Paydası tedaviden etkilenen oran yanıltır.
-- **M-25:** Tuzak kurmadan önce kaçış yollarını say.
+</div>

@@ -1,9 +1,13 @@
+# Python
 __pycache__/
 *.pyc
 .pytest_cache/
-.DS_Store
-.claude/settings.local.json
-runs/**/final_weights.pt   # 19 Ekim: ağırlık dosyaları artık git dışı (yerelde kalır; eskiler takipte)
 .venv/
+
+# Sistem ve araç dosyaları
+.DS_Store
 .claude/
+
+# Ağırlık dosyaları (19 Ekim'den sonra git dışı, yerelde kalır; eskiler takipte)
+runs/**/final_weights.pt
 runs/ev/**/*.pt

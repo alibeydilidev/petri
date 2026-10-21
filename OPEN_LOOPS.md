@@ -238,6 +238,15 @@
   seyrelmesi (6×17 uzay), girdi gürültüsü (16+17 boyut), sinyal
   maliyeti. Ayırıcı: `--channel hear` (duy, konuşma) / `--channel speak`
   (konuş, duyma). 0 bit.
+- **PL-41 — sender_clarity paydası (AÇIK, küçük):** P(s|0), P(s|1)
+  paydası `pending_turns/2` varsayımıyla hesaplanıyor; kısa pencerelerde
+  (≤1K tur) oran 1'i aşabiliyor (21 Ekim, README komut denemesinde
+  görüldü). Kaynak: değer 0 olan uyarı turu payı varsayılıyor, sayılmıyor;
+  olay başına değerler ilişkili. Tahmini etki: 50K segmentte (~5000 olay)
+  oranlarda ±%1-2, 10K pencerede ±%3; başlık sayıları (0.05-0.10 bit)
+  ve eşik (0.18, oracle'dan, kesin) etkilenmiyor. Düzeltme: ekoloji
+  sayaçlarına değer başına uyarı turu ekle; eski koşumlar bu ölçüyle
+  yeniden hesaplanamaz (sayaç yok).
 - **PL-40 KAPALI. KARAR (Ali, 21 Ekim): (a) dil kolunu nihai negatifle kapat.**
   Bütüncül rapor: `RAPOR_S3_DIL.md`. (b) iki taraflı tohum açık davet olarak
   raporun 9. bölümünde.
